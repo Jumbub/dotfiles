@@ -53,7 +53,9 @@ function dot-diff() {
 }
 function dot-checkout() {
   dot-backup
+  cd $HOME
   dot-override checkout -- .
+  cd -
 }
 function dot-update() {
   INPUT=$@
