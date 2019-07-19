@@ -6,7 +6,7 @@ alias z-source="source $HOME/.zshrc"
 
 LOCATION_DOTFILES_REPO=${LOCATION_REPOS}/dotfiles
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
-alias dot="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
+alias dot-override="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
 function dot-add() {
   if [[ $1 ]]; then
     # Split the string by the "/" delimiter
@@ -37,9 +37,19 @@ function dot-add() {
     echo "dot-add <PATH>"
   fi
 }
+function dot-backup() {
+  BACKUP_TIME_NOW="$(date +%s)"
+  mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
+  dot-override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
+  unset BACKUP_TIME_NOW
+}
+function dot-checkout() {
+  dot-backup
+  dot-override checkout -- .
+}
 function dot-update() {
   INPUT=$@
-  dot add .
-  dot commit -m "${INPUT}"
-  dot push
+  dot-override add .
+  dot-override commit -m "${INPUT}"
+  dot-override push
 }
