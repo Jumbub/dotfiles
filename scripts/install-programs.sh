@@ -62,3 +62,5 @@ install-program-pip awscli
 
 stack upgrade
 stack update
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
