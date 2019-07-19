@@ -1,11 +1,31 @@
 #!/bin/bash
 
-LOG_FILE=$HOME/program_installation_logs;
+  # 
+  # Update repositories
+  # 
+
+# Sublime
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
+# PHP
+sudo add-apt-repository -y ppa:ondrej/php
+
+sudo apt update
+
+  # 
+  # Install programs
+  # 
+
+LOG_FILE=/tmp/install-programs.txt;
+
+echo "beginning installation of programs ..." >> LOG_FILE
 
 function install-program() {
   echo "installing ${2}"
   $1 $2
-  if ! [ -x "$(command -v $2)" ]; then
+  if [[ $? > 0 ]]; then
     echo "ERROR: failed to install $2 ($1 $2)" >> $LOG_FILE
   else
     echo "installed ${2}" >> LOG_FILE
