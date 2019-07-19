@@ -1,0 +1,44 @@
+CONFIG_EDITOR=vim
+LOCATION_REPOS=$HOME/repos
+
+alias a-source="source $HOME/.aliases"
+alias z-source="source $HOME/.zshrc"
+
+LOCATION_DOTFILES_REPO=${LOCATION_REPOS}/dotfiles
+LOCATION_GIT_IGNORE=${HOME}/.gitignore
+alias dot="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
+function dot-add() {
+  if [[ $1 ]]; then
+    # Split the string by the "/" delimiter
+    PATH_SPLIT=("${(s|/|)${1}}")
+    unset BUILT_STRING
+    BUILT_STRING="!"
+    for PATH_PART in $PATH_SPLIT; do
+      BUILT_STRING="${BUILT_STRING}/${PATH_PART}"
+      # If the built string is already in the file, do not append again
+      if ! grep -q "${BUILT_STRING}" "${LOCATION_GIT_IGNORE}"; then
+        # Add the file/folder to the gitignore
+        echo $BUILT_STRING >> $LOCATION_GIT_IGNORE
+        # Add the folder contents to the gitignore (if this is the file, it is removed next)
+        echo "${BUILT_STRING}/*" >> $LOCATION_GIT_IGNORE
+
+        APPENDED_SOMETHING="yes"
+      fi
+    done
+    # Only remove the last line if a file was appended
+    if [[ $APPENDED_SOMETHING ]]; then
+      # Remove the last line, because a file does not have contents
+      head -n -1 $LOCATION_GIT_IGNORE > $LOCATION_GIT_IGNORE.tmp
+      mv $LOCATION_GIT_IGNORE.tmp $LOCATION_GIT_IGNORE
+    fi
+    unset APPENDED_SOMETHING
+    unset BUILT_STRING
+  else
+    echo "dot-add <PATH>"
+  fi
+}
+function dot-update() {
+  dot add .
+  dot commit -m "$@"
+  dot push
+}
