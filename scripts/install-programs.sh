@@ -6,7 +6,7 @@ function install-program() {
   echo "installing ${2}"
   $1 $2
   if ! [ -x "$(command -v $2)" ]; then
-    echo "ERROR: failed to install $2 (sudo $1 $2)" >> $LOG_FILE
+    echo "ERROR: failed to install $2 ($1 $2)" >> $LOG_FILE
   else
     echo "installed ${2}" >> LOG_FILE
   fi
