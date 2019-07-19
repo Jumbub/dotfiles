@@ -30,8 +30,8 @@ function dot-add() {
     # Only remove the last line if a file was appended
     if [[ $APPENDED_SOMETHING ]]; then
       # Remove the last line, because a file does not have contents
-      head -n -1 $LOCATION_GIT_IGNORE > $LOCATION_GIT_IGNORE.tmp
-      mv $LOCATION_GIT_IGNORE.tmp $LOCATION_GIT_IGNORE
+      # head -n -1 $LOCATION_GIT_IGNORE > $LOCATION_GIT_IGNORE.tmp
+      # mv $LOCATION_GIT_IGNORE.tmp $LOCATION_GIT_IGNORE
     fi
     unset APPENDED_SOMETHING
     unset BUILT_STRING
@@ -45,7 +45,7 @@ function dot-backup() {
   dot-override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
   unset BACKUP_TIME_NOW
 }
-function dot-changes() {
+function dot-status() {
   dot-override status
 }
 function dot-diff() {

@@ -9,3 +9,4 @@
 !/.aliases
 !/scripts
 !/scripts/setup-dotfiles.sh
+!/scripts/install-programs.sh
