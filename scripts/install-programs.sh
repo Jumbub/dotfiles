@@ -13,7 +13,7 @@ function install-program() {
 }
 
 function install-program-apt() {
-  install-program "sudo apt install" "${@}"
+  install-program "sudo apt -y install" "${@}"
 }
 
 function install-program-snap() {
