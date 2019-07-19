@@ -8,5 +8,4 @@
 !/.custom-oh-my-zsh/themes/steeef.zsh-theme
 !/.aliases
 !/scripts
-!/scripts/*
 !/scripts/setup-dotfiles.sh

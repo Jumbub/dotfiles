@@ -1,3 +1,5 @@
+#!/bin/bash
+
 CONFIG_EDITOR=vim
 LOCATION_REPOS=$HOME/repos
 
@@ -20,7 +22,7 @@ function dot-add() {
         # Add the file/folder to the gitignore
         echo $BUILT_STRING >> $LOCATION_GIT_IGNORE
         # Add the folder contents to the gitignore (if this is the file, it is removed next)
-        echo "${BUILT_STRING}/*" >> $LOCATION_GIT_IGNORE
+        # echo "${BUILT_STRING}/*" >> $LOCATION_GIT_IGNORE
 
         APPENDED_SOMETHING="yes"
       fi
@@ -42,6 +44,12 @@ function dot-backup() {
   mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
   dot-override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
   unset BACKUP_TIME_NOW
+}
+function dot-changes() {
+  dot-override status
+}
+function dot-diff() {
+  dot-override diff
 }
 function dot-checkout() {
   dot-backup
