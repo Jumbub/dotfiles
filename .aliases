@@ -38,7 +38,8 @@ function dot-add() {
   fi
 }
 function dot-update() {
+  INPUT=$@
   dot add .
-  dot commit -m "$@"
+  dot commit -m "${INPUT}"
   dot push
 }
