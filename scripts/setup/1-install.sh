@@ -77,6 +77,7 @@ install-program-apt zsh
 install-program-snap node --classic --channel=10
 install-program-snap spotify
 install-program-snap code --classic
+install-program-snap gotop-cjbassi
 
 install-program-pip awscli
 
