@@ -20,3 +20,4 @@
 !/.config/Code/User/*.json
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
+!/.config/redshift.conf
