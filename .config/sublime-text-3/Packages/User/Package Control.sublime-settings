@@ -1,0 +1,35 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AutoFileName",
+		"BetterFindBuffer",
+		"EditorConfig",
+		"Emmet",
+		"FileBrowser",
+		"HighlightWords",
+		"ImportHelper",
+		"IntelliDocs",
+		"JsPrettier",
+		"MarkdownLivePreview",
+		"Open URL",
+		"Package Control",
+		"PHP Codebeautifier",
+		"PHPUnit Completions",
+		"Sass",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-php",
+		"SublimeLinter-phpcs",
+		"SublimeLinter-tslint",
+		"TabNine",
+		"Terminal",
+		"TypeScript",
+		"TypeScript Syntax",
+		"ZSH"
+	]
+}

@@ -11,3 +11,9 @@
 !/scripts/setup
 !/scripts/setup/1-install.sh
 !/scripts/setup/2-dotfiles.sh
+!/.config
+!/.config/sublime-text-3
+!/.config/sublime-text-3/Packages
+!/.config/sublime-text-3/Packages/User
+!/.config/sublime-text-3/Packages/User/*.sublime-keymap
+!/.config/sublime-text-3/Packages/User/*.sublime-settings

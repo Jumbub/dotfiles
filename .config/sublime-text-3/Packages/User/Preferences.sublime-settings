@@ -1,0 +1,19 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"detect_indentation": true,
+	"disable_tab_width_auto_detection": true,
+	"draw_centered": true,
+	"draw_indent_guides": true,
+	"font_size": 10,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"TabNine",
+		"Vintage"
+	],
+	"tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"word_wrap": true,
+	"wrap_width": 120
+}

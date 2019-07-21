@@ -19,15 +19,12 @@ dotdiff() {
 }
 dotcommit() {
   INPUT=$@
-  cd $HOME
-  dotoverride add .
-  cd -
+  dotoverride add -A
   dotoverride commit -m "${INPUT}"
 }
 dotamend() {
   cd $HOME
-  dotoverride add .
-  cd -
+  dotoverride add -A
   dotoverride commit --amend --no-edit
 }
 dotpush() {
