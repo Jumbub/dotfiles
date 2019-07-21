@@ -79,6 +79,44 @@ then
   install_snap gotop-cjbassi
 fi
 
+if [ ! $1 ] || [ "$1" = "code" ]
+then
+  install_code() {
+    install_program "code --install-extension" "${@}"
+  }
+  install_code anseki.vscode-color
+  install_code arthurwang.vsc-prolog
+  install_code bmewburn.vscode-intelephense-client
+  install_code christian-kohler.path-intellisense
+  install_code chrmarti.regex
+  install_code dsznajder.es7-react-js-snippets
+  install_code EditorConfig.EditorConfig
+  install_code esbenp.prettier-vscode
+  install_code fabiospampinato.vscode-highlight
+  install_code formulahendry.auto-rename-tag
+  install_code Fr43nk.seito-openfile
+  install_code ikappas.phpcs
+  install_code johnpyp.vscode-jumpy-plus
+  install_code mohsen1.prettify-json
+  install_code ms-python.python
+  install_code neilbrayfield.php-docblocker
+  install_code pranaygp.vscode-css-peek
+  install_code pstreule.codebucket
+  install_code ryu1kn.annotator
+  install_code sissel.shopify-liquid
+  install_code sleistner.vscode-fileutils
+  install_code steoates.autoimport
+  install_code travisthieman.better-search
+  install_code vscode-icons-team.vscode-icons
+  install_code waderyan.gitblame
+  install_code WakaTime.vscode-wakatime
+  install_code WallabyJs.quokka-vscode
+  install_code wix.vscode-import-cost
+  install_code wmaurer.change-case
+  install_code wmaurer.vscode-jumpy
+  install_code Zignd.html-css-class-completion
+fi
+
 if [ ! $1 ] || [ "$1" = "pip" ]
 then
   install_pip() {

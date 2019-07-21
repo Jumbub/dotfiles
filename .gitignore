@@ -8,9 +8,7 @@
 !/.custom-oh-my-zsh/themes/steeef.zsh-theme
 !/.aliases
 !/scripts
-!/scripts/setup
-!/scripts/setup/1-install.sh
-!/scripts/setup/2-dotfiles.sh
+!/scripts/*
 !/.config
 !/.config/sublime-text-3
 !/.config/sublime-text-3/Packages
