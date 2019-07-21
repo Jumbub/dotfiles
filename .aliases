@@ -12,7 +12,7 @@ dotoverride() {
   git --git-dir=${LOCATION_DOTFILES_REPO_GIT} --work-tree=$HOME $@
 }
 dotstatus() {
-  dotoverride status $@
+  dotoverride status --untracked-files $@
 }
 dotdiff() {
   dotoverride diff $@

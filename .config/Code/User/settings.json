@@ -1,0 +1,121 @@
+{
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Monokai",
+    "php.suggest.basic": false,
+    "explorer.confirmDelete": false,
+    "jumpy.darkThemeBackground": "#47252e",
+    "jumpy.darkThemeForeground": "#eee",
+    "highlight.regexes": {
+        "(todo:?)": [
+            {
+              "color": "#78dce8",
+              "fontWeight": "bold"
+            },
+        ],
+        "(note:?)": [
+            {
+              "color": "#f7cf59",
+              "fontWeight": "bold"
+            },
+        ],
+        "(fixme:?)": [
+            {
+                "color": "#ff6188",
+                "fontWeight": "bold"
+            },
+        ],
+        "(hack:?)": [
+            {
+                "color": "#ab9df2",
+                "fontWeight": "bold"
+            },
+        ],
+        // \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]);
+        "(\\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\);)": {
+            "regexFlags": "g",
+            "decorations":
+            [
+                {"backgroundColor": "#47252e"},
+                {"backgroundColor": "#47252e"},
+                {"backgroundColor": "#47252e"},
+                {},
+                {"backgroundColor": "#47252e"},
+            ]
+        },
+        // <?php \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]); ?>
+        "(\\<\\?php \\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\); \\?\\>)": {
+            "regexFlags": "g",
+            "decorations":
+            [
+                {"backgroundColor": "#47252e"},
+                {"backgroundColor": "#47252e"},
+                {"backgroundColor": "#47252e"},
+                {},
+                {"backgroundColor": "#47252e"},
+            ]
+        },
+        // console.log('DEBUGGING', asdf);
+        "(console.log\\('DEBUGGING',)([^;]*)(\\);)": {
+            "regexFlags": "g",
+            "decorations":
+            [
+                {"backgroundColor": "#47252e"},
+                {},
+                {"backgroundColor": "#47252e"},
+            ]
+        },
+        // <?php if () asdadsdsa
+        // : ?>  <?php elseif (): ?> <?= $asdf ?> <?php else: ?> <?php endif ?>  <?php if( $booking->triage && !$booking->isWebsiteForm() ) : ?> fixed noresize <?php endif; ?>   ">
+        // "(\\<\\?(php|\\=))(((?!DEBUGGING)|\\n|.)*?)(\\?\\>)": {
+        //     "regexFlags": "g",
+        //     "decorations":
+        //     [
+        //         {"backgroundColor": "#254047"},
+        //         {"backgroundColor": "#254047"},
+        //         {"backgroundColor": "#254047"},
+        //     ]
+        // },
+    },
+    "php-docblocker.returnVoid": false,
+    "phpcs.errorSeverity": 1,
+    "phpcs.warningSeverity": 1,
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.requireConfig": true,
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "xml": {
+            "attr_quotes": "single"
+        }
+    },
+    "css_peek.exclude": [
+        "node_modules",
+        "bower_components",
+    ],
+    "window.newWindowDimensions": "inherit",
+    "window.enableMenuBarMnemonics": false,
+    "window.menuBarVisibility": "visible",
+    "workbench.activityBar.visible": false,
+    "window.zoomLevel": 0,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "zenMode.hideLineNumbers": false,
+    "window.title": "${activeEditorLong} ${dirty} (${folderName})${separator}${appName}",
+    "jumpy.fontSize": 10,
+    "breadcrumbs.enabled": true,
+    "editor.formatOnType": true,
+    "explorer.openEditors.visible": 0,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "regex-previewer.enableCodeLens": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+}
