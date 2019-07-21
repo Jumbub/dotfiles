@@ -17,7 +17,19 @@ dotstatus() {
 dotdiff() {
   dotoverride diff $@
 }
-dotadd() {
+dotcommit() {
+  INPUT=$@
+  dotoverride add .
+  dotoverride commit -m "${INPUT}"
+}
+dotamend() {
+  dotoverride add .
+  dotoverride commit --amend --no-edit
+}
+dotpush() {
+  dotoverride push
+}
+dotadd() {(
   if [[ $1 ]]; then
     # Split the string by the "/" delimiter
     PATH_SPLIT=("${(s|/|)${1}}")
@@ -30,19 +42,35 @@ dotadd() {
         echo $BUILT_STRING >> $LOCATION_GIT_IGNORE
       fi
     done
-    unset BUILT_STRING
   else
     echo "dotadd <PATH>"
   fi
-}
-dotbackup() {
-  BACKUP_TIME_NOW="$(date +%s)"
-  mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
+)}
+dotbackup() {(
   # This file needs to exist for the ls-files command option
   touch $HOME/.gitignore
-  dotoverride ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW 2>/dev/null
-  unset BACKUP_TIME_NOW
-}
+
+  # Create backup folder
+  BACKUP_TIME_NOW="$(date +%s)"
+  BACKUP_FOLDER=$HOME/.dotfiles-backup/$BACKUP_TIME_NOW
+  mkdir -p $BACKUP_FOLDER
+
+  dotoverride ls-files --modified | xargs -i cp {} $BACKUP_FOLDER 2>/dev/null
+
+  # Attempt to delete directory (only succeeds if folder is empty)
+  rmdir $BACKUP_FOLDER --ignore-fail-on-non-empty
+
+  # Give some info to the user
+  if [ -d "$BACKUP_FOLDER" ]
+  then
+    echo "Modified files:"
+    ls -a --ignore="." --ignore=".." $BACKUP_FOLDER
+    echo
+    echo "Backups saved to $HOME/.dotfiles-backup/$BACKUP_TIME_NOW"
+  else
+    echo "Nothing to update"
+  fi
+)}
 dotcheckout() {
   dotoverride fetch
   dotbackup
@@ -50,14 +78,7 @@ dotcheckout() {
   dotoverride checkout -- .
   cd -
 }
-dotcommit() {
-  INPUT=$@
-  dotoverride add .
-  dotoverride commit -m "${INPUT}"
-  dotoverride push
-}
-dotwhoops() {
-  dotoverride add .
-  dotoverride commit --amend --no-edit
-  dotoverride push -f
+dotpull() {
+  dotoverride fetch
+  dotoverride pull
 }
