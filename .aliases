@@ -40,7 +40,7 @@ dotbackup() {
   mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
   # This file needs to exist for the ls-files command option
   touch $HOME/.gitignore
-  dotoverride ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
+  dotoverride ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW 2>/dev/null
   unset BACKUP_TIME_NOW
 }
 dotcheckout() {
