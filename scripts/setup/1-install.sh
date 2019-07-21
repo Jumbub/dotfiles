@@ -24,7 +24,7 @@ echo "beginning installation of programs ..." >> $LOG_FILE
 
 function install-program() {
   echo "installing ${2}"
-  $1 $2
+  $@
   if [[ $? > 0 ]]; then
     echo "ERROR: failed to install $2 ($1 $2)" >> $$LOG_FILE
   else
