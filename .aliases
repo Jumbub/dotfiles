@@ -3,13 +3,13 @@
 CONFIG_EDITOR=vim
 LOCATION_REPOS=$HOME/repos
 
-alias a-source="source $HOME/.aliases"
-alias z-source="source $HOME/.zshrc"
+alias a_source="source $HOME/.aliases"
+alias z_source="source $HOME/.zshrc"
 
 LOCATION_DOTFILES_REPO=${LOCATION_REPOS}/dotfiles
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
-alias dot-override="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
-function dot-add() {
+alias dot_override="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
+dot_add() {
   if [[ $1 ]]; then
     # Split the string by the "/" delimiter
     PATH_SPLIT=("${(s|/|)${1}}")
@@ -39,25 +39,25 @@ function dot-add() {
     echo "dot-add <PATH>"
   fi
 }
-function dot-backup() {
+dot_backup() {
   BACKUP_TIME_NOW="$(date +%s)"
   mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
   dot-override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
   unset BACKUP_TIME_NOW
 }
-function dot-status() {
+dot_status() {
   dot-override status
 }
-function dot-diff() {
+dot_diff() {
   dot-override diff
 }
-function dot-checkout() {
+dot_checkout() {
   dot-backup
   cd $HOME
   dot-override checkout -- .
   cd -
 }
-function dot-update() {
+dot_update() {
   INPUT=$@
   dot-override add .
   dot-override commit -m "${INPUT}"
