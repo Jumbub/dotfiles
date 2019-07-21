@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CONFIG_EDITOR=vim
 LOCATION_REPOS=$HOME/repos
@@ -6,10 +6,10 @@ LOCATION_REPOS=$HOME/repos
 alias asource="source $HOME/.aliases"
 alias zsource="source $HOME/.zshrc"
 
-LOCATION_DOTFILES_REPO=${LOCATION_REPOS}/dotfiles
+LOCATION_DOTFILES_REPO_GIT=${LOCATION_REPOS}/dotfiles.git
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
 dotoverride() {
-  git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME $@
+  git --git-dir=${LOCATION_DOTFILES_REPO_GIT} --work-tree=$HOME $@
 }
 dotstatus() {
   dotoverride status $@
@@ -19,15 +19,19 @@ dotdiff() {
 }
 dotcommit() {
   INPUT=$@
+  cd $HOME
   dotoverride add .
+  cd -
   dotoverride commit -m "${INPUT}"
 }
 dotamend() {
+  cd $HOME
   dotoverride add .
+  cd -
   dotoverride commit --amend --no-edit
 }
 dotpush() {
-  dotoverride push
+  dotoverride push $@
 }
 dotadd() {(
   if [[ $1 ]]; then
@@ -77,8 +81,10 @@ dotcheckout() {
   cd $HOME
   dotoverride checkout -- .
   cd -
+  echo "You may need to reload your terminal."
 }
 dotpull() {
   dotoverride fetch
   dotoverride pull
+  echo "You may need to reload your terminal."
 }
