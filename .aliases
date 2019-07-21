@@ -13,7 +13,6 @@ dot_add() {
   if [[ $1 ]]; then
     # Split the string by the "/" delimiter
     PATH_SPLIT=("${(s|/|)${1}}")
-    unset BUILT_STRING
     BUILT_STRING="!"
     for PATH_PART in $PATH_SPLIT; do
       BUILT_STRING="${BUILT_STRING}/${PATH_PART}"
@@ -21,45 +20,37 @@ dot_add() {
       if ! grep -q "${BUILT_STRING}" "${LOCATION_GIT_IGNORE}"; then
         # Add the file/folder to the gitignore
         echo $BUILT_STRING >> $LOCATION_GIT_IGNORE
-        # Add the folder contents to the gitignore (if this is the file, it is removed next)
-        # echo "${BUILT_STRING}/*" >> $LOCATION_GIT_IGNORE
-
-        APPENDED_SOMETHING="yes"
       fi
     done
-    # Only remove the last line if a file was appended
-    if [[ $APPENDED_SOMETHING ]]; then
-      # Remove the last line, because a file does not have contents
-      # head -n -1 $LOCATION_GIT_IGNORE > $LOCATION_GIT_IGNORE.tmp
-      # mv $LOCATION_GIT_IGNORE.tmp $LOCATION_GIT_IGNORE
-    fi
-    unset APPENDED_SOMETHING
     unset BUILT_STRING
   else
-    echo "dot-add <PATH>"
+    echo "dot_add <PATH>"
   fi
 }
 dot_backup() {
   BACKUP_TIME_NOW="$(date +%s)"
   mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
-  dot-override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
+  # This file needs to exist for the ls-files command option
+  touch .gitignore
+  dot_override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
   unset BACKUP_TIME_NOW
 }
 dot_status() {
-  dot-override status
+  dot_override status
 }
 dot_diff() {
-  dot-override diff
+  dot_override diff
 }
 dot_checkout() {
-  dot-backup
+  dot_override fetch
+  dot_backup
   cd $HOME
-  dot-override checkout -- .
+  dot_override checkout -- .
   cd -
 }
 dot_update() {
   INPUT=$@
-  dot-override add .
-  dot-override commit -m "${INPUT}"
-  dot-override push
+  dot_override add .
+  dot_override commit -m "${INPUT}"
+  dot_override push
 }

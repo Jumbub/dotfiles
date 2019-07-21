@@ -85,5 +85,3 @@ stack upgrade
 stack update
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
-sudo chsh -s /usr/bin/zsh $USER
-echo "Please log out and back in to see use ZShell"
