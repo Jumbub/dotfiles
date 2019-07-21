@@ -26,7 +26,7 @@ function install-program() {
   echo "installing ${2}"
   $@
   if [[ $? > 0 ]]; then
-    echo "ERROR: failed to install $2 ($1 $2)" >> $$LOG_FILE
+    echo "ERROR: failed to install $2 ($1 $2)" >> $LOG_FILE
   else
     echo "installed ${2}" >> $LOG_FILE
   fi
