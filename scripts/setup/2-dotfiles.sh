@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 sudo chsh -s /usr/bin/zsh $USER
-source $HOME/repos/dotfiles/.aliases && dot_checkout
+source $HOME/repos/dotfiles/.aliases
+dotcheckout

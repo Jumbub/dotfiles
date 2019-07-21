@@ -3,13 +3,21 @@
 CONFIG_EDITOR=vim
 LOCATION_REPOS=$HOME/repos
 
-alias a_source="source $HOME/.aliases"
-alias z_source="source $HOME/.zshrc"
+alias asource="source $HOME/.aliases"
+alias zsource="source $HOME/.zshrc"
 
 LOCATION_DOTFILES_REPO=${LOCATION_REPOS}/dotfiles
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
-alias dot_override="git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME"
-dot_add() {
+dotoverride() {
+  git --git-dir=${LOCATION_DOTFILES_REPO}/.git --work-tree=$HOME $@
+}
+dotstatus() {
+  dotoverride status $@
+}
+dotdiff() {
+  dotoverride diff $@
+}
+dotadd() {
   if [[ $1 ]]; then
     # Split the string by the "/" delimiter
     PATH_SPLIT=("${(s|/|)${1}}")
@@ -24,33 +32,32 @@ dot_add() {
     done
     unset BUILT_STRING
   else
-    echo "dot_add <PATH>"
+    echo "dotadd <PATH>"
   fi
 }
-dot_backup() {
+dotbackup() {
   BACKUP_TIME_NOW="$(date +%s)"
   mkdir -p $HOME/.dotfiles-backup/$BACKUP_TIME_NOW
   # This file needs to exist for the ls-files command option
-  touch .gitignore
-  dot_override ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
+  touch $HOME/.gitignore
+  dotoverride ls-files --modified | xargs -i cp {} ~/.dotfiles-backup/$BACKUP_TIME_NOW
   unset BACKUP_TIME_NOW
 }
-dot_status() {
-  dot_override status
-}
-dot_diff() {
-  dot_override diff
-}
-dot_checkout() {
-  dot_override fetch
-  dot_backup
+dotcheckout() {
+  dotoverride fetch
+  dotbackup
   cd $HOME
-  dot_override checkout -- .
+  dotoverride checkout -- .
   cd -
 }
-dot_update() {
+dotcommit() {
   INPUT=$@
-  dot_override add .
-  dot_override commit -m "${INPUT}"
-  dot_override push
+  dotoverride add .
+  dotoverride commit -m "${INPUT}"
+  dotoverride push
+}
+dotwhoops() {
+  dotoverride add .
+  dotoverride commit --amend --no-edit
+  dotoverride push -f
 }

@@ -1,87 +1,104 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-  # 
-  # Update repositories
-  # 
+LOG_FILE=/tmp/install_programs.txt
+log() {
+  echo "$@" >> $LOG_FILE
+}
 
-# Sublime
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt install apt-transport-https
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+echo "" > $LOG_FILE
+log "beginning install..."
 
-# PHP
-sudo add-apt-repository -y ppa:ondrej/php
-
-sudo apt update
-
-  # 
-  # Install programs
-  # 
-
-LOG_FILE=/tmp/install-programs.txt;
-
-echo "beginning installation of programs ..." >> $LOG_FILE
-
-function install-program() {
-  echo "installing ${2}"
+install_program() {
+  log "installing ${2}..."
   $@
-  if [[ $? > 0 ]]; then
-    echo "ERROR: failed to install $2 ($1 $2)" >> $LOG_FILE
+  if [[ $? > 0 ]]
+  then
+    log "ERROR: failed to install $2 ($1 $2)"
   else
-    echo "installed ${2}" >> $LOG_FILE
+    log "installed ${2}"
   fi
 }
 
-function install-program-apt() {
-  install-program "sudo apt -y install" "${@}"
-}
+if [ ! $1 ] || [ "$1" = "apt" ]
+then
+  # Sublime
+  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  sudo apt install apt-transport-https
+  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-function install-program-snap() {
-  install-program "sudo snap install" "${@}"
-}
+  # PHP
+  sudo add-apt-repository -y ppa:ondrej/php
 
-function install-program-pip() {
-  install-program "pip3 install" "${@}"
-}
+  sudo apt update
+fi
 
-install-program-apt apt-transport-https
-install-program-apt autokey-gtk
-install-program-apt awesome
-install-program-apt curl
-install-program-apt dconf-editor
-install-program-apt haskell-stack
-install-program-apt htop
-install-program-apt php
-install-program-apt php-curl
-install-program-apt php-mbstring
-install-program-apt php-xml
-install-program-apt php7.2
-install-program-apt php7.2-curl
-install-program-apt php7.2-mbstring
-install-program-apt php7.2-soap
-install-program-apt php7.2-xml
-install-program-apt php7.2-zip
-install-program-apt python3
-install-program-apt python3-pip
-install-program-apt redshift
-install-program-apt redshift-gtk
-install-program-apt rofi
-install-program-apt stack
-install-program-apt sublime-merge
-install-program-apt sublime-text
-install-program-apt vim
-install-program-apt vlc
-install-program-apt xournal
-install-program-apt zsh
+if [ ! $1 ] || [ "$1" = "apt" ] || [ "$1" = "fastapt" ]
+then
+  install_apt() {
+    install_program "sudo apt -y install" "${@}"
+  }
+  install_apt apt-transport-https
+  install_apt autokey-gtk
+  install_apt awesome
+  install_apt curl
+  install_apt dconf-editor
+  install_apt haskell-stack
+  install_apt htop
+  install_apt libxft-dev
+  install_apt php
+  install_apt php-curl
+  install_apt php-mbstring
+  install_apt php-xml
+  install_apt php7.2
+  install_apt php7.2-curl
+  install_apt php7.2-mbstring
+  install_apt php7.2-soap
+  install_apt php7.2-xml
+  install_apt php7.2-zip
+  install_apt python3
+  install_apt python3-pip
+  install_apt redshift
+  install_apt redshift-gtk
+  install_apt rofi
+  install_apt sublime-merge
+  install_apt sublime-text
+  install_apt vim
+  install_apt vlc
+  install_apt xournal
+  install_apt zsh
+fi
 
-install-program-snap node --classic --channel=10
-install-program-snap spotify
-install-program-snap code --classic
-install-program-snap gotop-cjbassi
+if [ ! $1 ] || [ "$1" = "snap" ]
+then
+  install_snap() {
+    install_program "sudo snap install" "${@}"
+  }
+  install_snap node --classic --channel=10
+  install_snap spotify
+  install_snap code --classic
+  install_snap gotop-cjbassi
+fi
 
-install-program-pip awscli
+if [ ! $1 ] || [ "$1" = "pip" ]
+then
+  install_pip() {
+    install_program "pip3 install" "${@}"
+  }
+  install_pip awscli
+fi
 
-stack upgrade
-stack update
+if [ ! $1 ] || [ "$1" = "stack" ]
+then
+  log "upgrading stack..."
+  stack upgrade
+  stack update
+  log "done upgrading stack"
+fi
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+if [ ! $1 ] || [ "$1" = "firsttime" ]
+then
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+fi
+
+log "done.\n"
+cat $LOG_FILE
