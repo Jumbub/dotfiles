@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-CONFIG_EDITOR=vim
-LOCATION_REPOS=$HOME/repos
 
 alias asource="source $HOME/.aliases"
 alias zsource="source $HOME/.zshrc"
 
+alias doinstall="zsh $HOME/scripts/install.sh"
+
+LOCATION_REPOS=$HOME/repos
 LOCATION_DOTFILES_REPO_GIT=${LOCATION_REPOS}/dotfiles.git
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
 dotoverride() {

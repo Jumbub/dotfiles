@@ -118,4 +118,8 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "vsicons.dontShowNewVersionMessage": true,
+    "[lua]": {
+        "editor.defaultFormatter": "stanzilla.vscode-luaformatter"
+    },
+    "workbench.iconTheme": "vscode-icons",
 }
