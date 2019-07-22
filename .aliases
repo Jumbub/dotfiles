@@ -9,27 +9,24 @@ alias doinstall="zsh $HOME/scripts/install.sh"
 LOCATION_REPOS=$HOME/repos
 LOCATION_DOTFILES_REPO_GIT=${LOCATION_REPOS}/dotfiles.git
 LOCATION_GIT_IGNORE=${HOME}/.gitignore
-dotoverride() {
-  git --git-dir=${LOCATION_DOTFILES_REPO_GIT} --work-tree=$HOME $@
+dot() {
+  if [ $1 = "checkout" ] || [ $1 = "reset" ]
+  then
+     echo "Please use dotcheckout"
+  else
+    git --git-dir=${LOCATION_DOTFILES_REPO_GIT} --work-tree=$HOME $@
+  fi
 }
-dotstatus() {
-  dotoverride status --untracked-files $@
-}
-dotdiff() {
-  dotoverride diff $@
-}
-dotcommit() {
+dotupdate() {
   INPUT=$@
-  dotoverride add -A
-  dotoverride commit -m "${INPUT}"
+  dot add -A
+  dot commit -m "${INPUT}"
+  dot push
 }
-dotamend() {
-  cd $HOME
-  dotoverride add -A
-  dotoverride commit --amend --no-edit
-}
-dotpush() {
-  dotoverride push $@
+dotwhoops() {
+  dot add -A
+  dot commit --amend --no-edit
+  dot push -f
 }
 dotadd() {(
   if [[ $1 ]]; then
@@ -57,7 +54,7 @@ dotbackup() {(
   BACKUP_FOLDER=$HOME/.dotfiles-backup/$BACKUP_TIME_NOW
   mkdir -p $BACKUP_FOLDER
 
-  dotoverride ls-files --modified | xargs -i cp {} $BACKUP_FOLDER 2>/dev/null
+  dot ls-files --modified | xargs -i cp {} $BACKUP_FOLDER 2>/dev/null
 
   # Attempt to delete directory (only succeeds if folder is empty)
   rmdir $BACKUP_FOLDER --ignore-fail-on-non-empty
@@ -74,15 +71,10 @@ dotbackup() {(
   fi
 )}
 dotcheckout() {
-  dotoverride fetch
+  dot fetch
   dotbackup
   cd $HOME
-  dotoverride checkout -- .
+  dot checkout -- .
   cd -
-  echo "You may need to reload your terminal."
-}
-dotpull() {
-  dotoverride fetch
-  dotoverride pull
   echo "You may need to reload your terminal."
 }

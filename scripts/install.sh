@@ -28,6 +28,9 @@ then
 
   # PHP
   sudo add-apt-repository -y ppa:ondrej/php
+
+  #  Node
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 fi
 
 if [ ! $1 ] || [ "$1" = "apt" ]
@@ -46,6 +49,7 @@ then
   install_apt htop
   install_apt libxft-dev
   install_apt ninja-build
+  install_apt nodejs
   install_apt php
   install_apt php-curl
   install_apt php-mbstring
@@ -74,7 +78,6 @@ then
   install_snap() {
     install_program "sudo snap install" "${@}"
   }
-  install_snap node --classic --channel=10
   install_snap spotify
   install_snap code --classic
   install_snap gotop-cjbassi
@@ -99,6 +102,24 @@ then
     install_program "pip3 install" "${@}"
   }
   install_pip awscli
+fi
+
+if [ ! $1 ] || [ "$1" = "firsttime" ]
+then
+  # Is this broken? Go to https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+  install_npm() {
+    install_program "npm i -g" "${@}"
+  }
+  install_npm yarn
+fi
+
+if [ ! $1 ] || [ "$1" = "yarn" ]
+then
+  # Is this broken? Go to https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+  install_yarn() {
+    install_program "yarn global add" "${@}"
+  }
+  # install_yarn bash-language-server # VScode extension dependency
 fi
 
 if [ ! $1 ] || [ "$1" = "haskell" ]

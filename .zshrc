@@ -10,4 +10,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom
 
+if [ -d "$HOME/.npm-global/bin" ] ; then
+    export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 source $HOME/.aliases
