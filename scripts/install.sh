@@ -19,7 +19,7 @@ install_program() {
   fi
 }
 
-if [ ! $1 ] || [ "$1" = "apt" ]
+if [ ! $1 ] || [ "$1" = "firsttime" ]
 then
   # Sublime
   wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -28,14 +28,13 @@ then
 
   # PHP
   sudo add-apt-repository -y ppa:ondrej/php
-
-  sudo apt update
 fi
 
-if [ ! $1 ] || [ "$1" = "apt" ] || [ "$1" = "fastapt" ]
+if [ ! $1 ] || [ "$1" = "apt" ]
 then
+  sudo apt update
   install_apt() {
-    install_program "sudo apt -y install" "${@}"
+    install_program "sudo apt install -y" "${@}"
   }
   install_apt apt-transport-https
   install_apt autokey-gtk
