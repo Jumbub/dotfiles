@@ -42,9 +42,11 @@ then
   install_apt apt-transport-https
   install_apt autokey-gtk
   install_apt awesome
-  install_apt curl
+  install_apt ca-certificates
   install_apt clang
+  install_apt curl
   install_apt dconf-editor
+  install_apt gnupg2
   install_apt haskell-stack
   install_apt htop
   install_apt libxft-dev
@@ -65,12 +67,26 @@ then
   install_apt redshift
   install_apt redshift-gtk
   install_apt rofi
+  install_apt software-properties-common
   install_apt sublime-merge
   install_apt sublime-text
   install_apt vim
   install_apt vlc
   install_apt xournal
   install_apt zsh
+
+  # https://github.com/elw00d/awesome-deb-docker
+fi
+
+# Docker (https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+if [ ! $1 ] || [ "$1" = "firsttime" ]
+then
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+  sudo apt-get update
+
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 fi
 
 if [ ! $1 ] || [ "$1" = "snap" ]
@@ -115,11 +131,9 @@ fi
 
 if [ ! $1 ] || [ "$1" = "yarn" ]
 then
-  # Is this broken? Go to https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
   install_yarn() {
     install_program "yarn global add" "${@}"
   }
-  # install_yarn bash-language-server # VScode extension dependency
 fi
 
 if [ ! $1 ] || [ "$1" = "haskell" ]
