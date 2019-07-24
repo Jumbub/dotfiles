@@ -1,0 +1,72 @@
+#!/usr/bin/env zsh
+
+DIR_DOTFILES_BACKUPS=$HOME/.dotfilesBackup
+DIR_REPOS_DOTFILES=${DIR_REPOS}/dotfiles.git
+DIR_REPOS=$HOME/repos
+FILE_DOTFILES_FUNCTIONS=$HOME/.dotFunctions
+FILE_DOTFILES_GITIGNORE=$HOME/.gitignore
+
+alias dotSource="source $FILE_DOTFILES_FUNCTIONS"
+
+dotBackupChangesX() {(
+  # This file needs to exist for the ls-files command option
+  touch $FILE_DOTFILES_GITIGNORE
+
+  # Create backup folder
+  BACKUP_TIME_NOW="$(date +%s)"
+  BACKUP_FOLDER=$DIR_DOTFILES_BACKUPS/$BACKUP_TIME_NOW
+  mkdir -p $BACKUP_FOLDER
+
+  dot ls-files --modified | xargs -i cp {} $BACKUP_FOLDER 2>/dev/null
+
+  # Attempt to delete directory (only succeeds if folder is empty)
+  rmdir $BACKUP_FOLDER --ignore-fail-on-non-empty
+
+  # Give some info to the user
+  if [ -d "$BACKUP_FOLDER" ]
+  then
+    echo "⚠️ Modifying existing files.."
+    ls -a --ignore="." --ignore=".." $BACKUP_FOLDER | xargs -i echo "> {}"
+    echo "📦 Backup saved to $BACKUP_FOLDER"
+  fi
+)}
+alias dotBackupChanges="dotSource && dotBackupChangesX"
+
+dotAppendToGitIgnoreX() {(
+  if [[ $1 ]]; then
+
+    # Split the string by the "/" delimiter
+    PATH_SPLIT=("${(s|/|)${1}}")
+    BUILT_STRING="!"
+    for PATH_PART in $PATH_SPLIT; do
+      BUILT_STRING="${BUILT_STRING}/${PATH_PART}"
+      
+      # If the built string is already in the file, do not append again
+      if ! grep -q "${BUILT_STRING}" "${FILE_DOTFILES_GITIGNORE}"; then
+      
+        # Add the file/folder to the gitignore
+        echo $BUILT_STRING >> $FILE_DOTFILES_GITIGNORE
+      fi
+    done
+  else
+    echo "dotadd <PATH>"
+  fi
+)}
+alias dotAppendToGitIgnore="dotSource && dotAppendToGitIgnoreX"
+
+dotX() {
+  if [ $1 = "checkout" ] || [ $1 = "reset" ]
+  then
+    # Run backup
+    dotBackupChanges
+  fi
+  git --git-dir=${DIR_REPOS_DOTFILES} --work-tree=$HOME $@
+}
+alias dot="dotSource && dotX"
+
+dotQuickX() {
+  dot add -A
+  dot commit -m "$@"
+  dot push
+}
+alias dotQuick="dotSource && dotQuickX"

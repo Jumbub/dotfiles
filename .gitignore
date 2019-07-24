@@ -5,7 +5,6 @@
 !/.custom-oh-my-zsh/*
 !/.custom-oh-my-zsh/themes
 !/.custom-oh-my-zsh/themes/*
-!/.custom-oh-my-zsh/themes/steeef.zsh-theme
 !/.aliases
 !/scripts
 !/scripts/*
@@ -22,3 +21,4 @@
 !/.config/Code/User/snippets/*
 !/.config/redshift.conf
 !/.gitconfig
+!/.dotFunctions
