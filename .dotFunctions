@@ -39,15 +39,13 @@ dotAppendToGitIgnoreX() {(
     PATH_SPLIT=("${(s|/|)${1}}")
     BUILT_STRING="!"
     for PATH_PART in $PATH_SPLIT; do
+      # Create the current path to add
       BUILT_STRING="${BUILT_STRING}/${PATH_PART}"
-      
-      # If the built string is already in the file, do not append again
-      if ! grep -q "${BUILT_STRING}" "${FILE_DOTFILES_GITIGNORE}"; then
-      
-        # Add the file/folder to the gitignore
-        echo $BUILT_STRING >> $FILE_DOTFILES_GITIGNORE
-      fi
+      echo $BUILT_STRING >> $FILE_DOTFILES_GITIGNORE
     done
+
+    sort $FILE_DOTFILES_GITIGNORE | uniq > temp.txt
+    mv temp.txt $FILE_DOTFILES_GITIGNORE
   else
     echo "dotadd <PATH>"
   fi
