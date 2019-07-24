@@ -134,6 +134,8 @@ then
   install_yarn() {
     install_program "yarn global add" "${@}"
   }
+  install_yarn prettier
+  install_yarn @prettier/plugin-lua
 fi
 
 if [ ! $1 ] || [ "$1" = "haskell" ]
@@ -149,6 +151,9 @@ fi
 
 if [ ! $1 ] || [ "$1" = "firsttime" ]
 then
+  git clone https://git.suckless.org/st $HOME/repos/st
+  make -C $HOME/repos/st
+
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 fi
 
