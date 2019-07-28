@@ -2,6 +2,8 @@
 -- moved here in module as local variable
 -- }}}
 
+local gfs = require("gears.filesystem")
+
 local home = os.getenv("HOME")
 
 local _M = {
@@ -16,8 +18,7 @@ local _M = {
   -- However, you can use another modifier like Mod1, but it may interact with others.
   modkey = "Mod4",
 
-  -- user defined wallpaper
-  wallpaper = home .. "/media/wallpaper.jpg",
+  mediaFolder = gfs.get_configuration_dir() .. "media/",
 }
 
 return _M
