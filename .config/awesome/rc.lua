@@ -20,7 +20,7 @@ require("main.error-handling")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "deco/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/macos-dark/theme.lua")
 -- }}}
 
 modkey = RC.vars.modkey

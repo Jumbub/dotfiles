@@ -10,15 +10,16 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local constants = require("main.user-variables")
 local mediaFolder = constants.mediaFolder
+local colors = require('deco.colors')
 
 local theme = {}
 
-theme.font          = "Monospace Regular 12"
+theme.font          = "Monospace Regular 10"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = colors.black
+theme.bg_focus      = theme.bg_normal
+theme.bg_urgent     = theme.bg_normal
+theme.bg_minimize   = colors.
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#aaaaaa"
@@ -26,8 +27,8 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(4)
+theme.useless_gap   = dpi(10)
+theme.border_width  = dpi(0)
 theme.border_normal = "#272822"
 theme.border_focus  = "#F1EBEB"
 theme.border_marked = "#A7E22E"
