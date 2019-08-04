@@ -112,6 +112,23 @@ then
   cat $HOME/scripts/.code_extensions | xargs -L 1 code --install-extension
 fi
 
+if [ "$1" = "codelualang" ]
+then
+  REPO_PATH=$HOME/repos/lua-language-server
+  
+  git clone https://github.com/sumneko/lua-language-server $REPO_PATH
+  cd $REPO_PATH
+  git submodule update --init --recursive
+  
+  cd 3rd/luamake
+  ninja -f ninja/linux.ninja
+  cd -
+  
+  $REPO_PATH/3rd/luamake/luamake rebuild
+
+  $REPO_PATH/build/lua make/copy.lua $HOME/.vscode/extensions/sumneko.lua*
+fi
+
 if [ ! $1 ] || [ "$1" = "pip" ]
 then
   install_pip() {
