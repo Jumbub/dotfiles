@@ -13,6 +13,8 @@
 !/.config/Code/User/*.json
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
+!/.config/nvim
+!/.config/nvim/*
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*

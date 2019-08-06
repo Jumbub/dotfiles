@@ -19,7 +19,7 @@ install_program() {
   fi
 }
 
-if [ ! $1 ] || [ "$1" = "firsttime" ]
+if [ ! $1 ] || [ "$1" = "firsttime" ] || [ "$1" = "aptRepos" ]
 then
   # Sublime
   wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -31,6 +31,9 @@ then
 
   #  Node
   curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+
+  # NeoVim
+  sudo add-apt-repository ppa:neovim-ppa/stable -y
 fi
 
 if [ ! $1 ] || [ "$1" = "apt" ]
@@ -52,6 +55,7 @@ then
   install_apt libxft-dev
   install_apt ninja-build
   install_apt nodejs
+  install_apt neovim
   install_apt php
   install_apt php-curl
   install_apt php-mbstring
