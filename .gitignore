@@ -14,6 +14,8 @@
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
 !/.config/redshift.conf
+!/.config/rofi
+!/.config/rofi/*
 !/.config/sublime-text-3
 !/.config/sublime-text-3/Packages
 !/.config/sublime-text-3/Packages/User
@@ -24,6 +26,7 @@
 !/.custom-oh-my-zsh/themes
 !/.custom-oh-my-zsh/themes/*
 !/.dotFunctions
+!/.editorconfig
 !/.gitconfig
 !/.gitignore
 !/scripts

@@ -2,4 +2,6 @@
 
 alias zSource="source $HOME/.zshrc"
 
+alias scrInstall="$HOME/scripts/install"
+
 source $HOME/.dotFunctions
