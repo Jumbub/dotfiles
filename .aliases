@@ -4,4 +4,6 @@ alias zSource="source $HOME/.zshrc"
 
 alias scrInstall="$HOME/scripts/install"
 
+alias v="nvim"
+
 source $HOME/.dotFunctions

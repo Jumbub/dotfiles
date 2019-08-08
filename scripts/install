@@ -159,23 +159,15 @@ then
   install_yarn @prettier/plugin-lua
 fi
 
-if [ ! $1 ] || [ "$1" = "haskell" ]
-then
-  log "haskell..."
-  stack upgrade
-  stack update
-  stack install hsdev # Dependency of sublime plugin
-  stack install stylish-haskell # Optional of sublime plugin
-  stack install hindent # Optional of sublime plugin
-  log "done with haskell"
-fi
-
 if [ ! $1 ] || [ "$1" = "firsttime" ]
 then
-  git clone https://git.suckless.org/st $HOME/repos/st
-  make -C $HOME/repos/st
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --all
 
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+#  git clone https://git.suckless.org/st $HOME/repos/st
+#  make -C $HOME/repos/st
+
+#  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 fi
 
 log "done.\n"
