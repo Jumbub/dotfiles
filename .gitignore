@@ -14,7 +14,7 @@
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
 !/.config/nvim
-!/.config/nvim/*
+!/.config/nvim/init.vim
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*
