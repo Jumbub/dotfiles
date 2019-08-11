@@ -12,28 +12,30 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" fzf functionality showcase https://www.youtube.com/watch?v=aXPQTesFdTI
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fzf functionality showcase https://www.youtube.com/watch?v=aXPQTesFdTI
 Plug 'junegunn/fzf.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 
+Plug 'scrooloose/nerdtree'
+
+" THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
-"Plug 'HerringtonDarkholme/yats.vim'
+Plug 'ryanoasis/vim-devicons'
 
-" LANGUAGE SPECIFICS
-
+" LANGUAGE
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " .jsx,.tsx
 Plug 'peitalin/vim-jsx-typescript' " Syntax highlighting
-
 " .ts
 "Plug 'Quramy/tsuquyomi' " Completions, symbols
 Plug 'leafgarland/typescript-vim' " Syntax highlighting
 
 call plug#end()
 
-" Color Scheme "
+" Theme "
 
 syntax on
 colorsche sublimemonokai
@@ -42,11 +44,15 @@ set termguicolors
 
 let g:sublimemonokai_term_italic = 1
 
-" If colours aren't perfect check these docs, there are extra configurations
-" https://github.com/ErichDonGubler/vim-sublime-monokai
+" Event Bindings "
+autocmd BufWritePre * undojoin | Neoformat
 
-" Keybindings "
+" Key Bindings "
 nmap <C-p> :Files<CR>
 nmap <C-r> :BTags<CR>
 nmap <C-R> :Tags<CR>
 nmap <C-f> :BLines<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+
+nmap <A-p> :NERDTree<CR>
