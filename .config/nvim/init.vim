@@ -39,10 +39,9 @@ call plug#end()
 
 syntax on
 colorsche sublimemonokai
-
 set termguicolors
-
 let g:sublimemonokai_term_italic = 1
+:set number relativenumber
 
 " Event Bindings "
 autocmd BufWritePre * undojoin | Neoformat

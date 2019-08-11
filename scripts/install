@@ -163,6 +163,12 @@ then
   install_yarn typescript
 fi
 
+if [ ! $1 ] || [ "$1" = "kitty" ]
+then
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+fi
+
 if [ ! $1 ] || [ "$1" = "fzf" ]
 then
   FZF_DIR=$HOME/.fzf
