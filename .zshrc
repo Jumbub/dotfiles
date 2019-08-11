@@ -5,7 +5,7 @@ export ZSH="/home/jamie/.oh-my-zsh"
 ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 
-plugins=(git)
+plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # Custom

@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-alias zsource="source $HOME/.zshrc"
-
-alias scrinstall="$HOME/scripts/install"
-
 alias vim="nvim"
 alias v="nvim"
+
 alias vinit="nvim $HOME/.config/nvim/init.vim"
+alias valiases="nvim $HOME/.aliases"
+alias vinstall="nvim $HOME/scripts/install"
+alias vrc="nvim $HOME/.zshrc"
+
+alias rsource="source $HOME/.zshrc"
+alias rinstall="$HOME/scripts/install"
 
 source $HOME/.dotFunctions

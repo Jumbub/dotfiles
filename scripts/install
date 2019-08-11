@@ -71,6 +71,7 @@ then
   install_apt redshift
   install_apt redshift-gtk
   install_apt rofi
+  install_apt silversearcher-ag
   install_apt software-properties-common
   install_apt sublime-merge
   install_apt sublime-text
@@ -119,15 +120,15 @@ fi
 if [ "$1" = "codelualang" ]
 then
   REPO_PATH=$HOME/repos/lua-language-server
-  
+
   git clone https://github.com/sumneko/lua-language-server $REPO_PATH
   cd $REPO_PATH
   git submodule update --init --recursive
-  
+
   cd 3rd/luamake
   ninja -f ninja/linux.ninja
   cd -
-  
+
   $REPO_PATH/3rd/luamake/luamake rebuild
 
   $REPO_PATH/build/lua make/copy.lua $HOME/.vscode/extensions/sumneko.lua*
@@ -157,17 +158,17 @@ then
   }
   install_yarn prettier
   install_yarn @prettier/plugin-lua
+  install_yarn typescript
 fi
 
-if [ ! $1 ] || [ "$1" = "firsttime" ]
+if [ ! $1 ] || [ "$1" = "fzf" ]
 then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --all
-
-#  git clone https://git.suckless.org/st $HOME/repos/st
-#  make -C $HOME/repos/st
-
-#  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+  FZF_DIR=$HOME/.fzf
+  if ! [[ -d $FZF_DIR ]]
+  then
+    git clone --depth 1 https://github.com/junegunn/fzf.git $FZF_DIR
+  fi
+  $FZF_DIR/install --all
 fi
 
 log "done.\n"
