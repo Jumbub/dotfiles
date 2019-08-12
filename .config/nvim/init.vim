@@ -23,28 +23,44 @@ Plug 'scrooloose/nerdtree'
 
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
+"Plug 'sickill/vim-monokai'
+"Plug 'jaromero/vim-monokai-refined'
+"Plug 'crusoexia/vim-monokai'
 Plug 'ryanoasis/vim-devicons'
 
-" LANGUAGE
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" .jsx,.tsx
-Plug 'peitalin/vim-jsx-typescript' " Syntax highlighting
-" .ts
+" IDE
 "Plug 'Quramy/tsuquyomi' " Completions, symbols
-Plug 'leafgarland/typescript-vim' " Syntax highlighting
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json' ]
+
+" SYNTAX HIGHLIGHTING
+"Plug 'leafgarland/typescript-vim' " Syntax highlighting
+"Plug 'pangloss/vim-javascript'
+"Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'pangloss/vim-javascript'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'peitalin/vim-jsx-typescript'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+"Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
 " Theme "
-
 syntax on
-colorsche sublimemonokai
+colorscheme sublimemonokai
 set termguicolors
-let g:sublimemonokai_term_italic = 1
+"let g:sublimemonokai_term_italic = 1
 :set number relativenumber
 
 " Event Bindings "
 autocmd BufWritePre * undojoin | Neoformat
+
+" File Naming "
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+autocmd BufRead,BufNewFile *.tsx setlocal syntax=javascript.jsx
 
 " Key Bindings "
 nmap <C-p> :Files<CR>
@@ -52,6 +68,20 @@ nmap <C-r> :BTags<CR>
 nmap <C-R> :Tags<CR>
 nmap <C-f> :BLines<CR>
 
+nmap <A-p> :NERDTree<CR>
+
 nmap <silent> gd <Plug>(coc-definition)
 
-nmap <A-p> :NERDTree<CR>
+" CoC completions on tab
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
