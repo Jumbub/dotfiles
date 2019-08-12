@@ -40,9 +40,9 @@ let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', '
 "Plug 'pangloss/vim-javascript'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'peitalin/vim-jsx-typescript'
+"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mxw/vim-jsx'
 
 call plug#end()
