@@ -1,0 +1,45 @@
+{
+	"PHP-HTML-if": {
+		"prefix": "if",
+		"scope": "html",
+		"body": [
+			"<?php if ($1) : ?>",
+			"<?php endif ?>",
+		]
+	},
+	"PHP-HTML-elseif": {
+		"prefix": "elseif",
+		"scope": "html",
+		"body": [
+			"<?php elseif ($1) : ?>",
+		]
+	},
+	"PHP-HTML-else": {
+		"prefix": "else",
+		"scope": "html",
+		"body": [
+			"<?php else : ?>",
+		]
+	},
+	"PHP-HTML-endif": {
+		"prefix": "endif",
+		"scope": "html",
+		"body": [
+			"<?php endif ?>",
+		]
+	},
+	"PHP-HTML-echo": {
+		"prefix": "phpe",
+		"scope": "html",
+		"body": [
+			"<?= $1 ?>",
+		]
+	},
+	"PHP-HTML-execute": {
+		"prefix": "php",
+		"scope": "html",
+		"body": [
+			"<?php $1 ?>",
+		]
+	},
+}
