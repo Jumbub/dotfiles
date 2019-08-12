@@ -31,7 +31,6 @@
 !/.custom-oh-my-zsh/themes/*
 !/.dotFunctions
 !/.editorconfig
-!/.gitconfig
 !/.gitignore
 !/scripts
 !/scripts/*
