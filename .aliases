@@ -7,6 +7,7 @@ alias vinit="nvim $HOME/.config/nvim/init.vim"
 alias valiases="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vrc="nvim $HOME/.zshrc"
+alias vkitty="nvim $HOME/.config/kitty/kitty.conf"
 
 alias rsource="source $HOME/.zshrc"
 alias rinstall="$HOME/scripts/install"

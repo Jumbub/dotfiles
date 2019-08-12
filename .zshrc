@@ -16,4 +16,9 @@ fi
 
 source $HOME/.aliases
 
+# Load kitty autocompletions
+autoload -Uz compinit
+compinit
+kitty + complete setup zsh | source /dev/stdin
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

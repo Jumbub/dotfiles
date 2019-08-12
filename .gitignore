@@ -13,6 +13,8 @@
 !/.config/Code/User/*.json
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
+!/.config/kitty
+!/.config/kitty/**
 !/.config/nvim
 !/.config/nvim/init.vim
 !/.config/redshift.conf

@@ -55,6 +55,7 @@ then
   install_apt haskell-stack
   install_apt htop
   install_apt libxft-dev
+  install_apt lolcat
   install_apt ninja-build
   install_apt nodejs
   install_apt neovim
