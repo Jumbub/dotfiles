@@ -60,7 +60,9 @@ autocmd BufWritePre * undojoin | Neoformat
 " File Naming "
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-autocmd BufRead,BufNewFile *.tsx setlocal syntax=javascript.jsx
+autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
+
+"CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
 nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10'})<CR>
@@ -73,6 +75,10 @@ nmap <C-f> :BLines<CR>
 nmap <A-p> :NERDTreeToggle<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 
 " CoC completions on tab
 inoremap <silent><expr> <TAB>

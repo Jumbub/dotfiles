@@ -53,7 +53,7 @@ dotAppendToGitIgnoreX() {(
 alias dotAppendToGitIgnore="dotSource && dotAppendToGitIgnoreX"
 
 dotX() {
-  if [ $1 = "checkout" ] || [ $1 = "reset" ]
+  if [ $1 = "checkout" ] || [ $1 = "reset" ] || [ $1 = "pull" ]
   then
     # Run backup
     dotBackupChanges

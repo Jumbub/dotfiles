@@ -10,6 +10,9 @@ alias vrc="nvim $HOME/.zshrc"
 alias vkitty="nvim $HOME/.config/kitty/kitty.conf"
 alias vawesome="cd $HOME/.config/awesome && v && cd -"
 
+alias vmeg="cd $HOME/repos/megatron && vim && cd -"
+alias vcat="cd $HOME/repos/catalyst/packages/catalyst && vim && cd -"
+
 alias rsource="source $HOME/.zshrc"
 alias rinstall="$HOME/scripts/install"
 
