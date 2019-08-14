@@ -63,6 +63,8 @@ autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 autocmd BufRead,BufNewFile *.tsx setlocal syntax=javascript.jsx
 
 " Key Bindings "
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10'})<CR>
+
 nmap <C-p> :Files<CR>
 nmap <C-r> :BTags<CR>
 nmap <C-R> :Tags<CR>
