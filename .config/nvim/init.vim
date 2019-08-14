@@ -20,6 +20,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 
 Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
 
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
