@@ -70,7 +70,7 @@ nmap <C-r> :BTags<CR>
 nmap <C-R> :Tags<CR>
 nmap <C-f> :BLines<CR>
 
-nmap <A-p> :NERDTree<CR>
+nmap <A-p> :NERDTreeToggle<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 
