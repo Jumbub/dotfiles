@@ -50,7 +50,7 @@ then
   install_apt ctags
   install_apt curl
   install_apt dconf-editor
-  install_apt fonts-hack-ttf
+  install_apt fonts-firacode
   install_apt gnupg2
   install_apt haskell-stack
   install_apt htop
