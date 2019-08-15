@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fzf functionality showcase https://www.youtube.com/watch?v=aXPQTesFdTI
 Plug 'junegunn/fzf.vim'
+let g:fzf_files_options = '--tiebreak=end'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
@@ -32,7 +33,7 @@ Plug 'ryanoasis/vim-devicons'
 " IDE
 "Plug 'Quramy/tsuquyomi' " Completions, symbols
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json' ]
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-vimlsp' ]
 
 " SYNTAX HIGHLIGHTING
 "Plug 'leafgarland/typescript-vim' " Syntax highlighting
@@ -66,7 +67,7 @@ autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
 "CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
-nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10'})<CR>
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nmap <leader>r :! cd %:p:h &&
 nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
