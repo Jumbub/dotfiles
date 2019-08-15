@@ -23,6 +23,9 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
 "Plug 'sickill/vim-monokai'
@@ -72,9 +75,9 @@ nmap <leader>r :! cd %:p:h &&
 nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 nmap <C-p> :Files<CR>
-nmap <C-r> :BTags<CR>
-nmap <C-R> :Tags<CR>
 nmap <C-f> :BLines<CR>
+nmap <C-r> :CocList outline<cr>
+nmap <C-R> :CocList -I symbols<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

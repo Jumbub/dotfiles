@@ -162,6 +162,7 @@ then
   install_yarn prettier
   install_yarn @prettier/plugin-lua
   install_yarn typescript
+  install_yarn intelephense
 fi
 
 if [ ! $1 ] || [ "$1" = "kitty" ]
