@@ -21,6 +21,9 @@ Plug 'sbdchd/neoformat'
 
 Plug 'scrooloose/nerdtree'
 
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
 "Plug 'sickill/vim-monokai'
@@ -66,9 +69,9 @@ autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
 
 " Key Bindings "
 nmap <C-p> :Files<CR>
-nmap <C-r> :BTags<CR>
-nmap <C-R> :Tags<CR>
 nmap <C-f> :BLines<CR>
+nmap <C-r> :CocList outline<cr>
+nmap <C-R> :CocList -I symbols<CR>
 
 nmap <A-p> :NERDTreeToggle<CR>
 
