@@ -20,6 +20,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 
 Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
@@ -68,12 +69,14 @@ autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
 "CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10'})<CR>
+nmap <leader>r :! cd %:p:h &&
+nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
 nmap <C-p> :Files<CR>
 nmap <C-f> :BLines<CR>
 nmap <C-r> :CocList outline<cr>
 nmap <C-R> :CocList -I symbols<CR>
-
-nmap <A-p> :NERDTreeToggle<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

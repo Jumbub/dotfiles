@@ -2,9 +2,8 @@
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"detect_indentation": true,
 	"disable_tab_width_auto_detection": true,
-	"draw_centered": true,
 	"draw_indent_guides": true,
-	"font_size": 10,
+	"font_size": 11,
 	"highlight_line": true,
 	"ignored_packages":
 	[
