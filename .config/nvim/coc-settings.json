@@ -1,0 +1,14 @@
+{
+  "languageserver": {
+    "lua": {
+      "command": "java",
+      "args": [
+        "-cp",
+        "/home/jamie/temp/EmmyLua-LS-all.jar",
+        "com.tang.vscode.MainKt"
+      ],
+      "filetypes": ["lua"],
+      "rootPatterns": [".git/"]
+    }
+  }
+}

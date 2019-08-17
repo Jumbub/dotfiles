@@ -25,6 +25,7 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
+Plug 'lambdalisue/suda.vim'
 
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
@@ -38,17 +39,15 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-vimlsp' ]
 
+"Plug 'adimit/prolog.vim'
+
 " SYNTAX HIGHLIGHTING
-"Plug 'leafgarland/typescript-vim' " Syntax highlighting
-"Plug 'pangloss/vim-javascript'
 "Plug 'maxmellon/vim-jsx-pretty'
-"Plug 'pangloss/vim-javascript'
-"Plug 'leafgarland/typescript-vim'
 "Plug 'peitalin/vim-jsx-typescript'
-"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
+Plug 'tbastos/vim-lua'
 
 call plug#end()
 

@@ -10,6 +10,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom
 
+if [ -d "$HOME/.luarocks/bin" ] ; then
+    export PATH="$HOME/.luarocks/bin:$PATH"
+fi
+
+if [ -d "$HOME/.npm-global/bin" ] ; then
+    export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 if [ -d "$HOME/.yarn/bin" ] ; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
