@@ -1,5 +1,15 @@
 set nocompatible " Dont bother pretending to be old
 
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
 "Plugins"
 
 filetype plugin on " Built in plugin
@@ -21,6 +31,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 
 Plug 'scrooloose/nerdtree'
+let g:NERDTreeQuitOnOpen = 1
 Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-fugitive'
@@ -50,8 +61,6 @@ Plug 'mxw/vim-jsx'
 Plug 'tbastos/vim-lua'
 
 call plug#end()
-
-" Theme "
 syntax on
 colorscheme sublimemonokai
 set termguicolors
