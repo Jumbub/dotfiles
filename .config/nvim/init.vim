@@ -59,6 +59,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'tbastos/vim-lua'
+Plug 'StanAngeloff/php.vim'
 
 call plug#end()
 syntax on
