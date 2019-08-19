@@ -16,8 +16,8 @@
 !/.config/kitty
 !/.config/kitty/**
 !/.config/nvim
-!/.config/nvim/init.vim
 !/.config/nvim/coc-settings.json
+!/.config/nvim/init.vim
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*
@@ -35,4 +35,7 @@
 !/.gitignore
 !/scripts
 !/scripts/*
+!/workspaces
+!/workspaces/vim
+!/workspaces/vim/nvim.vim
 !/.zshrc
