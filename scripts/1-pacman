@@ -1,0 +1,5 @@
+#/usr/bin/env sh
+
+sudo pacman -Sy neovim
+sudo pacman -Sy redshift
+
