@@ -1,0 +1,3 @@
+#/usr/bin/env sh
+
+cp $HOME/scripts/templates/.gitconfig $HOME/.gitconfig

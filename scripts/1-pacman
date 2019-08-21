@@ -1,0 +1,12 @@
+#/usr/bin/env sh
+
+# Update package list
+sudo pacman -Sy
+
+install() {
+  sudo pacman -S --needed --noconfirm $@
+}
+
+install neovim
+install redshift
+

@@ -35,6 +35,8 @@
 !/.gitignore
 !/scripts
 !/scripts/*
+!/scripts/templates
+!/scripts/templates/*
 !/workspaces
 !/workspaces/vim
 !/workspaces/vim/nvim.vim
