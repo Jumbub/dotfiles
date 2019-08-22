@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-alias vim="nvim"
 alias v="nvim"
 
 alias valiases="nvim $HOME/.aliases"
