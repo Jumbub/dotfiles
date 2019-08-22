@@ -18,5 +18,7 @@
       "filetypes": ["lua"],
       "rootPatterns": [".git/"]
     }
-  }
+  },
+  "javascript.suggest.autoImports": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

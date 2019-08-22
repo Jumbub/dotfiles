@@ -38,6 +38,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'lambdalisue/suda.vim'
 
+Plug 'wakatime/vim-wakatime'
+
 " THEME
 Plug 'ErichDonGubler/vim-sublime-monokai'
 "Plug 'sickill/vim-monokai'
