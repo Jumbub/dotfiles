@@ -1,3 +1,0 @@
-#/usr/bin/env sh
-
-sudo chsh -s /usr/bin/zsh $USER

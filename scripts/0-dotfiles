@@ -1,13 +1,13 @@
 #/usr/bin/env sh
 
-set -e
-
 # Warn user about potential changes
-echo "The following files will be overidden:"
-diff $HOME/repos/dotfiles $HOME -r | grep -e ">\|<"
-if ! ./confirm
+cp $HOME/repos/dotfiles/.gitignore $HOME/.gitignore
+git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git status
+if ! $HOME/repos/dotfiles/scripts/confirm
 then
 	echo "Aborting"
 	exit
 fi
 
+git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git checkout -- $HOME
+cp -R $HOME/repos/dotfiles/.git $HOME/repos/dotfiles.git

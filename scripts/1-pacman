@@ -9,4 +9,12 @@ install() {
 
 install neovim
 install redshift
-
+install kitty
+install firefox
+install git
+install zsh
+install ripgrep
+install alsa-utils
+install nvidia
+install nvidia-utils
+install openssh
