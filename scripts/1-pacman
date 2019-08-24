@@ -1,20 +1,20 @@
 #/usr/bin/env sh
 
-# Update package list
-sudo pacman -Sy
-
-install() {
-  sudo pacman -S --needed --noconfirm $@
-}
-
-install neovim
-install redshift
-install kitty
-install firefox
-install git
-install zsh
-install ripgrep
-install alsa-utils
-install nvidia
-install nvidia-utils
-install openssh
+sudo pacman -Sy --needed --noconfirm neovim\
+  redshift\
+  kitty\
+  firefox\
+  git\
+  zsh\
+  ripgrep\
+  alsa-utils\
+  nvidia\
+  nvidia-utils\
+  openssh\
+  rofi\
+  nodejs\
+  npm\
+  i3-wm\
+  i3blocks\
+  i3lock\
+  i3status
