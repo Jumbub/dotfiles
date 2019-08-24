@@ -1,6 +1,7 @@
 # Environment variables
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
+export VISUAL="nvim"
 if [ -d "$HOME/.luarocks/bin" ] ; then
     export PATH="$HOME/.luarocks/bin:$PATH"
 fi

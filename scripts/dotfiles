@@ -3,7 +3,7 @@
 DIR_DOTFILES_BACKUPS=$HOME/.dotfilesBackup
 DIR_REPOS_DOTFILES=${DIR_REPOS}/dotfiles.git
 DIR_REPOS=$HOME/repos
-FILE_DOTFILES_FUNCTIONS=$HOME/.dotFunctions
+FILE_DOTFILES_FUNCTIONS=$HOME/scripts/dotfiles
 FILE_DOTFILES_GITIGNORE=$HOME/.gitignore
 
 alias dotSource="source $FILE_DOTFILES_FUNCTIONS"
@@ -44,7 +44,7 @@ dotAppendToGitIgnoreX() {(
       echo $BUILT_STRING >> $FILE_DOTFILES_GITIGNORE
     done
 
-    sort $FILE_DOTFILES_GITIGNORE | uniq > temp.txt
+    sort -d $FILE_DOTFILES_GITIGNORE | uniq > temp.txt
     mv temp.txt $FILE_DOTFILES_GITIGNORE
   else
     echo "dotadd <PATH>"

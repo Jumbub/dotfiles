@@ -1,6 +1,12 @@
 *
 !/.aliases
+!/asdf
 !/.config
+!/.config/Code
+!/.config/Code/User
+!/.config/Code/User/*.json
+!/.config/Code/User/snippets
+!/.config/Code/User/snippets/*
 !/.config/awesome
 !/.config/awesome/*
 !/.config/awesome/binding
@@ -8,11 +14,6 @@
 !/.config/awesome/deco
 !/.config/awesome/deco/*
 !/.config/awesome/main/*
-!/.config/Code
-!/.config/Code/User
-!/.config/Code/User/*.json
-!/.config/Code/User/snippets
-!/.config/Code/User/snippets/*
 !/.config/kitty
 !/.config/kitty/**
 !/.config/nvim
@@ -30,7 +31,6 @@
 !/.custom-oh-my-zsh/*
 !/.custom-oh-my-zsh/themes
 !/.custom-oh-my-zsh/themes/*
-!/.dotFunctions
 !/.editorconfig
 !/.gitignore
 !/scripts
@@ -40,4 +40,5 @@
 !/workspaces
 !/workspaces/vim
 !/workspaces/vim/nvim.vim
+!/.zprofile
 !/.zshrc
