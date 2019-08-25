@@ -2,7 +2,10 @@
 
 sudo pacman -Sy --needed --noconfirm neovim\
   redshift\
+  python\
+  python-pip\
   kitty\
+  imagemagick\
   firefox\
   git\
   zsh\
@@ -10,6 +13,7 @@ sudo pacman -Sy --needed --noconfirm neovim\
   alsa-utils\
   nvidia\
   nvidia-utils\
+  nvidia-settings\
   openssh\
   rofi\
   nodejs\

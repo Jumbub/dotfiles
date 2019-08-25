@@ -8,6 +8,7 @@ alias vinstall="nvim $HOME/scripts/install"
 alias vrc="nvim $HOME/.zshrc"
 
 alias rsource="source $HOME/.zshrc"
-alias rinstall="$HOME/scripts/install"
+
+alias img="kitty +kitten icat"
 
 source $HOME/scripts/dotfiles
