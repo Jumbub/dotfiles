@@ -29,6 +29,9 @@ let g:fzf_files_options = '--tiebreak=end'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-smooth-scroll'
+
 
 Plug 'scrooloose/nerdtree'
 let g:NERDTreeQuitOnOpen = 1
@@ -73,6 +76,7 @@ set termguicolors
 
 " Event Bindings "
 autocmd BufWritePre * undojoin | Neoformat
+let g:neoformat_only_msg_on_error = 1
 
 " File Naming "
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
@@ -82,7 +86,7 @@ autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
 "CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
-nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10', 'options': '--tiebreak=end'})<CR>
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10', 'options': '--tiebreak=end'})<CR><CR>
 nmap <leader>r :! cd %:p:h &&
 nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
@@ -90,7 +94,8 @@ nmap <C-p> :Files<CR>
 nmap <C-f> :BLines<CR>
 nmap <C-r> :CocList outline<cr>
 nmap <C-R> :CocList -I symbols<CR>
-
+noremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
+noremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
