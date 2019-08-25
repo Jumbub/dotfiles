@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export THEME_BACKGROUND="#282923"
+export THEME_FOREGROUND="#fdfff1"
+export THEME_GRAY="#6e7066"
+export THEME_RED="#f82570"
+export THEME_GREEN="#a6e12d"
+export THEME_YELLOW="#e4db73"
+export THEME_BLUE="#fc961f"
+export THEME_MAGENTA="#ae81ff"
+export THEME_CYAN="#66d9ee"

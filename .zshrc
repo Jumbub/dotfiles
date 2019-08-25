@@ -28,6 +28,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 source $HOME/.aliases
+source $HOME/scripts/colors
 
 # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 export LC_ALL="en_US.UTF-8"
