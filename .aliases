@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-alias vim="nvim"
 alias v="nvim"
+alias vim="nvim"
 
 alias valiases="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vrc="nvim $HOME/.zshrc"
 
 alias rsource="source $HOME/.zshrc"
-alias rinstall="$HOME/scripts/install"
 
 alias ggpush="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
 
-source $HOME/.dotFunctions
+alias img="kitty +kitten icat"
+
+source $HOME/scripts/dotfiles

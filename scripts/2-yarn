@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+yarn global add prettier\
+  @prettier/plugin-lua\
+  typescript\
+  intelephense\
+

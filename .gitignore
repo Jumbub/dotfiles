@@ -30,7 +30,6 @@
 !/.custom-oh-my-zsh/*
 !/.custom-oh-my-zsh/themes
 !/.custom-oh-my-zsh/themes/*
-!/.dotFunctions
 !/.editorconfig
 !/.gitignore
 !/scripts
@@ -38,6 +37,13 @@
 !/scripts/templates
 !/scripts/templates/*
 !/workspaces
+!workspaces
 !/workspaces/vim
+!workspaces/vim
+!/workspaces/vim/awesome.vim
+!workspaces/vim/awesome.vim
+!workspaces/vim/i3.vim
+!workspaces/vim/kitty.vim
 !/workspaces/vim/nvim.vim
+!/.zprofile
 !/.zshrc

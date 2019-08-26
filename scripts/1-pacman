@@ -1,12 +1,26 @@
 #/usr/bin/env sh
 
-# Update package list
-sudo pacman -Sy
-
-install() {
-  sudo pacman -S --needed --noconfirm $@
-}
-
-install neovim
-install redshift
-
+sudo pacman -Sy --needed --noconfirm neovim\
+  redshift\
+  python\
+  python-pip\
+  kitty\
+  imagemagick\
+  firefox\
+  git\
+  zsh\
+  ripgrep\
+  alsa-utils\
+  nvidia\
+  nvidia-utils\
+  nvidia-settings\
+  openssh\
+  rofi\
+  nodejs\
+  npm\
+  yarn\
+  entr\
+  i3-wm\
+  i3blocks\
+  i3lock\
+  i3status

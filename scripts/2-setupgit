@@ -1,0 +1,7 @@
+#/usr/bin/env sh
+
+# Generate ssh key
+ssh-keygen -t rsa -b 4096
+
+# Copy default git config template
+cp $HOME/scripts/templates/.gitconfig $HOME/.gitconfig

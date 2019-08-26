@@ -2,4 +2,4 @@
 	email = jamie@jamiebray.xyz
 	name = Jamie Bray
 [core]
-	editor = vim
+	editor = nvim
