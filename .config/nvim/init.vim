@@ -36,6 +36,9 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+let g:prosession_dir = '/home/jamie/workspaces/vim/'
 Plug 'lambdalisue/suda.vim'
 
 Plug 'wakatime/vim-wakatime'
@@ -79,10 +82,13 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 autocmd BufRead,BufWritePost,BufNewFile *.tsx setlocal syntax=javascript.jsx
 
+command Tf CocCommand tsserver.executeAutofix
+command Ti CocCommand tsserver.organizeImports
+
 "CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
-nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'source', 'down': '10', 'options': '--tiebreak=end'})<CR>
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nmap <leader>r :! cd %:p:h &&
 nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 

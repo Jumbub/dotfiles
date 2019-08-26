@@ -10,4 +10,6 @@ alias vrc="nvim $HOME/.zshrc"
 alias rsource="source $HOME/.zshrc"
 alias rinstall="$HOME/scripts/install"
 
+alias ggpush="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
+
 source $HOME/.dotFunctions
