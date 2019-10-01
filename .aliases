@@ -7,7 +7,7 @@ alias valiases="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vrc="nvim $HOME/.zshrc"
 
-alias rsource="source $HOME/.zshrc"
+alias src="source $HOME/.zshrc"
 
 alias ggpush="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
 

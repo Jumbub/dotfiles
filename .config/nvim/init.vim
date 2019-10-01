@@ -74,11 +74,13 @@ call plug#end()
 syntax on
 colorscheme sublimemonokai
 set termguicolors
+set undofile
+set undodir=~/.vim/undodir
 "let g:sublimemonokai_term_italic = 1
 :set number relativenumber
 
 " Event Bindings "
-autocmd BufWritePre * undojoin | Neoformat
+autocmd BufWritePre *.tsx,*.ts undojoin | Neoformat
 let g:neoformat_only_msg_on_error = 1
 
 " File Naming "
@@ -92,10 +94,11 @@ command Ti CocCommand tsserver.organizeImports
 "CocConfig ~/.config/nvim/coc-settings.json
 
 " Key Bindings "
-nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
+nmap <C-A-p> :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR><CR>
 nmap <leader>r :! cd %:p:h &&
 nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
+nmap <C-l> i\HE\Util\Logger::Logger('DEBUGGING')->emergency('xxx', [ xxx ]);<Esc>?xxx<CR>nve<C-n>c
 nmap <C-p> :Files<CR>
 nmap <C-f> :BLines<CR>
 nmap <C-r> :CocList outline<cr>
@@ -106,7 +109,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 
 " CoC completions on tab
 inoremap <silent><expr> <TAB>

@@ -11,6 +11,12 @@ fi
 if [ -d "$HOME/.yarn/bin" ] ; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
+if [ -d "$HOME/repos/other/path" ] ; then
+    export PATH="$HOME/repos/other/path:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Load kitty autocompletions
 autoload -Uz compinit

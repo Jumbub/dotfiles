@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Illegal number of parameters"
+fi
+
+rg 'foo' --files-with-matches | xargs sed -i 's/$1/$2/g'
