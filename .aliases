@@ -3,13 +3,55 @@
 alias v="nvim"
 alias vim="nvim"
 
-alias valiases="nvim $HOME/.aliases"
+alias va="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
+alias vreplace="nvim $HOME/scripts/replace"
 alias vrc="nvim $HOME/.zshrc"
 
 alias src="source $HOME/.zshrc"
+alias replace="$HOME/scripts/replace"
+alias confirm="$HOME/scripts/confirm"
 
-alias ggpush="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
+alias cdu="cd ~/repos/unicron"
+alias cdca="cd ~/repos/catalyst/packages/admin"
+alias cdk="cd ~/repos/k8s"
+
+function gh {
+  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')"
+};
+function ghb {
+  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')/tree/`git symbolic-ref HEAD --short`"
+};
+
+alias gl="git log"
+alias gm="git merge"
+alias gf="git fetch"
+alias glp="git log -p"
+alias gp="git push"
+alias gpl="git pull"
+alias ggp="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
+alias gc="git commit --amend"
+function gcmm { GCM="$@"; git commit -m "$GCM"; unset GCM; };
+function gcm { GCM="$@"; git commit -m "`git symbolic-ref HEAD --short` $GCM"; unset GCM; };
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias grb="git rebase"
+alias gr="git reset"
+alias gst="git stash"
+function gstm { GSM="$@"; git stash push -u -m "$GSM"; unset GSM; };
+alias ga="git add"
+alias gap="git add -NpA"
+alias gaa="git add -A"
+alias gs="git status"
+alias gd="git diff"
+
+#function ggs {
+#  GGSB="`git symbolic-ref HEAD --short`";
+#  [[ -z $(git status -s) ]]
+#    && git checkout master
+#    && git checkout -b "$GGSB-$0";
+#  unset GGSB;
+#};
 
 alias img="kitty +kitten icat"
 

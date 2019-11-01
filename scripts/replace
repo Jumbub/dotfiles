@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
 if [ "$#" -ne 2 ]; then
-    echo "Illegal number of parameters"
+  echo "Illegal number of parameters"
+  exit
 fi
 
-rg 'foo' --files-with-matches | xargs sed -i 's/$1/$2/g'
+rg "$1"
+
+if [ confirm ]
+then
+  rg "$1" --files-with-matches | xargs sed -i "s/$1/$2/g"
+else
+  echo "Aborting"
+fi
+
+

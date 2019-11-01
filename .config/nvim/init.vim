@@ -58,6 +58,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-vimlsp' ]
 Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
 
 "Plug 'adimit/prolog.vim'
 
@@ -67,6 +68,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tbastos/vim-lua'
 Plug 'StanAngeloff/php.vim'
 
@@ -75,6 +77,7 @@ syntax on
 colorscheme sublimemonokai
 set termguicolors
 set undofile
+set signcolumn=yes
 set undodir=~/.vim/undodir
 "let g:sublimemonokai_term_italic = 1
 :set number relativenumber
@@ -109,6 +112,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+map ,r :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 
 " CoC completions on tab
 inoremap <silent><expr> <TAB>

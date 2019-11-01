@@ -1,125 +1,356 @@
 {
-    "workbench.statusBar.feedback.visible": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Monokai",
-    "php.suggest.basic": false,
-    "explorer.confirmDelete": false,
-    "jumpy.darkThemeBackground": "#47252e",
-    "jumpy.darkThemeForeground": "#eee",
-    "highlight.regexes": {
-        "(todo:?)": [
-            {
-              "color": "#78dce8",
-              "fontWeight": "bold"
-            },
-        ],
-        "(note:?)": [
-            {
-              "color": "#f7cf59",
-              "fontWeight": "bold"
-            },
-        ],
-        "(fixme:?)": [
-            {
-                "color": "#ff6188",
-                "fontWeight": "bold"
-            },
-        ],
-        "(hack:?)": [
-            {
-                "color": "#ab9df2",
-                "fontWeight": "bold"
-            },
-        ],
-        // \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]);
-        "(\\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\);)": {
-            "regexFlags": "g",
-            "decorations":
-            [
-                {"backgroundColor": "#47252e"},
-                {"backgroundColor": "#47252e"},
-                {"backgroundColor": "#47252e"},
-                {},
-                {"backgroundColor": "#47252e"},
-            ]
-        },
-        // <?php \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]); ?>
-        "(\\<\\?php \\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\); \\?\\>)": {
-            "regexFlags": "g",
-            "decorations":
-            [
-                {"backgroundColor": "#47252e"},
-                {"backgroundColor": "#47252e"},
-                {"backgroundColor": "#47252e"},
-                {},
-                {"backgroundColor": "#47252e"},
-            ]
-        },
-        // console.log('DEBUGGING', asdf);
-        "(console.log\\('DEBUGGING',)([^;]*)(\\);)": {
-            "regexFlags": "g",
-            "decorations":
-            [
-                {"backgroundColor": "#47252e"},
-                {},
-                {"backgroundColor": "#47252e"},
-            ]
-        },
-        // <?php if () asdadsdsa
-        // : ?>  <?php elseif (): ?> <?= $asdf ?> <?php else: ?> <?php endif ?>  <?php if( $booking->triage && !$booking->isWebsiteForm() ) : ?> fixed noresize <?php endif; ?>   ">
-        // "(\\<\\?(php|\\=))(((?!DEBUGGING)|\\n|.)*?)(\\?\\>)": {
-        //     "regexFlags": "g",
-        //     "decorations":
-        //     [
-        //         {"backgroundColor": "#254047"},
-        //         {"backgroundColor": "#254047"},
-        //         {"backgroundColor": "#254047"},
-        //     ]
-        // },
+  "vim.leader": ",",
+  "vim.debug.silent": true,
+  "vim.easymotion": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.referenceSearch.trigger",
+      ]
     },
-    "php-docblocker.returnVoid": false,
-    "phpcs.errorSeverity": 1,
-    "phpcs.warningSeverity": 1,
-    "[php]": {
-        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    {
+      "before": [
+        "g",
+        "S"
+      ],
+      "commands": [
+        "workbench.action.showAllSymbols",
+      ]
     },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    {
+      "before": [
+        "g",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.gotoSymbol",
+      ]
     },
-    "prettier.requireConfig": true,
-    "emmet.syntaxProfiles": {
-        "javascript": "jsx",
-        "xml": {
-            "attr_quotes": "single"
-        }
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "r"
+      ],
+      "commands": [
+        "editor.action.rename",
+      ]
     },
-    "css_peek.exclude": [
-        "node_modules",
-        "bower_components",
+    {
+      "before": [
+        ";",
+      ],
+      "after": [
+        "<leader>",
+        "<leader>",
+        "<leader>",
+        "b",
+        "d",
+        "w",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "<leader>",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.terminal.openNativeConsole",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "D"
+      ],
+      "commands": [
+        "workbench.action.terminal.toggleTerminal",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "commands": [
+        "openInTerminal",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "p"
+      ],
+      "commands": [
+        "workbench.action.openRecent",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "extension.vim_ctrl+p",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f"
+      ],
+      "commands": [
+        "editor.action.quickFix",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        ":"
+      ],
+      "commands": [
+        "workbench.action.showCommands",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.openSettingsJson",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "S"
+      ],
+      "commands": [
+        "workbench.action.openSettings",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.openGlobalKeybindingsFile",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "K"
+      ],
+      "commands": [
+        "workbench.action.openGlobalKeybindings",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r"
+      ],
+      "commands": [
+        "editor.action.rename"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "F"
+      ],
+      "commands": [
+        "editor.action.fixAll"
+      ]
+    },
+  ],
+  "vim.easymotionMarkerBackgroundColor": "#47252e",
+  "vim.easymotionMarkerForegroundColorOneChar": "#eee",
+  "vim.easymotionMarkerFontSize": "13",
+  "vim.easymotionMarkerFontFamily": "Monospace",
+  "vim.easymotionMarkerHeight": 16,
+  "vim.easymotionMarkerYOffset": 3,
+  "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
+  "editor.lineNumbers": "relative",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Monokai",
+  "php.suggest.basic": false,
+  "explorer.confirmDelete": false,
+  "jumpy.darkThemeBackground": "#47252e",
+  "jumpy.darkThemeForeground": "#eee",
+  "highlight.regexes": {
+    "(todo:?)": [
+      {
+        "color": "#78dce8",
+        "fontWeight": "bold"
+      },
     ],
-    "window.newWindowDimensions": "inherit",
-    "window.enableMenuBarMnemonics": false,
-    "window.menuBarVisibility": "visible",
-    "workbench.activityBar.visible": false,
-    "window.zoomLevel": 0,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "zenMode.hideLineNumbers": false,
-    "window.title": "${activeEditorLong} ${dirty} (${folderName})${separator}${appName}",
-    "jumpy.fontSize": 10,
-    "breadcrumbs.enabled": true,
-    "editor.formatOnType": true,
-    "explorer.openEditors.visible": 0,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "regex-previewer.enableCodeLens": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "(note:?)": [
+      {
+        "color": "#f7cf59",
+        "fontWeight": "bold"
+      },
+    ],
+    "(fixme:?)": [
+      {
+        "color": "#ff6188",
+        "fontWeight": "bold"
+      },
+    ],
+    "(hack:?)": [
+      {
+        "color": "#ab9df2",
+        "fontWeight": "bold"
+      },
+    ],
+    // \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]);
+    "(\\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\);)": {
+      "regexFlags": "g",
+      "decorations": [
+        {
+          "backgroundColor": "#47252e"
+        },
+        {
+          "backgroundColor": "#47252e"
+        },
+        {
+          "backgroundColor": "#47252e"
+        },
+        {},
+        {
+          "backgroundColor": "#47252e"
+        },
+      ]
     },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // <?php \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]); ?>
+    "(\\<\\?php \\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\); \\?\\>)": {
+      "regexFlags": "g",
+      "decorations": [
+        {
+          "backgroundColor": "#47252e"
+        },
+        {
+          "backgroundColor": "#47252e"
+        },
+        {
+          "backgroundColor": "#47252e"
+        },
+        {},
+        {
+          "backgroundColor": "#47252e"
+        },
+      ]
     },
-    "vsicons.dontShowNewVersionMessage": true,
-    "[lua]": {
-        "editor.defaultFormatter": "stanzilla.vscode-luaformatter"
+    // console.log('DEBUGGING', asdf);
+    "(console.log\\('DEBUGGING',)([^;]*)(\\);)": {
+      "regexFlags": "g",
+      "decorations": [
+        {
+          "backgroundColor": "#47252e"
+        },
+        {},
+        {
+          "backgroundColor": "#47252e"
+        },
+      ]
     },
-    "workbench.iconTheme": "vscode-icons",
+    // <?php if () asdadsdsa
+    // : ?>  <?php elseif (): ?> <?= $asdf ?> <?php else: ?> <?php endif ?>  <?php if( $booking->triage && !$booking->isWebsiteForm() ) : ?> fixed noresize <?php endif; ?>   ">
+    // "(\\<\\?(php|\\=))(((?!DEBUGGING)|\\n|.)*?)(\\?\\>)": {
+    //     "regexFlags": "g",
+    //     "decorations":
+    //     [
+    //         {"backgroundColor": "#254047"},
+    //         {"backgroundColor": "#254047"},
+    //         {"backgroundColor": "#254047"},
+    //     ]
+    // },
+  },
+  "php-docblocker.returnVoid": false,
+  "phpcs.errorSeverity": 1,
+  "phpcs.warningSeverity": 1,
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.requireConfig": true,
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "xml": {
+      "attr_quotes": "single"
+    }
+  },
+  "css_peek.exclude": [
+    "node_modules",
+    "bower_components",
+  ],
+  "window.newWindowDimensions": "inherit",
+  "window.enableMenuBarMnemonics": false,
+  "window.menuBarVisibility": "visible",
+  "workbench.activityBar.visible": false,
+  "window.zoomLevel": 1,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "zenMode.hideLineNumbers": false,
+  "window.title": "${activeEditorLong} ${dirty} (${folderName})${separator}${appName}",
+  "jumpy.fontSize": 10,
+  "breadcrumbs.enabled": true,
+  "editor.formatOnType": true,
+  "regex-previewer.enableCodeLens": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "[lua]": {
+    "editor.defaultFormatter": "stanzilla.vscode-luaformatter"
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "editor.formatOnSave": true,
+  "workbench.sideBar.location": "right",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editor.showTabs": false,
+  "workbench.editor.enablePreview": false,
+  "explorer.openEditors.visible": 0,
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "markdown",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
 }
