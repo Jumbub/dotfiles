@@ -6,7 +6,7 @@ alias vim="nvim"
 alias va="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
-alias vrc="nvim $HOME/.zshrc"
+alias vsrc="nvim $HOME/.zshrc"
 
 alias src="source $HOME/.zshrc"
 alias replace="$HOME/scripts/replace"
@@ -22,9 +22,19 @@ function gh {
 function ghb {
   sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')/tree/`git symbolic-ref HEAD --short`"
 };
+function ghd {
+  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')/compare/`git symbolic-ref HEAD --short`"
+};
+
+function jt {
+  sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
+}
+
 
 alias gl="git log"
 alias gm="git merge"
+alias gmm="git fetch && git merge origin/master"
+alias gmd="git fetch && git merge origin/develop"
 alias gf="git fetch"
 alias glp="git log -p"
 alias gp="git push"
@@ -36,7 +46,10 @@ function gcm { GCM="$@"; git commit -m "`git symbolic-ref HEAD --short` $GCM"; u
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias grb="git rebase"
+alias grbomi="git rebase origin/master -i"
 alias gr="git reset"
+alias grh="git reset HEAD^"
+alias grhom="git reset --hard origin/`git symbolic-ref HEAD --short`"
 alias gst="git stash"
 function gstm { GSM="$@"; git stash push -u -m "$GSM"; unset GSM; };
 alias ga="git add"
@@ -44,14 +57,6 @@ alias gap="git add -NpA"
 alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
-
-#function ggs {
-#  GGSB="`git symbolic-ref HEAD --short`";
-#  [[ -z $(git status -s) ]]
-#    && git checkout master
-#    && git checkout -b "$GGSB-$0";
-#  unset GGSB;
-#};
 
 alias img="kitty +kitten icat"
 

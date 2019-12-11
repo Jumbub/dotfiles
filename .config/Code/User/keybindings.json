@@ -1,8 +1,18 @@
 [
   {
-    "key": "ctrl+alt+p",
-    "command": "workbench.action.openRecent"
+    "key": "escape",
+    "when": "sideBarFocus",
+    "command": "workbench.action.toggleSidebarVisibility",
   },
+  {
+    "key": "ctrl+escape",
+    "when": "terminalFocus",
+    "command": "workbench.action.terminal.kill",
+  },
+  // {
+  //   "key": ", d",
+  //   "command": "workbench.action.terminal.toggleTerminal"
+  // },
   // pre vim days
   // {
   //     "key": "ctrl+r",

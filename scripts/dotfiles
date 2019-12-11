@@ -68,3 +68,4 @@ dotQuickX() {
   dot push
 }
 alias dotQuick="dotSource && dotQuickX"
+

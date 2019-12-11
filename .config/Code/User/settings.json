@@ -2,7 +2,48 @@
   "vim.leader": ",",
   "vim.debug.silent": true,
   "vim.easymotion": true,
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "n",
+      ],
+      "after": [
+        "g",
+        "b",
+      ],
+    },
+  ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "v",
+        "s",
+      ],
+      "commands": [
+        "workbench.action.toggleSidebarVisibility"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "v",
+        "f",
+      ],
+      "commands": [
+        "workbench.files.action.showActiveFileInExplorer"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "v",
+        "e",
+      ],
+      "commands": [
+        "workbench.view.extensions"
+      ]
+    },
     {
       "before": [
         "g",
@@ -178,8 +219,8 @@
   ],
   "vim.easymotionMarkerBackgroundColor": "#47252e",
   "vim.easymotionMarkerForegroundColorOneChar": "#eee",
-  "vim.easymotionMarkerFontSize": "13",
-  "vim.easymotionMarkerFontFamily": "Monospace",
+  "vim.easymotionMarkerFontSize": "12",
+  "vim.easymotionMarkerFontFamily": "'Fira Code'",
   "vim.easymotionMarkerHeight": 16,
   "vim.easymotionMarkerYOffset": 3,
   "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
@@ -306,7 +347,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "zenMode.hideLineNumbers": false,
   "window.title": "${activeEditorLong} ${dirty} (${folderName})${separator}${appName}",
-  "jumpy.fontSize": 10,
+  "jumpy.fontSize": 9,
   "breadcrumbs.enabled": true,
   "editor.formatOnType": true,
   "regex-previewer.enableCodeLens": false,
@@ -317,9 +358,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "vsicons.dontShowNewVersionMessage": true,
-  "[lua]": {
-    "editor.defaultFormatter": "stanzilla.vscode-luaformatter"
-  },
   "workbench.iconTheme": "vscode-icons",
   "editor.formatOnSave": true,
   "workbench.sideBar.location": "right",
@@ -329,28 +367,19 @@
   "workbench.editor.showTabs": false,
   "workbench.editor.enablePreview": false,
   "explorer.openEditors.visible": 0,
-  "eslint.enable": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    {
-      "language": "javascript",
-      "autoFix": true
-    },
-    {
-      "language": "javascriptreact",
-      "autoFix": true
-    },
-    {
-      "language": "markdown",
-      "autoFix": true
-    },
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ],
+  "vim.useSystemClipboard": true,
+  "openInTerminal.app": "kitty",
+  "terminal.external.linuxExec": "kitty",
+  "terminal.integrated.fontFamily": "'Fira Code Retina'",
+  "editor.fontFamily": "'Fira Code Retina'",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "debug.console.fontFamily": "'Fira Code Retina'",
+  "debug.console.fontSize": 14,
+  "jumpy.fontFamily": "'Fira Code Retina'",
+  "vim.easymotionMarkerFontWeight": "'Fira Code Retina'",
+  "terminal.integrated.fontSize": 14,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.openFoldersInNewWindow": "off",
+  "window.openWithoutArgumentsInNewWindow": "off",
 }
