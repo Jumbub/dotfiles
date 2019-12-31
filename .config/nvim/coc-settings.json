@@ -1,4 +1,5 @@
 {
+  "coc.preferences.timeout": 5000,
   "languageserver": {
     "intelephense": {
       "command": "intelephense",
@@ -7,18 +8,7 @@
       "initializationOptions": {
         "storagePath": "/tmp/intelephense"
       }
-    },
-    "lua": {
-      "command": "java",
-      "args": [
-        "-cp",
-        "/home/jamie/temp/EmmyLua-LS-all.jar",
-        "com.tang.vscode.MainKt"
-      ],
-      "filetypes": ["lua"],
-      "rootPatterns": [".git/"]
     }
   },
-  "javascript.suggest.autoImports": "relative",
   "typescript.preferences.importModuleSpecifier": "relative"
 }

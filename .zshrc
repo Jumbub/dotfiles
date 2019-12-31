@@ -38,3 +38,4 @@ source $HOME/scripts/colors
 
 # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 export LC_ALL="en_US.UTF-8"
+source <(kubectl completion zsh)
