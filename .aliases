@@ -7,6 +7,7 @@ alias va="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
 alias vsrc="nvim $HOME/.zshrc"
+alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
@@ -49,6 +50,7 @@ function gcmm { GCM="$@"; git commit -m "$GCM"; unset GCM; };
 function gcm { GCM="$@"; git commit -m "`git symbolic-ref HEAD --short` $GCM"; unset GCM; };
 alias gco="git checkout"
 alias gcob="git checkout -b"
+alias gcop="git checkout . -p"
 alias grb="git rebase"
 alias grbomi="git rebase origin/master -i"
 alias gr="git reset"

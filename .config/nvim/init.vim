@@ -28,6 +28,7 @@ Plug 'tpope/vim-commentary' " Quick comments
 Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
+Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
@@ -41,15 +42,15 @@ Plug 'terryma/vim-multiple-cursors' " Multi cursor
 
 call plug#end() " Finish setting up plugins
 
-" let g:fzf_files_options = '--tiebreak=end' " Change tiebreak algorithm in an attempt to match vscode
 " autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Override ts filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal syntax=javascript.jsx " Override tsx syntax
-autocmd BufWritePre *.tsx,*.ts,*.py undojoin | Neoformat " Auto format files
+autocmd BufWritePre *.tsx,*.ts,*.py Neoformat " Auto format files
 
 colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
+let g:NERDTreeWinSize = 60 " Size of frame
 let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
@@ -66,43 +67,44 @@ set undodir=~/.vim/undodir " Set undo history file
 set undofile " Persist undo history between sessions
 highlight Search gui=underline guibg=#484943
 
-nmap / /\c
-vmap <leader>/ "syhk/<C-r>s<CR>
-nmap <silent> U :redo<CR>
+
 imap <silent><expr> <c-space> coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
+nmap / /\c
 nmap <leader>D :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
+nmap <leader>a <Plug>(coc-codeaction)
+nmap <leader>c :CocCommand<CR>
 nmap <leader>d :let $VIM_DIR=expand('%:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 nmap <leader>gc gg/scss<CR>gf
 nmap <leader>r <Plug>(coc-rename)
-vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction)
-nmap <leader>c :CocCommand<CR>
-vmap <silent> af <Plug>(coc-range-select)
 nmap <silent> <leader>f <Plug>(coc-fix-current)
+nmap <silent> U :redo<CR>
 nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <C-l> i\HE\Util\Logger::Logger('DEBUGGING')->emergency('xxx', [ xxx ]);<Esc>?xxx<CR>nve<C-n>c
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>go :call GoogleSearchPhrase()
+nnoremap <leader>j :Rg <CR>
+nnoremap <leader>siw "syiw:F <C-r>s<CR>
+nnoremap <leader>ss :F  <backspace>
 nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
-nnoremap <silent> <expr> <A-p> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+nnoremap <silent> <expr> <leader>m g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
-nnoremap <leader>ss :F  <backspace>
-nnoremap <leader>siw "syiw:F <C-r>s<CR>
-vnoremap <leader>s "sy:F <C-r>s<CR>
-nnoremap <leader>gs "ryiw:F <C-r>r<CR>
-nnoremap gs :CocList -I symbols<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nnoremap gS :CocList outline<cr>
+nnoremap gs :CocList -I symbols<CR>
+vmap <leader>/ "syhk/<C-r>s<CR>
+vmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
+vmap <leader>wb "wy:read !<C-r>w<CR>
+vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
+vmap <silent> af <Plug>(coc-range-select)
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <c-space> coc#refresh()
-
-command! -nargs=? F :Rg <args>
+vnoremap <leader>j "sy:Rg <C-r>s<CR>
 
 function! GoogleSearchPhrase(term) " Run a google search
   silent! exec "silent! !google-chrome \"https://google.com/search?q=" . a:term . "\" &"
@@ -112,6 +114,12 @@ function! GoogleSearch() " Run a google search for the selection in the g regist
   let term = getreg("g")
   call GoogleSearchPhrase(term)
 endfunction
+
+function! NearbyFiles() " Run a google search for the selection in the g registry
+  let location = expand('%:p:h')
+  exec "Files " . location
+endfunction
+nnoremap <leader>e :call NearbyFiles()<CR>
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -130,3 +138,5 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+
