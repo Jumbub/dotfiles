@@ -33,6 +33,7 @@ Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
 Plug 'terryma/vim-multiple-cursors' " Multi cursor
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 " Plug 'easymotion/vim-easymotion' " Add quick movement using motions
 " Plug 'lambdalisue/suda.vim' " Write files with sudo
 " Plug 'Quramy/tsuquyomi' " Completions, symbols
@@ -55,6 +56,7 @@ let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
+let g:mkdp_auto_close = 1
 let mapleader = "," " Map the leader key
 set clipboard=unnamedplus " Share clipboard with system
 set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands

@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 alias v="nvim"
 alias vim="nvim"
 
 alias va="nvim $HOME/.aliases"
+alias vwa="nvim $HOME/.aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
 alias vsrc="nvim $HOME/.zshrc"
@@ -15,24 +16,9 @@ alias src="source $HOME/.zshrc"
 alias replace="$HOME/scripts/replace"
 alias confirm="$HOME/scripts/confirm"
 
-alias cdu="cd ~/repos/unicron"
-alias cdca="cd ~/repos/catalyst/packages/admin"
-alias cdk="cd ~/repos/k8s"
-
-function gh {
-  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')"
-};
-function ghb {
-  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')/tree/`git symbolic-ref HEAD --short`"
-};
-function ghd {
-  sensible-browser "https://github.com/HealthEngineAU/$(basename $(git remote get-url origin) | sed 's/\..*//')/compare/`git symbolic-ref HEAD --short`"
-};
-
 function jt {
   sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
 }
-
 
 alias gl="git log"
 alias gm="git merge"
@@ -68,3 +54,8 @@ alias gd="git diff"
 alias img="kitty +kitten icat"
 
 source $HOME/scripts/dotfiles
+
+if [ -f $HOME/.machine-aliases ]
+then
+  source $HOME/.machine-aliases
+fi
