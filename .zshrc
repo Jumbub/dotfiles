@@ -17,6 +17,10 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
+if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
+    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
+
 
 # Load kitty autocompletions
 autoload -Uz compinit
@@ -26,7 +30,7 @@ kitty + complete setup zsh | source /dev/stdin
 # ZShell
 ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
-plugins=()
+plugins=(zsh-completions)
 source $ZSH/oh-my-zsh.sh
 
 # Fzf

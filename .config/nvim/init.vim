@@ -34,6 +34,7 @@ Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
 Plug 'terryma/vim-multiple-cursors' " Multi cursor
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
+Plug 'jparise/vim-graphql'
 " Plug 'easymotion/vim-easymotion' " Add quick movement using motions
 " Plug 'lambdalisue/suda.vim' " Write files with sudo
 " Plug 'Quramy/tsuquyomi' " Completions, symbols
@@ -46,7 +47,7 @@ call plug#end() " Finish setting up plugins
 " autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Override ts filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal syntax=javascript.jsx " Override tsx syntax
-autocmd BufWritePre *.tsx,*.ts,*.py Neoformat " Auto format files
+autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat " Auto format files
 
 colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file
@@ -54,6 +55,7 @@ let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
 let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
 let g:mkdp_auto_close = 1
