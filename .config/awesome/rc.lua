@@ -15,6 +15,15 @@ local freedesktop = require("freedesktop")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 
+local fancyGaps = 0
+local fancyOpacity = 1
+
+-- fancy mode here
+if false then
+  fancyGaps = 10
+  fancyOpacity = 0.8
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -44,12 +53,15 @@ end
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
 beautiful.wallpaper         = "/home/jamie/.config/awesome/wallpaper.jpg"
 beautiful.icon_theme        = "Papirus-Dark"
+beautiful.border_width      = 2
+beautiful.useless_gap       = fancyGaps
+beautiful.top_titlebar      = 2
 beautiful.bg_normal         = "#222D32"
 beautiful.bg_focus          = "#2C3940"
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
 beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
-beautiful.font              = "Noto Sans Regular 10"
-beautiful.notification_font = "Noto Sans Bold 14"
+beautiful.font              = "FiraCodeNerdFontCompleteM-Regular 9"
+beautiful.notification_font = "FiraCodeNerdFontCompleteM-Regular 16"
 
 -- This is used later as the default terminal and editor to run.
 browser = "exo-open --launch WebBrowser" or "google-chrome-stable"
@@ -67,7 +79,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile,
     -- awful.layout.suit.floating,
-    --awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
@@ -136,15 +148,15 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%H:%M ")
+mytextclock = wibox.widget.textclock("%d/%m %H:%M")
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 darkblue    = beautiful.bg_focus
 blue        = "#9EBABA"
 red         = "#EB8F8F"
-separator = wibox.widget.textbox(' <span color="' .. blue .. '">| </span>')
-spacer = wibox.widget.textbox(' <span color="' .. blue .. '"> </span>')
+separator = wibox.widget.textbox(' <span color="' .. blue .. '">  </span>')
+spacer = wibox.widget.textbox(' <span color="' .. blue .. '">    </span>')
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -209,7 +221,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
+    awful.tag({ "1" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -228,7 +240,9 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 16,
+      border_width = fancyGaps, opacity = fancyOpacity
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -236,7 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-            s.mytaglist,
+            -- s.mytaglist, -- The window tags
             s.mypromptbox,
             separator,
         },
@@ -247,7 +261,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             separator,
             mytextclock,
-            s.mylayoutbox,
+            -- s.mylayoutbox,
         },
     }
 end)
@@ -525,7 +539,9 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" } },
-      properties = { titlebars_enabled = true }
+      properties = {
+        --titlebars_enabled = false
+      }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -647,13 +663,13 @@ end
 
 -- }}}
 
---client.connect_signal("property::floating", function (c)
---    if c.floating then
---        awful.titlebar.show(c)
---    else
---        awful.titlebar.hide(c)
---    end
---end)
+-- client.connect_signal("property::floating", function (c)
+--     if c.floating then
+--         awful.titlebar.show(c)
+--     else
+--         awful.titlebar.hide(c)
+--     end
+-- end)
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 

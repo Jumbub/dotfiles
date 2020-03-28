@@ -9,6 +9,7 @@ alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
 alias vrc="nvim $HOME/.zshrc"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
+alias vkitty="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
