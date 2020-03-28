@@ -21,11 +21,19 @@ if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
     export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
+# Vim mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Aliases
+source $HOME/.aliases
+source $HOME/scripts/colors
 
 # Load kitty autocompletions
-autoload -Uz compinit
-compinit
-kitty + complete setup zsh | source /dev/stdin
+haveigot kitty\
+  && autoload -Uz compinit\
+  && compinit\
+  && kitty + complete setup zsh | source /dev/stdin
 
 # ZShell
 ZSH_THEME="steeef"
@@ -36,10 +44,7 @@ source $ZSH/oh-my-zsh.sh
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Aliases
-source $HOME/.aliases
-source $HOME/scripts/colors
-
 # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 export LC_ALL="en_US.UTF-8"
-source <(kubectl completion zsh)
+haveigot minikube && source <(minikube completion zsh)
+haveigot kubectl && source <(kubectl completion zsh)

@@ -1,7 +1,6 @@
 #/usr/bin/env sh
 
-sudo pacman -S --needed --noconfirm\
-  neovim\
+sudo pacman -S\
   alsa-utils\
   base-devel\
   bitwarden\
@@ -13,7 +12,9 @@ sudo pacman -S --needed --noconfirm\
   i3status\
   imagemagick\
   kitty\
+  neovim\
   nodejs\
+  noto-fonts-emoji\
   npm\
   openssh\
   python-pip\
@@ -21,10 +22,14 @@ sudo pacman -S --needed --noconfirm\
   redshift\
   ripgrep\
   rofi\
+  xclip\
   yarn\
   yay\
-  xclip\
-  zsh
+  zsh\
+  --needed --noconfirm
 
-yay -S --noconfirm\
-  google-chrome
+yay -S\
+  google-chrome\
+  nerd-fonts-fira-code\
+  --noconfirm
+
