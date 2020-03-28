@@ -8,3 +8,7 @@ sudo pacman -Syyuu
 sudo mhwd -a pci nonfree 0300
 
 sudo reboot
+
+# Set the timezone
+timedatectl set-timezone Australia/Perth
+timedatectl set-ntp true

@@ -4,6 +4,7 @@ sudo pacman -S --needed --noconfirm\
   neovim\
   alsa-utils\
   base-devel\
+  bitwarden\
   entr\
   firefox\
   git\
