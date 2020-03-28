@@ -1,0 +1,13 @@
+#/usr/bin/env sh
+
+# Warn user about potential changes
+cp $HOME/repos/dotfiles/.gitignore $HOME/.gitignore
+git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git status
+if ! $HOME/repos/dotfiles/scripts/confirm
+then
+	echo "Aborting"
+	exit
+fi
+
+git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git checkout -- $HOME
+cp -R $HOME/repos/dotfiles/.git $HOME/repos/dotfiles.git

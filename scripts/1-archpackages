@@ -1,0 +1,29 @@
+#/usr/bin/env sh
+
+sudo pacman -S --needed --noconfirm\
+  neovim\
+  alsa-utils\
+  base-devel\
+  entr\
+  firefox\
+  git\
+  i3blocks\
+  i3lock\
+  i3status\
+  imagemagick\
+  kitty\
+  nodejs\
+  npm\
+  openssh\
+  python-pip\
+  python\
+  redshift\
+  ripgrep\
+  rofi\
+  yarn\
+  yay\
+  xclip\
+  zsh
+
+yay -S --noconfirm\
+  google-chrome

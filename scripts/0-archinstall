@@ -1,0 +1,10 @@
+# Download mirrors
+sudo pacman-mirrors -g
+
+# Update pacman
+sudo pacman -Syyuu
+
+# Install graphics drivers
+sudo mhwd -a pci nonfree 0300
+
+sudo reboot
