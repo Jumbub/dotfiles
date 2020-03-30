@@ -87,7 +87,7 @@ nmap <silent> <leader>f <Plug>(coc-fix-current)
 nmap <silent> U :redo<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <C-l> i\HE\Util\Logger::Logger('DEBUGGING')->emergency('xxx', [ xxx ]);<Esc>?xxx<CR>nve<C-n>c
+nnoremap <C-l> i\HE\Util\Logger::Logger(\HE\Logging\LogChannel::DEBUGGING())->emergency('xxx', [ ]);<Esc>?xxx<CR>nve
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>go :call GoogleSearchPhrase()
 nnoremap <leader>j :Rg <CR>

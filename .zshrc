@@ -1,6 +1,7 @@
 # Environment variables
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
+export TERMINAL="kitty"
 export VISUAL="nvim"
 if [ -d "$HOME/.luarocks/bin" ] ; then
     export PATH="$HOME/.luarocks/bin:$PATH"
@@ -19,6 +20,9 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
     export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
+if [ -d "$HOME/scripts" ] ; then
+    export PATH="$HOME/scripts:$PATH"
 fi
 
 # Vim mode
@@ -48,3 +52,4 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL="en_US.UTF-8"
 haveigot minikube && source <(minikube completion zsh)
 haveigot kubectl && source <(kubectl completion zsh)
+haveigot helm && source <(helm completion zsh)
