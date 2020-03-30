@@ -17,6 +17,9 @@ alias src="source $HOME/.zshrc"
 alias replace="$HOME/scripts/replace"
 alias confirm="$HOME/scripts/confirm"
 
+alias bitpass="bitwarden-dmenu --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'"
+
+
 function haveigot {
   type "$1" > /dev/null
 }
@@ -57,6 +60,20 @@ alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
 
+function codejamjs {
+
+  mkdir -p "$HOME/challenges/$1";
+  cd "$HOME/challenges/$1";
+  touch in;
+  echo wrong > out;
+  cp "$HOME/challenges/template/sol.js" .;
+
+  kitty watch -t -n 5 "node sol.js < in >.out && cat .out" &;
+
+  kitty watch -t -n 1 "echo 'challenge' && echo 'input' && cat in && echo 'expected output' && cat out && echo 'output' && cat .out" &
+#git diff > /dev/null out .out && echo Matches || echo Does not match
+}
+
 alias img="kitty +kitten icat"
 
 source $HOME/scripts/dotfiles
@@ -65,3 +82,4 @@ if [ -f $HOME/.machine-aliases ]
 then
   source $HOME/.machine-aliases
 fi
+
