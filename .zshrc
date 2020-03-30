@@ -1,6 +1,7 @@
 # Environment variables
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
+export TERMINAL="kitty"
 export VISUAL="nvim"
 if [ -d "$HOME/.luarocks/bin" ] ; then
     export PATH="$HOME/.luarocks/bin:$PATH"
@@ -20,7 +21,9 @@ fi
 if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
     export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
-
+if [ -d "$HOME/scripts" ] ; then
+    export PATH="$HOME/scripts:$PATH"
+fi
 
 # Load kitty autocompletions
 autoload -Uz compinit
@@ -41,5 +44,8 @@ source $HOME/.aliases
 source $HOME/scripts/colors
 
 # https://github.com/robbyrussell/oh-my-zsh/issues/7426
-export LC_ALL="en_US.UTF-8"
+# export LC_ALL="en_US.UTF-8"
+
 source <(kubectl completion zsh)
+source <(minikube completion zsh)
+source <(helm completion zsh)

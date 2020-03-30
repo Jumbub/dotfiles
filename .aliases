@@ -2,6 +2,7 @@
 
 alias v="nvim"
 alias vim="nvim"
+alias cleanvim="nvim -u NONE"
 
 alias va="nvim $HOME/.aliases"
 alias vma="nvim $HOME/.machine-aliases"
