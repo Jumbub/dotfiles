@@ -1,5 +1,8 @@
 #/usr/bin/env sh
 
+# Change to ssh remote for dotfiles
+dot remote set-url origin git@github.com:Jumbub/dotfiles.git
+
 # Generate ssh key
 ssh-keygen -t rsa -b 4096
 

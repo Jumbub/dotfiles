@@ -1,0 +1,35 @@
+#/usr/bin/env sh
+
+sudo pacman -S\
+  alsa-utils\
+  base-devel\
+  bitwarden\
+  entr\
+  firefox\
+  git\
+  i3blocks\
+  i3lock\
+  i3status\
+  imagemagick\
+  kitty\
+  neovim\
+  nodejs\
+  noto-fonts-emoji\
+  npm\
+  openssh\
+  python-pip\
+  python\
+  redshift\
+  ripgrep\
+  rofi\
+  xclip\
+  yarn\
+  yay\
+  zsh\
+  --needed --noconfirm
+
+yay -S\
+  google-chrome\
+  nerd-fonts-fira-code\
+  --noconfirm
+

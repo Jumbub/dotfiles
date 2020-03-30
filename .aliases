@@ -8,14 +8,19 @@ alias va="nvim $HOME/.aliases"
 alias vma="nvim $HOME/.machine-aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
-alias vsrc="nvim $HOME/.zshrc"
+alias vrc="nvim $HOME/.zshrc"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
+alias vkitty="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
 alias src="source $HOME/.zshrc"
 alias replace="$HOME/scripts/replace"
 alias confirm="$HOME/scripts/confirm"
+
+function haveigot {
+  type "$1" > /dev/null
+}
 
 function jt {
   sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
