@@ -61,20 +61,6 @@ alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
 
-function codejamjs {
-
-  mkdir -p "$HOME/challenges/$1";
-  cd "$HOME/challenges/$1";
-  touch in;
-  echo wrong > out;
-  cp "$HOME/challenges/template/sol.js" .;
-
-  kitty watch -t -n 5 "node sol.js < in >.out && cat .out" &;
-
-  kitty watch -t -n 1 "echo 'challenge' && echo 'input' && cat in && echo 'expected output' && cat out && echo 'output' && cat .out" &
-#git diff > /dev/null out .out && echo Matches || echo Does not match
-}
-
 alias img="kitty +kitten icat"
 
 source $HOME/scripts/dotfiles
