@@ -44,10 +44,14 @@ Plug 'jparise/vim-graphql'
 
 call plug#end() " Finish setting up plugins
 
+" File formatting
+autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
+" Codejams
+autocmd BufWritePost sol.js silent! !node sol.js < in > .out 2> .err &
+
 " autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Override ts filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal syntax=javascript.jsx " Override tsx syntax
-autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat " Auto format files
 
 colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file

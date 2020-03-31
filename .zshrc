@@ -2,7 +2,6 @@
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export VISUAL="nvim"
 if [ -d "$HOME/.luarocks/bin" ] ; then
     export PATH="$HOME/.luarocks/bin:$PATH"
 fi
@@ -25,9 +24,8 @@ if [ -d "$HOME/scripts" ] ; then
     export PATH="$HOME/scripts:$PATH"
 fi
 
-# Vim mode
-bindkey -v
-export KEYTIMEOUT=1
+# Edit command in vim
+bindkey '^j' edit-command-line
 
 # Aliases
 source $HOME/.aliases
