@@ -8,9 +8,7 @@ fi
 if [ -d "$HOME/.npm-global/bin" ] ; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
-if [ -d "$HOME/.yarn/bin" ] ; then
-    export PATH="$HOME/.yarn/bin:$PATH"
-fi
+export PATH="$(yarn global bin):$PATH"
 if [ -d "$HOME/repos/other/path" ] ; then
     export PATH="$HOME/repos/other/path:$PATH"
 fi
@@ -25,6 +23,7 @@ if [ -d "$HOME/scripts" ] ; then
 fi
 
 # Edit command in vim
+autoload -U edit-command-line
 bindkey '^j' edit-command-line
 
 # Aliases

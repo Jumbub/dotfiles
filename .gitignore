@@ -32,6 +32,7 @@
 !/.custom-oh-my-zsh/themes/*
 !/.editorconfig
 !/.gitignore
+!/.prettierrc
 !/scripts
 !/scripts/*
 !/scripts/templates
