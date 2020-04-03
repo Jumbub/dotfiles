@@ -625,11 +625,20 @@ client.connect_signal("request::titlebars", function(c)
    -- end
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
+-- Focus the window and show the title bar when mousing over a window.
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
+        awful.titlebar.show(c)
+    end
+end)
+
+-- Hide the title bar when a window is unfocused, but with the same mouse conditionals.
+client.connect_signal("unfocus", function(c)
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+        and awful.client.focus.filter(c) then
+        awful.titlebar.hide(c)
     end
 end)
 
@@ -671,13 +680,13 @@ end
 
 -- }}}
 
-client.connect_signal("property::floating", function (c)
-    if c.floating then
-        awful.titlebar.show(c)
-    else
-        awful.titlebar.hide(c)
-    end
-end)
+-- client.connect_signal("property::floating", function (c)
+--     if c.floating then
+--         awful.titlebar.show(c)
+--     else
+--         awful.titlebar.hide(c)
+--     end
+-- end)
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
