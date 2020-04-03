@@ -8,6 +8,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+local theme_assets = require("beautiful.theme_assets")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -65,8 +66,10 @@ beautiful.useless_gap       = home and 5 or 0
 beautiful.top_titlebar      = 2
 beautiful.bg_normal         = home and "#222D3277" or "#222D32"
 beautiful.bg_focus          = "#2C3940"
-beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
-beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
+beautiful.titlebar_bg_focus = "#282923"
+
+beautiful = theme_assets.recolor_titlebar(beautiful, beautiful.border_focus, "focus")
+
 beautiful.font              = "FiraCodeNerdFontCompleteM-Regular 9"
 beautiful.notification_font = "FiraCodeNerdFontCompleteM-Regular 16"
 
@@ -596,7 +599,7 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
