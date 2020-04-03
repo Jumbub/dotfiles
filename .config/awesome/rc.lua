@@ -1,3 +1,5 @@
+-- Built in Awesome version: 4.3
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -645,15 +647,16 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     if c.maximized then
       -- NOTE: also handled in focus, but that does not cover maximizing from a
       -- tiled state (when the client had focus).
-      c.border_width = 0
+      c.border_width = home and 5 or 2
     elseif c.floating or layout == "floating" then
-      c.border_width = beautiful.border_width
+      c.border_width = home and 5 or 2
     elseif layout == "max" or layout == "fullscreen" then
       c.border_width = 0
     else
       local tiled = awful.client.tiled(c.screen)
       if #tiled == 1 then -- and c == tiled[1] then
-        tiled[1].border_width = 0
+        c.border_width = beautiful.border_width
+        -- tiled[1].border_width = 0
         -- if layout ~= "max" and layout ~= "fullscreen" then
         -- XXX: SLOW!
         -- awful.client.moveresize(0, 0, 2, 0, tiled[1])

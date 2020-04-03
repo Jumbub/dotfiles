@@ -50,3 +50,6 @@ export LC_ALL="en_US.UTF-8"
 haveigot minikube && source <(minikube completion zsh)
 haveigot kubectl && source <(kubectl completion zsh)
 haveigot helm && source <(helm completion zsh)
+
+# Node versioning with NVM
+source /usr/share/nvm/init-nvm.sh
