@@ -15,14 +15,7 @@ local freedesktop = require("freedesktop")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 
-local fancyGaps = 0
-local fancyOpacity = 1
-
--- fancy mode here
-if false then
-  fancyGaps = 10
-  fancyOpacity = 0.8
-end
+local home = true
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -51,12 +44,24 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
+beautiful.bg_normal   = "#141A1B"
+beautiful.bg_focus    = "#222B2E"
+beautiful.bg_urgent   = "#000000"
+beautiful.bg_minimize = "#101010"
+beautiful.bg_systray  = beautiful.bg_normal
+beautiful.fg_normal   = "#ffffff"
+beautiful.fg_focus    = "#ffffff"
+beautiful.fg_urgent   = "#ff0000"
+beautiful.fg_minimize = "#ffffff"
+beautiful.border_width  = home and 5 or 2
+beautiful.border_normal = "#282923"
+beautiful.border_focus  = home and "#fc961f" or "#16A085"
+beautiful.border_marked = "#16A085"
 beautiful.wallpaper         = "/home/jamie/.config/awesome/wallpaper.jpg"
 beautiful.icon_theme        = "Papirus-Dark"
-beautiful.border_width      = 2
-beautiful.useless_gap       = fancyGaps
+beautiful.useless_gap       = home and 5 or 0
 beautiful.top_titlebar      = 2
-beautiful.bg_normal         = "#222D32"
+beautiful.bg_normal         = home and "#222D3277" or "#222D32"
 beautiful.bg_focus          = "#2C3940"
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
 beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
@@ -240,8 +245,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 16,
-      border_width = fancyGaps, opacity = fancyOpacity
+    s.mywibox = awful.wibar({ position = home and "bottom" or "top", screen = s, height = 16,
+      border_width = 0, opacity = home and 0.9 or 1
     })
 
     -- Add widgets to the wibox
@@ -346,7 +351,7 @@ globalkeys = gears.table.join(
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
-    awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
+    awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
               {description = "launch rofi", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
               {description = "launch filemanager", group = "launcher"}),
@@ -371,8 +376,8 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.spawn("dmenu_run") end,
-              {description = "run prompt", group = "launcher"}),
+    -- awful.key({ modkey },            "r",     function () awful.spawn("dmenu_run") end,
+    --           {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "ö",
               function ()
@@ -663,13 +668,13 @@ end
 
 -- }}}
 
--- client.connect_signal("property::floating", function (c)
---     if c.floating then
---         awful.titlebar.show(c)
---     else
---         awful.titlebar.hide(c)
---     end
--- end)
+client.connect_signal("property::floating", function (c)
+    if c.floating then
+        awful.titlebar.show(c)
+    else
+        awful.titlebar.hide(c)
+    end
+end)
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 

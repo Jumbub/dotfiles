@@ -45,9 +45,11 @@ Plug 'jparise/vim-graphql'
 call plug#end() " Finish setting up plugins
 
 " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.php,*.js Neoformat
+autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
 " Codejams
-" autocmd BufWritePost sol.js silent! !./build &
+autocmd BufWritePost sol.js silent! !./build &
+" Compton autoreload config changes
+autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 
 " autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Override ts filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype

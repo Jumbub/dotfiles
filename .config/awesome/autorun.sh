@@ -21,6 +21,9 @@ fi
 if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
     xfce4-power-manager &
 fi
+if (command -v system-config-printer-applet && ! pgrep applet.py ); then
+  system-config-printer-applet &
+fi
 
 run xfsettingsd
 run nm-applet
@@ -30,14 +33,6 @@ run thunar --daemon
 run pa-applet
 run pamac-tray
 run redshift
-
-## The following are not included in minimal edition by default
-## but autorun.sh will pick them up if you install them
-
-if (command -v system-config-printer-applet && ! pgrep applet.py ); then
-  system-config-printer-applet &
-fi
-
-run compton --shadow-exclude '!focused'
+run compton
 run blueman-applet
 run msm_notifier

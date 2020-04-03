@@ -13,6 +13,7 @@
 !/.config/Code/User/*.json
 !/.config/Code/User/snippets
 !/.config/Code/User/snippets/*
+!/.config/compton.conf
 !/.config/kitty
 !/.config/kitty/**
 !/.config/nvim
