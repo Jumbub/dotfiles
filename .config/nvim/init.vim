@@ -48,6 +48,7 @@ call plug#end() " Finish setting up plugins
 autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
 " Codejams
 autocmd BufWritePost sol.js silent! !./build &
+autocmd BufWritePost in silent! !./build &
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 

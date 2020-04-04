@@ -69,6 +69,7 @@ beautiful.bg_focus          = "#2C3940"
 beautiful.titlebar_bg_focus = "#282923"
 
 beautiful = theme_assets.recolor_titlebar(beautiful, beautiful.border_focus, "focus")
+beautiful = theme_assets.recolor_titlebar(beautiful, beautiful.border_normal, "normal")
 
 beautiful.font              = "FiraCodeNerdFontCompleteM-Regular 9"
 beautiful.notification_font = "FiraCodeNerdFontCompleteM-Regular 16"
