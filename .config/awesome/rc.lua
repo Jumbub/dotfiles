@@ -18,7 +18,8 @@ local freedesktop = require("freedesktop")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 
-local home = true
+local home = true;
+local showingTitlebar = false;
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -415,8 +416,28 @@ clientkeys = gears.table.join(
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
+    -- awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+    --           {description = "toggle keep on top", group = "client"}),
+    awful.key({ modkey,           }, "t",      function (c)
+
+showingTitlebar = not showingTitlebar
+
+for s = 1, screen.count() do
+  screen[s]:connect_signal("arrange", function ()
+    local clients = awful.client.visible(s)
+    for _, c in pairs(clients) do
+      if showingTitlebar then
+        awful.titlebar.show(c)
+      else
+        awful.titlebar.hide(c)
+      end
+    end
+  end)
+end
+
+
+      end,
+              {description = "toggle titlebars", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
@@ -551,7 +572,7 @@ awful.rules.rules = {
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" } },
       properties = {
-        --titlebars_enabled = false
+        titlebars_enabled = showingTitlebar
       }
     },
 
@@ -634,15 +655,6 @@ client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
-        awful.titlebar.show(c)
-    end
-end)
-
--- Hide the title bar when a window is unfocused, but with the same mouse conditionals.
-client.connect_signal("unfocus", function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
-        awful.titlebar.hide(c)
     end
 end)
 
@@ -656,6 +668,7 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
   local layout = awful.layout.getname(awful.layout.get(s))
 
   for _, c in pairs(clients) do
+
     -- No borders with only one humanly visible client
     if c.maximized then
       -- NOTE: also handled in focus, but that does not cover maximizing from a
