@@ -6,7 +6,7 @@ configuration {
 }
 
 * {
-  BACKGROUND: #282923;
+  BACKGROUND: #28292399;
   FOREGROUND: #fdfff1;
   GRAY: #6e7066;
   RED: #f82570;
@@ -31,13 +31,13 @@ window {
 }
 
 inputbar {
+  background-color: #fff0;
   border: 0 0 1px 0;
   children: [prompt,entry];
 }
 
 prompt {
   padding: 16px;
-  border: 0 1px 0 0;
 }
 
 textbox {
@@ -49,7 +49,7 @@ entry {
 }
 
 element {
-  border: 0 0 1px 0;
+  background-color: #fff0;
   padding: 16px;
 }
 
