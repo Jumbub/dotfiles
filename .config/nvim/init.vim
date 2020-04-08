@@ -109,7 +109,6 @@ nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nv
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nnoremap gS :CocList outline<cr>
 nnoremap gs :CocList -I symbols<CR>
-vmap <leader>/ "syhk/<C-r>s<CR>
 vmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
 vmap <leader>wb "wy:read !<C-r>w<CR>
