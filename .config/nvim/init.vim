@@ -58,6 +58,7 @@ autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 
 colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file
+syntax on " Enable syntax highlighting
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
@@ -116,6 +117,8 @@ vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
 vmap <silent> af <Plug>(coc-range-select)
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
+
+command FF Neoformat
 
 function! GoogleSearchPhrase(term) " Run a google search
   silent! exec "silent! !google-chrome \"https://google.com/search?q=" . a:term . "\" &"

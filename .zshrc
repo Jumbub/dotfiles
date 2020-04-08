@@ -22,10 +22,6 @@ if [ -d "$HOME/scripts" ] ; then
     export PATH="$HOME/scripts:$PATH"
 fi
 
-# Edit command in vim
-autoload -U edit-command-line
-bindkey '^j' edit-command-line
-
 # Aliases
 source $HOME/.aliases
 source $HOME/scripts/colors
@@ -53,3 +49,7 @@ haveigot helm && source <(helm completion zsh)
 
 # Node versioning with NVM
 source /usr/share/nvm/init-nvm.sh
+
+# Edit command in vim
+autoload -U edit-command-line
+bindkey '^j' edit-command-line

@@ -4,6 +4,8 @@ sudo pacman -S\
   alsa-utils\
   base-devel\
   bitwarden\
+  ccls\
+  compton\
   entr\
   firefox\
   git\
