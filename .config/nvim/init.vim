@@ -8,7 +8,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-Plug 'ErichDonGubler/vim-sublime-monokai' " Colour scheme
+Plug 'crusoexia/vim-monokai' " Colour scheme
 Plug 'StanAngeloff/php.vim'
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -56,7 +56,7 @@ autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 " autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype
 " autocmd BufNewFile,BufRead *.tsx setlocal syntax=javascript.jsx " Override tsx syntax
 
-colorscheme sublimemonokai " Set colour scheme
+colorscheme monokai " Set colour scheme
 filetype plugin on " Detect the current file
 syntax on " Enable syntax highlighting
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
@@ -117,7 +117,7 @@ vmap <silent> af <Plug>(coc-range-select)
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
 
-command FF Neoformat
+command! FF Neoformat
 
 function! GoogleSearchPhrase(term) " Run a google search
   silent! exec "silent! !google-chrome \"https://google.com/search?q=" . a:term . "\" &"
