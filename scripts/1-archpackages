@@ -16,7 +16,6 @@ sudo pacman -S\
   kitty\
   neovim\
   noto-fonts-emoji\
-  npm\
   openssh\
   python-pip\
   python\
