@@ -18,8 +18,7 @@ alias src="source $HOME/.zshrc"
 alias replace="$HOME/scripts/replace"
 alias confirm="$HOME/scripts/confirm"
 
-alias bitpass="bitwarden-dmenu --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'"
-
+alias spotify="$BROWSER https://open.spotify.com/"
 
 function haveigot {
   type "$1" > /dev/null

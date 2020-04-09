@@ -1,7 +1,10 @@
-# Environment variables
+# Environment
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
 export TERMINAL="kitty"
+export BROWSER="google-chrome-stable"
+
+# Paths
 if [ -d "$HOME/.luarocks/bin" ] ; then
     export PATH="$HOME/.luarocks/bin:$PATH"
 fi
