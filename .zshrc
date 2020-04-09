@@ -47,15 +47,8 @@ haveigot minikube && source <(minikube completion zsh)
 haveigot kubectl && source <(kubectl completion zsh)
 haveigot helm && source <(helm completion zsh)
 
-nvm() {
-  echo "🚨 NVM not loaded! Loading now..."
-  unset -f nvm # Unset this nvm function
-
-  # Node versioning with NVM
-  source /usr/share/nvm/init-nvm.sh
-
-  nvm $@
-}
+# Lazy load Node Version Manager
+source ./scripts/lazynvm
 
 # Edit command in vim
 autoload -U edit-command-line

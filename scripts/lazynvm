@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+# Create a list of apps that require nvm
+REQUIRE_NVM_SOURCE=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+REQUIRE_NVM_SOURCE+=("node")
+REQUIRE_NVM_SOURCE+=("nvm")
+
+# Lazy source nvm when using nvm apps
+load_nvm () {
+  echo "🚨 NVM not loaded! Loading now..."
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
+
+# Making node global trigger the lazy loading
+for cmd in "${REQUIRE_NVM_SOURCE[@]}"; do
+  eval "${cmd}(){ unset -f ${REQUIRE_NVM_SOURCE}; load_nvm; ${cmd} \$@ }"
+done

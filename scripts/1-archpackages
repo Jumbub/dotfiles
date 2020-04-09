@@ -15,7 +15,6 @@ sudo pacman -S\
   imagemagick\
   kitty\
   neovim\
-  nodejs\
   noto-fonts-emoji\
   npm\
   openssh\
