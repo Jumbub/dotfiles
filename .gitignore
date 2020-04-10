@@ -48,4 +48,5 @@
 !workspaces/vim/kitty.vim
 !/workspaces/vim/nvim.vim
 !/.zprofile
+!/.zshenv
 !/.zshrc
