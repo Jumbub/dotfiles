@@ -1,7 +1,6 @@
 #/usr/bin/env sh
 
 sudo pacman -S\
-  alsa-utils\
   base-devel\
   bitwarden\
   ccls\
@@ -13,6 +12,7 @@ sudo pacman -S\
   i3lock\
   i3status\
   imagemagick\
+  jq\
   kitty\
   neovim\
   noto-fonts-emoji\
@@ -31,5 +31,6 @@ sudo pacman -S\
 yay -S\
   google-chrome\
   nerd-fonts-fira-code\
+  zsa-wally\
   --noconfirm
 

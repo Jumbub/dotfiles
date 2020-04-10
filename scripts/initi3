@@ -1,5 +1,0 @@
-#!/bin/sh
-
-$HOME/scripts/init &
-#(find $HOME/.config/i3/* | entr -p i3-msg reload &)
-exec i3
