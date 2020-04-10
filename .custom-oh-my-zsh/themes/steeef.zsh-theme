@@ -7,6 +7,8 @@
 # git untracked files modification from Brian Carper:
 # https://briancarper.net/blog/570/git-info-in-your-zsh-prompt
 
+local exit_code="%(?..%{exited %F{red}$R%}%?%f)"
+
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 function virtualenv_info {
@@ -99,5 +101,5 @@ function steeef_precmd {
 add-zsh-hook precmd steeef_precmd
 
 PROMPT=$'
-%{$purple%}%n${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)
+%{$purple%}%n${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)${exit_code}
 ⚡ '

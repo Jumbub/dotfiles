@@ -20,7 +20,7 @@ haveigot helm && source <(helm completion zsh)
 haveigot kitty && source <(kitty + complete setup zsh)
 
 # Lazy load Node Version Manager
-source ./scripts/lazynvm
+source $HOME/scripts/lazynvm
 
 # Edit command in vim
 autoload -U edit-command-line
