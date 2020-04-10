@@ -314,6 +314,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
+
+    -- vertical resize
+    awful.key({ modkey,    }, "Down",     function () awful.client.incwfact( 0.1)    end),
+    awful.key({ modkey,    }, "Up",     function () awful.client.incwfact(-0.1)    end),
+
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
@@ -358,7 +363,7 @@ globalkeys = gears.table.join(
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
-    awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
+    awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show run") end,
               {description = "launch rofi", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
               {description = "launch filemanager", group = "launcher"}),
