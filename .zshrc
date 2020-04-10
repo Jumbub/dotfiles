@@ -25,3 +25,6 @@ source ./scripts/lazynvm
 # Edit command in vim
 autoload -U edit-command-line
 bindkey '^j' edit-command-line
+
+trap __catch_signal_usr1 USR1
+__catch_signal_usr1() { trap __catch_signal_usr1 USR1; vim; }

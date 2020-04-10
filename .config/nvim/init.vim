@@ -105,6 +105,7 @@ nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
 nnoremap <silent> <expr> <leader>m g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
+nnoremap <silent> <leader><leader>p :Restart<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nnoremap gS :CocList outline<cr>
@@ -118,6 +119,7 @@ vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
 
 command! FF Neoformat
+command! Restart call <sid>vim_quit_and_restart()
 
 function! GoogleSearchPhrase(term) " Run a google search
   silent! exec "silent! !google-chrome \"https://google.com/search?q=" . a:term . "\" &"
@@ -133,6 +135,20 @@ function! NearbyFiles() " Run a google search for the selection in the g registr
   exec "Files " . location
 endfunction
 nnoremap <leader>e :call NearbyFiles()<CR>
+
+" Restart vim (requires the following setup)
+" ```sh
+" trap __catch_signal_usr1 USR1
+" __catch_signal_usr1() { trap __catch_signal_usr1 USR1; vim; }
+" ```
+function! s:vim_quit_and_restart() abort
+  if (&mod)
+    echo "Warning: cannot restart nvim when there are changes."
+  else
+    sil call system('kill -USR1 $(ps -p '.getpid().' -o ppid=)')
+    qa!
+  endif
+endfunction
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
