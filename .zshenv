@@ -23,3 +23,15 @@ fi
 if [ -d "$HOME/scripts" ] ; then
     export PATH="$HOME/scripts:$PATH"
 fi
+
+# Code pad helper
+function pad {
+  local CODEPAD="$HOME/repos/codepad/codepad"
+
+  if [ "$1" = "new" ]
+  then
+    cd "`$CODEPAD $@`"
+  else
+    $CODEPAD $@
+  fi
+}

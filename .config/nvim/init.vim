@@ -35,26 +35,14 @@ Plug 'dhruvasagar/vim-prosession' " Better session management
 Plug 'terryma/vim-multiple-cursors' " Multi cursor
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'jparise/vim-graphql'
-" Plug 'easymotion/vim-easymotion' " Add quick movement using motions
-" Plug 'lambdalisue/suda.vim' " Write files with sudo
-" Plug 'Quramy/tsuquyomi' " Completions, symbols
-" Plug 'adimit/prolog.vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end() " Finish setting up plugins
 
 " File formatting
 autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
-" Codejams
-autocmd BufWritePost sol.js silent! !./build &
-autocmd BufWritePost in silent! !./build &
+
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
-
-" autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Override ts filetype
-" autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx " Override tsx filetype
-" autocmd BufNewFile,BufRead *.tsx setlocal syntax=javascript.jsx " Override tsx syntax
 
 colorscheme monokai " Set colour scheme
 filetype plugin on " Detect the current file
@@ -168,4 +156,4 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
+hi Normal guibg=NONE ctermbg=NONE
