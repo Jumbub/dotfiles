@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
 Plug 'crusoexia/vim-monokai' " Colour scheme
+Plug 'erichdongubler/vim-sublime-monokai' " Colour scheme
 Plug 'StanAngeloff/php.vim'
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -44,9 +45,10 @@ autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 
-colorscheme monokai " Set colour scheme
-filetype plugin on " Detect the current file
 syntax on " Enable syntax highlighting
+colorscheme monokai " Set colour scheme
+colorscheme sublimemonokai " Set colour scheme
+filetype plugin on " Detect the current file
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
@@ -56,6 +58,7 @@ let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
 let g:mkdp_auto_close = 1
 let mapleader = "," " Map the leader key
+let b:surround_45 = "<?php \r ?>" " Wrap code in PHP tag symbol from char2nr('-')
 set clipboard=unnamedplus " Share clipboard with system
 set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands
 set nocompatible " Dont bother pretending to be old
@@ -156,4 +159,5 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Fix monokai highlighting
 hi Normal guibg=NONE ctermbg=NONE
