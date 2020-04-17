@@ -25,6 +25,10 @@ function jt {
   sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
 }
 
+alias l="exa -l"
+alias ls="exa"
+alias la="exa -al"
+
 alias gl="git log"
 alias gm="git merge"
 alias gmom="git fetch && git merge origin/master"

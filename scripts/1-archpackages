@@ -6,6 +6,7 @@ sudo pacman -S\
   ccls\
   compton\
   entr\
+  exa\
   firefox\
   git\
   i3blocks\
