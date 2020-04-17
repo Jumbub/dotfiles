@@ -1,12 +1,12 @@
-# Aliases
-source $HOME/.aliases
-source $HOME/scripts/colors
-
 # ZShell
 ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions)
 source $ZSH/oh-my-zsh.sh
+
+# Aliases
+source $HOME/.aliases
+source $HOME/scripts/colors
 
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
