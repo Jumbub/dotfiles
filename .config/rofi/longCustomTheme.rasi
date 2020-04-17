@@ -1,0 +1,58 @@
+configuration {
+	display-drun:    "Activate";
+	display-run:     "Execute";
+	display-window:  "Window";
+	show-icons:      true;
+}
+
+* {
+  BACKGROUND: #28292399;
+  FOREGROUND: #fdfff1;
+  GRAY: #6e7066;
+  RED: #f82570;
+  GREEN: #a6e12d;
+  YELLOW: #e4db73;
+  BLUE: #fc961f;
+  MAGENTA: #ae81ff;
+  CYAN: #66d9ee;
+}
+
+window {
+  border: 5px;
+  border-color: @YELLOW;
+}
+
+* {
+  background-color: @BACKGROUND;
+  text-color: @GRAY;
+  spacing: 0;
+  width: 1200px;
+  height: 400px;
+}
+
+inputbar {
+  background-color: #fff0;
+  border: 0 0 1px 0;
+  children: [prompt,entry];
+}
+
+prompt {
+  padding: 16px;
+}
+
+textbox {
+  padding: 8px 16px;
+}
+
+entry {
+  padding: 16px;
+}
+
+element {
+  background-color: #fff0;
+  padding: 16px;
+}
+
+element selected {
+  color: @FOREGROUND;
+}

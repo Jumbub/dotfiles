@@ -4,25 +4,20 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
 
+function addToPath() {
+  if [[ ! "$PATH" =~ "$1" ]] && [ -d "$1" ]
+  then
+      export PATH="$1:$PATH"
+  fi
+}
+
 # Paths
-if [ -d "$HOME/.luarocks/bin" ] ; then
-    export PATH="$HOME/.luarocks/bin:$PATH"
-fi
-if [ -d "$HOME/.npm-global/bin" ] ; then
-    export PATH="$HOME/.npm-global/bin:$PATH"
-fi
-if [ -d "$HOME/.yarn/bin" ] ; then
-  export PATH="$HOME/.yarn/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
-    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-fi
-if [ -d "$HOME/scripts" ] ; then
-    export PATH="$HOME/scripts:$PATH"
-fi
+addToPath "$HOME/.luarocks/bin"
+addToPath "$HOME/.npm-global/bin"
+addToPath "$HOME/.yarn/bin"
+addToPath "$HOME/.local/bin"
+addToPath "$HOME/.config/composer/vendor/bin"
+addToPath "$HOME/scripts"
 
 # Code pad helper
 function pad {
