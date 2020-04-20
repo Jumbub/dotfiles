@@ -363,8 +363,12 @@ globalkeys = gears.table.join(
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
+
     awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show run") end,
               {description = "launch rofi", group = "launcher"}),
+    awful.key({ modkey }, "i", function () awful.spawn("/home/jamie/scripts/rofi-tasks") end,
+              {description = "launch rofi", group = "launcher"}),
+
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
               {description = "launch filemanager", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                       end,

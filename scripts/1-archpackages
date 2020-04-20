@@ -24,6 +24,7 @@ sudo pacman -S\
   ripgrep\
   rofi\
   xclip\
+  xdotool\
   yarn\
   yay\
   zsh\
