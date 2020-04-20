@@ -9,4 +9,6 @@ ssh-keygen -t rsa -b 4096
 # Copy default git config template
 cp $HOME/scripts/templates/.gitconfig $HOME/.gitconfig
 
-git config advice.detachedHead false
+# I dont need advice thanku
+git config --global advice.detachedHead false
+git config --global advice.addEmptyPathspec false
