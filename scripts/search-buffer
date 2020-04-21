@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+INPUT=""
+
+while read LINE
+do
+  INPUT="$INPUT\n$LINE"
+done < "${1:-/dev/stdin}"
+
+echo "$BROWSER\n$EDITOR" | rofi -dmenu | read COMMAND || exit
+
+REGEX=""
+if [[ "$COMMAND" == "$BROWSER" ]]
+then
+  REGEX='(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?'
+elif [[ "$COMMAND" == "$EDITOR" ]]
+then
+  REGEX='[~.]*/([^\s/]+/+)*[^\s/]*'
+fi
+
+INPUT="`echo "$INPUT" | sed -e 's/~/\/home\/jamie/g'`"
+
+echo $INPUT | rg -o -e $REGEX | uniq | rofi -dmenu | read VALUE || exit
+
+
+$COMMAND $VALUE
+
+# sleep 1
+
+# less
+# rofi -dmenu
+
+# echo "$@" | rofi -dmenu

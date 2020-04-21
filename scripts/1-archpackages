@@ -6,6 +6,7 @@ sudo pacman -S\
   ccls\
   compton\
   entr\
+  exa\
   firefox\
   git\
   i3blocks\
@@ -23,6 +24,7 @@ sudo pacman -S\
   ripgrep\
   rofi\
   xclip\
+  xdotool\
   yarn\
   yay\
   zsh\
