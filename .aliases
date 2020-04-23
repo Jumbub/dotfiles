@@ -65,6 +65,7 @@ alias gap="git add -NpA"
 alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
+function grdaysago { echo 'Current changes will be stashed' && confirm && git stash && git reset --hard $1@{$2.days.ago} }
 
 alias img="kitty +kitten icat"
 

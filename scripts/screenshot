@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+import -silent /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
