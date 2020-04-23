@@ -40,14 +40,14 @@ Plug 'jparise/vim-graphql'
 call plug#end() " Finish setting up plugins
 
 " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
+autocmd BufWritePre *.tsx,*.ts,*.py,*.php,*.json Neoformat
 
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 
 syntax on " Enable syntax highlighting
 colorscheme monokai " Set colour scheme
-colorscheme sublimemonokai " Set colour scheme
+" colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame

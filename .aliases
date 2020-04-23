@@ -9,6 +9,7 @@ alias va="nvim $HOME/.aliases"
 alias vma="nvim $HOME/.machine-aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
+alias vrt="nvim $HOME/.config/rofi-tasks/tasks.json"
 alias vrc="nvim $HOME/.zshrc"
 alias venv="nvim $HOME/.zshenv"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
@@ -30,6 +31,8 @@ alias l="exa -l"
 alias ls="exa"
 alias la="exa -al"
 
+function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
+
 alias gl="git log"
 alias gm="git merge"
 alias gmom="git fetch && git merge origin/master"
@@ -44,7 +47,7 @@ alias gc="git commit"
 alias gclean="git clean -f -d"
 alias gcl="git clone"
 function gcmm { GCM="$@"; git commit -m "$GCM"; unset GCM; };
-function gcm { GCM="$@"; git commit -m "`git symbolic-ref HEAD --short` $GCM"; unset GCM; };
+function gcm { git commit -m "`jiraForBranch`$@"; };
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcop="git checkout . -p"
