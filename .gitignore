@@ -22,6 +22,8 @@
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*
+!/.config/rofi-tasks
+!/.config/rofi-tasks/*
 !/.config/sublime-text-3
 !/.config/sublime-text-3/Packages
 !/.config/sublime-text-3/Packages/User

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "screenshot",
+    "command": "/home/jamie/scripts/screenshot"
+  },
+  {
+    "name": "shutdown",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "reboot",
+    "confirm": true,
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "spotify",
+    "command": "google-chrome-stable open.spotify.com --new-window"
+  }
+]
