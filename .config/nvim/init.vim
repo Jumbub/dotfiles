@@ -40,7 +40,7 @@ Plug 'jparise/vim-graphql'
 call plug#end() " Finish setting up plugins
 
 " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.php Neoformat
+autocmd BufWritePre *.tsx,*.ts,*.py Neoformat
 
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
@@ -86,7 +86,7 @@ nmap <silent> <leader>f <Plug>(coc-fix-current)
 nmap <silent> U :redo<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <C-l> i\HE\Util\Logger::Logger(\HE\Logging\LogChannel::DEBUGGING())->emergency('xxx', [ ]);<Esc>?xxx<CR>nve
+nnoremap <C-l> i\HE\Util\Logger::Logger(\HE\Logging\LogChannel::DEBUGGING())->emergency('asdffdsa', [ ]);<Esc>?asdffdsa<CR>nve
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>go :call GoogleSearchPhrase()
 nnoremap <leader>j :Rg <CR>
