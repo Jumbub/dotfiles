@@ -1,38 +1,17 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-## run (only once) processes which spawn with the same name
-function run {
-   if (command -v $1 && ! pgrep $1); then
-     notify-send $@&
-     $@&
-   fi
-}
+run="$HOME/scripts/run-if-not"
 
-## run (only once) processes which spawn with different name
-if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
-    gnome-keyring-daemon --daemonize --login &
-fi
-if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
-    start-pulseaudio-x11 &
-fi
-if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgrep polkit-mate-aut) ; then
-    /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-fi
-if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
-    xfce4-power-manager &
-fi
-if (command -v system-config-printer-applet && ! pgrep applet.py ); then
-  system-config-printer-applet &
-fi
+$run "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" "polkit-mate-aut"
 
-run xfsettingsd
-run nm-applet
-run light-locker
-run xcape -e 'Super_L=Super_L|Control_L|Escape'
-run thunar --daemon
-run pa-applet
-run pamac-tray
-run redshift
-run compton
-run blueman-applet
-run msm_notifier
+$run --notify "start-pulseaudio-x11" "pulseaudio"
+$run --notify "xfsettingsd"
+$run --notify "nm-applet"
+$run --notify "thunar --daemon" "thunar"
+$run --notify "msm_notifier"
+$run --notify "pa-applet"
+$run --notify "compton"
+$run --notify "redshift"
+$run --notify "pamac-tray"
+$run --notify "greenclip daemon" "greenclip"
+

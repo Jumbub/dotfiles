@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+source $HOME/.aliases
+
+local runner="$1"
+local processName="$2"
+local notify=false
+local complain=false
+
+# Notify if requested
+if [ "--notify" = "$1" ]
+then
+  runner="$2"
+  processName="$3"
+  notify=true
+fi
+
+# Ensure correct usage
+if [[ -z "$runner" ]]
+then
+  if [ "true" = "$notify" ]
+  then
+    notify-send "run-if-not: invalid usage: $@" &
+  fi
+  echo "Usage: run-if-not [--notify] command [processName]"
+  exit 1
+fi
+
+# Use runner as processName if none provided
+if [[ -z "$processName" ]]
+then
+  processName="$runner"
+fi
+
+# Check command exists
+if haveigot $runner
+then
+  # Check command isn't already running
+  if ! pgrep "$processName"
+  then
+    if [ "true" = "$notify" ]
+    then
+      notify-send "run-if-not: $runner" &
+    fi
+    $runner &
+  fi
+else
+  # Error when command does not exist
+  if [ "true" = "$notify" ]
+  then
+    notify-send "run-if-not failed for: $runner" &
+  fi
+  echo "Error: missing command '$runner'"
+  exit 1
+fi

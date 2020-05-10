@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+source "/home/jamie/.aliases"
+
+notify-send "$(focusedWindowName)"
+notify-send "hmm"
+
+if [ "kitty" = "`cat /proc/$(xdotool getwindowpid $(xdotool getwindowfocus))/comm`" ]
+then
+  xdotool key --window '$(xdotool getactivewindow)' Super+Shift+Return
+  # xdotool key Super+Shift+Return
+else
+  kitty &
+fi

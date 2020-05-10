@@ -38,6 +38,8 @@
 !/.prettierrc
 !/scripts
 !/scripts/*
+!/scripts/storage
+!/scripts/storage/*
 !/scripts/templates
 !/scripts/templates/*
 !/workspaces

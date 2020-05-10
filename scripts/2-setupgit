@@ -7,7 +7,7 @@ dot remote set-url origin git@github.com:Jumbub/dotfiles.git
 ssh-keygen -t rsa -b 4096
 
 # Copy default git config template
-cp $HOME/scripts/templates/.gitconfig $HOME/.gitconfig
+cp $HOME/scripts/storage/.gitconfig $HOME/.gitconfig
 
 # I dont need advice thanku
 git config --global advice.detachedHead false

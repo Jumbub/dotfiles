@@ -20,7 +20,7 @@ alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 alias src="source $HOME/.zshrc"
 
 function haveigot {
-  type "$1" > /dev/null
+  command -v $1 > /dev/null
 }
 
 function jt {
@@ -76,3 +76,14 @@ then
   source $HOME/.machine-aliases
 fi
 
+# Code pad helper
+function pad {
+  local CODEPAD="$HOME/repos/codepad/codepad"
+
+  if [ "$1" = "new" ]
+  then
+    cd "`$CODEPAD $@`"
+  else
+    $CODEPAD $@
+  fi
+}

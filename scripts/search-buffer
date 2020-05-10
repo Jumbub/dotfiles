@@ -22,12 +22,4 @@ INPUT="`echo "$INPUT" | sed -e 's/~/\/home\/jamie/g'`"
 
 echo $INPUT | rg -o -e $REGEX | uniq | rofi -dmenu | read VALUE || exit
 
-
 $COMMAND $VALUE
-
-# sleep 1
-
-# less
-# rofi -dmenu
-
-# echo "$@" | rofi -dmenu
