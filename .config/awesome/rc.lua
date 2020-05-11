@@ -18,8 +18,8 @@ local freedesktop = require("freedesktop")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 
-local home = true;
-local showingTitlebar = false;
+local boring = io.popen("/home/jamie/scripts/is-boring-mode"):read() == 'yes'
+local showingTitlebar = false
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -57,15 +57,15 @@ beautiful.fg_normal   = "#ffffff"
 beautiful.fg_focus    = "#ffffff"
 beautiful.fg_urgent   = "#ff0000"
 beautiful.fg_minimize = "#ffffff"
-beautiful.border_width  = home and 5 or 3
+beautiful.border_width  = boring and 3 or 5
 beautiful.border_normal = "#282923"
-beautiful.border_focus  = home and "#fc961f" or "#16A085"
+beautiful.border_focus  = boring and "#fc961f" or "#16A085"
 beautiful.border_marked = "#16A085"
 beautiful.wallpaper         = "/home/jamie/.config/awesome/wallpaper.jpg"
 beautiful.icon_theme        = "Papirus-Dark"
-beautiful.useless_gap       = home and 5 or 0
+beautiful.useless_gap       = boring and 0 or 5
 beautiful.top_titlebar      = 2
-beautiful.bg_normal         = home and "#222D3277" or "#222D32"
+beautiful.bg_normal         = boring and "#222D3277" or "#222D32"
 beautiful.bg_focus          = "#2C3940"
 beautiful.titlebar_bg_focus = "#282923"
 
@@ -252,8 +252,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = home and "bottom" or "top", screen = s, height = 16,
-      border_width = 0, opacity = home and 0.9 or 1
+    s.mywibox = awful.wibar({ position = boring and "bottom" or "top", screen = s, height = 16,
+      border_width = 0, opacity = boring and 0.9 or 1
     })
 
     -- Add widgets to the wibox
@@ -689,9 +689,9 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     if c.maximized then
       -- NOTE: also handled in focus, but that does not cover maximizing from a
       -- tiled state (when the client had focus).
-      c.border_width = home and 5 or 2
+      c.border_width = boring and 2 or 5
     elseif c.floating or layout == "floating" then
-      c.border_width = home and 5 or 2
+      c.border_width = boring and 2 or 5
     elseif layout == "max" or layout == "fullscreen" then
       c.border_width = 0
     else

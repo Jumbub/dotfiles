@@ -10,8 +10,12 @@ $run --notify "nm-applet"
 $run --notify "thunar --daemon" "thunar"
 $run --notify "msm_notifier"
 $run --notify "pa-applet"
-$run --notify "compton"
 $run --notify "redshift"
 $run --notify "pamac-tray"
 $run --notify "greenclip daemon" "greenclip"
+
+if ! $HOME/scripts/is-boring-mode
+then
+  $run --notify "compton"
+fi
 

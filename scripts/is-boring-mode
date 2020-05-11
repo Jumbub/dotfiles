@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+ls ~/.config/isBoring.indicator &> /dev/null && echo true || echo false

@@ -48,7 +48,7 @@ else
   # Error when command does not exist
   if [ "true" = "$notify" ]
   then
-    notify-send "run-if-not failed for: $runner" &
+    notify-send "run-if-not failed executing: $runner" &
   fi
   echo "Error: missing command '$runner'"
   exit 1
