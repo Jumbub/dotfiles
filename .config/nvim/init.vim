@@ -36,6 +36,7 @@ Plug 'dhruvasagar/vim-prosession' " Better session management
 Plug 'terryma/vim-multiple-cursors' " Multi cursor
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'jparise/vim-graphql'
+Plug 'chamindra/marvim' " Saving macros permanently
 
 call plug#end() " Finish setting up plugins
 
@@ -47,7 +48,7 @@ autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 
 syntax on " Enable syntax highlighting
 colorscheme monokai " Set colour scheme
-colorscheme sublimemonokai " Set colour scheme
+" colorscheme sublimemonokai " Set colour scheme
 filetype plugin on " Detect the current file
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
@@ -59,6 +60,9 @@ let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to crea
 let g:mkdp_auto_close = 1
 let mapleader = "," " Map the leader key
 let b:surround_45 = "<?php \r ?>" " Wrap code in PHP tag symbol from char2nr('-')
+let g:marvim_find_key = ',@' " Find macro
+let g:marvim_store_key = ',q' " Save macro
+let g:marvim_store = '/home/jamie/.config/nvim/macros' " Set store location
 set clipboard=unnamedplus " Share clipboard with system
 set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands
 set nocompatible " Dont bother pretending to be old
@@ -110,7 +114,8 @@ vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
 
 command! FF Neoformat
-command! Restart call <sid>vim_quit_and_restart()
+command! GC Rg <<<<<<< HEAD " Find git conflicts
+command! Restart call <sid>vim_quit_and_restart() " Restart vim
 
 function! GoogleSearchPhrase(term) " Run a google search
   silent! exec "silent! !google-chrome \"https://google.com/search?q=" . a:term . "\" &"

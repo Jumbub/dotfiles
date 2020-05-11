@@ -17,8 +17,7 @@
 !/.config/kitty
 !/.config/kitty/**
 !/.config/nvim
-!/.config/nvim/coc-settings.json
-!/.config/nvim/init.vim
+!/.config/nvim/**
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*
