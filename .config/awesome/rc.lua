@@ -367,7 +367,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show run") end,
               {description = "launch rofi", group = "launcher"}),
     awful.key({ modkey }, "i", function () awful.spawn("/home/jamie/scripts/rofi-tasks") end,
-              {description = "launch rofi", group = "launcher"}),
+              {description = "launch rofi-tasks", group = "launcher"}),
+    awful.key({ modkey }, "c", function () awful.spawn("/home/jamie/scripts/clipboard-manager") end,
+              {description = "launch clipboard manager", group = "launcher"}),
 
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
               {description = "launch filemanager", group = "launcher"}),

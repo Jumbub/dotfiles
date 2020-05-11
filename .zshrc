@@ -1,3 +1,26 @@
+#!/usr/bin/env zsh
+
+# Environment
+export ZSH="/home/jamie/.oh-my-zsh"
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export BROWSER="google-chrome-stable"
+
+function addToPath() {
+  if [[ ! "$PATH" =~ "$1" ]] && [ -d "$1" ]
+  then
+      export PATH="$1:$PATH"
+  fi
+}
+
+# Paths
+addToPath "$HOME/.luarocks/bin"
+addToPath "$HOME/.npm-global/bin"
+addToPath "$HOME/.yarn/bin"
+addToPath "$HOME/.local/bin"
+addToPath "$HOME/.config/composer/vendor/bin"
+addToPath "$HOME/scripts"
+
 # ZShell
 ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
@@ -20,7 +43,7 @@ haveigot helm && source <(helm completion zsh)
 haveigot kitty && source <(kitty + complete setup zsh)
 
 # Lazy load Node Version Manager
-source $HOME/scripts/lazynvm
+source $HOME/scripts/lazy-nvm
 
 # Edit command in vim
 autoload -U edit-command-line

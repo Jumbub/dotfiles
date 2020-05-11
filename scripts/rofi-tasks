@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-config_file="${1:-"$HOME/.config/rofi-tasks/tasks.json"}"
+config_file="${1:-"$HOME/scripts/storage/rofi-tasks.json"}"
 tasks=$(cat $config_file)
 
 # Pass tasks to rofi, and get the output as the selected option

@@ -9,6 +9,7 @@ alias va="nvim $HOME/.aliases"
 alias vma="nvim $HOME/.machine-aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
+alias vrt="nvim $HOME/.config/rofi-tasks/tasks.json"
 alias vrc="nvim $HOME/.zshrc"
 alias venv="nvim $HOME/.zshenv"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
@@ -19,7 +20,7 @@ alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 alias src="source $HOME/.zshrc"
 
 function haveigot {
-  type "$1" > /dev/null
+  command -v $1 > /dev/null
 }
 
 function jt {
@@ -29,6 +30,8 @@ function jt {
 alias l="exa -l"
 alias ls="exa"
 alias la="exa -al"
+
+function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
 
 alias gl="git log"
 alias gm="git merge"
@@ -43,8 +46,8 @@ alias gca="git commit --amend"
 alias gc="git commit"
 alias gclean="git clean -f -d"
 alias gcl="git clone"
-function gcmm { GCM="$@"; git commit -m "$GCM"; unset GCM; };
-function gcm { GCM="$@"; git commit -m "`git symbolic-ref HEAD --short` $GCM"; unset GCM; };
+function gcmm { local MSG="$@"; git commit -m "$MSG"; };
+function gcm { local MSG="$@"; git commit -m "`jiraForBranch`$MSG"; };
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcop="git checkout . -p"
@@ -56,7 +59,7 @@ function grhom { git reset --hard "origin/`git symbolic-ref HEAD --short`" $@ };
 alias gst="git stash"
 alias gstp="git stash push"
 alias gstu="git stash --include-untracked"
-function gstm { GSM="$@"; git stash push -u -m "$GSM"; unset GSM; };
+function gstm { local MSG="$@"; git stash push -u -m "$MSG"; };
 alias ga="git add"
 alias gap="git add -NpA"
 alias gaa="git add -A"
@@ -73,3 +76,14 @@ then
   source $HOME/.machine-aliases
 fi
 
+# Code pad helper
+function pad {
+  local CODEPAD="$HOME/repos/codepad/codepad"
+
+  if [ "$1" = "new" ]
+  then
+    cd "`$CODEPAD $@`"
+  else
+    $CODEPAD $@
+  fi
+}
