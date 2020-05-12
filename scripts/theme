@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+CONFIG_FILE="$HOME/.config/pc-mode.txt"
+
+# Set mode
+if [[ -n "$1" ]]
+then
+  if [ "$1" = "minimal" ] || [ "$1" = "maximal" ]
+  then
+    echo "$1" > "$CONFIG_FILE"
+  fi
+fi
+
+# Assign default mode
+if ! cat "$CONFIG_FILE" &> /dev/null
+then
+  echo "minimal" > "$CONFIG_FILE"
+fi
+
+# Get mode
+cat "$CONFIG_FILE"
