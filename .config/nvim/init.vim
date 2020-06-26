@@ -33,7 +33,6 @@ Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
-Plug 'terryma/vim-multiple-cursors' " Multi cursor
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'jparise/vim-graphql'
 Plug 'chamindra/marvim' " Saving macros permanently
@@ -59,7 +58,6 @@ let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
 let g:mkdp_auto_close = 1
 let mapleader = "," " Map the leader key
-let b:surround_45 = "<?php \r ?>" " Wrap code in PHP tag symbol from char2nr('-')
 let g:marvim_find_key = ',@' " Find macro
 let g:marvim_store_key = ',q' " Save macro
 let g:marvim_store = '/home/jamie/.config/nvim/macros' " Set store location
@@ -100,11 +98,14 @@ nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
 nnoremap <silent> <expr> <leader>m g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
+" Goto file in git status
+nnoremap <leader><C-p> :call fzf#run({'source': 'git status --short \| rg -o "\S*$"', 'sink': 'e', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader><leader>p :Restart<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nnoremap gS :CocList outline<cr>
 nnoremap gs :CocList -I symbols<CR>
+" nnoremap <leader>vs :let s = synID(line('.'), col('.'), 1) | echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')<CR>
 vmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
 vmap <leader>wb "wy:read !<C-r>w<CR>
@@ -163,6 +164,9 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Wrap code in PHP tag symbol from char2nr('-')
+let b:surround_45 = "<?php \r ?>"
 
 " Fix monokai highlighting
 hi Normal guibg=NONE ctermbg=NONE
