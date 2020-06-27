@@ -26,7 +26,6 @@ ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions)
 source $ZSH/oh-my-zsh.sh
-
 # Aliases
 source $HOME/.aliases
 source $HOME/scripts/colors

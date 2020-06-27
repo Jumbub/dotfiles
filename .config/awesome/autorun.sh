@@ -14,7 +14,7 @@ $run --notify "redshift"
 $run --notify "pamac-tray"
 $run --notify "greenclip daemon" "greenclip"
 
-if ! $HOME/scripts/is-boring-mode
+if [ "`$HOME/scripts/theme`" = "maximal" ]
 then
   $run --notify "compton"
 fi

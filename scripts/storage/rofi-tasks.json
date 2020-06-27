@@ -1,5 +1,9 @@
 [
   {
+    "name": "Jira in copy buffer",
+    "command": "google-chrome-stable 'https://hejira.atlassian.net/browse/${xclip -o}'"
+  },
+  {
     "name": "screenshot",
     "command": "/home/jamie/scripts/screenshot"
   },
@@ -16,5 +20,5 @@
   {
     "name": "spotify",
     "command": "google-chrome-stable open.spotify.com --new-window"
-  }
+  },
 ]

@@ -3,3 +3,5 @@
 	name = Jamie Bray
 [core]
 	editor = nvim
+[pull]
+	ff = only

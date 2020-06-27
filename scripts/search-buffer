@@ -1,25 +1,13 @@
 #!/usr/bin/env zsh
 
-INPUT=""
+# Clear temp file
+cat /dev/null > /tmp/buffer.txt
 
+# Fill temp file
 while read LINE
 do
-  INPUT="$INPUT\n$LINE"
+  echo "$LINE" >> /tmp/buffer.txt
 done < "${1:-/dev/stdin}"
 
-echo "$BROWSER\n$EDITOR" | rofi -dmenu | read COMMAND || exit
-
-REGEX=""
-if [[ "$COMMAND" == "$BROWSER" ]]
-then
-  REGEX='(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?'
-elif [[ "$COMMAND" == "$EDITOR" ]]
-then
-  REGEX='[~.]*/([^\s/]+/+)*[^\s/]*'
-fi
-
-INPUT="`echo "$INPUT" | sed -e 's/~/\/home\/jamie/g'`"
-
-echo $INPUT | rg -o -e $REGEX | uniq | rofi -dmenu | read VALUE || exit
-
-$COMMAND $VALUE
+# Open
+nvim /tmp/buffer.txt
