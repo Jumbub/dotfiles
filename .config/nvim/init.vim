@@ -71,12 +71,12 @@ set undodir=~/.vim/undodir " Set undo history file
 set undofile " Persist undo history between sessions
 highlight Search gui=underline guibg=#484943
 
-
 imap <silent><expr> <c-space> coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap / /\c
+nmap ? ?\c
 nmap <leader>D :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 nmap <leader>a <Plug>(coc-codeaction)
 nmap <leader>c :CocCommand<CR>
@@ -95,17 +95,19 @@ nnoremap <leader>siw "syiw:F <C-r>s<CR>
 nnoremap <leader>ss :F  <backspace>
 nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
-nnoremap <silent> <expr> <leader>m g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+nnoremap <silent> <expr> <leader>m bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeWithRefresh<CR>"
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 " Goto file in git status
 nnoremap <leader><C-p> :call fzf#run({'source': 'git status --short \| rg -o "\S*$"', 'sink': 'e', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader><leader>p :Restart<CR>
+nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 nnoremap gS :CocList outline<cr>
 nnoremap gs :CocList -I symbols<CR>
 " nnoremap <leader>vs :let s = synID(line('.'), col('.'), 1) | echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')<CR>
 vmap <leader>a <Plug>(coc-codeaction-selected)
+vmap <leader>c yq/p<CR>Ncgn
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
 vmap <leader>wb "wy:read !<C-r>w<CR>
 vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
