@@ -19,7 +19,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Library for IDE tooling
 Plug 'pangloss/vim-javascript'
-Plug 'ryanoasis/vim-devicons' " Icons for directory tree
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
