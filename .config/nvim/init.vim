@@ -8,33 +8,36 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-Plug 'crusoexia/vim-monokai' " Colour scheme
-Plug 'erichdongubler/vim-sublime-monokai' " Colour scheme
 Plug 'StanAngeloff/php.vim'
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
+Plug 'chamindra/marvim' " Saving macros permanently
+Plug 'crusoexia/vim-monokai' " Colour scheme
 Plug 'editorconfig/editorconfig-vim' " Format definitions
+Plug 'erichdongubler/vim-sublime-monokai' " Colour scheme
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
+Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
 Plug 'junegunn/fzf.vim' " Install fzf for vim
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Library for IDE tooling
 Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tbastos/vim-lua'
 Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
+Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'tpope/vim-commentary' " Quick comments
 Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
+Plug 'tpope/vim-sleuth' " Indentation detection
 Plug 'tpope/vim-surround' " Word wapping
-Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'wakatime/vim-wakatime' " Track development time
+
+" Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
-Plug 'jparise/vim-graphql'
-Plug 'chamindra/marvim' " Saving macros permanently
 
 call plug#end() " Finish setting up plugins
 
@@ -95,7 +98,7 @@ nnoremap <leader>siw "syiw:F <C-r>s<CR>
 nnoremap <leader>ss :F  <backspace>
 nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
-nnoremap <silent> <expr> <leader>m bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeWithRefresh<CR>"
+nnoremap <silent> <expr> <leader>m bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 " Goto file in git status
 nnoremap <leader><C-p> :call fzf#run({'source': 'git status --short \| rg -o "\S*$"', 'sink': 'e', 'down': '10', 'options': '--tiebreak=end'})<CR>

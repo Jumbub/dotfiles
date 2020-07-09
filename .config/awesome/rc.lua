@@ -339,6 +339,10 @@ globalkeys = gears.table.join(
         end,
         {description = "go back", group = "client"}),
 
+    -- lock screen
+    awful.key({ "Control", "Mod1"  }, "l", function () awful.spawn.with_shell("/home/jamie/scripts/lock") end,
+              {description = "lock screen", group = "util"}),
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
