@@ -8,7 +8,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-Plug 'StanAngeloff/php.vim'
+Plug 'StanAngeloff/php.vim' " Improved syntax highlighting
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'chamindra/marvim' " Saving macros permanently
 Plug 'crusoexia/vim-monokai' " Colour scheme
@@ -25,13 +25,12 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'tbastos/vim-lua'
+Plug 'tbastos/vim-lua' " Improved syntax highlighting
 Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
 Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'tpope/vim-commentary' " Quick comments
 Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
-Plug 'tpope/vim-sleuth' " Indentation detection
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
 
