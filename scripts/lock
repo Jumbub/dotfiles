@@ -1,5 +1,5 @@
 #!/bin/bash
-rm "$HOME/.lastScreen.png" "$HOME/.lastScreenBlurred.png" &&
+rm -f "$HOME/.lastScreen.png" "$HOME/.lastScreenBlurred.png" &&
     scrot "$HOME/.lastScreen.png" &&
     convert "$HOME/.lastScreen.png" -blur 0x6 "$HOME/.lastScreenBlurred.png" &&
     i3lock -i "$HOME/.lastScreenBlurred.png"

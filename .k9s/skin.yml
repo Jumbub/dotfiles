@@ -1,0 +1,89 @@
+# Solarized color values
+# https://ethanschoonover.com/solarized/#the-values
+base03: &base03 "#282923"
+base02: &base02 "#404043"
+base01: &base01 "#555555"
+base00: &base00 "#6e7066"
+base0: &base0 "#fdfff1"
+base1: &base1 "#fdfff1"
+base2: &base2 "#fdfff1"
+base3: &base3 "#fdfff1"
+yellow: &yellow "#e4db73"
+orange: &orange "#fc9867"
+red: &red "#f82570"
+magenta: &magenta "#ae81ff"
+violet: &violet "#ab9df2"
+blue: &blue "#fc961f"
+cyan: &cyan "#66d9ee"
+green: &green "#a6e12d"
+
+
+# k9s Skin
+k9s:
+  # General K9s styles
+  body:
+    fgColor: *base0
+    bgColor: *base03
+    logoColor: *magenta
+  # ClusterInfoView styles.
+  info:
+    fgColor: *blue
+    sectionColor: *cyan
+  frame:
+    # Borders styles.
+    border:
+      fgColor: *base0
+      focusColor: *base02
+    menu:
+      fgColor: *base1
+      keyColor: *violet
+      # Used for favorite namespaces
+      numKeyColor: *green
+    # CrumbView attributes for history navigation.
+    crumbs:
+      fgColor: *base03
+      bgColor: *base0
+      activeColor: *cyan
+    # Resource status and update styles
+    status:
+      newColor: *blue
+      modifyColor: *magenta
+      addColor: *green
+      errorColor: *red
+      highlightcolor: *orange
+      killColor: *yellow
+      completedColor: *base01
+    # Border title styles.
+    title:
+      fgColor: *cyan
+      bgColor: *base03
+      highlightColor: *magenta
+      counterColor: *green
+      filterColor: *magenta
+  # Xray view attributes.
+  xray:
+    fgColor: *base0
+    bgColor: *base03
+    cursorColor: *base02
+    graphicColor: *violet
+    showIcons: true
+  views:
+    # YAML info styles.
+    yaml:
+      keyColor: *blue
+      colonColor: *red
+      valueColor: *base0
+    # Logs styles.
+    logs:
+      fgColor: *base0
+      bgColor: *base03
+    # TableView attributes.
+    table:
+      fgColor: *base0
+      bgColor: *base03
+      cursorColor: *base02
+      # Header row styles.
+      header:
+        fgColor: *cyan
+        bgColor: *base02
+        sorterColor: *green

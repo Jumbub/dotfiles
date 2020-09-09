@@ -71,6 +71,8 @@ function grdaysago { echo 'Current changes will be stashed' && confirm && git st
 
 alias img="kitty +kitten icat"
 
+alias kk="kitty @ set-font-size 12 && k9s && kitty @ set-font-size 14"
+
 source $HOME/scripts/dotfiles
 
 if [ -f $HOME/.machine-aliases ]

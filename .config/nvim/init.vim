@@ -79,6 +79,8 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap / /\c
 nmap ? ?\c
+vmap / /\c
+vmap ? ?\c
 nmap <leader>D :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 nmap <leader>a <Plug>(coc-codeaction)
 nmap <leader>c :CocCommand<CR>
