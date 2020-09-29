@@ -20,7 +20,7 @@ if [[ -z "$runner" ]]
 then
   if [ "true" = "$notify" ]
   then
-    notify-send "run-if-not: invalid usage: $@" &
+    notify-send "Usage: run-if-not [--notify] command [processName]" &
   fi
   echo "Usage: run-if-not [--notify] command [processName]"
   exit 1
@@ -33,22 +33,24 @@ then
 fi
 
 # Check command exists
-if haveigot $runner
+runnerCommand="`$HOME/scripts/first-word $runner`"
+echo "$runnerCommand"
+if haveigot "$runnerCommand"
 then
   # Check command isn't already running
   if ! pgrep "$processName"
   then
+    echo $runner | zsh &
     if [ "true" = "$notify" ]
     then
-      notify-send "run-if-not: $runner" &
+      notify-send "Started: $runner" &
     fi
-    $runner &
   fi
 else
   # Error when command does not exist
   if [ "true" = "$notify" ]
   then
-    notify-send "run-if-not failed executing: $runner" &
+    notify-send "Error: missing command '$runner'"
   fi
   echo "Error: missing command '$runner'"
   exit 1

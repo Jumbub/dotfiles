@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+echo "$@" | head -n1 | awk '{print $1;}'

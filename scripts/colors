@@ -1,11 +1,15 @@
 #!/bin/sh
 
-export THEME_BACKGROUND="#282923"
-export THEME_FOREGROUND="#fdfff1"
-export THEME_GRAY="#6e7066"
-export THEME_RED="#f82570"
-export THEME_GREEN="#a6e12d"
-export THEME_YELLOW="#e4db73"
-export THEME_BLUE="#fc961f"
-export THEME_MAGENTA="#ae81ff"
-export THEME_CYAN="#66d9ee"
+# https://github.com/gerardroche/sublime-monokai-free
+
+export THEME_BACKGROUND="#272822"
+export THEME_FOREGROUND="#f8f8f2"
+export THEME_GRAY="#cfcfc2"
+export THEME_RED="#f92672"
+export THEME_GREEN="#a6e22e"
+export THEME_YELLOW="#e6db74"
+export THEME_BLUE="#66d9ef"
+export THEME_MAGENTA="#fd5ff0"
+export THEME_VIOLET="#ae81ff"
+export THEME_CYAN="#a1efe4"
+export THEME_ORANGE="#fd971f"

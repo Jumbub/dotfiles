@@ -58,7 +58,7 @@ alias grhom="git reset --hard origin/master"
 alias grh="git reset HEAD^"
 function grhom { git reset --hard "origin/`git symbolic-ref HEAD --short`" $@ };
 alias gst="git stash"
-alias gstp="git stash push"
+alias gstp="git stash -p"
 alias gstu="git stash --include-untracked"
 function gstm { local MSG="$@"; git stash push -m "$MSG"; };
 function gstmu { local MSG="$@"; git stash push -u -m "$MSG"; };
@@ -71,7 +71,7 @@ function grdaysago { echo 'Current changes will be stashed' && confirm && git st
 
 alias img="kitty +kitten icat"
 
-alias kk="kitty @ set-font-size 12 && k9s && kitty @ set-font-size 14"
+function kk { kitty @ set-font-size 12 && k9s $@ && kitty @ set-font-size 14 }
 
 source $HOME/scripts/dotfiles
 

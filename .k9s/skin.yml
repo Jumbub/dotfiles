@@ -1,21 +1,21 @@
 # Solarized color values
 # https://ethanschoonover.com/solarized/#the-values
-base03: &base03 "#282923"
-base02: &base02 "#404043"
+base03: &base03 "#272822"
+base02: &base02 "#3e3d32"
 base01: &base01 "#555555"
 base00: &base00 "#6e7066"
 base0: &base0 "#fdfff1"
 base1: &base1 "#fdfff1"
 base2: &base2 "#fdfff1"
 base3: &base3 "#fdfff1"
-yellow: &yellow "#e4db73"
-orange: &orange "#fc9867"
-red: &red "#f82570"
-magenta: &magenta "#ae81ff"
-violet: &violet "#ab9df2"
-blue: &blue "#fc961f"
-cyan: &cyan "#66d9ee"
-green: &green "#a6e12d"
+yellow: &yellow "#e6db74"
+orange: &orange "#fd971f"
+red: &red "#f92672"
+magenta: &magenta "#fd5ff0"
+violet: &violet "#ae81ff"
+blue: &blue "#66d9ef"
+cyan: &cyan "#a1efe4"
+green: &green "#a6e22e"
 
 
 # k9s Skin
