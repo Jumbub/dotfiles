@@ -1,0 +1,9 @@
+k9s:
+  views:
+    v1/pods:
+      columns:
+        - NAME
+        - STATUS
+        - READY
+        - AGE
+        - RESTARTS
