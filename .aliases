@@ -13,7 +13,7 @@ alias vrt="nvim $HOME/.config/rofi-tasks/tasks.json"
 alias vrc="nvim $HOME/.zshrc"
 alias venv="nvim $HOME/.zshenv"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
-alias vkit="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
+alias vk="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
