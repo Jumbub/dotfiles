@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
+Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -55,6 +56,7 @@ set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands
 set nocompatible " Dont bother pretending to be old
 set noswapfile " Don't bother using swap files
 set number relativenumber " Use relative line numbers
+set inccommand=split " Show substitude command effects as you type
 set signcolumn=yes " Always display gutter (prevent git gutter from bouncing on save)
 set termguicolors " Use terminal colours
 set undodir=~/.vim/undodir " Set undo history file
@@ -107,6 +109,12 @@ highlight Search gui=none guibg=#484943
 " inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 " inoremap <silent><expr> <c-space> coc#refresh()
 nmap / /\c
+nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gS    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gs    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nmap <leader>D :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 " nmap <leader>a <Plug>(coc-codeaction)
 " nmap <leader>c :CocCommand<CR>
@@ -182,30 +190,27 @@ endfunction
 " Coc only does snippet and additional edit on confirm.
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
 " Wrap code in PHP tag symbol from char2nr('-')
 " let b:surround_45 = "<?php \r ?>"
 
 " Automatically assign some arbitrary file types
 autocmd BufEnter .babelrc :setlocal filetype=json
 
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-map <leader>y :call SynStack()<CR>
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
+
+command AutoReloadRc :exec "func! AutoReloadRc(timer) \n so ~/.config/nvim/init.vim \n call SynStack() \n TSHighlightCapturesUnderCursor \n endfunc" | :call timer_start(500, "AutoReloadRc", {'repeat': -1})
+
+lua << EOF
+  require'nvim_lsp'.tsserver.setup{}
+  require'nvim_lsp'.intelephense.setup{}
+  require'nvim_lsp'.cssls.setup{}
+  require'nvim_lsp'.vimls.setup{}
+EOF
+
