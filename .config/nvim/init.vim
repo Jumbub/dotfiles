@@ -1,5 +1,21 @@
 " NeoVim Config
 
+filetype plugin on " Detect the current file
+syntax on " Enable syntax highlighting
+
+set clipboard=unnamedplus " Share clipboard with system
+set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands
+set nocompatible " Dont bother pretending to be old
+set noswapfile " Don't bother using swap files
+set number relativenumber " Use relative line numbers
+set inccommand=split " Show substitude command effects as you type
+set signcolumn=yes " Always display gutter (prevent git gutter from bouncing on save)
+set termguicolors " Use terminal colours
+set undodir=~/.vim/undodir " Set undo history file
+set undofile " Persist undo history between sessions
+
+let mapleader = "," " Map the leader key
+
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim')) " Install plugin manager if not already installed
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -8,16 +24,9 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-" Plug 'StanAngeloff/php.vim' " Improved syntax highlighting
 " Plug 'chamindra/marvim' " Saving macros permanently
-" Plug 'crusoexia/vim-monokai' " Colour scheme
-" Plug 'erichdongubler/vim-sublime-monokai' " Colour scheme
-" Plug 'leafgarland/typescript-vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Library for IDE tooling
-" Plug 'pangloss/vim-javascript'
-" Plug 'peitalin/vim-jsx-typescript'
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" Plug 'tbastos/vim-lua' " Improved syntax highlighting
 Plug 'Iron-E/nvim-highlite' " Colour scheme
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -38,29 +47,13 @@ Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
 Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
+Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
 
 call plug#end() " Finish setting up plugins
-
-" File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py Neoformat
-
-" Compton autoreload config changes
-autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
-
-set clipboard=unnamedplus " Share clipboard with system
-set cmdheight=2 " Avoid the 'hit enter' prompt caused by multi line commands
-set nocompatible " Dont bother pretending to be old
-set noswapfile " Don't bother using swap files
-set number relativenumber " Use relative line numbers
-set inccommand=split " Show substitude command effects as you type
-set signcolumn=yes " Always display gutter (prevent git gutter from bouncing on save)
-set termguicolors " Use terminal colours
-set undodir=~/.vim/undodir " Set undo history file
-set undofile " Persist undo history between sessions
 
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
@@ -73,7 +66,6 @@ let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
-let mapleader = "," " Map the leader key
 
 lua << EOF
 require'colorizer'.setup()
@@ -93,28 +85,12 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-filetype plugin on " Detect the current file
-syntax on " Enable syntax highlighting
-
-set rtp+=/home/jamie/repos/monokai-ts " Local colour scheme
-colorscheme monokai_ts " Set colour scheme
-
-" Highlight using background rather then underline
-highlight Search gui=none guibg=#484943
-
 " Goto file in git status
 " nnoremap <leader>vs :let s = synID(line('.'), col('.'), 1) | echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')<CR>
 " imap <silent><expr> <c-space> coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 " inoremap <silent><expr> <c-space> coc#refresh()
-nmap / /\c
-nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gS    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gs    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nmap <leader>D :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>acd $VIM_DIR<CR>
 " nmap <leader>a <Plug>(coc-codeaction)
 " nmap <leader>c :CocCommand<CR>
@@ -122,11 +98,17 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 " nmap <leader>gc gg/scss<CR>gf
 " nmap <leader>r <Plug>(coc-rename)
 " nmap <silent> <leader>f <Plug>(coc-fix-current)
-nmap <silent> U :redo<CR>
 " nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gr <Plug>(coc-references)
-nmap ? ?\c
 " nnoremap <C-l> i\HE\Util\Logger::Logger(\HE\Logging\LogChannel::DEBUGGING())->emergency('asdffdsa', [ ]);<Esc>?asdffdsa<CR>nve
+" nnoremap <silent> gh :call <SID>show_documentation()<CR>
+" nnoremap gS :CocList outline<cr>
+" nnoremap gs :CocList -I symbols<CR>
+" vmap <leader>a <Plug>(coc-codeaction-selected)
+" vmap <silent> af <Plug>(coc-range-select)
+nmap / /\c
+nmap <silent> U :redo<CR>
+nmap ? ?\c
 nnoremap <C-p> :Files<CR>
 nnoremap <leader><C-p> :call fzf#run({'source': 'git status --short \| rg -o "\S*$"', 'sink': 'e', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <leader>j :Rg <CR>
@@ -139,16 +121,17 @@ nnoremap <silent> <leader><leader>p :Restart<CR>
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
-" nnoremap <silent> gh :call <SID>show_documentation()<CR>
-" nnoremap gS :CocList outline<cr>
-" nnoremap gs :CocList -I symbols<CR>
+nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gS    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gs    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 vmap / /\c
-" vmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>c yq/p<CR>Ncgn
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
 vmap <leader>wb "wy:read !<C-r>w<CR>
 vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
-" vmap <silent> af <Plug>(coc-range-select)
 vmap ? ?\c
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
@@ -193,9 +176,6 @@ endfunction
 " Wrap code in PHP tag symbol from char2nr('-')
 " let b:surround_45 = "<?php \r ?>"
 
-" Automatically assign some arbitrary file types
-autocmd BufEnter .babelrc :setlocal filetype=json
-
 function! SynStack ()
     for i1 in synstack(line("."), col("."))
         let i2 = synIDtrans(i1)
@@ -205,12 +185,25 @@ function! SynStack ()
     endfor
 endfunction
 
+
+command UnderCursor :exec "call SynStack() \n TSHighlightCapturesUnderCursor"
 command AutoReloadRc :exec "func! AutoReloadRc(timer) \n so ~/.config/nvim/init.vim \n call SynStack() \n TSHighlightCapturesUnderCursor \n endfunc" | :call timer_start(500, "AutoReloadRc", {'repeat': -1})
+nmap <leader>y :UnderCursor<CR>
 
 lua << EOF
-  require'nvim_lsp'.tsserver.setup{}
-  require'nvim_lsp'.intelephense.setup{}
-  require'nvim_lsp'.cssls.setup{}
-  require'nvim_lsp'.vimls.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.intelephense.setup{}
+  require'lspconfig'.cssls.setup{}
 EOF
 
+" File formatting
+autocmd BufWritePre *.tsx,*.ts,*.py Neoformat
+
+" Compton autoreload config changes
+autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
+
+" Automatically assign some arbitrary file types
+autocmd BufEnter .babelrc :setlocal filetype=json
+
+set rtp+=~/repos/monokai-ts " Local colour scheme
+colorscheme monokai_ts " Set colour scheme

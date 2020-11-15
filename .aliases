@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 alias v="nvim"
-alias vim="nvim"
 alias cleanvim="nvim -u NONE"
 alias vgs="gs | grep -Po \"(?<=modified:)[^']+\" | sed 's/ *//g' | rofi -dmenu -theme $HOME/.config/rofi/longCustomTheme.rasi | xargs nvim"
 
