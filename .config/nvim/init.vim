@@ -26,7 +26,7 @@ call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install di
 
 " Plug 'chamindra/marvim' " Saving macros permanently
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Library for IDE tooling
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'Iron-E/nvim-highlite' " Colour scheme
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -107,6 +107,8 @@ EOF
 " vmap <leader>a <Plug>(coc-codeaction-selected)
 " vmap <silent> af <Plug>(coc-range-select)
 nmap / /\c
+nmap <leader>Y :Prosession ~/workspaces/vim/%home%jamie%repos%monokai-ts.vim<CR>
+nmap <leader>y :UnderCursor<CR>
 nmap <silent> U :redo<CR>
 nmap ? ?\c
 nnoremap <C-p> :Files<CR>
@@ -122,11 +124,11 @@ nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gS    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gs    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 vmap / /\c
 vmap <leader>c yq/p<CR>Ncgn
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
@@ -136,7 +138,7 @@ vmap ? ?\c
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
 
-command! FF Neoformat
+command! FF Neoformat " Format file
 command! GC Rg <<<<<<< HEAD " Find git conflicts
 command! Restart call <sid>vim_quit_and_restart() " Restart vim
 
@@ -169,13 +171,6 @@ function! s:vim_quit_and_restart() abort
   endif
 endfunction
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Wrap code in PHP tag symbol from char2nr('-')
-" let b:surround_45 = "<?php \r ?>"
-
 function! SynStack ()
     for i1 in synstack(line("."), col("."))
         let i2 = synIDtrans(i1)
@@ -188,7 +183,6 @@ endfunction
 
 command UnderCursor :exec "call SynStack() \n TSHighlightCapturesUnderCursor"
 command AutoReloadRc :exec "func! AutoReloadRc(timer) \n so ~/.config/nvim/init.vim \n call SynStack() \n TSHighlightCapturesUnderCursor \n endfunc" | :call timer_start(500, "AutoReloadRc", {'repeat': -1})
-nmap <leader>y :UnderCursor<CR>
 
 lua << EOF
   require'lspconfig'.tsserver.setup{}
@@ -197,7 +191,7 @@ lua << EOF
 EOF
 
 " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py Neoformat
+autocmd BufWritePre *.tsx,*.ts,*.py,*.html Neoformat
 
 " Compton autoreload config changes
 autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
@@ -205,5 +199,8 @@ autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 " Automatically assign some arbitrary file types
 autocmd BufEnter .babelrc :setlocal filetype=json
 
-set rtp+=~/repos/monokai-ts " Local colour scheme
+" Ensure syntax highlighting is deterministic
+autocmd BufWritePost * :syntax sync fromstart
+
+set rtp+=~/.config/nvim/monokai-ts " Local colour scheme
 colorscheme monokai_ts " Set colour scheme
