@@ -17,7 +17,17 @@ alias vkit="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
+alias kittyTinyFont="kitty @ set-font-size 11"
+alias kittySmallFont="kitty @ set-font-size 12"
+alias kittyNormalFont="kitty @ set-font-size 14"
+
+alias yarn="nvm current; unalias yarn; yarn"
+
 alias src="source $HOME/.zshrc"
+
+function watchdo {
+  rg -l "." --no-ignore | entr -c -r -s $@
+}
 
 function haveigot {
   command -v $1 > /dev/null
@@ -71,7 +81,7 @@ function grdaysago { echo 'Current changes will be stashed' && confirm && git st
 
 alias img="kitty +kitten icat"
 
-function kk { kitty @ set-font-size 12 && k9s $@ && kitty @ set-font-size 14 }
+function kk { kittySmallFont && k9s $@ && kittyNormalFont }
 
 source $HOME/scripts/dotfiles
 

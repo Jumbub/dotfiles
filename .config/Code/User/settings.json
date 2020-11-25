@@ -382,4 +382,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "window.openFoldersInNewWindow": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
