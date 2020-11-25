@@ -43,6 +43,7 @@
 !/scripts/storage/*
 !/scripts/templates
 !/scripts/templates/*
+!/.spacemacs
 !/workspaces
 !workspaces
 !/workspaces/vim
