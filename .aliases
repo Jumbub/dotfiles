@@ -18,6 +18,8 @@ alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
 alias src="source $HOME/.zshrc"
 
+alias yarn="nvm use 15; unalias yarn; yarn"
+
 function haveigot {
   command -v $1 > /dev/null
 }

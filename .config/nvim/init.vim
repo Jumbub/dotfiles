@@ -13,6 +13,8 @@ set signcolumn=yes " Always display gutter (prevent git gutter from bouncing on 
 set termguicolors " Use terminal colours
 set undodir=~/.vim/undodir " Set undo history file
 set undofile " Persist undo history between sessions
+set shortmess " Avoid showing message extra message when using completion (completion-nvim)
+set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience (completion-nvim)
 
 let mapleader = "," " Map the leader key
 
@@ -24,9 +26,6 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-" Plug 'chamindra/marvim' " Saving macros permanently
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} " Library for IDE tooling
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'Iron-E/nvim-highlite' " Colour scheme
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -34,10 +33,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdo
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
 Plug 'junegunn/fzf.vim' " Install fzf for vim
+Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
+Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
+Plug 'nvim-lua/completion-nvim' " Auto-complete plugin
 Plug 'nvim-treesitter/nvim-treesitter' " Semantic syntax highlighting
-Plug 'nvim-treesitter/playground' " Show syntax tree for debugging
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
+Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
 Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'tpope/vim-commentary' " Quick comments
@@ -45,9 +48,7 @@ Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
-Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
-Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
-Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
+Plug 'universal-ctags/ctags' " Testing out CTags
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -57,7 +58,6 @@ call plug#end() " Finish setting up plugins
 
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
-" let g:coc_global_extensions = ['coc-marketplace'] " IDE tooling
 let g:marvim_find_key = ',@' " Find macro
 let g:marvim_store = '/home/jamie/.config/nvim/macros' " Set store location
 let g:marvim_store_key = ',q' " Save macro
@@ -66,24 +66,6 @@ let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
-
-lua << EOF
-require'colorizer'.setup()
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-    disable = { "c", "rust" },
-  },
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false -- Whether the query persists across vim sessions
-  }
-}
-EOF
 
 " Goto file in git status
 " nnoremap <leader>vs :let s = synID(line('.'), col('.'), 1) | echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')<CR>
@@ -126,6 +108,7 @@ nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nv
 nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD :tag <C-r><C-w><CR>
 nnoremap <silent> gh <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
@@ -137,6 +120,14 @@ vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
 vmap ? ?\c
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
+
+let g:completion_confirm_key = "\<C-y>"
+let g:completion_enable_auto_popup = 0
+
+imap <silent> <c-space> <Plug>(completion_trigger)
+
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 command! FF Neoformat " Format file
 command! GC Rg <<<<<<< HEAD " Find git conflicts
@@ -180,15 +171,10 @@ function! SynStack ()
     endfor
 endfunction
 
-
 command UnderCursor :exec "call SynStack() \n TSHighlightCapturesUnderCursor"
-command AutoReloadRc :exec "func! AutoReloadRc(timer) \n so ~/.config/nvim/init.vim \n call SynStack() \n TSHighlightCapturesUnderCursor \n endfunc" | :call timer_start(500, "AutoReloadRc", {'repeat': -1})
 
-lua << EOF
-  require'lspconfig'.tsserver.setup{}
-  require'lspconfig'.intelephense.setup{}
-  require'lspconfig'.cssls.setup{}
-EOF
+set rtp+=~/.config/nvim/monokai-ts " Local colour scheme
+colorscheme monokai_ts " Set colour scheme
 
 " File formatting
 autocmd BufWritePre *.tsx,*.ts,*.py,*.html Neoformat
@@ -200,7 +186,33 @@ autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
 autocmd BufEnter .babelrc :setlocal filetype=json
 
 " Ensure syntax highlighting is deterministic
-autocmd BufWritePost * :syntax sync fromstart
+" autocmd BufWritePost * :syntax sync fromstart
 
-set rtp+=~/.config/nvim/monokai-ts " Local colour scheme
-colorscheme monokai_ts " Set colour scheme
+lua << EOF
+  -- The color scheme is calculated at runtime
+  require'colorizer'.setup()
+
+  -- Initialise the semantic highlighting
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    highlight = {
+      enable = true,
+    },
+  };
+
+  -- Note: these are intentionally after the colorscheme assignment
+
+  require'lspconfig'.tsserver.setup{
+    on_attach=function (client)
+      return require'completion'.on_attach(client)
+    end,
+  }
+
+  require'lspconfig'.intelephense.setup{
+    on_attach=require'completion'.on_attach
+  } -- PHP LSP
+EOF
+
+set statusline=
+set statusline+=%<%f\  "asdf
+set statusline+=\ %h%m%r%=%(%l,%c%V%)  "asdf
