@@ -89,7 +89,6 @@ let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to crea
 " vmap <leader>a <Plug>(coc-codeaction-selected)
 " vmap <silent> af <Plug>(coc-range-select)
 nmap / /\c
-nmap <leader>Y :Prosession ~/workspaces/vim/%home%jamie%repos%monokai-ts.vim<CR>
 nmap <leader>y :UnderCursor<CR>
 nmap <silent> U :redo<CR>
 nmap ? ?\c
@@ -173,8 +172,8 @@ endfunction
 
 command UnderCursor :exec "call SynStack() \n TSHighlightCapturesUnderCursor"
 
-set rtp+=~/.config/nvim/monokai-ts " Local colour scheme
-colorscheme monokai_ts " Set colour scheme
+set rtp+=~/.config/nvim/nvim-monokai " Local colour scheme
+colorscheme nvim_monokai " Set colour scheme
 
 " File formatting
 autocmd BufWritePre *.tsx,*.ts,*.py,*.html Neoformat
