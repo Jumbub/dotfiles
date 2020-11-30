@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 alias v="nvim"
-alias vim="nvim"
 alias cleanvim="nvim -u NONE"
 alias vgs="gs | grep -Po \"(?<=modified:)[^']+\" | sed 's/ *//g' | rofi -dmenu -theme $HOME/.config/rofi/longCustomTheme.rasi | xargs nvim"
 
@@ -13,7 +12,7 @@ alias vrt="nvim $HOME/.config/rofi-tasks/tasks.json"
 alias vrc="nvim $HOME/.zshrc"
 alias venv="nvim $HOME/.zshenv"
 alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
-alias vkit="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
+alias vk="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
@@ -21,7 +20,7 @@ alias kittyTinyFont="kitty @ set-font-size 11"
 alias kittySmallFont="kitty @ set-font-size 12"
 alias kittyNormalFont="kitty @ set-font-size 14"
 
-alias yarn="nvm current; unalias yarn; yarn"
+alias yarn="nvm use 14; unalias yarn; yarn"
 
 alias src="source $HOME/.zshrc"
 
