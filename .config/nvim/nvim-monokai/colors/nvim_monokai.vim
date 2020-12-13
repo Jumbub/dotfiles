@@ -415,6 +415,7 @@ local highlight_groups = {
 
 	--[[ 4.3.10. JavaScript ]]
 	jsFuncBlock   = 'Function',
+  jsGlobalNodeObjects = 'Keyword',
 	jsArrowFunction = 'Text',
 	jsObjectKey   = 'Type',
 	jsReturn      = 'Keyword',

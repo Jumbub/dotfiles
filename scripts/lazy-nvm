@@ -4,6 +4,7 @@
 REQUIRE_NVM_SOURCE=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 REQUIRE_NVM_SOURCE+=("node")
 REQUIRE_NVM_SOURCE+=("nvm")
+REQUIRE_NVM_SOURCE+=("yarn")
 
 # Lazy source nvm when using nvm apps
 load_nvm () {

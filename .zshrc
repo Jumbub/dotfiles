@@ -48,7 +48,3 @@ source $HOME/scripts/lazy-nvm
 # Edit command in vim
 autoload -U edit-command-line
 bindkey '^j' edit-command-line
-
-# Used to automatically restart vim
-trap __catch_signal_usr1 USR1
-__catch_signal_usr1() { trap __catch_signal_usr1 USR1; vim; }
