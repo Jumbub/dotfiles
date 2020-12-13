@@ -6,6 +6,7 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
 
+# Paths
 function addToPath() {
   if [[ ! "$PATH" =~ "$1" ]] && [ -d "$1" ]
   then
@@ -13,7 +14,6 @@ function addToPath() {
   fi
 }
 
-# Paths
 addToPath "$HOME/.luarocks/bin"
 addToPath "$HOME/.npm-global/bin"
 addToPath "$HOME/.yarn/bin"
@@ -26,6 +26,7 @@ ZSH_THEME="steeef"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions)
 source $ZSH/oh-my-zsh.sh
+
 # Aliases
 source $HOME/.aliases
 source $HOME/scripts/colors
