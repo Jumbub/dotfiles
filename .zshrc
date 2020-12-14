@@ -48,3 +48,6 @@ source $HOME/scripts/lazy-nvm
 # Edit command in vim
 autoload -U edit-command-line
 bindkey '^j' edit-command-line
+
+# Generate Kitty theme
+$HOME/scripts/kitty-theme-generator
