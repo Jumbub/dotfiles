@@ -21,43 +21,43 @@ vim.g.colors_name = 'monokai_ts'
 ```
 ]]
 
-local black             = {'#272822', 0,   'black'}
-local white             = {'#dfdfd9', 15,  'white'}
+local black             = {os.getenv('THEME_BLACK'), 0,   'black'}
+local white             = {os.getenv('THEME_WHITE'), 15,  'white'}
 
-local gray_darker       = {'#3e3d32', 244, 'darkgrey'}
-local gray_darke      = {'#4e4d42', 244, 'darkgrey'}
-local gray_dark         = {'#75715e', 236, 'darkgrey'}
-local gray              = {'#8e8e8a', 244, 'gray'}
-local gray_light        = {'#b2b2ad', 251, 'gray'}
+local gray_darker       = {os.getenv('THEME_GRAY_DARKER'), 244, 'darkgrey'}
+local gray_darke        = {os.getenv('THEME_GRAY_DARK'), 244, 'darkgrey'}
+local gray_dark         = {os.getenv('THEME_GRAY'), 236, 'darkgrey'}
+local gray              = {os.getenv('THEME_GRAY_LIGHT'), 244, 'gray'}
+local gray_light        = {os.getenv('THEME_GRAY_LIGHTER'), 251, 'gray'}
 
-local yellow_dark       = {'#b8af5c', 180, 'darkyellow'}
-local yellow            = {'#e6db74', 220, 'yellow'}
+local yellow_dark       = {os.getenv('THEME_YELLOW_DARK'), 180, 'darkyellow'}
+local yellow            = {os.getenv('THEME_YELLOW'), 220, 'yellow'}
 
-local red_dark          = {'#c71e5b', 124, 'darkred'}
-local red               = {'#f92672', 196, 'red'}
-local red_light         = {'#fa518e', 203, 'red'}
+local red_dark          = {os.getenv('THEME_RED_DARK'), 124, 'darkred'}
+local red               = {os.getenv('THEME_RED'), 196, 'red'}
+local red_light         = {os.getenv('THEME_RED_LIGHT'), 203, 'red'}
 
-local orange            = {'#fd971f', 208, 'darkyellow'}
-local orange_light      = {'#fdab4b', 214, 'yellow'}
+local orange            = {os.getenv('THEME_ORANGE'), 208, 'darkyellow'}
+local orange_light      = {os.getenv('THEME_ORANGE_LIGHT'), 214, 'yellow'}
 
-local green_dark        = {'#84b424', 83, 'darkgreen'}
-local green             = {'#a6e22e', 72, 'green'}
-local green_light       = {'#b7e757', 72, 'green'}
+local green_dark        = {os.getenv('THEME_GREEN_DARK'), 83, 'darkgreen'}
+local green             = {os.getenv('THEME_GREEN'), 72, 'green'}
+local green_light       = {os.getenv('THEME_GREEN_LIGHT'), 72, 'green'}
 
-local blue_dark         = {'#51adbf', 33, 'darkblue'}
-local blue              = {'#66d9ef', 63, 'blue'}
-local blue_light        = {'#84e0f2', 38, 'blue'}
+local blue_dark         = {os.getenv('THEME_BLUE_DARK'), 33, 'darkblue'}
+local blue              = {os.getenv('THEME_BLUE'), 63, 'blue'}
+local blue_light        = {os.getenv('THEME_BLUE_LIGHT'), 38, 'blue'}
 
-local cyan              = {'#a1efe4', 87, 'cyan'}
-local cyan_light        = {'#b3f2e9', 63, 'cyan'}
+local cyan              = {os.getenv('THEME_CYAN'), 87, 'cyan'}
+local cyan_light        = {os.getenv('THEME_CYAN_LIGHT'), 63, 'cyan'}
 
-local pink_dark         = {'#ca4cc0', 126, 'darkpink'}
-local pink              = {'#fd5ff0', 126, 'pink'}
-local pink_light        = {'#fd7ef3', 162, 'pink'}
+local pink_dark         = {os.getenv('THEME_PINK_DARK'), 126, 'darkpink'}
+local pink              = {os.getenv('THEME_PINK'), 126, 'pink'}
+local pink_light        = {os.getenv('THEME_PINK_LIGHT'), 162, 'pink'}
 
-local purple_dark       = {'#8b67cc', 38,  'darkpink'}
-local purple            = {'#ae81ff', 129, 'pink'}
-local purple_light      = {'#be9aff', 63,  'pink'}
+local purple_dark       = {os.getenv('THEME_PURPLE_DARK'), 38,  'darkpink'}
+local purple            = {os.getenv('THEME_PURPLE'), 129, 'pink'}
+local purple_light      = {os.getenv('THEME_PURPLE_LIGHT'), 63,  'pink'}
 
 --[[ Semantic Translations
 ```lua

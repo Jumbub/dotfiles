@@ -1,7 +1,7 @@
 " NeoVim Config
 
 let nvim_native_lsp = 0 " Native NVIM LSP toggle
-let nvim_native_ts = 0 " Native NVIM Tree-sitter toggle
+let nvim_native_ts = 1 " Native NVIM Tree-sitter toggle
 let nvim_coc = 1 " Native NVIM CoC toggle
 let nvim = has('nvim') " Using NVIM
 let vim = !has('nvim') " Using VIM
@@ -73,6 +73,7 @@ if nvim_coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " CoC IDE
 endif
 if vim
+  " Recommended by vim-monokai-tasty
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'MaxMEllon/vim-jsx-pretty'
@@ -145,6 +146,16 @@ if nvim_coc
   nnoremap gs :CocList -I symbols<CR>
   vmap <leader>a <Plug>(coc-codeaction-selected)
   vmap <silent> af <Plug>(coc-range-select)
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+  endfunction
 endif
 
 let g:completion_confirm_key = "\<C-y>"
