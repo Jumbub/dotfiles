@@ -50,4 +50,4 @@ autoload -U edit-command-line
 bindkey '^j' edit-command-line
 
 # Generate Kitty theme
-$HOME/scripts/kitty-theme-generator
+($HOME/scripts/kitty-theme-generator &)

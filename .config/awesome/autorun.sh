@@ -7,15 +7,18 @@ $run "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1" "polkit-mate-aut"
 $run --notify "start-pulseaudio-x11" "pulseaudio"
 $run --notify "xfsettingsd"
 $run --notify "nm-applet"
-$run --notify "thunar --daemon" "thunar"
 $run --notify "msm_notifier"
 $run --notify "pa-applet"
+
+# File explorer GUI daemon
+$run --notify "thunar --daemon" "thunar"
+
+# Blue light filter
 $run --notify "redshift"
-$run --notify "pamac-tray"
+
+# Clipboard manager
 $run --notify "greenclip daemon" "greenclip"
 
-if [ "`$HOME/scripts/theme`" = "maximal" ]
-then
-  $run --notify "compton"
-fi
+# Transparency of windows
+$run --notify "compton"
 
