@@ -8,6 +8,8 @@ local themeAssets = require("beautiful.theme_assets")
 local naughty = require("naughty")
 local freedesktop = require("freedesktop")
 
+require('custom')
+
 -- Constants
 local browser = "google-chrome-stable"
 local terminal = "kitty"
@@ -32,9 +34,6 @@ local di = {
   terminal = terminal,
   modkey = modkey
 }
-
-require('custom')
-require('local.beautiful')(di)
 
 handleStartupErrors()
 handleRuntimeErrors()
