@@ -45,8 +45,6 @@ local guiMenuWidget = createGuiMenuWidget(guiMenu)
 
 mytextclock = wibox.widget.textclock("%d/%m %H:%M")
 
-spacer = wibox.widget.textbox(' <span color="' .. white .. '">    </span>')
-
 awful.layout.layouts = {
   awful.layout.suit.tile,
 }
