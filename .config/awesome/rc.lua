@@ -1,6 +1,7 @@
 -- Imports
 local gears = require("gears")
 local awful = require("awful")
+require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local themeAssets = require("beautiful.theme_assets")
@@ -37,7 +38,6 @@ require('local.beautiful')(di)
 
 handleStartupErrors()
 handleRuntimeErrors()
-setLayouts()
 addColorsToGlobalNamespace()
 
 local guiMenu = createGuiMenu()
@@ -45,10 +45,11 @@ local guiMenuWidget = createGuiMenuWidget(guiMenu)
 
 mytextclock = wibox.widget.textclock("%d/%m %H:%M")
 
-separator = wibox.widget.textbox(' <span color="' .. white .. '">  </span>')
 spacer = wibox.widget.textbox(' <span color="' .. white .. '">    </span>')
 
--- Create a wibox for each screen and add it
+awful.layout.layouts = {
+  awful.layout.suit.tile,
+}
 
 awful.screen.connect_for_each_screen(function(s)
   setWallpaper(s)
@@ -81,14 +82,12 @@ awful.screen.connect_for_each_screen(function(s)
           layout = wibox.layout.fixed.horizontal,
           guiMenuWidget,
           s.mypromptbox,
-          separator,
       },
       s.mytasklist,
       {
           layout = wibox.layout.fixed.horizontal,
           wibox.widget.systray(),
           mykeyboardlayout,
-          separator,
           mytextclock,
       },
   }
@@ -142,7 +141,16 @@ clientKeys = gears.table.join(
   awful.key({ modkey }, "x",  function (c) c:kill() end),
   awful.key({ modkey }, "o",  function (c) c:move_to_screen() end),
   awful.key({ modkey }, "n", function (c) c.minimized = true end),
-  awful.key({ modkey }, "m", function (c) c.maximized = not c.maximized c:raise() end)
+  awful.key({ modkey }, "m", function (c) c.maximized = not c.maximized c:raise() end),
+
+  awful.key({ modkey, "Control" }, "h", function (c)
+    awful.client.setmaster(c)
+    awful.tag.incnmaster(1, nil, true)
+  end),
+  awful.key({ modkey, "Control" }, "l", function (c)
+    awful.client.setslave(c)
+    awful.tag.incnmaster(-1, nil, true)
+  end)
 )
 
 clientButtons = gears.table.join(

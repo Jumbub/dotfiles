@@ -34,13 +34,6 @@ function handleRuntimeErrors()
   end
 end
 
-function setLayouts()
-  awful.layout.layouts = {
-    awful.layout.suit.tile,
-  }
-  require("awful.autofocus")
-end
-
 function getColor()
   return '#000'
 end
