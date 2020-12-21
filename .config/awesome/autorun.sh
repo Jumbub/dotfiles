@@ -19,6 +19,6 @@ $run --notify "redshift"
 # Clipboard manager
 $run --notify "greenclip daemon" "greenclip"
 
-# Transparency of windows
-$run --notify "compton"
+# Entirely to make Rofi look cooler
+$run --notify "picom"
 

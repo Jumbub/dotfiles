@@ -208,8 +208,8 @@ endif
 " File formatting
 autocmd BufWritePre *.tsx,*.ts,*.py,*.html Neoformat
 
-" Compton autoreload config changes
-autocmd BufWritePost compton.conf silent! !pkill -USR1 compton
+" Picom autoreload config changes
+autocmd BufWritePost picom.conf !pkill -USR1 picom || (picom &)
 
 " Automatically assign some arbitrary file types
 autocmd BufEnter .babelrc :setlocal filetype=json
