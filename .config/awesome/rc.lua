@@ -3,21 +3,40 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local theme_assets = require("beautiful.theme_assets")
+local themeAssets = require("beautiful.theme_assets")
 local naughty = require("naughty")
 local freedesktop = require("freedesktop")
 
 -- Constants
 local browser = "google-chrome-stable"
-local filemanager = "thunar"
 local terminal = "kitty"
 local modkey = "Mod4"
 
+local di = {
+  awesome = awesome,
+  screen = screen,
+  client = client,
+
+  setWallpaper = setWallpaper,
+
+  gears = gears,
+  awful = awful,
+  wibox = wibox,
+  beautiful = beautiful,
+  naughty = naughty,
+  freedesktop = freedesktop,
+  themeAssets = themeAssets,
+
+  browser = browser,
+  terminal = terminal,
+  modkey = modkey
+}
+
 require('custom')
+require('local.beautiful')(di)
 
 handleStartupErrors()
 handleRuntimeErrors()
-configureTheme()
 setLayouts()
 addColorsToGlobalNamespace()
 
@@ -30,7 +49,6 @@ separator = wibox.widget.textbox(' <span color="' .. white .. '">  </span>')
 spacer = wibox.widget.textbox(' <span color="' .. white .. '">    </span>')
 
 -- Create a wibox for each screen and add it
-screen.connect_signal("property::geometry", setWallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
   setWallpaper(s)
@@ -119,7 +137,7 @@ root.keys(gears.table.join(
   awful.key({ modkey, "Control" }, "n", unminimiseClient)
 ))
 
-clientkeys = gears.table.join(
+clientKeys = gears.table.join(
   awful.key({ modkey }, "f", function (c) c.fullscreen = not c.fullscreen c:raise() end),
   awful.key({ modkey }, "x",  function (c) c:kill() end),
   awful.key({ modkey }, "o",  function (c) c:move_to_screen() end),
@@ -127,7 +145,7 @@ clientkeys = gears.table.join(
   awful.key({ modkey }, "m", function (c) c.maximized = not c.maximized c:raise() end)
 )
 
-clientbuttons = gears.table.join(
+clientButtons = gears.table.join(
   awful.button({ }, 1, function (c) client.focus = c; c:raise() guiMenu:hide() end)
 )
 
@@ -142,8 +160,8 @@ awful.rules.rules = {
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
-      keys = clientkeys,
-      buttons = clientbuttons,
+      keys = clientKeys,
+      buttons = clientButtons,
       size_hints_honor = false, -- Remove gaps between terminals
       screen = awful.screen.preferred,
       callback = awful.client.setslave,
@@ -164,63 +182,8 @@ awful.rules.rules = {
   { rule = { class = "Google-chrome", name="DevTools*" }, properties = { screen = 2 } },
 }
 
-client.connect_signal("manage", function (c)
-  if awesome.startup and
-    not c.size_hints.user_position
-    and not c.size_hints.program_position then
-      awful.placement.no_offscreen(c)
-  end
-end)
-
-client.connect_signal("mouse::enter", function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
-        client.focus = c
-    end
-end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
-for s = 1, screen.count() do
-  screen[s]:connect_signal("arrange", function ()
-    for _, c in pairs(awful.client.visible(s)) do
-      c.border_width = c.maximized and 0 or beautiful.border_width
-    end
-  end)
-end
-
-function withColor(color, func)
-  awful.spawn.with_line_callback('/home/jamie/scripts/colors ' .. color, {
-      stdout = func
-  })
-end
-
-withColor('THEME_BLACK', function(color)
-  beautiful.bg_normal = color
-  beautiful.bg_normal = color
-  beautiful.bg_focus = color
-  beautiful.bg_urgent = color
-  beautiful.bg_minimize = color
-  beautiful.bg_systray = color
-  beautiful.bg_normal = color
-  beautiful.bg_focus = color
-  beautiful.titlebar_bg_focus = color
-  beautiful.border_normal = color
-  beautiful.border_focus = color
-  beautiful.border_marked = color
-end)
-
-withColor('THEME_WHITE', function(color)
-  beautiful.fg_normal = color
-  beautiful.fg_focus = color
-  beautiful.fg_urgent = color
-  beautiful.fg_minimize = color
-end)
-
-withColor('THEME_ORANGE', function(color)
-  beautiful.border_focus = color
-  beautiful.titlebar_bg_focus = color
-end)
+require('local.beautiful')(di)
+require('local.client')(di)
+require('local.screen')(di)
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")

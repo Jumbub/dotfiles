@@ -1,3 +1,8 @@
 #!/usr/bin/env zsh
 
-(Xephyr -br -ac -noreset -resizeable :1 &) && sleep 1 && DISPLAY=:1 awesome
+if pgrep Xephyr
+then
+  DISPLAY=:1 awesome --replace
+else
+  (Xephyr -br -ac -noreset -screen 1280x720 :1 &) && sleep 1 && DISPLAY=:1 awesome &
+fi

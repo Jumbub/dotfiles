@@ -34,34 +34,6 @@ function handleRuntimeErrors()
   end
 end
 
-function configureTheme()
-  beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
-  beautiful.bg_normal         = '#000'
-  beautiful.bg_focus          = '#000'
-  beautiful.bg_urgent         = '#000'
-  beautiful.bg_minimize       = '#000'
-  beautiful.bg_systray        = '#000'
-  beautiful.fg_normal         = '#fff'
-  beautiful.fg_focus          = '#fff'
-  beautiful.fg_urgent         = '#fff'
-  beautiful.fg_minimize       = '#fff'
-  beautiful.border_width      = 3
-  beautiful.border_normal     = '#fff'
-  beautiful.border_focus      = '#fff'
-  beautiful.border_marked     = '#fff'
-  beautiful.wallpaper         = "/home/jamie/.config/awesome/wallpaper.jpg"
-  beautiful.icon_theme        = "Papirus-Dark"
-  beautiful.useless_gap       = 0
-  beautiful.top_titlebar      = 2
-  beautiful.bg_normal         = '#000'
-  beautiful.bg_focus          = '#000'
-  beautiful.titlebar_bg_focus = '#000'
-  beautiful.font              = "FiraCodeNerdFontCompleteM-Regular 9"
-  beautiful.notification_font = "FiraCodeNerdFontCompleteM-Regular 16"
-  beautiful = theme_assets.recolor_titlebar(beautiful, beautiful.border_focus, "focus")
-  beautiful = theme_assets.recolor_titlebar(beautiful, beautiful.border_normal, "normal")
-end
-
 function setLayouts()
   awful.layout.layouts = {
     awful.layout.suit.tile,

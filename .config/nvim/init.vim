@@ -217,6 +217,9 @@ autocmd BufEnter .babelrc :setlocal filetype=json
 " Ensure syntax highlighting is deterministic
 " autocmd BufWritePost * :syntax sync fromstart
 
+" Test awesome window manager
+autocmd BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
+
 if nvim
   " The color scheme is calculated at runtime
   lua require'colorizer'.setup()
