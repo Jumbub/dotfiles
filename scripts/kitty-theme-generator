@@ -1,50 +1,7 @@
 #!/usr/bin/env sh
 
-cp $HOME/.config/kitty/kitty-themes/Template.conf $HOME/.config/kitty/.theme.conf
+TEMPLATE=$HOME/.config/kitty/kitty-themes/Template.conf
+OUTPUT=$HOME/.config/kitty/theme.conf
+UPDATE_MESSAGE="Restart Kitty for new theme"
 
-sed -i "s/THEME_BLACK/$THEME_BLACK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_WHITE/$THEME_WHITE/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_GRAY_DARKER/$THEME_GRAY_DARKER/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GRAY_DARK/$THEME_GRAY_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GRAY_LIGHTER/$THEME_GRAY_LIGHTER/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GRAY_LIGHT/$THEME_GRAY_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GRAY/$THEME_GRAY/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_YELLOW_DARK/$THEME_YELLOW_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_YELLOW_LIGHT/$THEME_YELLOW_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_YELLOW/$THEME_YELLOW/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_RED_DARK/$THEME_RED_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_RED_LIGHT/$THEME_RED_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_RED/$THEME_RED/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_ORANGE_DARK/$THEME_ORANGE_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_ORANGE_LIGHT/$THEME_ORANGE_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_ORANGE/$THEME_ORANGE/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_GREEN_DARK/$THEME_GREEN_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GREEN_LIGHT/$THEME_GREEN_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_GREEN/$THEME_GREEN/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_BLUE_DARK/$THEME_BLUE_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_BLUE_LIGHT/$THEME_BLUE_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_BLUE/$THEME_BLUE/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_CYAN_DARK/$THEME_CYAN_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_CYAN_LIGHT/$THEME_CYAN_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_CYAN/$THEME_CYAN/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_PINK_DARK/$THEME_PINK_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_PINK_LIGHT/$THEME_PINK_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_PINK/$THEME_PINK/g" $HOME/.config/kitty/.theme.conf
-
-sed -i "s/THEME_PURPLE_DARK/$THEME_PURPLE_DARK/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_PURPLE_LIGHT/$THEME_PURPLE_LIGHT/g" $HOME/.config/kitty/.theme.conf
-sed -i "s/THEME_PURPLE/$THEME_PURPLE/g" $HOME/.config/kitty/.theme.conf
-
-cmp --silent $HOME/.config/kitty/.theme.conf $HOME/.config/kitty/theme.conf \
-  || ( \
-    mv $HOME/.config/kitty/.theme.conf $HOME/.config/kitty/theme.conf \
-    && echo "Restart Kitty for new theme" \
-  )
+$HOME/scripts/theme-generator $TEMPLATE $OUTPUT $UPDATE_MESSAGE
