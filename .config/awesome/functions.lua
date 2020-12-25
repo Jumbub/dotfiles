@@ -34,36 +34,29 @@ f.setGlobals = function ()
 end
 
 f.setupErrorHandlers = function ()
-  if awesome.startup_errors then
-    naughty.notify(
-      {
-        preset = naughty.config.presets.critical,
-        title = "Oops, there were errors during startup!",
-        text = awesome.startup_errors
-      }
-    )
-  end
+  if awesome.startup_errors then naughty.notify {
+      preset = naughty.config.presets.critical,
+      title = "Oops, there were errors during startup!",
+      text = awesome.startup_errors
+  } end
 
 	local in_error = false
-	awesome.connect_signal(
-		"debug::error",
-		function(err)
-			-- Make sure we don't go into an endless error loop
-			if in_error then
-				return
-			end
-			in_error = true
 
-			naughty.notify(
-				{
-					preset = naughty.config.presets.critical,
-					title = "Oops, an error happened!",
-					text = tostring(err)
-				}
-			)
-			in_error = false
-		end
-	)
+	awesome.connect_signal("debug::error", function(err)
+    -- Make sure we don't go into an endless error loop
+    if in_error then
+      return
+    end
+    in_error = true
+
+    naughty.notify {
+      preset = naughty.config.presets.critical,
+      title = "Oops, an error happened!",
+      text = tostring(err)
+    }
+
+    in_error = false
+  end)
 end
 
 
@@ -72,85 +65,67 @@ f.clockWidget = function ()
 end
 
 f.setupClientSignals = function(client, beautiful)
-  client.connect_signal(
-    "manage",
-    function(c)
-      if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-        awful.placement.no_offscreen(c)
-      end
+  client.connect_signal("manage", function(c)
+    if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+      awful.placement.no_offscreen(c)
     end
-  )
+    if not awesome.startup then
+      awful.client.setslave(c)
+    end
+  end)
 
-  client.connect_signal(
-    "request::titlebars",
-    function(c)
-      local buttons = gears.table.join(
-        awful.button({}, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({}, 3, function()
+  client.connect_signal("request::titlebars", function(c)
+    local buttons = gears.table.join(
+      awful.button({}, 1, function()
           c:emit_signal("request::activate", "titlebar", {raise = true})
-          awful.mouse.client.resize(c)
-        end)
-      )
+          awful.mouse.client.move(c)
+      end),
+      awful.button({}, 3, function()
+        c:emit_signal("request::activate", "titlebar", {raise = true})
+        awful.mouse.client.resize(c)
+      end)
+    )
 
-      awful.titlebar(c):setup {
+    awful.titlebar(c):setup {
+      {
+        awful.titlebar.widget.iconwidget(c),
+        buttons = buttons,
+        layout = wibox.layout.fixed.horizontal
+      },
+      {
         {
-          awful.titlebar.widget.iconwidget(c),
-          buttons = buttons,
-          layout = wibox.layout.fixed.horizontal
+          align = "center",
+          widget = awful.titlebar.widget.titlewidget(c)
         },
-        {
-          {
-            align = "center",
-            widget = awful.titlebar.widget.titlewidget(c)
-          },
-          buttons = buttons,
-          layout = wibox.layout.flex.horizontal
-        },
-        {
-          awful.titlebar.widget.floatingbutton(c),
-          awful.titlebar.widget.maximizedbutton(c),
-          awful.titlebar.widget.stickybutton(c),
-          awful.titlebar.widget.ontopbutton(c),
-          awful.titlebar.widget.closebutton(c),
-          layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-      }
-    end
-  )
+        buttons = buttons,
+        layout = wibox.layout.flex.horizontal
+      },
+      {
+        awful.titlebar.widget.floatingbutton(c),
+        awful.titlebar.widget.maximizedbutton(c),
+        awful.titlebar.widget.stickybutton(c),
+        awful.titlebar.widget.ontopbutton(c),
+        awful.titlebar.widget.closebutton(c),
+        layout = wibox.layout.fixed.horizontal()
+      },
+      layout = wibox.layout.align.horizontal
+    }
+  end)
 
-  client.connect_signal(
-    "mouse::enter",
-    function(c)
-      c:emit_signal("request::activate", "mouse_enter", {raise = false})
-    end
-  )
+  client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+  end)
 
-  client.connect_signal(
-    "focus",
-    function(c)
-      c.border_color = beautiful.border_focus
-    end
-  )
-  client.connect_signal(
-    "unfocus",
-    function(c)
-      c.border_color = beautiful.border_normal
-    end
-  )
+  client.connect_signal("focus", function(c)
+    c.border_color = beautiful.border_focus
+  end)
+  client.connect_signal("unfocus", function(c)
+    c.border_color = beautiful.border_normal
+  end)
 end
 
 f.setWallpaper = function (s)
-  if beautiful.wallpaper then
-    local wallpaper = beautiful.wallpaper
-    if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
-  end
+  gears.wallpaper.maximized('/home/jamie/.config/awesome/wallpaper' .. s.index .. '.png', s, false)
 end
 
 f.setupGlobalBindings = function ()
@@ -186,9 +161,7 @@ f.setupGlobalBindings = function ()
 end
 
 f.setupLayouts = function ()
-  awful.layout.layouts = {
-    awful.layout.suit.tile
-  }
+  awful.layout.layouts = { awful.layout.suit.tile }
 end
 
 f.clientKeyBindings = function()
@@ -225,15 +198,9 @@ f.taskListBindings = function()
         c:emit_signal("request::activate", "tasklist", {raise = true})
       end
     end),
-    awful.button({}, 3, function()
-      awful.menu.client_list({theme = {width = 250}})
-    end),
-    awful.button({}, 4, function()
-      awful.client.focus.byidx(1)
-    end),
-    awful.button({}, 5, function()
-      awful.client.focus.byidx(-1)
-    end)
+    awful.button({}, 3, function() awful.menu.client_list({theme = {width = 250}}) end),
+    awful.button({}, 4, function() awful.client.focus.byidx(1) end),
+    awful.button({}, 5, function() awful.client.focus.byidx(-1) end)
   )
 end
 
@@ -313,63 +280,35 @@ f.setupScreens = function (screen)
 
       awful.tag({"1"}, s, awful.layout.layouts[1])
 
-      s.mypromptbox = awful.widget.prompt()
-      s.mylayoutbox = awful.widget.layoutbox(s)
-      s.mylayoutbox:buttons(
-        gears.table.join(
-          awful.button(
-            {},
-            1,
-            function()
-              awful.layout.inc(1)
-            end
-          ),
-          awful.button(
-            {},
-            3,
-            function()
-              awful.layout.inc(-1)
-            end
-          ),
-          awful.button(
-            {},
-            4,
-            function()
-              awful.layout.inc(1)
-            end
-          ),
-          awful.button(
-            {},
-            5,
-            function()
-              awful.layout.inc(-1)
-            end
-          )
-        )
-      )
+      s.myLayoutBox = awful.widget.layoutbox(s)
+      s.myLayoutBox:buttons(gears.table.join(
+        awful.button({}, 1, function() awful.layout.inc(1) end),
+        awful.button({}, 3, function() awful.layout.inc(-1) end),
+        awful.button({}, 4, function() awful.layout.inc(1) end),
+        awful.button({}, 5, function() awful.layout.inc(-1) end)
+      ))
 
-      s.myTaskList =
-        awful.widget.tasklist {
+      s.myTaskList = awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = f.taskListBindings()
       }
 
-      s.mywibox = awful.wibar({position = "top", screen = s})
-
-      s.mywibox:setup {
+      s.myWibox = awful.wibar {
+        position = "top",
+        screen = s
+      }
+      s.myWibox:setup {
         layout = wibox.layout.align.horizontal,
         {
           layout = wibox.layout.fixed.horizontal,
           f.menuWidget(),
-          s.mypromptbox
         },
         s.myTaskList,
         {
           layout = wibox.layout.fixed.horizontal,
           wibox.widget.systray(),
-          f.clockWidget(),
-          s.mylayoutbox
+          f.clockWidget()
         }
       }
     end

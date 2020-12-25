@@ -17,7 +17,7 @@ f.setGlobals()
 f.setupErrorHandlers()
 f.setupLayouts()
 f.setupScreens(screen)
-f.setupClientRules(client)
+f.setupClientRules()
 f.setupClientSignals(client, beautiful)
 f.setupGlobalBindings()
 

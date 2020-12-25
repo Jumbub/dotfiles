@@ -3,7 +3,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local theme_assets = require("beautiful.theme_assets")
 
-beautiful.wallpaper         = "/home/jamie/.config/awesome/wallpaper.jpg"
+beautiful.wallpaper         = "/home/jamie/dump/right.png"
 beautiful.icon_theme        = "Papirus-Dark"
 beautiful.bg_normal         = "THEME_BLACK"
 beautiful.bg_focus          = "THEME_BLACK"
@@ -13,7 +13,7 @@ beautiful.bg_systray        = "THEME_BLACK"
 beautiful.bg_normal         = "THEME_BLACK"
 beautiful.bg_focus          = "THEME_BLACK"
 beautiful.border_normal     = "THEME_GRAY_DARKER"
-beautiful.border_focus      = "THEME_ORANGE"
+beautiful.border_focus      = "THEME_ORANGE_LIGHT"
 beautiful.border_marked     = "THEME_GRAY"
 beautiful.titlebar_bg_focus = "THEME_GRAY_DARKER"
 beautiful.fg_normal         = "THEME_WHITE"
