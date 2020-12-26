@@ -64,7 +64,7 @@ f.clockWidget = function ()
   return wibox.widget.textclock("%d/%m %H:%M")
 end
 
-f.setupClientSignals = function(client, beautiful)
+f.setupClientSignals = function(client)
   client.connect_signal("manage", function(c)
     if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
       awful.placement.no_offscreen(c)
@@ -274,45 +274,47 @@ end
 f.setupScreens = function (screen)
   screen.connect_signal("property::geometry", f.setWallpaper)
 
-  awful.screen.connect_for_each_screen(
-    function(s)
-      f.setWallpaper(s)
+  awful.screen.connect_for_each_screen(function(s)
+    f.setWallpaper(s)
 
-      awful.tag({"1"}, s, awful.layout.layouts[1])
+    awful.tag({"1"}, s, awful.layout.layouts[1])
 
-      s.myLayoutBox = awful.widget.layoutbox(s)
-      s.myLayoutBox:buttons(gears.table.join(
-        awful.button({}, 1, function() awful.layout.inc(1) end),
-        awful.button({}, 3, function() awful.layout.inc(-1) end),
-        awful.button({}, 4, function() awful.layout.inc(1) end),
-        awful.button({}, 5, function() awful.layout.inc(-1) end)
-      ))
+    s.myLayoutBox = awful.widget.layoutbox(s)
+    s.myLayoutBox:buttons(gears.table.join(
+      awful.button({}, 1, function() awful.layout.inc(1) end),
+      awful.button({}, 3, function() awful.layout.inc(-1) end),
+      awful.button({}, 4, function() awful.layout.inc(1) end),
+      awful.button({}, 5, function() awful.layout.inc(-1) end)
+    ))
 
-      s.myTaskList = awful.widget.tasklist {
-        screen = s,
-        filter = awful.widget.tasklist.filter.currenttags,
-        buttons = f.taskListBindings()
+    s.myTaskList = awful.widget.tasklist {
+      screen = s,
+      filter = awful.widget.tasklist.filter.currenttags,
+      buttons = f.taskListBindings()
+    }
+
+    s.myWibox = awful.wibar {
+      position = "top",
+      screen = s
+    }
+    s.myWibox:setup {
+      layout = wibox.layout.align.horizontal,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        f.menuWidget(),
+      },
+      s.myTaskList,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        wibox.widget.systray(),
+        f.clockWidget()
       }
+    }
+  end)
+end
 
-      s.myWibox = awful.wibar {
-        position = "top",
-        screen = s
-      }
-      s.myWibox:setup {
-        layout = wibox.layout.align.horizontal,
-        {
-          layout = wibox.layout.fixed.horizontal,
-          f.menuWidget(),
-        },
-        s.myTaskList,
-        {
-          layout = wibox.layout.fixed.horizontal,
-          wibox.widget.systray(),
-          f.clockWidget()
-        }
-      }
-    end
-  )
+f.asyncJobs = function()
+  awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 end
 
 return f
