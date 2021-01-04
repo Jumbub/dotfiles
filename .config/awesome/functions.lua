@@ -255,11 +255,18 @@ f.setupClientRules = function ()
         },
         role = {
           "AlarmWindow",
-          "ConfigManager",
-          "pop-up"
+          "ConfigManager"
         }
       },
-      properties = {floating = true}
+      properties = {floating = true, titlebars_enabled = true}
+    },
+    {
+      rule_any = {
+        role = {
+          "pop-up" -- Chrome debugger
+        }
+      },
+      properties = {floating = false, titlebars_enabled = false}
     },
     {
       rule_any = {
