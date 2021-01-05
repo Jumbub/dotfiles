@@ -125,7 +125,6 @@ if nvim_native_lsp
   nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
   nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
   nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gD :tag <C-r><C-w><CR>
   nnoremap <silent> gh <cmd>lua vim.lsp.buf.hover()<CR>
   nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
   nnoremap <silent> gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
@@ -235,6 +234,8 @@ if nvim_native_lsp
   lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
   " PHP
   lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
+  " C/C++
+  lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
 endif
 
 set statusline=%<%f\  " Left side

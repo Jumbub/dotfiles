@@ -259,14 +259,22 @@ f.setupClientRules = function ()
           "pop-up"
         }
       },
-      properties = {floating = true}
+      properties = { floating = true, titlebars_enabled = true }
     },
     {
       rule_any = {
         type = {"normal", "dialog"}
       },
-      properties = {titlebars_enabled = false}
-    }
+      properties = { titlebars_enabled = false }
+    },
+    {
+      rule_any = {
+        name = {"NO_FOCUS"}
+      },
+      properties = {
+        focusable = false,
+      }
+    },
   }
 end
 
@@ -303,9 +311,14 @@ f.setupScreens = function (screen)
         layout = wibox.layout.fixed.horizontal,
         f.menuWidget(),
       },
-      s.myTaskList,
       {
         layout = wibox.layout.fixed.horizontal,
+        s.myTaskList,
+      },
+      {
+        layout = wibox.layout.fixed.horizontal,
+        require("awesome-wm-widgets.cpu-widget.cpu-widget")(),
+        require("awesome-wm-widgets.ram-widget.ram-widget")(),
         wibox.widget.systray(),
         f.clockWidget()
       }
