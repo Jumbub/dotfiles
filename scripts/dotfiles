@@ -61,11 +61,3 @@ dotX() {
   git --git-dir=${DIR_REPOS_DOTFILES} --work-tree=$HOME $@
 }
 alias dot="dotSource && dotX"
-
-dotQuickX() {
-  dot add -A
-  dot commit -m "$@"
-  dot push
-}
-alias dotQuick="dotSource && dotQuickX"
-
