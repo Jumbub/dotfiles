@@ -1,10 +1,10 @@
 " NeoVim Config
 
-let nvim_native_lsp = 0 " Native NVIM LSP toggle
-let nvim_native_ts = 1 " Native NVIM Tree-sitter toggle
-let nvim_coc = 1 " Native NVIM CoC toggle
-let nvim = has('nvim') " Using NVIM
 let vim = !has('nvim') " Using VIM
+let nvim = has('nvim') " Using NVIM
+let nvim_native_lsp = 0 && nvim " Native NVIM LSP toggle
+let nvim_native_ts = 1 && nvim " Native NVIM Tree-sitter toggle
+let nvim_coc = 1 && nvim " Native NVIM CoC toggle
 
 filetype plugin on " Detect the current file
 syntax on " Enable syntax highlighting
@@ -25,6 +25,8 @@ set termguicolors " Use terminal colours
 set undodir=~/.vim/undodir " Set undo history file
 set undofile " Persist undo history between sessions
 set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience (completion-nvim)
+set statusline=%<%f\  " Left side
+set statusline+=\ %h%m%r%=%(%l,%c%V%)  " Right side
 
 let mapleader = "," " Map the leader key
 
@@ -36,15 +38,12 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-Plug 'Iron-E/nvim-highlite' " Colour scheme
 Plug 'airblade/vim-gitgutter' " Inline git line statuses
 Plug 'editorconfig/editorconfig-vim' " Format definitions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
 Plug 'junegunn/fzf.vim' " Install fzf for vim
-Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
-Plug 'nvim-lua/completion-nvim' " Auto-complete plugin
 Plug 'patstockwell/vim-monokai-tasty' " Monokai theme
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
@@ -57,17 +56,25 @@ Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
+Plug 'puremourning/vimspector' " Debug Inspector
+Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
 Plug 'dhruvasagar/vim-prosession' " Better session management
 
 " Optional plugins
+if nvim
+  Plug 'Iron-E/nvim-highlite' " Colour scheme
+  Plug 'nvim-lua/completion-nvim' " Auto-complete plugin
+  Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
+endif
 if nvim_native_lsp
   Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 endif
 if nvim_native_ts
   Plug 'nvim-treesitter/nvim-treesitter' " Semantic syntax highlighting
+  Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
 endif
 if nvim_coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " CoC IDE
@@ -94,6 +101,8 @@ let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
+let g:completion_enable_auto_popup=1 " Live auto-complete
+
 
 " Goto file in git status
 nmap / /\c
@@ -120,7 +129,30 @@ vmap <leader>wpy "wy:read !python -c "<C-r>w"<CR>
 vmap ? ?\c
 vnoremap <leader>go "gy<Esc>:call GoogleSearch()<CR>
 vnoremap <leader>j "sy:Rg <C-r>s<CR>
+nnoremap <leader>F :MaximizerToggle!<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>dq :call vimspector#Reset()<CR>
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+nmap <leader>dl <Plug>VimspectorStepOver
+nmap <leader>dj <Plug>VimspectorStepInto
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>dh <Plug>VimspectorRestart
+" nnoremap <space> :call vimspector#Continue()<CR>
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
+if nvim
+  imap <silent> <c-space> <Plug>(completion_trigger)
+  imap <tab> <Plug>(completion_smart_tab)
+  imap <s-tab> <Plug>(completion_smart_s_tab)
+endif
 if nvim_native_lsp
   nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
   nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
@@ -158,12 +190,7 @@ if nvim_coc
 endif
 
 let g:completion_confirm_key = "\<C-y>"
-let g:completion_enable_auto_popup = 0
-
-imap <silent> <c-space> <Plug>(completion_trigger)
-
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+let g:completion_enable_auto_popup=1
 
 command! FF Neoformat " Format file
 command! GC Rg <<<<<<< HEAD " Find git conflicts
@@ -194,6 +221,16 @@ function! s:vim_quit_and_restart() abort
   endif
 endfunction
 
+function! GotoWindow(id)
+    call win_gotoid(a:id)
+    " MaximizerToggle
+endfunction
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
 if vim
   let g:vim_monokai_tasty_italic = 1
   colorscheme vim-monokai-tasty " Set theme
@@ -204,19 +241,15 @@ if nvim
   colorscheme nvim_monokai " Set theme
 endif
 
-" File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.html Neoformat
-
-" Picom autoreload config changes
+ " File formatting
+autocmd BufWritePre *.tsx,*.ts,*.py,*.html :FF
+ " Picom autoreload config changes
 autocmd BufWritePost picom.conf !pkill -USR1 picom || (picom &)
-
-" Automatically assign some arbitrary file types
+ " Automatically assign some arbitrary file types
 autocmd BufEnter .babelrc :setlocal filetype=json
-
-" Ensure syntax highlighting is deterministic
-" autocmd BufWritePost * :syntax sync fromstart
-
-" Test awesome window manager
+ " Setup vim inspector plugin
+autocmd VimEnter * :packadd! vimspector
+ " Test awesome window manager
 autocmd BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
 
 if nvim
@@ -235,8 +268,39 @@ if nvim_native_lsp
   " PHP
   lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
   " C/C++
-  lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
+  lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach };
+  " C#
+  lua local pid = vim.fn.getpid(); local omnisharpBin = "/home/jamie/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
 endif
 
-set statusline=%<%f\  " Left side
-set statusline+=\ %h%m%r%=%(%l,%c%V%)  " Right side
+
+
+function! s:format_qf_line(line)
+  let parts = split(a:line, ':')
+  return { 'filename': parts[0]
+         \,'lnum': parts[1]
+         \,'col': parts[2]
+         \,'text': join(parts[3:], ':')
+         \ }
+endfunction
+
+function! s:qf_to_fzf(key, line) abort
+  let l:filepath = expand('#' . a:line.bufnr . ':p')
+  return l:filepath . ':' . a:line.lnum . ':' . a:line.col . ':' . a:line.text
+endfunction
+
+function! s:fzf_to_qf(filtered_list) abort
+  let list = map(a:filtered_list, 's:format_qf_line(v:val)')
+  if len(list) > 0
+    call setqflist(list)
+    copen
+  endif
+endfunction
+
+command! FzfQF call fzf#run({
+      \ 'source': map(getqflist(), function('<sid>qf_to_fzf')),
+      \ 'down':   '20',
+      \ 'sink*':   function('<sid>fzf_to_qf'),
+      \ 'options': '--reverse --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all --prompt "quickfix> "',
+      \ })
+

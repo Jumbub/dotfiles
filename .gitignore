@@ -18,6 +18,7 @@
 !/.config/kitty/**
 !/.config/nvim
 !/.config/nvim/**
+!/.config/picom.conf
 !/.config/redshift.conf
 !/.config/rofi
 !/.config/rofi/*
