@@ -242,7 +242,7 @@ if nvim
 endif
 
  " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.html :FF
+autocmd BufWritePre *.tsx,*.ts,*.py,*.html,*.js :FF
  " Picom autoreload config changes
 autocmd BufWritePost picom.conf !pkill -USR1 picom || (picom &)
  " Automatically assign some arbitrary file types
