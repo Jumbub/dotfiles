@@ -59,6 +59,7 @@ Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
+Plug 'rktjmp/lush.nvim' " Creating colour schemes
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -74,8 +75,8 @@ if nvim_native_lsp
   Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 endif
 if nvim_native_ts
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Semantic syntax highlighting
-  Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Semantic syntax highlighting
+  " Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
 endif
 if nvim_coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " CoC IDE
@@ -230,8 +231,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-set rtp+=~/.config/nvim/monokai " Local colour scheme
-colorscheme monokai " Set theme
+set rtp+=~/.config/nvim/lush-template " Local colour scheme
+colorscheme lush_template " Set theme
 
 " Prettier auto formatting
 autocmd BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
