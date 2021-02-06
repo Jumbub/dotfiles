@@ -67,7 +67,6 @@ Plug 'dhruvasagar/vim-prosession' " Better session management
 
 " Optional plugins
 if nvim
-  " Plug 'Iron-E/nvim-highlite' " Colour scheme
   Plug 'nvim-lua/completion-nvim' " Auto-complete plugin
   Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
 endif
@@ -75,8 +74,8 @@ if nvim_native_lsp
   Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 endif
 if nvim_native_ts
-  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Semantic syntax highlighting
-  " Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Semantic syntax highlighting
+  Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
 endif
 if nvim_coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " CoC IDE
@@ -147,6 +146,10 @@ nmap <leader>dh <Plug>VimspectorRestart
 nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+nmap <C-k> :cp<CR>
+nmap <C-j> :cn<CR>
+nmap <C-h> :cclose<CR>
+nmap <C-l> :copen<CR>
 
 if nvim
   imap <silent> <c-space> <Plug>(completion_trigger)
@@ -254,7 +257,7 @@ endif
 
 if nvim_native_ts
   " Native NVIM Tree sitter setup
-  " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true } };
+  lua require'nvim-treesitter.configs'.setup { ensure_installed = 'maintained', highlight = { enable = true } };
 endif
 
 if nvim_native_lsp
@@ -270,14 +273,14 @@ endif
 
 lua <<EOF
 -- Wrap lsp actions with easier to use utilities
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+-- vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+-- vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+-- vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+-- vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+-- vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+-- vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+-- vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+-- vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 
 -- Remove virtual error text
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
