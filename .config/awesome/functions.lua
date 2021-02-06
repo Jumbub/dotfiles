@@ -31,6 +31,7 @@ f.setGlobals = function ()
   -- Globals because I'm lazy
   terminal = "kitty"
   editor = "nvim"
+  guieditor = "code"
 end
 
 f.setupErrorHandlers = function ()
@@ -152,6 +153,7 @@ f.setupGlobalBindings = function ()
     awful.key({ "Control", "Mod1"  }, "l", function () awful.spawn.with_shell("~/scripts/lock") end),
 
     awful.key({ modkey }, "Return", function () awful.spawn(terminal) end),
+    awful.key({ modkey }, "e", function () awful.spawn(guieditor) end),
     awful.key({ modkey }, "r", function () awful.spawn("/usr/bin/rofi -show run") end),
     awful.key({ modkey }, "c", function () awful.spawn("/home/jamie/scripts/clipboard-manager") end),
 

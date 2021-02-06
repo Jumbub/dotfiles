@@ -1,10 +1,9 @@
 " NeoVim Config
 
-let vim = !has('nvim') " Using VIM
 let nvim = has('nvim') " Using NVIM
-let nvim_native_lsp = 0 && nvim " Native NVIM LSP toggle
+let nvim_native_lsp = 1 && nvim " Native NVIM LSP toggle
 let nvim_native_ts = 1 && nvim " Native NVIM Tree-sitter toggle
-let nvim_coc = 1 && nvim " Native NVIM CoC toggle
+let nvim_coc = 0 && nvim " Native NVIM CoC toggle
 
 filetype plugin on " Detect the current file
 syntax on " Enable syntax highlighting
@@ -27,6 +26,7 @@ set undofile " Persist undo history between sessions
 set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience (completion-nvim)
 set statusline=%<%f\  " Left side
 set statusline+=\ %h%m%r%=%(%l,%c%V%)  " Right side
+set updatetime=300 " CursorHold activation time
 
 let mapleader = "," " Map the leader key
 
@@ -38,17 +38,20 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-Plug 'airblade/vim-gitgutter' " Inline git line statuses
+" Plug 'jparise/vim-graphql'
+" Plug 'puremourning/vimspector' " Debug Inspector
+" Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
+Plug 'RishabhRD/nvim-lsputils' " Make neovim-lsp more CoC like
+Plug 'RishabhRD/popfix' " Required for nvim-lsputils
 Plug 'editorconfig/editorconfig-vim' " Format definitions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
-Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
 Plug 'junegunn/fzf.vim' " Install fzf for vim
-Plug 'patstockwell/vim-monokai-tasty' " Monokai theme
+Plug 'mhinz/vim-signify' " Inline git line statuses
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
-Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
 Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'tpope/vim-commentary' " Quick comments
@@ -56,8 +59,6 @@ Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
-Plug 'puremourning/vimspector' " Debug Inspector
-Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -65,7 +66,7 @@ Plug 'dhruvasagar/vim-prosession' " Better session management
 
 " Optional plugins
 if nvim
-  Plug 'Iron-E/nvim-highlite' " Colour scheme
+  " Plug 'Iron-E/nvim-highlite' " Colour scheme
   Plug 'nvim-lua/completion-nvim' " Auto-complete plugin
   Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
 endif
@@ -73,20 +74,11 @@ if nvim_native_lsp
   Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 endif
 if nvim_native_ts
-  Plug 'nvim-treesitter/nvim-treesitter' " Semantic syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Semantic syntax highlighting
   Plug 'nvim-treesitter/playground' " Debugging syntax highlighting
 endif
 if nvim_coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " CoC IDE
-endif
-if vim
-  " Recommended by vim-monokai-tasty
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'pangloss/vim-javascript'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'styled-components/vim-styled-components'
-  Plug 'elzr/vim-json'
-  Plug 'jparise/vim-graphql'
 endif
 
 call plug#end() " Finish setting up plugins
@@ -102,6 +94,13 @@ let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
 let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
 let g:completion_enable_auto_popup=1 " Live auto-complete
+let g:completion_confirm_key = "\<C-y>"
+let g:completion_enable_auto_popup=1
+let g:signify_sign_add = '+'
+let g:signify_sign_delete = '_'
+let g:signify_sign_delete_first_line = '‾'
+let g:signify_sign_change = '~'
+let g:signify_sign_change_delete = g:signify_sign_change . g:signify_sign_delete_first_line
 
 
 " Goto file in git status
@@ -154,12 +153,15 @@ if nvim
   imap <s-tab> <Plug>(completion_smart_s_tab)
 endif
 if nvim_native_lsp
-  nnoremap <silent> gH <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
-  nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gh <cmd>lua vim.lsp.buf.hover()<CR>
-  nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <silent> gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+  nnoremap gH <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
+  nnoremap gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+  nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap gh <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <leader>a <cmd>lua vim.lsp.buf.code_action()<CR>
+  vnoremap <leader>a <cmd>lua vim.lsp.buf.range_code_action()<CR>
+  nnoremap <leader>f <cmd>lua vim.lsp.buf.code_action({only={'quickfix'}})<CR>
 endif
 if nvim_coc
   imap <silent><expr> <c-space> coc#refresh()
@@ -189,10 +191,7 @@ if nvim_coc
   endfunction
 endif
 
-let g:completion_confirm_key = "\<C-y>"
-let g:completion_enable_auto_popup=1
-
-command! FF Neoformat " Format file
+command! FF Neoformat prettier " Format file
 command! GC Rg <<<<<<< HEAD " Find git conflicts
 command! Restart call <sid>vim_quit_and_restart() " Restart vim
 
@@ -231,26 +230,21 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-if vim
-  let g:vim_monokai_tasty_italic = 1
-  colorscheme vim-monokai-tasty " Set theme
-endif
+set rtp+=~/.config/nvim/monokai " Local colour scheme
+colorscheme monokai " Set theme
 
-if nvim
-  set rtp+=~/.config/nvim/nvim-monokai " Local colour scheme
-  colorscheme nvim_monokai " Set theme
-endif
-
- " File formatting
-autocmd BufWritePre *.tsx,*.ts,*.py,*.html,*.js :FF
- " Picom autoreload config changes
+" Prettier auto formatting
+autocmd BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
+" Picom autoreload config changes
 autocmd BufWritePost picom.conf !pkill -USR1 picom || (picom &)
- " Automatically assign some arbitrary file types
+" Automatically assign some arbitrary file types
 autocmd BufEnter .babelrc :setlocal filetype=json
- " Setup vim inspector plugin
+" Setup vim inspector plugin
 autocmd VimEnter * :packadd! vimspector
- " Test awesome window manager
+" Test awesome window manager
 autocmd BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
+" Show errors after x amount of time
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 if nvim
   " The color scheme is calculated at runtime
@@ -259,7 +253,7 @@ endif
 
 if nvim_native_ts
   " Native NVIM Tree sitter setup
-  lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true } };
+  " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true } };
 endif
 
 if nvim_native_lsp
@@ -273,34 +267,27 @@ if nvim_native_lsp
   lua local pid = vim.fn.getpid(); local omnisharpBin = "/home/jamie/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
 endif
 
+lua <<EOF
+-- Wrap lsp actions with easier to use utilities
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 
+-- Remove virtual error text
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
 
-function! s:format_qf_line(line)
-  let parts = split(a:line, ':')
-  return { 'filename': parts[0]
-         \,'lnum': parts[1]
-         \,'col': parts[2]
-         \,'text': join(parts[3:], ':')
-         \ }
-endfunction
-
-function! s:qf_to_fzf(key, line) abort
-  let l:filepath = expand('#' . a:line.bufnr . ':p')
-  return l:filepath . ':' . a:line.lnum . ':' . a:line.col . ':' . a:line.text
-endfunction
-
-function! s:fzf_to_qf(filtered_list) abort
-  let list = map(a:filtered_list, 's:format_qf_line(v:val)')
-  if len(list) > 0
-    call setqflist(list)
-    copen
-  endif
-endfunction
-
-command! FzfQF call fzf#run({
-      \ 'source': map(getqflist(), function('<sid>qf_to_fzf')),
-      \ 'down':   '20',
-      \ 'sink*':   function('<sid>fzf_to_qf'),
-      \ 'options': '--reverse --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all --prompt "quickfix> "',
-      \ })
-
+-- Remove gutter indicators
+vim.fn.sign_define("LspDiagnosticsSignError", {text = "!", numhl = "LspDiagnosticsDefaultError"})
+vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "!", numhl = "LspDiagnosticsDefaultWarning"})
+vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "!", numhl = "LspDiagnosticsDefaultInformation"})
+vim.fn.sign_define("LspDiagnosticsSignHint", {text = "!", numhl = "LspDiagnosticsDefaultHint"})
+EOF
