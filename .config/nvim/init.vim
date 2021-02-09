@@ -235,18 +235,22 @@ endfunction
 set rtp+=~/.config/nvim/lush-template " Local colour scheme
 colorscheme lush_template " Set theme
 
-" Prettier auto formatting
-autocmd BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
-" Picom autoreload config changes
-autocmd BufWritePost picom.conf !pkill -USR1 picom || (picom &)
-" Automatically assign some arbitrary file types
-autocmd BufEnter .babelrc :setlocal filetype=json
-" Setup vim inspector plugin
-autocmd VimEnter * :packadd! vimspector
-" Test awesome window manager
-autocmd BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
-" Show errors after x amount of time
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+augroup Jumbub
+  " Reset auto-commands when re-sourcing the rc
+  au!
+  " Prettier auto formatting
+  au BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
+  " Picom autoreload config changes
+  au BufWritePost picom.conf !pkill -USR1 picom || (picom &)
+  " Automatically assign some arbitrary file types
+  au BufEnter .babelrc :setlocal filetype=json
+  " Setup vim inspector plugin
+  au VimEnter * :packadd! vimspector
+  " Test awesome window manager
+  au BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
+  " Show errors after x amount of time
+  au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+augroup END
 
 if nvim
   " The color scheme is calculated at runtime
