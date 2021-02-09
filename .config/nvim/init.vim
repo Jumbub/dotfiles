@@ -38,11 +38,9 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install directory
 
-" Plug 'jparise/vim-graphql'
 " Plug 'puremourning/vimspector' " Debug Inspector
-" Plug 'sheerun/vim-polyglot' " A bunch of syntax packs
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'RishabhRD/nvim-lsputils' " Make neovim-lsp more CoC like
 Plug 'RishabhRD/popfix' " Required for nvim-lsputils
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -273,7 +271,7 @@ endif
 
 lua <<EOF
 -- Wrap lsp actions with easier to use utilities
--- vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
 -- vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
 -- vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
 -- vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
