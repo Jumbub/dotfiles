@@ -40,7 +40,7 @@ call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install di
 
 " Plug 'puremourning/vimspector' " Debug Inspector
 " Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'RishabhRD/nvim-lsputils' " Make neovim-lsp more CoC like
 Plug 'RishabhRD/popfix' " Required for nvim-lsputils
 Plug 'editorconfig/editorconfig-vim' " Format definitions
@@ -155,7 +155,8 @@ if nvim
   imap <s-tab> <Plug>(completion_smart_s_tab)
 endif
 if nvim_native_lsp
-  nnoremap gH <cmd>lua vim.lsp.buf.signature_help()<CR>
+  " nnoremap gH <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap gH <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
   nnoremap gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
   nnoremap gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
   nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -249,7 +250,7 @@ augroup Jumbub
   " Test awesome window manager
   au BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
   " Show errors after x amount of time
-  au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+  " au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 augroup END
 
 if nvim
