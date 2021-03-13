@@ -58,6 +58,7 @@ Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
 Plug 'rktjmp/lush.nvim' " Creating colour schemes
+Plug 'jupyter-vim/jupyter-vim' " Python testing
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -148,6 +149,8 @@ nmap <C-k> :cp<CR>
 nmap <C-j> :cn<CR>
 nmap <C-h> :cclose<CR>
 nmap <C-l> :copen<CR>
+nmap <leader>r :JupyterSendCell<CR>
+vmap <leader>r :JupyterRunVisual<CR>
 
 if nvim
   imap <silent> <c-space> <Plug>(completion_trigger)
@@ -272,6 +275,8 @@ if nvim_native_lsp
   lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach };
   " C#
   lua local pid = vim.fn.getpid(); local omnisharpBin = "/home/jamie/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
+  " Python
+  lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach };
 endif
 
 lua <<EOF

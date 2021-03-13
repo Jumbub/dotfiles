@@ -59,6 +59,7 @@ local theme = lush(function()
     irregular { fg=getColor('GRAY'), bg=getColor('BLACK') },
     invert { fg=getColor('BLACK'), bg=getColor('WHITE') },
     offset { fg=getColor('WHITE'), bg=getColor('GRAY_DARKER') },
+    light { bg=getColor('GRAY') },
     dark { bg=getColor('GRAY_DARK') },
     highlight { bg=getColor('GRAY_DARK'), gui="underline" },
     shadyDark { fg=getColor('GRAY_DARKER'), bg=getColor('GRAY') }, -- Popup menu: scrollbar.
@@ -116,7 +117,7 @@ local theme = lush(function()
     Substitute   { yellowBg }, -- |:substitute| replacement text highlighting
     LineNr       { irregular }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     CursorLineNr { pink }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen   { blueBg }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    MatchParen   { light }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     ModeMsg      { bold }, -- 'showmode' message (e.g., "-- INSERT -- ")
     MsgArea      { regular }, -- Area for messages and cmdline
     MsgSeparator { shady }, -- Separator for scrolled messages, `msgsep` flag of 'display'
