@@ -1,13 +1,4 @@
 #!/usr/bin/env zsh
 
-# Clear temp file
-cat /dev/null > /tmp/buffer.txt
-
-# Fill temp file
-while read LINE
-do
-  echo "$LINE" >> /tmp/buffer.txt
-done < "${1:-/dev/stdin}"
-
-# Open
-nvim /tmp/buffer.txt
+cat /dev/stdin > /tmp/kitty-buffer.txt
+nvim /tmp/kitty-buffer.txt

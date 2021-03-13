@@ -1,9 +1,9 @@
 " NeoVim Config
 
 let nvim = has('nvim') " Using NVIM
-let nvim_native_lsp = 1 && nvim " Native NVIM LSP toggle
+let nvim_native_lsp = 0 && nvim " Native NVIM LSP toggle
 let nvim_native_ts = 1 && nvim " Native NVIM Tree-sitter toggle
-let nvim_coc = 0 && nvim " Native NVIM CoC toggle
+let nvim_coc = 1 && nvim " Native NVIM CoC toggle
 
 filetype plugin on " Detect the current file
 syntax on " Enable syntax highlighting
@@ -41,8 +41,6 @@ call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install di
 " Plug 'puremourning/vimspector' " Debug Inspector
 " Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'RishabhRD/nvim-lsputils' " Make neovim-lsp more CoC like
-Plug 'RishabhRD/popfix' " Required for nvim-lsputils
 Plug 'editorconfig/editorconfig-vim' " Format definitions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
@@ -57,7 +55,8 @@ Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
 Plug 'wakatime/vim-wakatime' " Track development time
-Plug 'rktjmp/lush.nvim' " Creating colour schemes
+" TODO: remove specific commit when the main channel is fixed
+Plug 'rktjmp/lush.nvim', {'commit': '9f720e13b3aa21eb28d4ac369f4408c68bfea266'} " Creating colour schemes
 Plug 'jupyter-vim/jupyter-vim' " Python testing
 
 " Order matters for the following plugins
@@ -70,6 +69,8 @@ if nvim
   Plug 'norcalli/nvim-colorizer.lua' " Inline colour code highlighting
 endif
 if nvim_native_lsp
+  Plug 'RishabhRD/popfix' " Required for nvim-lsputils
+  Plug 'RishabhRD/nvim-lsputils' " Make neovim-lsp more CoC like
   Plug 'neovim/nvim-lspconfig' " NeoVim LSP plugin
 endif
 if nvim_native_ts
@@ -183,6 +184,7 @@ if nvim_coc
   nnoremap <silent> gh :call <SID>show_documentation()<CR>
   nnoremap gS :CocList outline<cr>
   nnoremap gs :CocList -I symbols<CR>
+  nnoremap <silent><nowait> gl  :<C-u>CocListResume<CR>
   vmap <leader>a <Plug>(coc-codeaction-selected)
   vmap <silent> af <Plug>(coc-range-select)
 
@@ -198,7 +200,6 @@ if nvim_coc
 endif
 
 command! FF Neoformat prettier " Format file
-command! GC Rg <<<<<<< HEAD " Find git conflicts
 command! Restart call <sid>vim_quit_and_restart() " Restart vim
 
 function! SynStack ()
@@ -277,29 +278,29 @@ if nvim_native_lsp
   lua local pid = vim.fn.getpid(); local omnisharpBin = "/home/jamie/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
   " Python
   lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach };
-endif
 
 lua <<EOF
--- Wrap lsp actions with easier to use utilities
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
--- vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
--- vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
--- vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
--- vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
--- vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
--- vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
--- vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+  -- Wrap lsp actions with easier to use utilities
+  vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+  -- vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+  -- vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+  -- vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+  -- vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+  -- vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+  -- vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+  -- vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 
--- Remove virtual error text
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
-    }
-)
+  -- Remove virtual error text
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+          virtual_text = false
+      }
+  )
 
--- Remove gutter indicators
-vim.fn.sign_define("LspDiagnosticsSignError", {text = "!", numhl = "LspDiagnosticsDefaultError"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "!", numhl = "LspDiagnosticsDefaultWarning"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "!", numhl = "LspDiagnosticsDefaultInformation"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {text = "!", numhl = "LspDiagnosticsDefaultHint"})
+  -- Remove gutter indicators
+  vim.fn.sign_define("LspDiagnosticsSignError", {text = "!", numhl = "LspDiagnosticsDefaultError"})
+  vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "!", numhl = "LspDiagnosticsDefaultWarning"})
+  vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "!", numhl = "LspDiagnosticsDefaultInformation"})
+  vim.fn.sign_define("LspDiagnosticsSignHint", {text = "!", numhl = "LspDiagnosticsDefaultHint"})
 EOF
+endif
