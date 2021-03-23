@@ -2,7 +2,7 @@
 
 let nvim = has('nvim') " Using NVIM
 let nvim_native_lsp = 0 && nvim " Native NVIM LSP toggle
-let nvim_native_ts = 1 && nvim " Native NVIM Tree-sitter toggle
+let nvim_native_ts = 0 && nvim " Native NVIM Tree-sitter toggle
 let nvim_coc = 1 && nvim " Native NVIM CoC toggle
 
 filetype plugin on " Detect the current file

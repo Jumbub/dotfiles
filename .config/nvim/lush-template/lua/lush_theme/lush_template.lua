@@ -61,7 +61,7 @@ local theme = lush(function()
     offset { fg=getColor('WHITE'), bg=getColor('GRAY_DARKER') },
     light { bg=getColor('GRAY') },
     dark { bg=getColor('GRAY_DARK') },
-    highlight { bg=getColor('GRAY_DARK'), gui="underline" },
+    highlight { bg=getColor('GRAY_DARK') },
     shadyDark { fg=getColor('GRAY_DARKER'), bg=getColor('GRAY') }, -- Popup menu: scrollbar.
     shady { fg=getColor('GRAY_DARK'), bg=getColor('GRAY_LIGHT') }, -- Popup menu: selected item.
     shadyLight { fg=getColor('GRAY'), bg=getColor('GRAY_LIGHTER') }, -- Popup menu: Thumb of the scrollbar.
