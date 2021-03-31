@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
 
+# ASDF Version Manager
+source /usr/local/opt/asdf/asdf.sh
+
 # Environment
-export ZSH="/home/jamie/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
@@ -43,7 +46,7 @@ haveigot helm && source <(helm completion zsh)
 haveigot kitty && source <(kitty + complete setup zsh)
 
 # Lazy load Node Version Manager
-source $HOME/scripts/lazy-nvm
+# source $HOME/scripts/lazy-nvm
 
 # Edit command in vim
 autoload -U edit-command-line

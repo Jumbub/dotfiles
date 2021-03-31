@@ -54,7 +54,6 @@ Plug 'tpope/vim-commentary' " Quick comments
 Plug 'tpope/vim-eunuch' " File helpers
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " Word wapping
-Plug 'wakatime/vim-wakatime' " Track development time
 " TODO: remove specific commit when the main channel is fixed
 Plug 'rktjmp/lush.nvim', {'commit': '9f720e13b3aa21eb28d4ac369f4408c68bfea266'} " Creating colour schemes
 Plug 'jupyter-vim/jupyter-vim' " Python testing
@@ -86,13 +85,13 @@ call plug#end() " Finish setting up plugins
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:marvim_find_key = ',@' " Find macro
-let g:marvim_store = '/home/jamie/.config/nvim/macros' " Set store location
+let g:marvim_store = '$HOME/.config/nvim/macros' " Set store location
 let g:marvim_store_key = ',q' " Save macro
 let g:mkdp_auto_close = 1
 let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
-let g:prosession_dir = '/home/jamie/workspaces/vim/' " Set the directory to create prosessions
+let g:prosession_dir = 'workspaces/vim/' " Set the directory to create prosessions
 let g:completion_enable_auto_popup=1 " Live auto-complete
 let g:completion_confirm_key = "\<C-y>"
 let g:completion_enable_auto_popup=1
@@ -119,7 +118,6 @@ nnoremap <silent> <expr> <leader>m bufexists(expand('%')) ? "\:NERDTreeFind<CR>"
 nnoremap <silent> <leader><leader>p :Restart<CR>
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
-nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 vmap / /\c
 vmap <leader>c yq/p<CR>Ncgn
 vmap <leader>gc ygg/scss<CR>gf/<C-r>0<CR>
@@ -252,7 +250,7 @@ augroup Jumbub
   " Setup vim inspector plugin
   au VimEnter * :packadd! vimspector
   " Test awesome window manager
-  au BufWritePost /home/jamie/.config/awesome/* !/home/jamie/scripts/testWindowManager.sh
+  au BufWritePost $HOME/.config/awesome/* !$HOME/scripts/testWindowManager.sh
   " Show errors after x amount of time
   " au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 augroup END
@@ -275,7 +273,7 @@ if nvim_native_lsp
   " C/C++
   lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach };
   " C#
-  lua local pid = vim.fn.getpid(); local omnisharpBin = "/home/jamie/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
+  lua local pid = vim.fn.getpid(); local omnisharpBin = "$HOME/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
   " Python
   lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach };
 

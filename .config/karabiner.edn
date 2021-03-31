@@ -1,0 +1,10 @@
+{
+  :applications {
+    :terminals ["kitty"]
+  }
+  :main [
+    {:des "ctrl to cmd" :rules [[:##left_control :##right_command [:!terminals]]]}
+    {:des "cmd to ctrl" :rules [[:##right_command :##left_control [:!terminals]]]}
+  ]
+}
+

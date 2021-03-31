@@ -7,46 +7,46 @@ WORKING_OUTPUT="/tmp/theme-generator.tmp"
 
 cp $TEMPLATE $WORKING_OUTPUT
 
-sed -i "s/THEME_BLACK/`$HOME/scripts/colors THEME_BLACK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_WHITE/`$HOME/scripts/colors THEME_WHITE`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_BLACK/`$HOME/scripts/colors THEME_BLACK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_WHITE/`$HOME/scripts/colors THEME_WHITE`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_GRAY_DARKER/`$HOME/scripts/colors THEME_GRAY_DARKER`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GRAY_DARK/`$HOME/scripts/colors THEME_GRAY_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GRAY_LIGHTER/`$HOME/scripts/colors THEME_GRAY_LIGHTER`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GRAY_LIGHT/`$HOME/scripts/colors THEME_GRAY_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GRAY/`$HOME/scripts/colors THEME_GRAY`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GRAY_DARKER/`$HOME/scripts/colors THEME_GRAY_DARKER`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GRAY_DARK/`$HOME/scripts/colors THEME_GRAY_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GRAY_LIGHTER/`$HOME/scripts/colors THEME_GRAY_LIGHTER`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GRAY_LIGHT/`$HOME/scripts/colors THEME_GRAY_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GRAY/`$HOME/scripts/colors THEME_GRAY`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_YELLOW_DARK/`$HOME/scripts/colors THEME_YELLOW_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_YELLOW_LIGHT/`$HOME/scripts/colors THEME_YELLOW_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_YELLOW/`$HOME/scripts/colors THEME_YELLOW`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_YELLOW_DARK/`$HOME/scripts/colors THEME_YELLOW_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_YELLOW_LIGHT/`$HOME/scripts/colors THEME_YELLOW_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_YELLOW/`$HOME/scripts/colors THEME_YELLOW`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_RED_DARK/`$HOME/scripts/colors THEME_RED_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_RED_LIGHT/`$HOME/scripts/colors THEME_RED_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_RED/`$HOME/scripts/colors THEME_RED`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_RED_DARK/`$HOME/scripts/colors THEME_RED_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_RED_LIGHT/`$HOME/scripts/colors THEME_RED_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_RED/`$HOME/scripts/colors THEME_RED`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_ORANGE_DARK/`$HOME/scripts/colors THEME_ORANGE_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_ORANGE_LIGHT/`$HOME/scripts/colors THEME_ORANGE_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_ORANGE/`$HOME/scripts/colors THEME_ORANGE`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_ORANGE_DARK/`$HOME/scripts/colors THEME_ORANGE_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_ORANGE_LIGHT/`$HOME/scripts/colors THEME_ORANGE_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_ORANGE/`$HOME/scripts/colors THEME_ORANGE`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_GREEN_DARK/`$HOME/scripts/colors THEME_GREEN_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GREEN_LIGHT/`$HOME/scripts/colors THEME_GREEN_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_GREEN/`$HOME/scripts/colors THEME_GREEN`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GREEN_DARK/`$HOME/scripts/colors THEME_GREEN_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GREEN_LIGHT/`$HOME/scripts/colors THEME_GREEN_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_GREEN/`$HOME/scripts/colors THEME_GREEN`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_BLUE_DARK/`$HOME/scripts/colors THEME_BLUE_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_BLUE_LIGHT/`$HOME/scripts/colors THEME_BLUE_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_BLUE/`$HOME/scripts/colors THEME_BLUE`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_BLUE_DARK/`$HOME/scripts/colors THEME_BLUE_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_BLUE_LIGHT/`$HOME/scripts/colors THEME_BLUE_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_BLUE/`$HOME/scripts/colors THEME_BLUE`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_CYAN_DARK/`$HOME/scripts/colors THEME_CYAN_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_CYAN_LIGHT/`$HOME/scripts/colors THEME_CYAN_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_CYAN/`$HOME/scripts/colors THEME_CYAN`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_CYAN_DARK/`$HOME/scripts/colors THEME_CYAN_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_CYAN_LIGHT/`$HOME/scripts/colors THEME_CYAN_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_CYAN/`$HOME/scripts/colors THEME_CYAN`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_PINK_DARK/`$HOME/scripts/colors THEME_PINK_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_PINK_LIGHT/`$HOME/scripts/colors THEME_PINK_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_PINK/`$HOME/scripts/colors THEME_PINK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PINK_DARK/`$HOME/scripts/colors THEME_PINK_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PINK_LIGHT/`$HOME/scripts/colors THEME_PINK_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PINK/`$HOME/scripts/colors THEME_PINK`/g" $WORKING_OUTPUT
 
-sed -i "s/THEME_PURPLE_DARK/`$HOME/scripts/colors THEME_PURPLE_DARK`/g" $WORKING_OUTPUT
-sed -i "s/THEME_PURPLE_LIGHT/`$HOME/scripts/colors THEME_PURPLE_LIGHT`/g" $WORKING_OUTPUT
-sed -i "s/THEME_PURPLE/`$HOME/scripts/colors THEME_PURPLE`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PURPLE_DARK/`$HOME/scripts/colors THEME_PURPLE_DARK`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PURPLE_LIGHT/`$HOME/scripts/colors THEME_PURPLE_LIGHT`/g" $WORKING_OUTPUT
+sed -i ".tmp" "s/THEME_PURPLE/`$HOME/scripts/colors THEME_PURPLE`/g" $WORKING_OUTPUT
 
 cmp --silent $WORKING_OUTPUT $OUTPUT \
   || (mv $WORKING_OUTPUT $OUTPUT && echo $UPDATE_MSG)

@@ -1,6 +1,11 @@
 *
 !/.aliases
 !/.config
+!/.config/Code
+!/.config/Code/User
+!/.config/Code/User/*.json
+!/.config/Code/User/snippets
+!/.config/Code/User/snippets/*
 !/.config/awesome
 !/.config/awesome/*
 !/.config/awesome/binding
@@ -8,12 +13,8 @@
 !/.config/awesome/deco
 !/.config/awesome/deco/*
 !/.config/awesome/main/*
-!/.config/Code
-!/.config/Code/User
-!/.config/Code/User/*.json
-!/.config/Code/User/snippets
-!/.config/Code/User/snippets/*
 !/.config/compton.conf
+!/.config/karabiner.edn
 !/.config/kitty
 !/.config/kitty/**
 !/.config/nvim
