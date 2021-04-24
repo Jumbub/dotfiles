@@ -63,7 +63,7 @@ alias gcop="git checkout -p"
 alias grb="git rebase"
 alias grbomi="git rebase origin/master -i"
 alias gr="git reset"
-alias grhom="git reset --hard origin/master"
+alias grH="git reset --hard"
 alias grh="git reset HEAD^"
 function grhom { git reset --hard "origin/`git symbolic-ref HEAD --short`" $@ };
 alias gst="git stash"
@@ -76,6 +76,11 @@ alias gap="git add -NpA"
 alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
+function gdB {
+  # Should probably only delete it remotely
+  # git branch -d $1
+  git push origin --delete $1
+}
 function ghd {
   $BROWSER $(~/scripts/branch-url)
 }

@@ -58,6 +58,7 @@ Plug 'wakatime/vim-wakatime' " Track development time
 " TODO: remove specific commit when the main channel is fixed
 Plug 'rktjmp/lush.nvim', {'commit': '9f720e13b3aa21eb28d4ac369f4408c68bfea266'} " Creating colour schemes
 Plug 'jupyter-vim/jupyter-vim' " Python testing
+Plug 'udalov/kotlin-vim' " Kotlin syntax highlighting
 
 " Order matters for the following plugins
 Plug 'tpope/vim-obsession' " Session management
@@ -171,7 +172,6 @@ if nvim_native_lsp
   nnoremap <leader>f <cmd>lua vim.lsp.buf.code_action({only={'quickfix'}})<CR>
 endif
 if nvim_coc
-  imap <silent><expr> <c-space> coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
   inoremap <silent><expr> <c-space> coc#refresh()

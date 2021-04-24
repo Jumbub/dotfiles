@@ -62,6 +62,7 @@ local theme = lush(function()
     light { bg=getColor('GRAY') },
     dark { bg=getColor('GRAY_DARK') },
     highlight { bg=getColor('GRAY_DARK') },
+    shadyDarker { fg=getColor('BLACK'), bg=getColor('GRAY_DARKER') }, -- Popup menu: scrollbar.
     shadyDark { fg=getColor('GRAY_DARKER'), bg=getColor('GRAY') }, -- Popup menu: scrollbar.
     shady { fg=getColor('GRAY_DARK'), bg=getColor('GRAY_LIGHT') }, -- Popup menu: selected item.
     shadyLight { fg=getColor('GRAY'), bg=getColor('GRAY_LIGHTER') }, -- Popup menu: Thumb of the scrollbar.
@@ -137,7 +138,7 @@ local theme = lush(function()
     SpecialKey   { irregular }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace| SpellBad  Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.  SpellCap  Word that should start with a capital. |spell| Combined with the highlighting used otherwise.  SpellLocal  Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { gui='undercurl' }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     StatusLine   { greenLc }, -- status line of current window
-    StatusLineNC { shadyDark }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLineNC { shadyDarker }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine      { shadyLight }, -- tab pages line, not active tab page label
     TabLineFill  { shadyDark }, -- tab pages line, where there are no labels
     TabLineSel   { irregular }, -- tab pages line, active tab page label

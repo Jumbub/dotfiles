@@ -25,5 +25,6 @@
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.suggest.completeFunctionCalls": false,
   "javascript.suggest.completeFunctionCalls": false,
-  "coc.preferences.extensionUpdateCheck": "never"
+  "coc.preferences.extensionUpdateCheck": "never",
+  "coc.preferences.useQuickfixForLocations": true
 }
