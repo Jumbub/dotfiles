@@ -1,12 +1,22 @@
 #!/usr/bin/env zsh
 
-alias c="cd"
+# Zsh
+function ctrlp () { cd $(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac) }
+alias src="source $HOME/.zshrc"
 
+# Shell
+function haveigot {
+  command -v $1 > /dev/null
+}
+
+# Kitty
+alias setFontSize="kitty @ set-font-size"
+alias img="kitty +kitten icat"
+
+# Neovim
 alias v="nvim"
-alias cleanvim="nvim -u NONE"
-alias vgs="gs | grep -Po \"(?<=modified:)[^']+\" | sed 's/ *//g' | rofi -dmenu -theme $HOME/.config/rofi/longCustomTheme.rasi | xargs nvim"
-
 alias va="nvim $HOME/.aliases"
+alias vb="nvim $HOME/.bindings"
 alias vma="nvim $HOME/.machine-aliases"
 alias vinstall="nvim $HOME/scripts/install"
 alias vreplace="nvim $HOME/scripts/replace"
@@ -18,30 +28,7 @@ alias vk="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
 alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
 alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
-alias kittyTinyFont="kitty @ set-font-size 10"
-alias kittySmallFont="kitty @ set-font-size 12"
-alias kittyNormalFont="kitty @ set-font-size 14"
-
-alias src="source $HOME/.zshrc"
-
-function watchdo {
-  rg -l "." --no-ignore | entr -c -r -s $@
-}
-
-function haveigot {
-  command -v $1 > /dev/null
-}
-
-function jt {
-  sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
-}
-
-alias l="exa -l"
-alias ls="exa"
-alias la="exa -al"
-
-function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
-
+# Git
 alias gl="git log"
 alias gm="git merge"
 alias gmom="git fetch && git merge origin/master"
@@ -76,30 +63,25 @@ alias gap="git add -NpA"
 alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
-function gdB {
-  # Should probably only delete it remotely
-  # git branch -d $1
-  git push origin --delete $1
-}
 function ghd {
   $BROWSER $(~/scripts/branch-url)
 }
-function grdaysago {
-  echo 'Current changes will be stashed' && confirm && git stash && git reset --hard $1@{$2.days.ago}
+
+# Jira
+function jt {
+  sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
 }
+function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
 
-alias img="kitty +kitten icat"
+# Exa
+alias l="exa -l"
+alias ls="exa"
+alias la="exa -al"
 
-function kk { kittySmallFont && k9s $@ && kittyNormalFont }
-
+# Dotfiles
 source $HOME/scripts/dotfiles
 
-if [ -f $HOME/.machine-aliases ]
-then
-  source $HOME/.machine-aliases
-fi
-
-# Code pad helper
+# Code pad
 function pad {
   local CODEPAD="$HOME/repos/codepad/codepad"
 
@@ -110,3 +92,9 @@ function pad {
     $CODEPAD $@
   fi
 }
+
+# Machine specific aliases
+if [ -f $HOME/.machine-aliases ]
+then
+  source $HOME/.machine-aliases
+fi
