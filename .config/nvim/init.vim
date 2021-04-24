@@ -117,8 +117,6 @@ nnoremap <leader>ss :F  <backspace>
 nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 1)<CR>
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 1)<CR>
 nnoremap <silent> <expr> <leader>m bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
-nnoremap <silent> <leader><leader>p :Restart<CR>
-nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>p :call fzf#run({'source': 'find ~/workspaces/vim/*', 'sink': 'Prosession', 'down': '10', 'options': '--tiebreak=end'})<CR>
 nnoremap <silent> <leader>vp :Prosession ~/workspaces/vim/%home%jamie%.config%nvim.vim<CR>
 vmap / /\c
@@ -143,7 +141,6 @@ nmap <leader>dl <Plug>VimspectorStepOver
 nmap <leader>dj <Plug>VimspectorStepInto
 nmap <leader>dk <Plug>VimspectorStepOut
 nmap <leader>dh <Plug>VimspectorRestart
-" nnoremap <space> :call vimspector#Continue()<CR>
 nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
@@ -160,7 +157,6 @@ if nvim
   imap <s-tab> <Plug>(completion_smart_s_tab)
 endif
 if nvim_native_lsp
-  " nnoremap gH <cmd>lua vim.lsp.buf.signature_help()<CR>
   nnoremap gH <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
   nnoremap gS <cmd>lua vim.lsp.buf.document_symbol()<CR>
   nnoremap gs <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
@@ -200,7 +196,6 @@ if nvim_coc
 endif
 
 command! FF Neoformat prettier " Format file
-command! Restart call <sid>vim_quit_and_restart() " Restart vim
 
 function! SynStack ()
     for i1 in synstack(line("."), col("."))
@@ -212,20 +207,6 @@ function! SynStack ()
 endfunction
 
 command What :exec "call SynStack() \n TSHighlightCapturesUnderCursor"
-
-" Restart vim (requires the following setup)
-" ```sh
-" trap __catch_signal_usr1 USR1
-" __catch_signal_usr1() { trap __catch_signal_usr1 USR1; vim; }
-" ```
-function! s:vim_quit_and_restart() abort
-  if (&mod)
-    echo "Warning: cannot restart nvim when there are changes."
-  else
-    sil call system('kill -USR1 $(ps -p '.getpid().' -o ppid=)')
-    qa!
-  endif
-endfunction
 
 function! GotoWindow(id)
     call win_gotoid(a:id)
