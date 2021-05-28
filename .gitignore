@@ -1,4 +1,6 @@
 *
+!/.ssh/
+!/.ssh/config
 !/.aliases
 !/.config
 !/.config/awesome
