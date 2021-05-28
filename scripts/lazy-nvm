@@ -9,8 +9,7 @@ REQUIRE_NVM_SOURCE+=("yarn")
 # Lazy source nvm when using nvm apps
 load_nvm () {
   echo "🚨 NVM not loaded! Loading now..."
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  source /usr/share/nvm/init-nvm.sh
 }
 
 # Making node global trigger the lazy loading
