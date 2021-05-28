@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+# Edit command in vim
+autoload -U edit-command-line
+bindkey '^j' edit-command-line
+
+# Show recent file explorer
+function _ctrlp {
+  BUFFER="ctrlp"
+  zle accept-line
+}
+zle -N _ctrlp
+bindkey '^p' _ctrlp
+
+# Go to previous file
+# function _ctrloi {
+#   BUFFER="cd -"
+#   zle accept-line
+# }
+# zle -N _ctrloi
+# bindkey '^o' _ctrloi
+# bindkey '^i' _ctrloi
