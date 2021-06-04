@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-yarn config set prefix ~/.yarn
-yarn global add prettier\
-  typescript\
-  intelephense\
-

@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-google-chrome-stable --new-window open.spotify.com

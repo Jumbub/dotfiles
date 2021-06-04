@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+# Install packages
+sudo pacman --needed --noconfirm -S\
+  awesome\
+  awesome-freedesktop\
+  base-devel\
+  exa\
+  git\
+  imagemagick\
+  jq\
+  kitty\
+  nvm\
+  noto-fonts-emoji\
+  redshift\
+  ripgrep\
+  rofi\
+  xclip\
+  xdotool\
+  yarn\
+  yay
+
+yay --needed --noconfirm -S\
+  google-chrome\
+  neovim-git\
+  zsa-wally
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
