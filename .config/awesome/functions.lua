@@ -329,7 +329,7 @@ f.setupScreens = function (screen)
         layout = wibox.layout.fixed.horizontal,
         require("awesome-wm-widgets.cpu-widget.cpu-widget")(),
         require("awesome-wm-widgets.ram-widget.ram-widget")(),
-        wibox.widget.systray(),
+        require("awesome-wm-widgets.volume-widget.volume")({widget_type='arc'}),
         f.clockWidget()
       }
     }

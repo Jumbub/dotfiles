@@ -21,6 +21,7 @@ sudo pacman --needed --noconfirm -S\
   yay
 
 yay --needed --noconfirm -S\
+  rofi-greenclip\
   google-chrome\
   neovim-git\
   zsa-wally
