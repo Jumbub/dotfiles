@@ -163,7 +163,7 @@ f.setupGlobalBindings = function ()
 end
 
 f.setupLayouts = function ()
-  awful.layout.layouts = { awful.layout.suit.tile }
+  awful.layout.layouts = { awful.layout.suit.tile, awful.layout.suit.max }
 end
 
 f.clientKeyBindings = function()
@@ -172,7 +172,7 @@ f.clientKeyBindings = function()
     awful.key({ modkey }, "x",  function (c) c:kill() end),
     awful.key({ modkey }, "o",  function (c) c:move_to_screen() end),
     awful.key({ modkey }, "n", function (c) c.minimized = true end),
-    awful.key({ modkey }, "m", function (c) c.maximized = not c.maximized c:raise() end),
+    awful.key({ modkey }, "m", function () awful.layout.inc(1) end),
 
     awful.key({ modkey, "Control" }, "h", function (c)
       awful.client.setmaster(c)
