@@ -43,7 +43,7 @@ then
     echo $runner | zsh &
     if [ "true" = "$notify" ]
     then
-      notify-send "Started: $runner" &
+      # notify-send "Started: $runner" &
     fi
   fi
 else
