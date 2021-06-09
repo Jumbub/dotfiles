@@ -22,6 +22,7 @@ haveigot kitty && source <(kitty + complete setup zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NVM
+source /usr/share/nvm/init-nvm.sh
 source $HOME/scripts/lazy-nvm
 
 # Kitty (generate theme)
