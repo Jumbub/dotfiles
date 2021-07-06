@@ -173,6 +173,7 @@ f.clientKeyBindings = function()
     awful.key({ modkey }, "o",  function (c) c:move_to_screen() end),
     awful.key({ modkey }, "n", function (c) c.minimized = true end),
     awful.key({ modkey }, "m", function () awful.layout.inc(1) end),
+    awful.key({ modkey, "Shift" }, "m", function (c) c.maximized = not c.maximized c:raise() end),
 
     awful.key({ modkey, "Control" }, "h", function (c)
       awful.client.setmaster(c)
