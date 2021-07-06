@@ -50,7 +50,8 @@ alias gf="git fetch"
 alias glp="git log -p"
 alias gp="git push"
 alias gpl="git pull"
-alias ggp="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
+alias gbranch="git branch | grep \\* | cut -d ' ' -f2"
+function ggp { git push --set-upstream origin `gbranch` }
 alias gca="git commit --amend"
 alias gc="git commit"
 alias gclean="git clean -f -d"
@@ -77,7 +78,7 @@ alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
 function ghd {
-  $BROWSER $(~/scripts/branch-url)
+  open -a "Google Chrome" $(~/scripts/branch-url)
 }
 function grdaysago {
   echo 'Current changes will be stashed' && confirm && git stash && git reset --hard $1@{$2.days.ago}

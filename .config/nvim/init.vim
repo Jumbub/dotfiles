@@ -41,6 +41,7 @@ call plug#begin('~/.local/share/nvim/plugged') " Setup plugin manager install di
 " Plug 'puremourning/vimspector' " Debug Inspector
 " Plug 'szw/vim-maximizer' " Maximising windows (primarily for vimspector)
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim' " Format definitions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fzf
@@ -85,13 +86,13 @@ call plug#end() " Finish setting up plugins
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:marvim_find_key = ',@' " Find macro
-let g:marvim_store = '$HOME/.config/nvim/macros' " Set store location
+let g:marvim_store = '~/.config/nvim/macros' " Set store location
 let g:marvim_store_key = ',q' " Save macro
 let g:mkdp_auto_close = 1
 let g:neoformat_enabled_php = ['phpcbf']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_only_msg_on_error = 1 " Throw error on failed formatting
-let g:prosession_dir = 'workspaces/vim/' " Set the directory to create prosessions
+let g:prosession_dir = '~/workspaces/vim/' " Set the directory to create prosessions
 let g:completion_enable_auto_popup=1 " Live auto-complete
 let g:completion_confirm_key = "\<C-y>"
 let g:completion_enable_auto_popup=1
@@ -242,7 +243,7 @@ augroup Jumbub
   " Reset auto-commands when re-sourcing the rc
   au!
   " Prettier auto formatting
-  au BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
+  " au BufWritePre *.tsx,*.ts,*.js :Neoformat prettier
   " Picom autoreload config changes
   au BufWritePost picom.conf !pkill -USR1 picom || (picom &)
   " Automatically assign some arbitrary file types
@@ -250,7 +251,7 @@ augroup Jumbub
   " Setup vim inspector plugin
   au VimEnter * :packadd! vimspector
   " Test awesome window manager
-  au BufWritePost $HOME/.config/awesome/* !$HOME/scripts/testWindowManager.sh
+  au BufWritePost ~/.config/awesome/* !~/scripts/testWindowManager.sh
   " Show errors after x amount of time
   " au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 augroup END
@@ -273,7 +274,7 @@ if nvim_native_lsp
   " C/C++
   lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach };
   " C#
-  lua local pid = vim.fn.getpid(); local omnisharpBin = "$HOME/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
+  lua local pid = vim.fn.getpid(); local omnisharpBin = "~/asdf/omnisharp/OmniSharp.exe"; require'lspconfig'.omnisharp.setup{ cmd={ omnisharpBin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach=require'completion'.on_attach }
   " Python
   lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach };
 

@@ -6,8 +6,8 @@ source /usr/local/opt/asdf/asdf.sh
 # Environment
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-export TERMINAL="kitty"
-export BROWSER="google-chrome-stable"
+export TERMINAL="/Applications/kitty.app"
+export BROWSER="/Applications/Google Chrome.app"
 
 # Paths
 function addToPath() {
@@ -35,6 +35,8 @@ source $HOME/.aliases
 source $HOME/scripts/colors
 
 # Fzf
+export FZF_DEFAULT_COMMAND='rg -l ".*" --files *'
+export FZF_DEFAULT_SORT=9999999
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # https://github.com/robbyrussell/oh-my-zsh/issues/7426
