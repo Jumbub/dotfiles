@@ -61,3 +61,4 @@
 !workspaces/vim/awesome.vim
 !workspaces/vim/i3.vim
 !workspaces/vim/kitty.vim
+/.config/kitty/machine.conf
