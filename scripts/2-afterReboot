@@ -10,6 +10,7 @@ sudo pacman --needed --noconfirm -S\
   imagemagick\
   jq\
   kitty\
+  neovim\
   nvm\
   noto-fonts-emoji\
   redshift\
@@ -23,7 +24,6 @@ sudo pacman --needed --noconfirm -S\
 yay --needed --noconfirm -S\
   rofi-greenclip\
   google-chrome\
-  neovim-git\
   zsa-wally
 
 # Install oh-my-zsh
