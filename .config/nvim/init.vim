@@ -49,6 +49,7 @@ Plug 'mhinz/vim-signify' " Inline git line statuses
 Plug 'sbdchd/neoformat' " Auto formatter
 Plug 'scrooloose/nerdtree' " Directory tree
 Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
+Plug 'dhruvasagar/vim-open-url' " Open URL in browser
 Plug 'tpope/vim-abolish' " Word modifiation
 Plug 'tpope/vim-commentary' " Quick comments
 Plug 'tpope/vim-eunuch' " File helpers
@@ -84,6 +85,7 @@ endif
 
 call plug#end() " Finish setting up plugins
 
+let g:open_url_browser_default = 'google-chrome-stable' " Open URL browser
 let g:NERDTreeQuitOnOpen = 1 " Close tree on opening a file
 let g:NERDTreeWinSize = 60 " Size of frame
 let g:marvim_find_key = ',@' " Find macro

@@ -67,6 +67,11 @@ function ghd {
   $BROWSER $(~/scripts/branch-url)
 }
 
+# Kubernetes
+alias kc="kubectl"
+alias kx="kubectx"
+alias kn="kubens"
+
 # Jira
 function jt {
   sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
