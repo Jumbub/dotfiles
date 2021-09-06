@@ -2,7 +2,7 @@ configuration {
 	display-drun:    "Activate";
 	display-run:     "Execute";
 	display-window:  "Window";
-	show-icons:      true;
+	show-icons:      false;
 }
 
 * {
@@ -55,4 +55,9 @@ element {
 
 element selected {
   color: @FOREGROUND;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
 }
