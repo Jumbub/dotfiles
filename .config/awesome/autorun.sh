@@ -15,4 +15,4 @@ $run --notify "greenclip daemon" "greenclip"
 $run --notify "picom"
 
 # Bluetooth
-$run --notify "blueman-tray"
+$run --notify "blueman-applet"
