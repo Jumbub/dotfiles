@@ -7,6 +7,37 @@
 # git untracked files modification from Brian Carper:
 # https://briancarper.net/blog/570/git-info-in-your-zsh-prompt
 
+# Kubernetes stuff
+function get_cluster_short() {
+  shortName=$(echo "$1" | rg -o "[\w-]*$")
+  if [[ "$shortName" != "minikube" ]]
+  then
+    tput setaf 15
+    echo -n " on "
+    tput setaf 1
+    echo -n "$shortName"
+  fi
+  echo "\0"
+}
+function get_namespace() {
+  if [[ "$1" != "default" ]]
+  then
+    tput setaf 15
+    echo -n " in "
+    tput setaf 14
+    echo -n "$1"
+  fi
+  echo "\0"
+}
+KUBE_PS1_PREFIX=""
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+KUBE_PS1_NAMESPACE_FUNCTION=get_namespace
+KUBE_PS1_SUFFIX=""
+KUBE_PS1_DIVIDER=""
+source /opt/kube-ps1/kube-ps1.sh
+# Kubernetes stuff end
+
 local exit_code="%(?..%{exited %F{red}$R%}%?%f)"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -101,5 +132,5 @@ function steeef_precmd {
 add-zsh-hook precmd steeef_precmd
 
 PROMPT=$'
-%{$purple%}%n${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)${exit_code}
+%{$purple%}%n${PR_RST} in %{$limegreen%}%~${PR_RST}$(kube_ps1) $vcs_info_msg_0_$(virtualenv_info)${exit_code}
 ⚡ '
