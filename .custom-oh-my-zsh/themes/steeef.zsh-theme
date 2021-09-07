@@ -13,7 +13,7 @@ function get_cluster_short() {
   if [[ "$shortName" != "minikube" ]]
   then
     tput setaf 15
-    echo -n " on "
+    echo -n " cluster "
     tput setaf 1
     echo -n "$shortName"
   fi
@@ -23,7 +23,7 @@ function get_namespace() {
   if [[ "$1" != "default" ]]
   then
     tput setaf 15
-    echo -n " in "
+    echo -n " namespace "
     tput setaf 14
     echo -n "$1"
   fi
