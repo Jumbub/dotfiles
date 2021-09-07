@@ -17,6 +17,7 @@ haveigot minikube && source <(minikube completion zsh)
 haveigot kubectl && source <(kubectl completion zsh)
 haveigot helm && source <(helm completion zsh)
 haveigot kitty && source <(kitty + complete setup zsh)
+haveigot argocd && source <(argocd completion zsh)
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -27,3 +28,6 @@ source $HOME/scripts/lazy-nvm
 
 # Kitty (generate theme)
 ($HOME/scripts/kitty-theme-generator &)
+
+# MAN pager
+export MANPAGER="nvim -c 'set ft=man' -"
