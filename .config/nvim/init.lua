@@ -7,8 +7,9 @@
   vim.o.statusline = '%<%f  %h%m%r%=%(%l,%c%V%)' -- Status line text
   vim.o.swapfile = false -- Don't bother using swap files
   vim.o.termguicolors = true -- Use terminal colours
-  vim.o.undodir = '~/.vim/undodir' -- Set undo history file
+  vim.o.undodir = '/home/jamie/.vim/undodir' -- Set undo history file
   vim.o.undofile = true -- Persist undo history between sessions
+  vim.o.rtp = vim.o.rtp .. ',/home/jamie/.config/nvim/lush-template' -- Load local colour scheme
   -- vim.o.cmdheight = 2 -- Avoid the 'hit enter' prompt caused by multi line commands
 end)();
 
@@ -26,6 +27,10 @@ require('packer').startup(function()
   use 'tpope/vim-surround' -- Word wapping
   use 'wakatime/vim-wakatime' -- Track development time
   use 'wbthomason/packer.nvim' -- Package manager
+  use 'rktjmp/lush.nvim' -- Colour scheme helper
+
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- Language parser
+  require'nvim-treesitter.configs'.setup { ensure_installed = 'maintained', highlight = { enable = true } };
 
   use 'karb94/neoscroll.nvim' -- Smooth scroll
   require('neoscroll').setup()
@@ -39,7 +44,7 @@ require('packer').startup(function()
     ['zb'] = {'zb', {'50'}},
   })
 
-  use { 'dhruvasagar/vim-prosession', opt = true, requires = {  -- Better session management
+  use { 'dhruvasagar/vim-prosession', requires = {  -- Better session management
     use 'tpope/vim-obsession' -- Session management
   }}
   vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
@@ -101,13 +106,13 @@ end)();
   -- Better undo
   vim.api.nvim_set_keymap('n', 'U', ':redo<CR>', {silent=true, noremap=true})
 
-  -- Case insenstive searching
+  -- Case insenstive search
   vim.api.nvim_set_keymap('n', '/', '/\\c', {})
   vim.api.nvim_set_keymap('n', '?', '?\\c', {})
   vim.api.nvim_set_keymap('v', '/', '/\\c', {})
   vim.api.nvim_set_keymap('v', '?', '?\\c', {})
 
-  -- Search
+  -- Fuzzy word search
   vim.api.nvim_set_keymap('n', '<leader>j', ':Rg <CR>', {})
   vim.api.nvim_set_keymap('v', '<leader>j', '"sy:Rg <C-r>s<CR>', {})
 
@@ -128,8 +133,31 @@ end)();
   vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', {})
 end)();
 
--- Smooth scrolling
+-- Colours
 (function()
+  require('monokai').classic.white = os.getenv('THEME_WHITE')
+  require('monokai').classic.black = os.getenv('THEME_BLACK')
+  require('monokai').classic.base1 = os.getenv('THEME_GRAY_DARKER_STILL')
+  require('monokai').classic.base2 = os.getenv('THEME_BLACK')
+  require('monokai').classic.base3 = os.getenv('THEME_GRAY_DARK')
+  require('monokai').classic.base4 = os.getenv('THEME_GRAY')
+  require('monokai').classic.base5 = os.getenv('THEME_GRAY_LIGHT')
+  require('monokai').classic.base6 = os.getenv('THEME_GRAY_LIGHTER')
+  require('monokai').classic.base7 = os.getenv('THEME_GRAY_LIGHTER_STILL')
+  require('monokai').classic.border = os.getenv('THEME_GRAY')
+  require('monokai').classic.brown = os.getenv('THEME_GRAY')
+  require('monokai').classic.grey = os.getenv('THEME_GREY')
+  require('monokai').classic.pink = os.getenv('THEME_RED')
+  require('monokai').classic.green = os.getenv('THEME_GREEN')
+  require('monokai').classic.aqua = os.getenv('THEME_BLUE')
+  require('monokai').classic.yellow = os.getenv('THEME_YELLOW')
+  require('monokai').classic.orange = os.getenv('THEME_ORANGE')
+  require('monokai').classic.purple = os.getenv('THEME_PURPLE')
+  require('monokai').classic.red = os.getenv('THEME_RED')
+  require('monokai').classic.diff_add = os.getenv('THEME_GRAY_LIGHT')
+  require('monokai').classic.diff_remove = os.getenv('THEME_RED')
+  require('monokai').classic.diff_change = os.getenv('THEME_YELLOW')
+  require('monokai').classic.diff_text = os.getenv('THEME_GRAY_LIGHT')
 
-  vim.cmd('colorscheme monokai')
+  vim.cmd('colorscheme monokai') -- Use local colour scheme
 end)();
