@@ -23,6 +23,7 @@ sudo pacman --needed --noconfirm -S\
 
 yay --needed --noconfirm -S\
   rofi-greenclip\
+  nvim-packer-git\
   google-chrome\
   zsa-wally
 
