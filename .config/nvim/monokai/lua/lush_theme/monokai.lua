@@ -159,58 +159,6 @@ local theme = lush(function()
 
     ------------------------------------ Tree Sitter ------------------------------------
 
-    -- TSAnnotation         { };    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-    -- TSAttribute          { };    -- (unstable) TODO: docs
-    -- TSBoolean            { };    -- For booleans.
-    -- TSCharacter          { };    -- For characters.
-    -- TSComment            { };    -- For comment blocks.
-    -- TSConditional        { };    -- For keywords related to conditionnals.
-    -- TSConstBuiltin       { };    -- For constant that are built in the language: `nil` in Lua.
-    -- TSConstMacro         { };    -- For constants that are defined by macros: `NULL` in C.
-    -- TSConstant           { };    -- For constants
-    -- TSConstructor        { };    -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
-    -- TSEmphasis           { };    -- For text to be represented with emphasis.
-    -- TSError              { };    -- For syntax/parser errors.
-    -- TSException          { };    -- For exception related keywords.
-    -- TSField              { };    -- For fields.
-    -- TSFloat              { };    -- For floats.
-    -- TSFuncBuiltin        { };    -- For builtin functions: `table.insert` in Lua.
-    -- TSFuncMacro          { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    -- TSFunction           { };    -- For function (calls and definitions).
-    -- TSInclude            { };    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    -- TSKeyword            { };    -- For keywords that don't fall in previous categories.
-    -- TSKeywordFunction    { };    -- For keywords used to define a fuction.
-    -- TSLabel              { };    -- For labels: `label:` in C and `:label:` in Lua.
-    -- TSLiteral            { };    -- Literal text.
-    -- TSMethod             { };    -- For method calls and definitions.
-    -- TSNamespace          { };    -- For identifiers referring to modules and namespaces.
-    -- TSNone               { };    -- TODO: docs
-    -- TSNumber             { };    -- For all numbers
-    -- TSOperator           { };    -- For any operator: `+`, but also `->` and `*` in C.
-    -- TSParameter          { };    -- For parameters of a function.
-    -- TSParameterReference { };    -- For references to parameters of a function.
-    -- TSProperty           { };    -- Same as `TSField`.
-    -- TSPunctBracket       { };    -- For brackets and parens.
-    -- TSPunctDelimiter     { };    -- For delimiters ie: `.`
-    -- TSPunctSpecial       { };    -- For special punctutation that does not fall in the catagories before.
-    -- TSRepeat             { };    -- For keywords related to loops.
-    -- TSStrike             { };    -- For strikethrough text.
-    -- TSString             { };    -- For strings.
-    -- TSStringEscape       { };    -- For escape characters within a string.
-    -- TSStringRegex        { };    -- For regexes.
-    -- TSSymbol             { };    -- For identifiers referring to symbols or atoms.
-    -- TSTag                { };    -- Tags like html tag names.
-    -- TSTagDelimiter       { };    -- Tag delimiter like `<` `>` `/`
-    -- TSText               { };    -- For strings considered text in a markup language.
-    -- TSTitle              { };    -- Text that is part of a title.
-    -- TSType               { };    -- For types.
-    -- TSTypeBuiltin        { };    -- For builtin types.
-    -- TSURI                { };    -- Any URI like a link or email.
-    -- TSUnderline          { };    -- For text to be represented with an underline.
-    -- TSVariable           { };    -- Any variable name that does not have another highlight.
-    -- TSVariableBuiltin    { };    -- Variable names that are defined by the languages, like `this` or `self`.
-
-
     TSAnnotation         { red }, -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
     TSBoolean            { purple }, -- For booleans.
     TSCharacter          { yellow }, -- For characters.
@@ -239,7 +187,6 @@ local theme = lush(function()
     TSParameter          { orange }, -- For parameters of a function.
     TSParameterReference { orange }, -- For references to parameters of a function.
     TSProperty           { regular }, -- Same as `TSField`.
-    TSPunctBracket       { }, -- For brackets and parens.
     TSPunctDelimiter     { regular }, -- For delimiters ie: `.`
     TSPunctSpecial       { regular }, -- For special punctutation that does not fall in the catagories before.
     TSRepeat             { red }, -- For keywords related to loops.
@@ -257,6 +204,12 @@ local theme = lush(function()
     TSUnderline          { regular, gui="underline" }, -- For text to be represented with an underline.
     TSVariable           { regular }, -- Any variable name that does not have another highlight.
     TSVariableBuiltin    { orange }, -- Variable names that are defined by the languages, like `this` or `self`.
+    -- TSStrike             { };    -- For strikethrough text.
+    -- TSStrike             { };    -- For strikethrough text.
+    -- TSComment            { };    -- For comment blocks.
+    -- TSAttribute          { };    -- (unstable) TODO: docs
+    -- TSNone               { };    -- TODO: docs
+    -- TSPunctBracket       { }, -- For brackets and parens.
   }
 end)
 
