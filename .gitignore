@@ -31,10 +31,6 @@
 !/.config/sublime-text-3/Packages/User
 !/.config/sublime-text-3/Packages/User/*.sublime-keymap
 !/.config/sublime-text-3/Packages/User/*.sublime-settings
-!/.custom-oh-my-zsh
-!/.custom-oh-my-zsh/*
-!/.custom-oh-my-zsh/themes
-!/.custom-oh-my-zsh/themes/*
 !/.editorconfig
 !/.gitignore
 !/.k9s
