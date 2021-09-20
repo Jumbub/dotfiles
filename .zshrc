@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
+# PowerLevel10k Instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ZSH
-ZSH_THEME="steeef"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions zsh-z zsh-nvm)
 source $ZSH/oh-my-zsh.sh
@@ -27,3 +32,6 @@ haveigot argocd && source <(argocd completion zsh)
 
 # MAN pager
 export MANPAGER="nvim -c 'set ft=man' -"
+
+# Prompt
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
