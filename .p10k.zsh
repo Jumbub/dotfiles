@@ -34,16 +34,7 @@
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
-    # =========================[ Line #2 ]=========================
-    newline                 # \n
-    prompt_char             # prompt symbol
-  )
 
-  # The list of segments shown on the right. Fill it with less important segments.
-  # Right prompt on the last prompt line (where you are typing your commands) gets
-  # automatically hidden when the input line reaches it. Right prompt above the
-  # last prompt line gets hidden if it would overlap with left prompt.
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # status                  # exit code of the last command
     # command_execution_time  # duration of the last command
@@ -101,14 +92,27 @@
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # time                  # current time
     # =========================[ Line #2 ]=========================
-    newline                 # \n
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+
+
+    # =========================[ Line #2 ]=========================
+    newline                 # \n
+    prompt_char             # prompt symbol
+
+
+
   )
+
+  # The list of segments shown on the right. Fill it with less important segments.
+  # Right prompt on the last prompt line (where you are typing your commands) gets
+  # automatically hidden when the input line reaches it. Right prompt above the
+  # last prompt line gets hidden if it would overlap with left prompt.
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
@@ -173,11 +177,11 @@
     # Add a space between the end of left prompt and the filler.
     typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=' '
     # Add a space between the filler and the start of right prompt.
-    typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=' '
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
     # Start filler from the edge of the screen if there are no left segments on the first line.
     typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_FIRST_SEGMENT_END_SYMBOL='%{%}'
     # End filler on the edge of the screen if there are no right segments on the first line.
-    typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
+    typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
   fi
 
   #################################[ os_icon: os identifier ]##################################
@@ -191,7 +195,7 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=2
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=1
-  # Default prompt symbol.
+  # Default prompt symbol.🔰
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='⚡'
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='⚡'
@@ -207,17 +211,17 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=4
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=2
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=4
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=2
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=4
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=2
   # Set to true to display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -345,7 +349,7 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='%fon '
+  # typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='%fon '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -371,11 +375,11 @@
 
     if (( $1 )); then
       # Styling for up-to-date Git status.
-      local       meta='%f'   # default foreground
-      local      clean='%2F'  # green foreground
-      local   modified='%3F'  # yellow foreground
-      local  untracked='%3F'  # blue foreground
-      local conflicted='%1F'  # red foreground
+      local       meta='%f'
+      local      clean='%2F'
+      local   modified='%3F'
+      local  untracked='%1F'
+      local conflicted='%1F'
     else
       # Styling for incomplete and stale Git status.
       local       meta='%f'  # default foreground
@@ -393,7 +397,7 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      res+="%4F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
     fi
 
     if [[ -n $VCS_STATUS_TAG
@@ -412,7 +416,7 @@
     # Display the current Git commit if there is no branch and no tag.
     # Tip: To always display the current Git commit, delete the next line.
     [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]] &&  # <-- this line
-      res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+      res+="${meta}${clean}${VCS_STATUS_COMMIT[1,8]}"
 
     # Show tracking branch name if it differs from local branch.
     if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
@@ -424,36 +428,38 @@
       res+=" ${modified}wip"
     fi
 
-    # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
-    # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
-    (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
-    # ⇠42 if behind the push remote.
-    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
-    # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
-    # *42 if have stashes.
-    (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
-    # 'merge' if the repo is in an unusual state.
-    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
     # ~42 if have merge conflicts.
     (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
     # +42 if have staged changes.
-    (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    (( VCS_STATUS_NUM_STAGED     )) && res+="${clean}•"
     # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED   )) && res+="${modified}•"
     # ?42 if have untracked files. It's really a question mark, your font isn't broken.
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
-    (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+    (( VCS_STATUS_NUM_UNTRACKED  )) && res+="${untracked}•"
     # "─" if the number of unstaged files is unknown. This can happen due to
     # POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY (see below) being set to a non-negative number lower
     # than the number of files in the Git index, or due to bash.showDirtyState being set to false
     # in the repository config. The number of staged and untracked files may also be unknown
     # in this case.
     (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
+
+    # *42 if have stashes.
+    # (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+    # 'merge' if the repo is in an unusual state.
+    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}(${VCS_STATUS_ACTION})"
+
+    # ⇣42 if behind the remote.
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${meta}behind ${conflicted}${VCS_STATUS_COMMITS_BEHIND}"
+    # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
+    (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+=" ${meta}ahead ${clean}${VCS_STATUS_COMMITS_AHEAD}"
+    # ⇠42 if behind the push remote.
+    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
+    # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
 
     typeset -g my_git_format=$res
   }
@@ -487,7 +493,7 @@
   # Custom icon.
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
-  # typeset -g POWERLEVEL9K_VCS_PREFIX='%fon '
+  typeset -g POWERLEVEL9K_VCS_PREFIX='%fon '
 
   # Show status of repositories of these types. You can add svn and/or hg if you are
   # using them. If you do, your prompt may become slow even when your current directory
@@ -1189,13 +1195,17 @@
   # You can define different colors, icons and content expansions for different classes:
   #
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=3
-  #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
   typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
-      # '*prod*'  PROD    # These values are examples that are unlikely
-      # '*test*'  TEST    # to match your needs. Customize them as needed.
+      '*prod*'  PROD    # These values are examples that are unlikely
+      '*dev*'  DEV    # to match your needs. Customize them as needed.
+      '*ci*'  CI    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=5
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=7
+  typeset -g POWERLEVEL9K_KUBECONTEXT_CI_FOREGROUND=2
+
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEV_FOREGROUND=5
+  typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=1
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
@@ -1245,7 +1255,7 @@
   POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
 
   # Custom prefix.
-  # typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%fat '
+  typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%fto '
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
   # Don't show terraform workspace if it's literally "default".
@@ -1607,7 +1617,7 @@
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
   # really need it.
-  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=false
 
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
