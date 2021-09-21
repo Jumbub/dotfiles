@@ -428,8 +428,6 @@
       res+=" ${modified}wip"
     fi
 
-    # ~42 if have merge conflicts.
-    (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
     # +42 if have staged changes.
     (( VCS_STATUS_NUM_STAGED     )) && res+="${clean}•"
     # !42 if have unstaged changes.
@@ -438,6 +436,8 @@
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
     (( VCS_STATUS_NUM_UNTRACKED  )) && res+="${untracked}•"
+    # ~42 if have merge conflicts.
+    (( VCS_STATUS_NUM_CONFLICTED )) && res+="${conflicted}!${VCS_STATUS_NUM_CONFLICTED}"
     # "─" if the number of unstaged files is unknown. This can happen due to
     # POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY (see below) being set to a non-negative number lower
     # than the number of files in the Git index, or due to bash.showDirtyState being set to false
@@ -459,7 +459,7 @@
     (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
     (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
     # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+=" ${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
 
     typeset -g my_git_format=$res
   }

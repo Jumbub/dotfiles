@@ -2,6 +2,7 @@
 do
   vim.o.clipboard = 'unnamedplus' -- Share clipboard with system
   vim.o.inccommand = 'split' -- Show substitude command effects as you type
+  vim.o.number = true -- Show curernt line number
   vim.o.relativenumber = true -- Use relative line numbers
   vim.o.signcolumn = 'yes' -- Always display gutter (prevent git gutter from bouncing on save
   vim.o.statusline = '%<%f  %h%m%r%=%(%l,%c%V%)' -- Status line text
@@ -27,6 +28,7 @@ require('packer').startup(function()
   use 'tpope/vim-surround' -- Word wapping
   use 'wakatime/vim-wakatime' -- Track development time
   use 'wbthomason/packer.nvim' -- Package manager
+  use 'christianrondeau/vim-base64' -- Encoding base64 strings
 
   -- Visuals
   use 'rktjmp/lush.nvim' -- Colour scheme helper

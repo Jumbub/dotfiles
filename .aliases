@@ -9,6 +9,9 @@ function haveigot {
   command -v $1 > /dev/null
 }
 
+# XClip
+alias xcp="xclip -sel clip"
+
 # Kitty
 alias setFontSize="kitty @ set-font-size"
 alias img="kitty +kitten icat"
