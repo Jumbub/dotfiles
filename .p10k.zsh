@@ -1199,7 +1199,7 @@
   typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
       '*prod*'  PROD    # These values are examples that are unlikely
       '*dev*'  DEV    # to match your needs. Customize them as needed.
-      '*ci*'  CI    # to match your needs. Customize them as needed.
+      '*Default*'  CI    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
   typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=7
   typeset -g POWERLEVEL9K_KUBECONTEXT_CI_FOREGROUND=2

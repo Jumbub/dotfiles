@@ -5,7 +5,7 @@ do
   vim.o.number = true -- Show curernt line number
   vim.o.relativenumber = true -- Use relative line numbers
   vim.o.signcolumn = 'yes' -- Always display gutter (prevent git gutter from bouncing on save
-  vim.o.statusline = '%<%f  %h%m%r%=%(%l,%c%V%)' -- Status line text
+  vim.o.statusline = '%<%f  %h%m%r%=%(%l,%c%)' -- Status line text
   vim.o.swapfile = false -- Don't bother using swap files
   vim.o.termguicolors = true -- Use terminal colours
   vim.o.undodir = '/home/jamie/.vim/undodir' -- Set undo history file
@@ -90,6 +90,8 @@ require('packer').startup(function()
   use 'scrooloose/nerdtree' -- Directory tree
   vim.g.NERDTreeQuitOnOpen = 1 -- Close tree on opening a file
   vim.g.NERDTreeWinSize = 60 -- Size of frame
+  vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
+  vim.g.NERDTreeMinimalMenu = true -- Single line modifiers
 
   use 'neovim/nvim-lspconfig' -- Configs
   use 'hrsh7th/nvim-cmp' -- Autocomplete tool
@@ -135,7 +137,7 @@ do
 
   -- Traverse wrapped lines
   vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+  vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 end
 
 -- Colours
@@ -186,7 +188,7 @@ do
   augroup end]]
 end
 
-(function()
+do
   vim.o.completeopt = 'menuone,noselect'
 
   local nvim_lsp = require('lspconfig')
@@ -296,5 +298,12 @@ end
     end
   end
 
+end
+
+do
+  -- On hover, show diagnostics in the echo view
   vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
-end)();
+
+  -- When NERDtree is the last window, close vim
+  vim.cmd [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
+end

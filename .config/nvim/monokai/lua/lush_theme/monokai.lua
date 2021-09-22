@@ -25,6 +25,7 @@ local theme = lush(function()
     yellow { fg=getColor('YELLOW') },
     yellowBg { bg=getColor('YELLOW'), fg=getColor('BLACK') },
     blue { fg=getColor('BLUE'), gui='italic' },
+    blueUl { fg=getColor('BLUE'), gui='underline' },
     blueBg { fg=getColor('BLACK'), bg=getColor('BLUE'), gui='italic' },
     orange { fg=getColor('ORANGE'), gui='italic' },
     orangeBg { bg=getColor('ORANGE'), fg=getColor('BLACK'), gui='italic' },
@@ -188,28 +189,35 @@ local theme = lush(function()
     TSParameterReference { orange }, -- For references to parameters of a function.
     TSProperty           { regular }, -- Same as `TSField`.
     TSPunctDelimiter     { regular }, -- For delimiters ie: `.`
-    TSPunctSpecial       { regular }, -- For special punctutation that does not fall in the catagories before.
+    TSPunctSpecial       { red }, -- For special punctutation that does not fall in the catagories before.
     TSRepeat             { red }, -- For keywords related to loops.
     TSString             { yellow }, -- For strings.
     TSStringEscape       { yellow }, -- For escape characters within a string.
     TSStringRegex        { yellow }, -- For regexes.
     TSStrong             { regular, gui="bold" }, -- For text to be represented with strong.
     TSTag                { blue }, -- For tags ie. <`Container>`>
+    TSTagAttribute       { green }, -- For tag attributes ie. <Container `attribute`=X>
     TSTagDelimiter       { regular }, -- For delimiters ie: `<`Container`/>`
     TSText               { yellow }, -- For strings considered text in a markup language.
     TSTitle              { regular, gui="bold"  }, -- Text that is part of a title.
     TSType               { green }, -- For types.
     TSTypeBuiltin        { blue }, -- For builtin types (you guessed it, right ?).
-    TSURI                { yellow }, -- Any URI like a link or email.
+    TSURI                { blue, gui="underline" }, -- Any URI like a link or email.
     TSUnderline          { regular, gui="underline" }, -- For text to be represented with an underline.
     TSVariable           { regular }, -- Any variable name that does not have another highlight.
     TSVariableBuiltin    { orange }, -- Variable names that are defined by the languages, like `this` or `self`.
+    TSPunctBracket       { regular }, -- For brackets and parens.
     -- TSStrike             { };    -- For strikethrough text.
     -- TSStrike             { };    -- For strikethrough text.
     -- TSComment            { };    -- For comment blocks.
     -- TSAttribute          { };    -- (unstable) TODO: docs
     -- TSNone               { };    -- TODO: docs
-    -- TSPunctBracket       { }, -- For brackets and parens.
+
+    ------------------------------------ Custom TreeSitter ------------------------------------
+
+    markdownCodeDelimiter { offset },
+    markdownCode { offset },
+    markdownUrl { blueUl },
   }
 end)
 
