@@ -5,6 +5,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local freedesktop = require("freedesktop")
+local lain = require("lain")
 
 local f = {}
 
@@ -289,9 +290,94 @@ f.setupClientRules = function ()
   }
 end
 
-
 f.setupScreens = function (screen)
   screen.connect_signal("property::geometry", f.setWallpaper)
+
+  local cpu = wibox.widget.graph()
+  cpu.width = 28
+  cpu.max_value = 100
+  cpu.min_value = 0
+  cpu.step_width = 6
+  cpu.step_spacing = 1
+  cpu.color = '#baa'
+  cpu.border_color = '#444'
+  cpu.background_color = '#222'
+
+  local cpuWrapped = lain.widget.cpu {
+      widget = cpu,
+      settings = function()
+        widget:clear()
+        for i,v in ipairs(cpu_now) do
+          widget:add_value(v.usage)
+        end
+      end
+  }
+
+  local mem = wibox.widget.graph()
+  mem.width = 12
+  mem.max_value = 100
+  mem.min_value = 0
+  mem.step_width = 12
+  mem.step_spacing = 1
+  mem.color = '#baa'
+  mem.border_color = '#444'
+  mem.background_color = '#222'
+
+  local memWrapped = lain.widget.mem {
+      widget = mem,
+      settings = function()
+        widget:clear()
+        widget:add_value(mem_now.perc)
+      end
+  }
+
+  local fs = wibox.widget.graph()
+  fs.width = 12
+  fs.max_value = 100
+  fs.min_value = 0
+  fs.step_width = 12
+  fs.step_spacing = 1
+  fs.color = '#aac'
+  fs.border_color = '#444'
+  fs.background_color = '#222'
+
+  local fsWrapped = lain.widget.fs {
+      widget = fs,
+      settings = function()
+        widget:clear()
+        widget:add_value(fs_now['/'].percentage)
+      end
+  }
+
+  local volume = lain.widget.alsabar {
+    height = 20,
+    paddings = 0,
+    margins = 1,
+    colors = {
+      background = '#222',
+      mute = '#baa',
+      unmute = '#aba',
+    },
+    settings = function()
+    end,
+  }
+
+  volume.bar:buttons(awful.util.table.join(
+    awful.button({}, 1, function() -- right click
+        os.execute(string.format("%s set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 4, function() -- scroll up
+        os.execute(string.format("%s set %s 1%%+", volume.cmd, volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 5, function() -- scroll down
+        os.execute(string.format("%s set %s 1%%-", volume.cmd, volume.channel))
+        volume.update()
+    end)
+))
+
+
 
   awful.screen.connect_for_each_screen(function(s)
     f.setWallpaper(s)
@@ -328,10 +414,55 @@ f.setupScreens = function (screen)
       },
       {
         layout = wibox.layout.fixed.horizontal,
-        require("awesome-wm-widgets.cpu-widget.cpu-widget")(),
-        require("awesome-wm-widgets.ram-widget.ram-widget")(),
-        require("awesome-wm-widgets.volume-widget.volume")({widget_type='arc'}),
-        f.clockWidget()
+        {
+          layout = wibox.layout.stack,
+          cpuWrapped,
+          wibox.widget {
+              markup = 'cpu',
+              font = 'JetBrains Mono 6',
+              align  = 'center',
+              valign = 'top',
+              widget = wibox.widget.textbox
+          },
+        },
+        {
+          layout = wibox.layout.stack,
+          memWrapped,
+          wibox.widget{
+              markup = 'm',
+              font = 'JetBrains Mono 6',
+              align  = 'center',
+              valign = 'top',
+              widget = wibox.widget.textbox
+          },
+        },
+        {
+          layout = wibox.layout.stack,
+          fsWrapped,
+          wibox.widget{
+              markup = 'fs',
+              font = 'JetBrains Mono 6',
+              align  = 'center',
+              valign = 'top',
+              widget = wibox.widget.textbox
+          },
+        },
+        {
+          layout = wibox.layout.stack,
+          {
+            widget = wibox.container.rotate,
+            direction = 'east',
+            volume.bar,
+          },
+          wibox.widget{
+              markup = 'vol',
+              font = 'JetBrains Mono 6',
+              align  = 'center',
+              valign = 'top',
+              widget = wibox.widget.textbox
+          },
+        },
+        f.clockWidget(),
       }
     }
   end)
