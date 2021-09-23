@@ -26,6 +26,8 @@
 !/.config/rofi-tasks
 !/.config/rofi-tasks/*
 !/.config/rofi/*
+!/.config/k9s
+!/.config/k9s/*
 !/.config/sublime-text-3
 !/.config/sublime-text-3/Packages
 !/.config/sublime-text-3/Packages/User
@@ -33,9 +35,6 @@
 !/.config/sublime-text-3/Packages/User/*.sublime-settings
 !/.editorconfig
 !/.gitignore
-!/.k9s
-!/.k9s/skin.yml
-!/.k9s/views.yml
 !/.p10k.zsh
 !/.prettierrc
 !/.spacemacs

@@ -71,6 +71,7 @@ function ghd {
 }
 
 # Kubernetes
+alias k="k9s"
 alias kc="kubectl"
 alias kx="kubectx"
 alias kn="kubens"
