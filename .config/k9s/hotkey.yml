@@ -1,0 +1,5 @@
+hotKey:
+  ctrl-d:
+    shortCut:    Ctrl-d
+    description: Scroll down
+    command:     pods

@@ -38,8 +38,8 @@ k9s:
       focusColor: *grey
     menu:
       fgColor: *grey
-      keyColor: *yellow
-      numKeyColor: *yellow
+      keyColor: *grey
+      numKeyColor: *grey
     crumbs:
       fgColor: *black
       bgColor: *grey

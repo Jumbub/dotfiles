@@ -27,7 +27,11 @@
 !/.config/rofi-tasks/*
 !/.config/rofi/*
 !/.config/k9s
-!/.config/k9s/*
+!/.config/k9s/skin.yml
+!/.config/k9s/views.yml
+!/.config/k9s/alias.yml
+!/.config/k9s/hotkey.yml
+!/.config/k9s/plugin.yml
 !/.config/sublime-text-3
 !/.config/sublime-text-3/Packages
 !/.config/sublime-text-3/Packages/User
