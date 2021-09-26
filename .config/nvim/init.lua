@@ -272,7 +272,7 @@ do
     },
   }
 
-  local infoSigns = { Error = "x", Warning = "i", Hint = "i", Information = "i" }
+  local infoSigns = { Error = "•", Warning = "•", Hint = "•", Information = "•" }
   local infoColors = { "LspDiagnosticsDefaultError", "LspDiagnosticsDefaultWarning", "LspDiagnosticsDefaultInformation", "LspDiagnosticsDefaultHint" }
 
   for type, icon in pairs(infoSigns) do
