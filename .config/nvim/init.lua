@@ -13,14 +13,21 @@ do
   vim.o.rtp = vim.o.rtp .. ',/home/jamie/.config/nvim/monokai' -- Load local colour scheme
   vim.o.breakindent = true -- Maintain indentation when wrapping text
   vim.o.updatetime = 300 -- Cursor hold events
+  vim.o.wrap = false -- No wrap
+  vim.o.cmdheight = 2 -- Avoid "hit enter" text
 
   vim.g.mapleader = ','
 end
 
 -- Plugins
 require('packer').startup(function()
+  use 'christianrondeau/vim-base64' -- Encoding base64 strings
   use 'dhruvasagar/vim-open-url' -- Open URL in browser
-  use 'editorconfig/editorconfig-vim' -- Format definitions
+  use 'editorconfig/editorconfig-vim' -- Formatting config
+  use 'junegunn/fzf' -- Install fzf
+  use 'junegunn/fzf.vim' -- Install fzf for vim
+  use 'sbdchd/neoformat' -- Auto formatter
+  use 'scrooloose/nerdtree' -- Directory tree
   use 'tpope/vim-abolish' -- Word modifications
   use 'tpope/vim-commentary' -- Quick comments
   use 'tpope/vim-eunuch' -- File helpers
@@ -28,27 +35,58 @@ require('packer').startup(function()
   use 'tpope/vim-surround' -- Word wapping
   use 'wakatime/vim-wakatime' -- Track development time
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'christianrondeau/vim-base64' -- Encoding base64 strings
+  use { 'dhruvasagar/vim-prosession', requires = { use 'tpope/vim-obsession' }} -- Better session management
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }} -- I think this is a dependency of another plugin
+
+  -- Languages
+  use 'hrsh7th/cmp-nvim-lsp' -- Autocomplete linker to LSP
+  use 'hrsh7th/cmp-vsnip' -- Autocomplete linker to snippets
+  use 'hrsh7th/nvim-cmp' -- Autocomplete tool
+  use 'hrsh7th/vim-vsnip' -- Snippet tool (primarily used as auto-complete helper)
+  use 'neovim/nvim-lspconfig' -- Configs
+  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Extra language information
+  use 'nvim-treesitter/playground' -- TS playground
+  use 'ojroques/nvim-lspfuzzy' -- Fuzzy preview of code actions
+  use 'ray-x/lsp_signature.nvim' -- Function signature popup
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- Language parser
+  use 'puremourning/vimspector' -- Debugger
 
   -- Visuals
-  use 'rktjmp/lush.nvim' -- Colour scheme helper
-  use 'norcalli/nvim-colorizer.lua' -- Highlight colour codes
   use 'Xuyuanp/scrollbar.nvim' -- Scroll bar
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-  require('telescope').setup()
-
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- Language parser
-  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Extra language information
-  require'nvim-treesitter.configs'.setup { ensure_installed = 'maintained', highlight = { enable = true } };
-
-  use 'nvim-treesitter/playground' -- TS playground
-  require "nvim-treesitter.configs".setup { }
-
   use 'karb94/neoscroll.nvim' -- Smooth scroll
+  use 'norcalli/nvim-colorizer.lua' -- Highlight colour codes
+  use 'rktjmp/lush.nvim' -- Colour scheme helper
+  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'} -- Markdown preview
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Git signs
+end);
+
+-- Plugin Setup
+do
+  vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
+  vim.g.mkdp_auto_close = 1
+  vim.g.neoformat_enabled_php = {'phpcbf'}
+  vim.g.neoformat_enabled_python = {'autopep8'}
+  vim.g.neoformat_enabled_cpp = {'clangformat'}
+  vim.g.neoformat_only_msg_on_error = 1 -- Throw error on failed formatting
+  vim.g.NERDTreeQuitOnOpen = 1 -- Close tree on opening a file
+  vim.g.NERDTreeWinSize = 60 -- Size of frame
+  vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
+  vim.g.NERDTreeMinimalMenu = true -- Single line modifiers
+  require 'telescope'.setup()
+
+  -- LSP
+  require 'nvim-treesitter.configs'.setup { ensure_installed = 'maintained', highlight = { enable = true } };
+  local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+  parser_config.gotmpl = {
+    install_info = {
+      url = "https://github.com/ngalaiko/tree-sitter-go-template",
+      files = {"src/parser.c"}
+    },
+    filetype = "gotmpl",
+    used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+  }
+
+  -- Visual
   require('neoscroll').setup()
   require('neoscroll.config').set_mappings({
     ['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '75'}},
@@ -59,21 +97,6 @@ require('packer').startup(function()
     ['zz'] = {'zz', {'50'}},
     ['zb'] = {'zb', {'50'}},
   })
-
-  use { 'dhruvasagar/vim-prosession', requires = {  -- Better session management
-    use 'tpope/vim-obsession' -- Session management
-  }}
-  vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
-
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'} -- Markdown preview
-  vim.g.mkdp_auto_close = 1
-
-  use 'sbdchd/neoformat' -- Auto formatter
-  vim.g.neoformat_enabled_php = {'phpcbf'}
-  vim.g.neoformat_enabled_python = {'autopep8'}
-  vim.g.neoformat_only_msg_on_error = 1 -- Throw error on failed formatting
-
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Git signs
   require('gitsigns').setup {
     signs = {
       add = { hl = 'DiffAdd', text = '+' },
@@ -83,26 +106,7 @@ require('packer').startup(function()
       changedelete = { hl = 'DiffDelete', text = '~' },
     },
   }
-
-  use 'junegunn/fzf' -- Install fzf
-  use 'junegunn/fzf.vim' -- Install fzf for vim
-
-  use 'scrooloose/nerdtree' -- Directory tree
-  vim.g.NERDTreeQuitOnOpen = 1 -- Close tree on opening a file
-  vim.g.NERDTreeWinSize = 60 -- Size of frame
-  vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
-  vim.g.NERDTreeMinimalMenu = true -- Single line modifiers
-
-  use 'neovim/nvim-lspconfig' -- Configs
-  use 'hrsh7th/nvim-cmp' -- Autocomplete tool
-  use 'hrsh7th/cmp-nvim-lsp' -- Autocomplete linker to LSP
-  use {'ojroques/nvim-lspfuzzy', -- Fuzzy preview of code actions
-    requires = {
-      {'junegunn/fzf'},
-      {'junegunn/fzf.vim'},
-    },
-  }
-end);
+end
 
 -- Keys
 do
@@ -138,6 +142,30 @@ do
   -- Traverse wrapped lines
   vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
   vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+  -- Debugging
+  vim.cmd [[
+    function! GotoWindow(id)
+        call win_gotoid(a:id)
+    endfunction
+  ]]
+  vim.api.nvim_set_keymap('n', '<leader>dd', ':call vimspector#Launch()<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dq', ':call vimspector#Reset()<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dc', ':call GotoWindow(g:vimspector_session_windows.code)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dt', ':call GotoWindow(g:vimspector_session_windows.tagpage)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dv', ':call GotoWindow(g:vimspector_session_windows.variables)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dw', ':call GotoWindow(g:vimspector_session_windows.watches)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>ds', ':call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>do', ':call GotoWindow(g:vimspector_session_windows.output)<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dl', '<Plug>VimspectorStepOver', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dj', '<Plug>VimspectorStepInto', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dk', '<Plug>VimspectorStepOut', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dh', '<Plug>VimspectorRestart', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>drc', '<Plug>VimspectorRunToCursor', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dbc', ':call vimspector#CleanLineBreakpoint()<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>db', '<Plug>VimspectorToggleBreakpoint', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dcb', '<Plug>VimspectorToggleConditionalBreakpoint', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>di', '<Plug>VimspectorBalloonEval', { silent = true })
 end
 
 -- Colours
@@ -151,24 +179,6 @@ do
 end
 
 do
-  local default = {
-      max_size = 10,
-      min_size = 3,
-      width = 1,
-      right_offset = 1,
-      excluded_filetypes = {},
-      shape = {
-          head = "▲",
-          body = "█",
-          tail = "▼",
-      },
-      highlight = {
-          head = "Normal",
-          body = "Normal",
-          tail = "Normal",
-      }
-  }
-
   vim.g.scrollbar_right_offset = 0
   vim.g.scrollbar_shape = {
     head = "█",
@@ -180,18 +190,19 @@ do
     body = "ShadyDark",
     tail = "ShadyDark",
   }
-  vim.cmd [[augroup ScrollbarInit
-    autocmd!
-    autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-    autocmd WinEnter * silent! lua require('scrollbar').show()
-    autocmd WinLeave,BufLeave,BufWinLeave * silent! lua require('scrollbar').clear()
-  augroup end]]
+  vim.cmd [[
+    augroup ScrollbarInit
+      autocmd!
+      autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+      autocmd WinEnter * silent! lua require('scrollbar').show()
+      autocmd WinLeave,BufLeave,BufWinLeave * silent! lua require('scrollbar').clear()
+    augroup end
+  ]]
 end
 
+-- LSP Setup
 do
   vim.o.completeopt = 'menuone,noselect'
-
-  local nvim_lsp = require('lspconfig')
 
   local onAttach = function(client, bufnr)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -213,7 +224,9 @@ do
     vim.lsp.buf.execute_command(params)
   end
 
-  require'lspconfig'.tsserver.setup {
+  local lspconfig = require('lspconfig')
+
+  lspconfig.tsserver.setup {
     on_attach = onAttach,
     capabilities = capabilities,
     commands = {
@@ -224,6 +237,18 @@ do
     }
   }
 
+  lspconfig.ccls.setup {
+    on_attach = onAttach,
+  }
+
+  require 'lsp_signature'.setup({
+    hint_enable = false,
+    max_width = 100,
+    transpancy = 0,
+    handler_opts = {
+      border = "none"
+    },
+  })
 
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {silent=true})
   vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent=true})
@@ -241,6 +266,11 @@ do
 
   local cmp = require 'cmp'
   cmp.setup {
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
     mapping = {
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -300,10 +330,24 @@ do
 
 end
 
+-- AutoCmd Setup
 do
   -- On hover, show diagnostics in the echo view
   vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 
   -- When NERDtree is the last window, close vim
   vim.cmd [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
+
+  -- Format on save
+  vim.cmd [[
+    augroup fmt
+      autocmd!
+      autocmd BufWritePre * | Neoformat
+    augroup END
+  ]]
+
+  -- Setup VimSpector debugger
+  vim.cmd [[
+    au VimEnter * :packadd! vimspector
+  ]]
 end

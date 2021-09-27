@@ -1,15 +1,14 @@
-# OneDark presets
-white: &white "#dfdfd9"
-black: &black "#272822"
-blue: &blue "#66d9ef"
-cyan: &cyan "#66d9ef"
-green: &green "#a6e22e"
-grey: &grey "#75715e"
-orange: &orange "#fd971f"
-purple: &purple "#ae81ff"
-red: &red "#f92672"
-yellow: &yellow "#e6db74"
-yellow_bright: &yellow_bright "#EBE28F"
+white: &white '#dfdfd9'
+black: &black '#272822'
+blue: &blue '#66d9ef'
+cyan: &cyan '#66d9ef'
+green: &green '#a6e22e'
+grey: &grey '#75715e'
+orange: &orange '#fd971f'
+purple: &purple '#ae81ff'
+red: &red '#f92672'
+yellow: &yellow '#e6db74'
+yellow_bright: &yellow_bright '#EBE28F'
 
 k9s:
   body:
