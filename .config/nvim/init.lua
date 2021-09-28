@@ -68,7 +68,7 @@ do
   vim.g.neoformat_enabled_python = {'autopep8'}
   vim.g.neoformat_enabled_cpp = {'clangformat'}
   vim.g.neoformat_only_msg_on_error = 1 -- Throw error on failed formatting
-  vim.g.NERDTreeQuitOnOpen = 1 -- Close tree on opening a file
+  vim.g.NERDTreeQuitOnOpen = true -- Close tree on opening a file
   vim.g.NERDTreeWinSize = 60 -- Size of frame
   vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
   vim.g.NERDTreeMinimalMenu = true -- Single line modifiers
