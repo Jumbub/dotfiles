@@ -6,6 +6,7 @@ sudo pacman --needed --noconfirm -S\
   awesome-freedesktop\
   base-devel\
   exa\
+  fd\
   git\
   imagemagick\
   jq\

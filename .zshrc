@@ -25,6 +25,8 @@ haveigot kitty && source <(kitty + complete setup zsh)
 haveigot argocd && source <(argocd completion zsh)
 
 # FZF
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude '*.o'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Kitty (generate theme)

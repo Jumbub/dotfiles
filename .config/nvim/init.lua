@@ -168,7 +168,7 @@ do
   vim.api.nvim_set_keymap('n', '<leader>dcb', '<Plug>VimspectorToggleConditionalBreakpoint', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>di', '<Plug>VimspectorBalloonEval', { silent = true })
   vim.api.nvim_set_keymap('x', '<leader>di', '<Plug>VimspectorBalloonEval', { silent = true })
- 
+
   -- Base64 encoding
   vim.api.nvim_set_keymap('v', ',64', ',btoa', {silent=true})
   vim.api.nvim_set_keymap('v', ',46', ',atob', {silent=true})
