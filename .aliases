@@ -44,7 +44,6 @@ alias ggp="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upst
 alias gca="git commit --amend"
 alias gc="git commit"
 alias gclean="git clean -f -d"
-alias gcl="git clone"
 function gcmm { local MSG="$@"; git commit -m "$MSG"; };
 function gcm { local MSG="$@"; git commit -m "`jiraForBranch` $MSG"; };
 alias gco="git checkout"
