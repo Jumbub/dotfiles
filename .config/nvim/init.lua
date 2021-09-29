@@ -13,7 +13,7 @@ do
   vim.o.rtp = vim.o.rtp .. ',/home/jamie/.config/nvim/monokai' -- Load local colour scheme
   vim.o.breakindent = true -- Maintain indentation when wrapping text
   vim.o.updatetime = 300 -- Cursor hold events
-  vim.o.wrap = false -- No wrap
+  vim.o.wrap = true -- Wrap preference
   vim.o.cmdheight = 2 -- Avoid "hit enter" text
 
   vim.g.mapleader = ','
@@ -168,7 +168,7 @@ do
   vim.api.nvim_set_keymap('n', '<leader>dcb', '<Plug>VimspectorToggleConditionalBreakpoint', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>di', '<Plug>VimspectorBalloonEval', { silent = true })
   vim.api.nvim_set_keymap('x', '<leader>di', '<Plug>VimspectorBalloonEval', { silent = true })
- 
+
   -- Base64 encoding
   vim.api.nvim_set_keymap('v', ',64', ',btoa', {silent=true})
   vim.api.nvim_set_keymap('v', ',46', ',atob', {silent=true})
@@ -348,7 +348,7 @@ do
   vim.cmd [[
     augroup fmt
       autocmd!
-      autocmd BufWritePre * | Neoformat
+      autocmd BufWritePre *.ts *.tsx | Neoformat
     augroup END
   ]]
 
