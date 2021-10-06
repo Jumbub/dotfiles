@@ -12,6 +12,7 @@ local theme = lush(function()
 
     regular { fg=getColor('WHITE'), bg=getColor('BLACK') },
     irregular { fg=getColor('GRAY'), bg=getColor('BLACK') },
+    irregularSymbols { fg=getColor('GRAY_DARKER_STILL') },
     invert { fg=getColor('BLACK'), bg=getColor('WHITE') },
     offset { fg=getColor('WHITE'), bg=getColor('GRAY_DARKER') },
     grayBg { bg=getColor('GRAY') },
@@ -213,6 +214,11 @@ local theme = lush(function()
     markdownCodeDelimiter { offset },
     markdownCode { offset },
     markdownUrl { blueUl },
+
+    ------------------------------------- Custom Indenter -------------------------------------
+
+    IndentBlanklineIndent1 { irregularSymbols },
+    IndentBlanklineIndent2 { irregularSymbols },
   }
 end)
 
