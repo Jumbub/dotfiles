@@ -58,6 +58,7 @@ require('packer').startup(function()
   use 'norcalli/nvim-colorizer.lua' -- Highlight colour codes
   use 'rktjmp/lush.nvim' -- Colour scheme helper
   use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' } -- Markdown preview
+  use "lukas-reineke/indent-blankline.nvim" -- Indent guides
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Git signs
 end);
 
@@ -114,6 +115,24 @@ do
       topdelete = { hl = 'DiffDelete', text = '‾' },
       changedelete = { hl = 'DiffDelete', text = '~' },
     },
+  }
+
+  vim.opt.list = true
+  require("indent_blankline").setup {
+      -- char = "|";
+      char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+      },
+      space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+      },
+      space_char_blankline_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+      },
+      show_trailing_blankline_indent = false,
   }
 end
 
