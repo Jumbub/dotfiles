@@ -50,20 +50,20 @@ require('packer').startup(function()
   use 'ray-x/lsp_signature.nvim' -- Function signature popup
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- Language parser
   use 'puremourning/vimspector' -- Debugger
+  use 'metakirby5/codi.vim' -- Code scratchpad
 
   -- Visuals
   use 'Xuyuanp/scrollbar.nvim' -- Scroll bar
   use 'karb94/neoscroll.nvim' -- Smooth scroll
   use 'norcalli/nvim-colorizer.lua' -- Highlight colour codes
   use 'rktjmp/lush.nvim' -- Colour scheme helper
-  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'} -- Markdown preview
+  use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' } -- Markdown preview
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Git signs
 end);
 
 -- Plugin Setup
 do
   vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
-  vim.g.mkdp_auto_close = 1
   vim.g.neoformat_enabled_php = {'phpcbf'}
   vim.g.neoformat_enabled_python = {'autopep8'}
   vim.g.neoformat_enabled_cpp = {'clangformat'}
@@ -72,6 +72,15 @@ do
   vim.g.NERDTreeWinSize = 60 -- Size of frame
   vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
   vim.g.NERDTreeMinimalMenu = true -- Single line modifiers
+  vim.g['codi#interpreters'] = { -- Setup REPL commands for Codi
+    javascript = {
+      bin = 'node'
+    },
+    typescript = {
+      bin = 'ts-node'
+    },
+  }
+  -- Telescope
   require 'telescope'.setup()
 
   -- LSP
@@ -149,7 +158,7 @@ do
         call win_gotoid(a:id)
     endfunction
   ]]
-  vim.api.nvim_set_keymap('n', '<leader>dd', ':call vimspector#Launch()<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dl', ':call vimspector#Launch()<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dg', ':call vimspector#Continue()<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dq', ':call vimspector#Reset()<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dc', ':call GotoWindow(g:vimspector_session_windows.code)<CR>', { silent = true })
@@ -161,8 +170,8 @@ do
   vim.api.nvim_set_keymap('n', '<leader>dj', '<Plug>VimspectorStepOver', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dl', '<Plug>VimspectorStepInto', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dh', '<Plug>VimspectorStepOut', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>dr', '<Plug>VimspectorRestart', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>drc', '<Plug>VimspectorRunToCursor', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dR', '<Plug>VimspectorRestart', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dd', '<Plug>VimspectorRunToCursor', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dbc', ':call vimspector#ClearBreakpoints()<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>db', '<Plug>VimspectorToggleBreakpoint', { silent = true })
   vim.api.nvim_set_keymap('n', '<leader>dcb', '<Plug>VimspectorToggleConditionalBreakpoint', { silent = true })
@@ -326,8 +335,12 @@ do
     if vim.tbl_isempty(line_diagnostics) then return end
 
     for _, diagnostic in ipairs(line_diagnostics) do
+      local output = string.format("%s", diagnostic.message or "")
+      if #output > 140 then
+        output = string.sub(output, 0, 140) .. '...'
+      end
       vim.api.nvim_echo({{
-        string.format("%s", diagnostic.message or ""),
+        output,
         infoColors[diagnostic.severity or 4]
       }}, false, {})
       break
@@ -336,7 +349,6 @@ do
 
 end
 
--- AutoCmd Setup
 do
   -- On hover, show diagnostics in the echo view
   vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
@@ -344,12 +356,9 @@ do
   -- When NERDtree is the last window, close vim
   vim.cmd [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
 
-  -- Format on save
+  -- Manual format
   vim.cmd [[
-    augroup fmt
-      autocmd!
-      autocmd BufWritePre *.ts *.tsx | Neoformat
-    augroup END
+    command! FF Neoformat
   ]]
 
   -- Setup VimSpector debugger
