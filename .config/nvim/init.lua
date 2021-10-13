@@ -5,7 +5,7 @@ do
   vim.o.number = true -- Show curernt line number
   vim.o.relativenumber = true -- Use relative line numbers
   vim.o.signcolumn = 'yes' -- Always display gutter (prevent git gutter from bouncing on save
-  vim.o.statusline = '%<%f  %h%m%r%=%(%l,%c%)' -- Status line text
+  vim.o.statusline = '%F  %h%m%r%=%(%l,%c%)' -- Status line text
   vim.o.swapfile = false -- Don't bother using swap files
   vim.o.termguicolors = true -- Use terminal colours
   vim.o.undodir = '/home/jamie/.vim/undodir' -- Set undo history file
