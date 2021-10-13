@@ -117,22 +117,11 @@ do
     },
   }
 
-  vim.opt.list = true
   require("indent_blankline").setup {
-      -- char = "|";
       char_highlight_list = {
           "IndentBlanklineIndent1",
           "IndentBlanklineIndent2",
       },
-      space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-      },
-      space_char_blankline_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-      },
-      show_trailing_blankline_indent = false,
   }
 end
 
@@ -378,6 +367,14 @@ do
   -- Manual format
   vim.cmd [[
     command! FF Neoformat
+  ]]
+
+  -- Format on save
+  vim.cmd [[
+    augroup fmt
+      autocmd!
+      autocmd BufWritePre *.tsx | Neoformat
+    augroup END
   ]]
 
   -- Setup VimSpector debugger
