@@ -23,7 +23,7 @@ cp -R $HOME/repos/dotfiles/.git $HOME/repos/dotfiles.git
 # Copy default git config template
 cp $HOME/scripts/storage/.gitconfig $HOME/.gitconfig
 
-source
+source $HOME/.zshrc
 
 # Change to ssh remote for dotfiles
 dot remote set-url origin git@github.com:Jumbub/dotfiles.git
