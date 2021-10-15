@@ -2,7 +2,7 @@
 
 # Install dotfiles
 mkdir ~/repos
-git clone https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
+git clone --recurse-submodules https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
 
 # Warn user about potential changes
 cp $HOME/repos/dotfiles/.gitignore $HOME/.gitignore
@@ -22,10 +22,6 @@ cp $HOME/scripts/storage/.gitconfig $HOME/.gitconfig
 
 # Change to ssh remote for dotfiles
 dot remote set-url origin git@github.com:Jumbub/dotfiles.git
-
-# Install awesome WM dependencies
-rm -rf ~/.config/awesome/awesome-wm-widgets
-git clone https://github.com/streetturtle/awesome-wm-widgets.git ~/.config/awesome/awesome-wm-widgets
 
 # Install plugins
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
