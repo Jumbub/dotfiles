@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
 # Install dotfiles
-mkdir ~/repos
+mkdir -p ~/repos
+rm -rf ~/repos/dotfiles
 git clone --recurse-submodules https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
 
 # Warn user about potential changes
