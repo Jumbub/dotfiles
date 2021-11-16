@@ -1,7 +1,13 @@
 #!/usr/bin/env zsh
 
 # Zsh
-function ctrlp () { cd $(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac) }
+function ctrlp () {
+  NEW_DIR="$(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac)"
+  if [[ -n "$NEW_DIR" ]]
+  then
+    cd $NEW_DIR
+  fi
+}
 alias src="source $HOME/.zshrc"
 
 # Shell
@@ -74,6 +80,12 @@ alias k="k9s"
 alias kc="kubectl"
 alias kx="kubectx"
 alias kn="kubens"
+buildAndPushImage() {
+	IMG="$1:`date +%s`"
+	REMOTE="$2"
+	docker build . -t "$REMOTE$IMG"
+	docker push "$REMOTE$IMG"
+}
 
 # Jira
 function jt {
