@@ -1,7 +1,8 @@
 configuration {
 	show-icons: true;
-	theme: "/home/jamie/.config/rofi/regular.rasi";
 	display-window: "Window";
 	display-run: "Execute";
 	display-drun: "Activate";
 }
+
+@theme "/home/jamie/.config/rofi/regular.rasi"
