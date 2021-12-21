@@ -530,6 +530,27 @@ f.setupScreens = function(screen)
     end
   }
 
+  local gpu = wibox.widget.graph()
+  gpu.width = 12
+  gpu.max_value = 100
+  gpu.min_value = 0
+  gpu.step_width = 12
+  gpu.step_spacing = 1
+  gpu.color = "#aba"
+  gpu.border_color = "#444"
+  gpu.background_color = "#222"
+
+  local gpuWrapped =
+    lain.widget.contrib.nvidia_gpu {
+    widget = gpu,
+    settings = function()
+      widget:clear()
+      for i, v in ipairs(nvidia_gpu_now) do
+        widget:add_value(v.usage)
+      end
+    end
+  }
+
   local mem = wibox.widget.graph()
   mem.width = 12
   mem.max_value = 100
@@ -576,7 +597,7 @@ f.setupScreens = function(screen)
     colors = {
       background = "#222",
       mute = "#baa",
-      unmute = "#aba"
+      unmute = "#666"
     },
     settings = function()
     end
@@ -716,6 +737,17 @@ f.setupScreens = function(screen)
             memWrapped,
             wibox.widget {
               markup = "m",
+              font = "JetBrains Mono 6",
+              align = "center",
+              valign = "top",
+              widget = wibox.widget.textbox
+            }
+          },
+          {
+            layout = wibox.layout.stack,
+            gpuWrapped,
+            wibox.widget {
+              markup = "g",
               font = "JetBrains Mono 6",
               align = "center",
               valign = "top",
