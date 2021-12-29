@@ -7,6 +7,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local freedesktop = require("freedesktop")
 local lain = require("lain")
+local nvidia_gpu = require("lain_custom.nvidia_gpu")
 
 local f = {}
 
@@ -541,7 +542,7 @@ f.setupScreens = function(screen)
   gpu.background_color = "#222"
 
   local gpuWrapped =
-    lain.widget.contrib.nvidia_gpu {
+    nvidia_gpu {
     widget = gpu,
     settings = function()
       widget:clear()
