@@ -6,14 +6,14 @@
 
   -- Manual format
   vim.cmd [[
-    command! FF Neoformat
+    command! FF Format
   ]]
 
   -- Format on save
   vim.cmd [[
     augroup fmt
       autocmd!
-      autocmd BufWritePre *.tsx | Neoformat
+      autocmd BufWritePost *.tsx,*.rs FormatWrite
     augroup END
   ]]
 

@@ -4,7 +4,7 @@ require('packer').startup(function()
   use 'editorconfig/editorconfig-vim' -- Formatting config
   use 'junegunn/fzf' -- Install fzf
   use 'junegunn/fzf.vim' -- Install fzf for vim
-  use 'sbdchd/neoformat' -- Auto formatter
+  use 'mhartington/formatter.nvim' -- Auto formatter
   use 'scrooloose/nerdtree' -- Directory tree
   use 'tpope/vim-abolish' -- Word modifications
   use 'tpope/vim-commentary' -- Quick comments
@@ -39,10 +39,6 @@ require('packer').startup(function()
 end);
 
 vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
-vim.g.neoformat_enabled_php = {'phpcbf'}
-vim.g.neoformat_enabled_python = {'autopep8'}
-vim.g.neoformat_enabled_cpp = {'clangformat'}
-vim.g.neoformat_only_msg_on_error = 1 -- Throw error on failed formatting
 vim.g.NERDTreeQuitOnOpen = true -- Close tree on opening a file
 vim.g.NERDTreeWinSize = 60 -- Size of frame
 vim.g.NERDTreeMinimalUI = true -- Remove boomarks and help text
