@@ -4,19 +4,6 @@
   -- When NERDtree is the last window, close vim
   vim.cmd [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
 
-  -- Manual format
-  vim.cmd [[
-    command! FF Format
-  ]]
-
-  -- Format on save
-  vim.cmd [[
-    augroup fmt
-      autocmd!
-      autocmd BufWritePost *.tsx,*.rs FormatWrite
-    augroup END
-  ]]
-
   -- Setup VimSpector debugger
   vim.cmd [[
     au VimEnter * :packadd! vimspector
