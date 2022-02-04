@@ -113,3 +113,5 @@ vim.cmd [[
     autocmd WinLeave,BufLeave,BufWinLeave * silent! lua require('scrollbar').clear()
   augroup end
 ]]
+
+require'colorizer'.setup()

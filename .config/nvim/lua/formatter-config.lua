@@ -32,6 +32,7 @@ require('formatter').setup({
   filetype = {
      typescriptreact = prettier,
      typescript = prettier,
+     json = prettier,
      cpp = clang,
      rust = cargofmt,
   }

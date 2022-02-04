@@ -501,7 +501,8 @@ f.setupClientRules = function()
       },
       properties = {
         focusable = false,
-        titlebars_enabled = true
+        titlebars_enabled = true,
+        screen = 2
       }
     }
   }
