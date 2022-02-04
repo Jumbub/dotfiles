@@ -39,7 +39,7 @@ lspconfig.rust_analyzer.setup {
   on_attach = onAttach,
 }
 
-lspconfig.pyright.setup{
+lspconfig.pyright.setup {
   on_attach = onAttach,
 }
 
