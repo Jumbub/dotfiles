@@ -12,6 +12,9 @@ indent_size = 2
 [*.js,*.jsx,*.ts,*.tsx,*.hs,*.json,*.yml]
 indent_size = 2
 
+[*.py]
+indent_size = 4
+
 [makefile]
 indent_style = tabs
 

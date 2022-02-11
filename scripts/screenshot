@@ -2,5 +2,8 @@
 
 source $HOME/.aliases
 
+# Allow time for Rofi to fade
+sleep 0.1
+
 import -silent /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
 img /tmp/screenshot.png
