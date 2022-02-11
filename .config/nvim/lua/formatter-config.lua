@@ -8,6 +8,16 @@ local prettier = {
   end,
 }
 
+local black = {
+  function()
+    return {
+      exe = "black",
+      args = {"-"},
+      stdin = true
+    }
+  end,
+}
+
 local cargofmt = {
   function()
     return {
@@ -42,6 +52,7 @@ require('formatter').setup({
   filetype = {
      typescriptreact = prettier,
      typescript = prettier,
+     json = prettier,
      python = black,
      cpp = clang,
      rust = cargofmt,
