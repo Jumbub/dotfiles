@@ -38,6 +38,16 @@ local clang = {
   end,
 }
 
+local black = {
+  function()
+    return {
+      exe = "black",
+      args = {"-"},
+      stdin = true
+    }
+  end,
+}
+
 require('formatter').setup({
   filetype = {
      typescriptreact = prettier,
@@ -56,6 +66,6 @@ vim.cmd [[
 vim.cmd [[
   augroup fmt
     autocmd!
-    autocmd BufWritePost *.tsx,*.rs,*.cpp,*.h FormatWrite
+    autocmd BufWritePost *.tsx,*.rs,*.cpp,*.h,*.py FormatWrite
   augroup END
 ]]
