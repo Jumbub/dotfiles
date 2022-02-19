@@ -1,7 +1,13 @@
 #!/usr/bin/env zsh
 
 # Zsh
-function ctrlp () { cd $(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac) }
+function ctrlp () {
+  CTRLP_FILE="$(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac)"
+  if [[ -n $CTRLP_FILE ]]
+  then
+    cd CTRLP_FILE
+  fi
+}
 alias src="source $HOME/.zshrc"
 
 # Shell
