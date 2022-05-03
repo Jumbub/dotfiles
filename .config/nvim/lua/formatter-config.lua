@@ -8,16 +8,6 @@ local prettier = {
   end,
 }
 
-local black = {
-  function()
-    return {
-      exe = "black",
-      args = {"-"},
-      stdin = true
-    }
-  end,
-}
-
 local cargofmt = {
   function()
     return {
@@ -64,8 +54,15 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
+  augroup wrapSometimesYo
+    autocmd!
+    autocmd FileType yaml setlocal wrap nowrap
+  augroup END
+]]
+
+vim.cmd [[
   augroup fmt
     autocmd!
-    autocmd BufWritePost *.tsx,*.rs,*.cpp,*.h,*.py FormatWrite
+    autocmd BufWritePost *.tsx,*.ts,*.rs,*.cpp,*.h,*.py FormatWrite
   augroup END
 ]]
