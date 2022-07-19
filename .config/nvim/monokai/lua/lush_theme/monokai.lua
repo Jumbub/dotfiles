@@ -1,3 +1,4 @@
+local os = require('os')
 local lush = require('lush')
 local hsl = lush.hsl
 

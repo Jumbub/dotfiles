@@ -51,7 +51,16 @@ alias gca="git commit --amend"
 alias gc="git commit"
 alias gclean="git clean -f -d"
 function gcmm { local MSG="$@"; git commit -m "$MSG"; };
-function gcm { local MSG="$@"; git commit -m "`jiraForBranch` $MSG"; };
+function gcm {
+  local MSG="$@";
+  local JIRA_BRANCH="`jiraForBranch`"
+  if [[ -n $JIRA_BRANCH ]]
+  then
+    git commit -m "$JIRA_BRANCH $MSG";
+  else
+    git commit -m "$MSG";
+  fi
+};
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcop="git checkout -p"

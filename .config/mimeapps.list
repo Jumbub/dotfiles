@@ -12,7 +12,7 @@ application/x-extension-xhtml=google-chrome.desktop
 application/x-extension-xht=google-chrome.desktop
 image/jpeg=viewnior.desktop;gpicview.desktop;
 image/png=viewnior.desktop;gpicview.desktop;
-text/plain=vim.desktop
+text/plain=nvim.desktop
 application/pdf=epdfview.desktop
 
 [Added Associations]
@@ -30,5 +30,5 @@ application/x-extension-xht=google-chrome.desktop;
 image/jpeg=viewnior.desktop;gpicview.desktop;
 image/png=viewnior.desktop;gpicview.desktop;
 application/pdf=epdfview.desktop;
-text/plain=vim.desktop;
+text/plain=nvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=google-chrome.desktop;

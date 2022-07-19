@@ -43,6 +43,10 @@ lspconfig.pyright.setup {
   on_attach = onAttach,
 }
 
+lspconfig.metals.setup {
+  on_attach = onAttach,
+}
+
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
