@@ -7,11 +7,12 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"TabNine"
+		"TabNine",
 	],
 	"tab_size": 2,
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"word_wrap": true,
-	"wrap_width": 120
+	"wrap_width": 120,
+	"auto_complete": true,
 }

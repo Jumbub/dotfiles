@@ -1,3 +1,5 @@
 {
-  "disable_tab_abbreviations_for_scopes": "source.tsx meta.import.tsx string.quoted.single.tsx"
+  "disable_tab_abbreviations_for_scopes": "source.tsx meta.import.tsx string.quoted.single.tsx",
+  "telemetry": false,
+  "uid": "e954ee77-64ba-4b2b-87a9-d3fdd06fa66c",
 }

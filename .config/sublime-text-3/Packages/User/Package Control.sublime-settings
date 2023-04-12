@@ -27,10 +27,10 @@
 		"SublimeLinter-phpcs",
 		"SublimeLinter-tslint",
 		"SublimeREPL",
-		"TabNine",
 		"Terminal",
 		"TypeScript",
 		"TypeScript Syntax",
-		"ZSH"
-	]
+		"ZSH",
+		"Tabnine"
+	],
 }

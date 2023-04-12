@@ -162,7 +162,8 @@ f.setupClientSignals = function(client)
 end
 
 f.setWallpaper = function(s)
-  gears.wallpaper.maximized("/home/jamie/.config/awesome/wallpaper" .. s.index .. ".png", s, false)
+  -- gears.wallpaper.maximized("/home/jamie/.config/awesome/wallpaper" .. s.index .. ".png", s, false)
+  gears.wallpaper.maximized("/home/jamie/.config/awesome/wallpaper1.png", s, false)
 end
 
 f.setupGlobalBindings = function()
