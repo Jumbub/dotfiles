@@ -255,6 +255,20 @@ f.setupGlobalBindings = function()
         end
       ),
       awful.key(
+        {},
+        "XF86MonBrightnessUp",
+        function()
+          awful.spawn.with_shell("light -A 10")
+        end
+      ),
+      awful.key(
+        {},
+        "XF86MonBrightnessDown",
+        function()
+          awful.spawn.with_shell("light -U 10")
+        end
+      ),
+      awful.key(
         {"Control", "Mod1"},
         "l",
         function()
@@ -572,6 +586,25 @@ f.setupScreens = function(screen)
     end
   }
 
+  local bat = wibox.widget.graph()
+  bat.width = 12
+  bat.max_value = 100
+  bat.min_value = 0
+  bat.step_width = 12
+  bat.step_spacing = 1
+  bat.color = "#baa"
+  bat.border_color = "#444"
+  bat.background_color = "#222"
+
+  local batWrapped =
+    lain.widget.bat {
+    widget = bat,
+    settings = function()
+      widget:clear()
+      widget:add_value(tonumber(bat_now.perc))
+    end
+  }
+
   local fs = wibox.widget.graph()
   fs.width = 12
   fs.max_value = 100
@@ -723,6 +756,17 @@ f.setupScreens = function(screen)
         },
         {
           layout = wibox.layout.fixed.horizontal,
+          {
+            layout = wibox.layout.stack,
+            batWrapped,
+            wibox.widget {
+              markup = "b",
+              font = "JetBrains Mono 6",
+              align = "center",
+              valign = "top",
+              widget = wibox.widget.textbox
+            }
+          },
           {
             layout = wibox.layout.stack,
             cpuWrapped,
