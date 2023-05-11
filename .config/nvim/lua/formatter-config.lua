@@ -30,6 +30,8 @@ local black = {
 
 require('formatter').setup({
     filetype = {
+        html = prettier,
+        css = prettier,
         typescriptreact = prettier,
         typescript = prettier,
         javascript = prettier,
@@ -48,7 +50,7 @@ vim.cmd [[
 vim.cmd [[
   augroup wrapSometimesYo
     autocmd!
-    autocmd BufWritePost *.lua,*.tsx,*.ts,*.rs,*.cpp,*.h,*.js FormatWrite
+    autocmd BufWritePost *.lua,*.tsx,*.ts,*.rs,*.cpp,*.h,*.js,*.html,*.css FormatWrite
     autocmd FileType yaml setlocal wrap nowrap
   augroup END
 ]]

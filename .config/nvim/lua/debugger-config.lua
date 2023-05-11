@@ -2,13 +2,11 @@
 -- vim.cmd [[
 --   packadd! vimspector
 -- ]]
-
-vim.cmd [[
-  function! GotoWindow(id)
-      call win_gotoid(a:id)
-  endfunction
-]]
-
+-- vim.cmd [[
+--   function! GotoWindow(id)
+--       call win_gotoid(a:id)
+--   endfunction
+-- ]]
 -- vim.api.nvim_set_keymap('n', '<leader>dl', ':call vimspector#Launch()<CR>', { silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>dg', ':call vimspector#Continue()<CR>', { silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>dq', ':call vimspector#Reset()<CR>', { silent = true })

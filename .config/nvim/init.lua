@@ -1,7 +1,7 @@
 require('variables')
 require('packages')
-require('colors')
 require('keymaps')
+require('colors')
 require('lsp-config')
 require('formatter-config')
 require('debugger-config')

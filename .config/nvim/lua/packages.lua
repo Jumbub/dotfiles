@@ -1,51 +1,55 @@
-require('packer').startup(function()
-    use 'christianrondeau/vim-base64' -- Encoding base64 strings
-    use 'dhruvasagar/vim-open-url' -- Open URL in browser
-    use 'editorconfig/editorconfig-vim' -- Formatting config
-    use 'junegunn/fzf' -- Install fzf
-    use 'junegunn/fzf.vim' -- Install fzf for vim
-    use 'mhartington/formatter.nvim' -- Auto formatter
-    use 'scrooloose/nerdtree' -- Directory tree
-    use 'tpope/vim-abolish' -- Word modifications
-    use 'tpope/vim-commentary' -- Quick comments
-    use 'tpope/vim-eunuch' -- File helpers
-    use 'tpope/vim-fugitive' -- Git wrapper
-    use 'tpope/vim-surround' -- Word wapping
-    use 'wakatime/vim-wakatime' -- Track development time
-    use 'wbthomason/packer.nvim' -- Package manager
-    use {'dhruvasagar/vim-prosession', requires = {use 'tpope/vim-obsession'}} -- Better session management
-    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}} -- I think this is a dependency of another plugin
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+        lazypath
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({
+    'christianrondeau/vim-base64', -- Encoding base64 strings
+    'dhruvasagar/vim-open-url', -- Open URL in browser
+    'editorconfig/editorconfig-vim', -- Formatting config
+    'junegunn/fzf', -- Install fzf
+    'junegunn/fzf.vim', -- Install fzf for vim
+    'mhartington/formatter.nvim', -- Auto formatter
+    'scrooloose/nerdtree', -- Directory tree
+    'tpope/vim-abolish', -- Word modifications
+    'tpope/vim-commentary', -- Quick comments
+    'tpope/vim-eunuch', -- File helpers
+    'tpope/vim-fugitive', -- Git wrapper
+    'tpope/vim-surround', -- Word wapping
+    'wakatime/vim-wakatime', -- Track development time
+    {'dhruvasagar/vim-prosession', dependencies = {'tpope/vim-obsession'}}, -- Better session management
+    {'nvim-telescope/telescope.nvim', dependencies = {'nvim-lua/plenary.nvim'}}, -- I think this is a dependency of another plugin
 
     -- Languages
-    use {
+    {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end
-    } -- Diagnostics in window
-    use 'hrsh7th/cmp-nvim-lsp' -- Autocomplete linker to LSP
-    use 'hrsh7th/cmp-vsnip' -- Autocomplete linker to snippets
-    use 'hrsh7th/nvim-cmp' -- Autocomplete tool
-    use 'hrsh7th/vim-vsnip' -- Snippet tool (primarily used as auto-complete helper)
-    use 'neovim/nvim-lspconfig' -- Configs
-    use 'nvim-treesitter/nvim-treesitter-textobjects' -- Extra language information
-    use 'nvim-treesitter/playground' -- TS playground
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- Language parser
-    -- use 'puremourning/vimspector' -- Debugger
-    use 'metakirby5/codi.vim' -- Code scratchpad
-
+    }, -- Diagnostics in window
+    'hrsh7th/cmp-nvim-lsp', -- Autocomplete linker to LSP
+    'hrsh7th/cmp-vsnip', -- Autocomplete linker to snippets
+    'hrsh7th/nvim-cmp', -- Autocomplete tool
+    'hrsh7th/vim-vsnip', -- Snippet tool (primarily used as auto-complete helper)
+    'neovim/nvim-lspconfig', -- Configs
+    -- 'nvim-treesitter/nvim-treesitter-textobjects', -- Extra language information
+    -- 'nvim-treesitter/playground', -- TS playground
+    {'nvim-treesitter/nvim-treesitter'}, -- Language parser
+    -- 'puremourning/vimspector', -- Debugger
+    -- 'metakirby5/codi.vim', -- Code scratchpad
     -- Visuals
-    use 'Xuyuanp/scrollbar.nvim' -- Scroll bar
-    use 'karb94/neoscroll.nvim' -- Smooth scroll
-    use 'norcalli/nvim-colorizer.lua' -- Highlight colour codes
-    use 'rktjmp/lush.nvim' -- Colour scheme helper
-    use {
-        'iamcco/markdown-preview.nvim',
-        ft = 'markdown',
-        run = 'cd app && yarn install'
-    } -- Markdown preview
-    use "lukas-reineke/indent-blankline.nvim" -- Indent guides
-    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}} -- Git signs
-end);
+    'Xuyuanp/scrollbar.nvim', -- Scroll bar
+    'karb94/neoscroll.nvim', -- Smooth scroll
+    -- 'norcalli/nvim-colorizer.lua', -- Highlight colour codes
+    'tanvirtin/monokai.nvim', -- Colour scheme
+    'rktjmp/lush.nvim', -- Colour scheme helper
+    'lukas-reineke/indent-blankline.nvim', -- Indent guides
+    {'lewis6991/gitsigns.nvim', dependencies = {'nvim-lua/plenary.nvim'}} -- Git signs
+});
 
 vim.g.prosession_dir = '/home/jamie/workspaces/vim/' -- Set the directory to create prosessions
 vim.g.NERDTreeQuitOnOpen = true -- Close tree on opening a file
@@ -96,7 +100,7 @@ require('gitsigns').setup {
 }
 
 require("indent_blankline").setup {
-    char_highlight_list = {"IndentBlanklineIndent1", "IndentBlanklineIndent2"}
+    -- char_highlight_list = {"IndentBlanklineIndent1", "IndentBlanklineIndent2"}
 }
 
 vim.g.scrollbar_right_offset = 0
@@ -115,4 +119,6 @@ vim.cmd [[
   augroup end
 ]]
 
-require'colorizer'.setup()
+require('trouble').setup {}
+require('monokai').setup {}
+-- require'colorizer'.setup()
