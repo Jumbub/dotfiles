@@ -37,3 +37,7 @@ export MANPAGER="nvim +Man!"
 
 # Prompt
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# WSL2 Display
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+# export LIBGL_ALWAYS_INDIRECT=1

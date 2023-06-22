@@ -1,4 +1,4 @@
-vim.o.clipboard = 'unnamedplus' -- Share clipboard with system
+vim.o.clipboard = 'unnamed' -- Share clipboard with system
 vim.o.inccommand = 'split' -- Show substitude command effects as you type
 vim.o.number = true -- Show curernt line number
 vim.o.relativenumber = true -- Use relative line numbers

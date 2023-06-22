@@ -4,7 +4,7 @@
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="google-chrome-stable"
+export BROWSER="/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe"
 
 # Path
 function addToPath() {
@@ -20,3 +20,4 @@ addToPath "$HOME/.local/bin"
 addToPath "$HOME/.cargo/bin"
 addToPath "$HOME/.config/composer/vendor/bin"
 addToPath "$HOME/scripts"
+
