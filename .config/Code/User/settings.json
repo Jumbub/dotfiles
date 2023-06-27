@@ -4,218 +4,95 @@
   "vim.easymotion": true,
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "n",
-      ],
-      "after": [
-        "g",
-        "b",
-      ],
-    },
+      "before": ["n"],
+      "after": ["g", "b"]
+    }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "<leader>",
-        "v",
-        "s",
-      ],
-      "commands": [
-        "workbench.action.toggleSidebarVisibility"
-      ]
+      "before": ["<leader>", "v", "s"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": [
-        "<leader>",
-        "v",
-        "f",
-      ],
-      "commands": [
-        "workbench.files.action.showActiveFileInExplorer"
-      ]
+      "before": ["<leader>", "v", "f"],
+      "commands": ["workbench.files.action.showActiveFileInExplorer"]
     },
     {
-      "before": [
-        "<leader>",
-        "v",
-        "e",
-      ],
-      "commands": [
-        "workbench.view.extensions"
-      ]
+      "before": ["<leader>", "v", "e"],
+      "commands": ["workbench.view.extensions"]
     },
     {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.referenceSearch.trigger",
-      ]
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
     },
     {
-      "before": [
-        "g",
-        "S"
-      ],
-      "commands": [
-        "workbench.action.showAllSymbols",
-      ]
+      "before": ["g", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
     },
     {
-      "before": [
-        "g",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.gotoSymbol",
-      ]
+      "before": ["g", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "r"
-      ],
-      "commands": [
-        "editor.action.rename",
-      ]
+      "before": ["<leader>", "s", "r"],
+      "commands": ["editor.action.rename"]
     },
     {
-      "before": [
-        ";",
-      ],
-      "after": [
-        "<leader>",
-        "<leader>",
-        "<leader>",
-        "b",
-        "d",
-        "w",
-      ]
+      "before": [";"],
+      "after": ["<leader>", "<leader>", "<leader>", "b", "d", "w"]
     },
     {
-      "before": [
-        "<leader>",
-        "<leader>",
-        "d"
-      ],
-      "commands": [
-        "workbench.action.terminal.openNativeConsole",
-      ]
+      "before": ["<leader>", "<leader>", "d"],
+      "commands": ["workbench.action.terminal.openNativeConsole"]
     },
     {
-      "before": [
-        "<leader>",
-        "D"
-      ],
-      "commands": [
-        "workbench.action.terminal.toggleTerminal",
-      ]
+      "before": ["<leader>", "D"],
+      "commands": ["workbench.action.terminal.toggleTerminal"]
     },
     {
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "commands": [
-        "openInTerminal",
-      ]
+      "before": ["<leader>", "d"],
+      "commands": ["openInTerminal"]
     },
     {
-      "before": [
-        "<leader>",
-        "p"
-      ],
-      "commands": [
-        "workbench.action.openRecent",
-      ]
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.openRecent"]
     },
     {
-      "before": [
-        "<leader>",
-        "e"
-      ],
-      "commands": [
-        "extension.vim_ctrl+p",
-      ]
+      "before": ["<leader>", "e"],
+      "commands": ["extension.vim_ctrl+p"]
     },
     {
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "editor.action.quickFix",
-      ]
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.quickFix"]
     },
     {
-      "before": [
-        "<leader>",
-        ":"
-      ],
-      "commands": [
-        "workbench.action.showCommands",
-      ]
+      "before": ["<leader>", ":"],
+      "commands": ["workbench.action.showCommands"]
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.openSettingsJson",
-      ]
+      "before": ["<leader>", "t", "s"],
+      "commands": ["workbench.action.openSettingsJson"]
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "S"
-      ],
-      "commands": [
-        "workbench.action.openSettings",
-      ]
+      "before": ["<leader>", "t", "S"],
+      "commands": ["workbench.action.openSettings"]
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "k"
-      ],
-      "commands": [
-        "workbench.action.openGlobalKeybindingsFile",
-      ]
+      "before": ["<leader>", "t", "k"],
+      "commands": ["workbench.action.openGlobalKeybindingsFile"]
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "K"
-      ],
-      "commands": [
-        "workbench.action.openGlobalKeybindings",
-      ]
+      "before": ["<leader>", "t", "K"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
     },
     {
-      "before": [
-        "<leader>",
-        "r"
-      ],
-      "commands": [
-        "editor.action.rename"
-      ]
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.rename"]
     },
     {
-      "before": [
-        "<leader>",
-        "F"
-      ],
-      "commands": [
-        "editor.action.fixAll"
-      ]
-    },
+      "before": ["<leader>", "F"],
+      "commands": ["editor.action.fixAll"]
+    }
   ],
   "vim.easymotionMarkerBackgroundColor": "#47252e",
   "vim.easymotionMarkerForegroundColorOneChar": "#eee",
@@ -226,7 +103,7 @@
   "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
   "editor.lineNumbers": "relative",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "Monokai",
+  "workbench.colorTheme": "Default Dark Modern",
   "php.suggest.basic": false,
   "explorer.confirmDelete": false,
   "jumpy.darkThemeBackground": "#47252e",
@@ -236,25 +113,25 @@
       {
         "color": "#78dce8",
         "fontWeight": "bold"
-      },
+      }
     ],
     "(note:?)": [
       {
         "color": "#f7cf59",
         "fontWeight": "bold"
-      },
+      }
     ],
     "(fixme:?)": [
       {
         "color": "#ff6188",
         "fontWeight": "bold"
-      },
+      }
     ],
     "(hack:?)": [
       {
         "color": "#ab9df2",
         "fontWeight": "bold"
-      },
+      }
     ],
     // \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]);
     "(\\\\HE\\\\Util\\\\Logger::Logger\\(')(DEBUGGING)('\\)->emergency\\('.*',\\s*\\[)([^;]*)(\\]\\);)": {
@@ -272,7 +149,7 @@
         {},
         {
           "backgroundColor": "#47252e"
-        },
+        }
       ]
     },
     // <?php \HE\Util\Logger::Logger('DEBUGGING')->emergency('$asdf', [ '$asdf' => $asdf ]); ?>
@@ -291,7 +168,7 @@
         {},
         {
           "backgroundColor": "#47252e"
-        },
+        }
       ]
     },
     // console.log('DEBUGGING', asdf);
@@ -304,9 +181,9 @@
         {},
         {
           "backgroundColor": "#47252e"
-        },
+        }
       ]
-    },
+    }
     // <?php if () asdadsdsa
     // : ?>  <?php elseif (): ?> <?= $asdf ?> <?php else: ?> <?php endif ?>  <?php if( $booking->triage && !$booking->isWebsiteForm() ) : ?> fixed noresize <?php endif; ?>   ">
     // "(\\<\\?(php|\\=))(((?!DEBUGGING)|\\n|.)*?)(\\?\\>)": {
@@ -335,15 +212,11 @@
       "attr_quotes": "single"
     }
   },
-  "css_peek.exclude": [
-    "node_modules",
-    "bower_components",
-  ],
+  "css_peek.exclude": ["node_modules", "bower_components"],
   "window.newWindowDimensions": "inherit",
   "window.enableMenuBarMnemonics": false,
   "window.menuBarVisibility": "visible",
   "workbench.activityBar.visible": false,
-  "window.zoomLevel": 1,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "zenMode.hideLineNumbers": false,
   "window.title": "${activeEditorLong} ${dirty} (${folderName})${separator}${appName}",
@@ -384,4 +257,6 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "explorer.confirmDragAndDrop": false,
+  "window.zoomLevel": 3
 }

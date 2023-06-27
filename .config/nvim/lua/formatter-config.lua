@@ -50,7 +50,7 @@ vim.cmd [[
 vim.cmd [[
   augroup wrapSometimesYo
     autocmd!
-    autocmd BufWritePost *.lua,*.tsx,*.ts,*.rs,*.cpp,*.h,*.js,*.html,*.css FormatWrite
+    autocmd BufWritePost *.lua,*.tsx,*.ts,*.rs,*.cpp,*.h,*.js,*.css FormatWrite
     autocmd FileType yaml setlocal wrap nowrap
   augroup END
 ]]

@@ -9,6 +9,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+    {'kevinhwang91/nvim-ufo', dependencies = {'kevinhwang91/promise-async'}}, -- Nicer folding
     'christianrondeau/vim-base64', -- Encoding base64 strings
     'dhruvasagar/vim-open-url', -- Open URL in browser
     'editorconfig/editorconfig-vim', -- Formatting config
@@ -24,8 +25,8 @@ require('lazy').setup({
     'wakatime/vim-wakatime', -- Track development time
     {'dhruvasagar/vim-prosession', dependencies = {'tpope/vim-obsession'}}, -- Better session management
     {'nvim-telescope/telescope.nvim', dependencies = {'nvim-lua/plenary.nvim'}}, -- I think this is a dependency of another plugin
-
-    -- Languages
+    {'stevearc/oil.nvim'}, -- File browser
+    {"folke/neodev.nvim", opts = {}}, -- Lua Plugin Development
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
@@ -119,6 +120,44 @@ vim.cmd [[
   augroup end
 ]]
 
+vim.o.foldcolumn = '0'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds);
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds);
+
+local lspFolds = function()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+    }
+    local language_servers = require("lspconfig").util.available_servers()
+    for _, ls in ipairs(language_servers) do
+        require('lspconfig')[ls].setup({
+            capabilities = capabilities
+            -- you can add other fields for setting up lsp server in this table
+        })
+    end
+    require('ufo').setup()
+end
+lspFolds()
+
+local treesitterFolds = function()
+    -- Option 3: treesitter as a main provider instead
+    -- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
+    -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
+    require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+            return {'treesitter', 'indent'}
+        end
+    })
+end
+
 require('trouble').setup {}
 require('monokai').setup {}
+require('oil').setup {}
 -- require'colorizer'.setup()

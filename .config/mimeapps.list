@@ -32,3 +32,4 @@ image/png=viewnior.desktop;gpicview.desktop;
 application/pdf=epdfview.desktop;
 text/plain=nvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=google-chrome.desktop;
+text/csv=nvim.desktop;

@@ -6,6 +6,10 @@ vim.cmd [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exist
 -- Better undo
 vim.api.nvim_set_keymap('n', 'U', ':redo<CR>', {silent = true, noremap = true})
 
+-- Suss
+vim.api.nvim_set_keymap('n', '<leader>s', ':w<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', {})
+
 -- Case insenstive search
 vim.api.nvim_set_keymap('n', '/', '/\\c', {})
 vim.api.nvim_set_keymap('n', '?', '?\\c', {})

@@ -16,7 +16,7 @@ indent_size = 2
 indent_size = 4
 
 [makefile]
-indent_style = tabs
+indent_style = tab
 
 [coc-settings.json]
 trim_trailing_whitespace = false

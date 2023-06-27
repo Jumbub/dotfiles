@@ -14,7 +14,6 @@ alias src="source $HOME/.zshrc"
 function haveigot {
   command -v $1 > /dev/null
 }
-
 # XClip
 alias xcp="xclip -sel clip"
 
