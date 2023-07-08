@@ -12,7 +12,7 @@ indent_size = 2
 [*.js,*.jsx,*.ts,*.tsx,*.hs,*.json,*.yml]
 indent_size = 2
 
-[*.py]
+[*.py,*.lua]
 indent_size = 4
 
 [makefile]
