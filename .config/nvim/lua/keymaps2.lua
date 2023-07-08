@@ -1,58 +1,32 @@
--- On hover, show diagnostics in the echo view
--- vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
--- When NERDtree is the last window, close vim
-vim.cmd(
-  [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
-)
-
--- Better undo
+-- Undo alias
 vim.api.nvim_set_keymap("n", "U", ":redo<CR>", { silent = true, noremap = true })
 
 -- Suss
-vim.api.nvim_set_keymap("n", "<leader>s", ":w<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", {})
+vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", {})
+vim.api.nvim_set_keymap("n", "<C-q>", ":q<CR>", {})
 
--- Case insenstive search
+-- Buffer search
 vim.api.nvim_set_keymap("n", "/", "/\\c", {})
 vim.api.nvim_set_keymap("n", "?", "?\\c", {})
 vim.api.nvim_set_keymap("v", "/", "/\\c", {})
 vim.api.nvim_set_keymap("v", "?", "?\\c", {})
 
--- Fuzzy word search
-vim.api.nvim_set_keymap("n", "<leader>j", ":Rg <CR>", {})
+-- Workspace search
 vim.api.nvim_set_keymap("v", "<leader>j", '"sy:Rg <C-r>s<CR>', {})
 
--- Replace
+-- Change selection
 vim.api.nvim_set_keymap("v", "<leader>c", "*Ncgn", {})
 
--- Quickfix
+-- Quickfix navigation
 vim.api.nvim_set_keymap("n", "<C-k>", ":cp<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-j>", ":cn<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-h>", ":cclose<CR>", {})
 vim.api.nvim_set_keymap("n", "<C-l>", ":copen<CR>", {})
 
--- Sessions
-
--- Files
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>m",
-  'bufexists(expand("%")) ? ":NERDTreeFind<CR>" : ":NERDTree<CR>"',
-  { expr = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "<C-p>", ":Files<CR>", {})
-
 -- Traverse wrapped lines
 vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
--- Base64 encoding
-vim.api.nvim_set_keymap("v", "<leader>64", ",btoa", { silent = true })
-vim.api.nvim_set_keymap("v", "<leader>46", ",atob", { silent = true })
-
 -- UUID
 vim.api.nvim_set_keymap("n", "<leader>uu", 'i<C-r>=system("uuid")<CR><ESC>', { silent = true })
 vim.api.nvim_set_keymap("v", "<leader>uu", 'c<C-r>=system("uuid")<CR><ESC>', { silent = true })
-
--- Base64
-vim.keymap.set("v", "<leader>64", function() end, { silent = true })
