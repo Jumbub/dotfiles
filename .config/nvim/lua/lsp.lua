@@ -19,7 +19,6 @@ vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-vim.keymap.set("i", "<c-space>", "<c-x><c-o>", {})
 vim.keymap.set("n", "gH", vim.diagnostic.open_float)
 vim.keymap.set("n", "<C-e>", vim.diagnostic.goto_next)
 vim.keymap.set("n", "ge", vim.diagnostic.setqflist)

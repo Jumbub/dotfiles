@@ -14,6 +14,8 @@ require("packages.lazy")({
   require("packages/dap"),
   require("packages/base64"),
   require("packages/git"),
+  require("packages/cursor"),
+  require("packages/completion"),
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
   "tpope/vim-commentary", -- Code commenting

@@ -1,10 +1,16 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    },
     config = function()
       local lspconfig = require("lspconfig")
 
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       lspconfig.tsserver.setup({
+        capabilities = capabilities,
         commands = {
           OrganizeImports = {
             function()
@@ -21,6 +27,7 @@ return {
       })
 
       require("lspconfig").lua_ls.setup({
+        capabilities = capabilities,
         settings = {
           Lua = {
             runtime = {

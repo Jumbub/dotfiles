@@ -29,7 +29,6 @@ return {
       "<leader>db",
     },
   },
-
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
@@ -45,19 +44,5 @@ return {
       vim.keymap.set("v", "gh", dapui.eval, {})
       vim.keymap.set("n", "<leader>du", dapui.toggle)
     end,
-  },
-  {
-    "nvim-telescope/telescope-dap.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      local telescope = require("telescope")
-      telescope.load_extension("dap")
-      -- require("telescope").extensions.dap.commands({})
-      -- require("telescope").extensions.dap.configurations({})
-      vim.keymap.set("n", ",dB", telescope.extensions.dap.list_breakpoints)
-      -- require("telescope").extensions.dap.variables({})
-      -- require("telescope").extensions.dap.frames({})
-    end,
-    -- keys = { "<leader>dc" },
   },
 }

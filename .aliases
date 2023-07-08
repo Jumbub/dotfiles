@@ -115,6 +115,9 @@ function pad {
   fi
 }
 
+# V8
+alias d8=~/repos/v8/v8/out/x64.release/d8
+
 # Machine specific aliases
 if [ -f $HOME/.machine-aliases ]
 then

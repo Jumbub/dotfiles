@@ -15,7 +15,3 @@ vim.opt.undodir = "/home/jamie/.vim/undodir" -- Set undo history file
 vim.opt.undofile = true -- Persist undo history between sessions
 vim.opt.updatetime = 300 -- Cursor hold events
 vim.opt.wrap = true -- Wrap preference
-
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1

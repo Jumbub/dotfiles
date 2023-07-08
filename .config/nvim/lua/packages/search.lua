@@ -1,43 +1,34 @@
+local fzf = function(method)
+  return function()
+    return require("fzf-lua")[method]()
+  end
+end
+
 return {
-  "junegunn/fzf.vim",
-  dependencies = { "junegunn/fzf" },
-  cmd = {
-    "Files",
-    "GFiles",
-    "GFiles",
-    "Buffers",
-    "Colors",
-    "Ag",
-    "Rg",
-    "RG",
-    "Lines",
-    "BLines",
-    "Tags",
-    "BTags",
-    "Marks",
-    "Jumps",
-    "Windows",
-    "Locate",
-    "History",
-    "History",
-    "History",
-    "Snippets",
-    "Commits",
-    "BCommits",
-    "Commands",
-    "Maps",
-    "Helptags",
-    "Filetypes",
-  },
-  keys = {
-    {
-      "<C-p>",
-      "<cmd>Files<cr>",
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "junegunn/fzf" },
+    lazy = false,
+    config = function()
+      require("fzf-lua").setup({
+        "max-perf",
+        winopts = {
+          split = "belowright new",
+          preview = {
+            border = "noborder",
+            hidden = "hidden",
+            layout = "horizontal",
+          },
+        },
+        keymap = {
+          fzf = {
+            ["ctrl-p"] = "toggle-preview",
+          },
+        },
+      })
+    end,
+    keys = {
+      { "<C-p>", fzf("files") },
     },
-    {
-      "<C-:>",
-      "<cmd>History<cr>",
-    },
-    { "<leader>j", '"sy:Rg <C-r>s<CR>', mode = "v" },
   },
 }

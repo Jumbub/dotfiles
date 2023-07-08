@@ -6,6 +6,9 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
 
+# Environment Path
+export D8_PATH="~/repos/v8/v8/out/x64.release"
+
 # Path
 function addToPath() {
   if [[ ! "$PATH" =~ "$1" ]] && [ -d "$1" ]
