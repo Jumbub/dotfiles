@@ -1,6 +1,6 @@
 return {
   "dhruvasagar/vim-prosession",
-  dependencies = { "tpope/vim-obsession" },
+  dependencies = { "tpope/vim-obsession", "junegunn/fzf.vim" },
   lazy = false,
   init = function()
     vim.g.prosession_dir = "/home/jamie/workspaces/vim/"

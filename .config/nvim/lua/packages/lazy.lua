@@ -11,4 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-return require("lazy")
+return function(packages)
+  print("hi")
+  require("lazy").setup(packages, {
+    ui = {
+      size = { width = 1, height = 1 },
+    },
+  })
+end

@@ -1,19 +1,43 @@
 return {
-  {
-    "junegunn/fzf",
+  "junegunn/fzf.vim",
+  dependencies = { "junegunn/fzf" },
+  cmd = {
+    "Files",
+    "GFiles",
+    "GFiles",
+    "Buffers",
+    "Colors",
+    "Ag",
+    "Rg",
+    "RG",
+    "Lines",
+    "BLines",
+    "Tags",
+    "BTags",
+    "Marks",
+    "Jumps",
+    "Windows",
+    "Locate",
+    "History",
+    "History",
+    "History",
+    "Snippets",
+    "Commits",
+    "BCommits",
+    "Commands",
+    "Maps",
+    "Helptags",
+    "Filetypes",
   },
-  {
-    "junegunn/fzf.vim",
-    config = function() end,
-    keys = {
-      {
-        "<C-p>",
-        "<cmd>Files<cr>",
-      },
-      {
-        "<C-:>",
-        "<cmd>History<cr>",
-      },
+  keys = {
+    {
+      "<C-p>",
+      "<cmd>Files<cr>",
     },
+    {
+      "<C-:>",
+      "<cmd>History<cr>",
+    },
+    { "<leader>j", '"sy:Rg <C-r>s<CR>', mode = "v" },
   },
 }

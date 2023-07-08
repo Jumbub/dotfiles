@@ -2,11 +2,21 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    init = function()
+    config = function()
       require("nvim-tree").setup({
+        renderer = {
+          icons = {
+            show = {
+              file = false,
+              git = false,
+            },
+          },
+        },
+
         view = {
           width = 60,
         },
+
         actions = {
           open_file = {
             quit_on_open = true,
@@ -14,7 +24,6 @@ return {
         },
       })
     end,
-    lazy = false,
     keys = {
       { "<leader>m", "<cmd>NvimTreeFindFile<cr>" },
     },
@@ -46,7 +55,7 @@ return {
       {
         "<c-" .. vim.g.mapleader .. "><c-m>",
         function()
-          require("oil").open()
+          require("oil").open_float()
         end,
       },
     },
