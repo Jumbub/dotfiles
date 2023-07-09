@@ -35,7 +35,46 @@ return {
     config = function()
       local dap, dapui = require("dap"), require("dapui")
 
-      dapui.setup({})
+      dapui.setup({
+        layouts = {
+          {
+            elements = {
+              {
+                id = "console",
+                size = 0.15,
+              },
+              {
+                id = "scopes",
+                size = 0.48,
+              },
+              {
+                id = "stacks",
+                size = 0.3,
+              },
+              {
+                id = "breakpoints",
+                size = 0.12,
+              },
+            },
+            position = "right",
+            size = 0.4,
+          },
+          {
+            elements = {
+              {
+                id = "watches",
+                size = 0.4,
+              },
+              {
+                id = "repl",
+                size = 0.6,
+              },
+            },
+            position = "bottom",
+            size = 0.3,
+          },
+        },
+      })
 
       dap.listeners.after.event_initialized["dapui_config"] = dapui.open
       dap.listeners.before.event_terminated["dapui_config"] = dapui.close

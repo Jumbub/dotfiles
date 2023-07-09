@@ -1,13 +1,12 @@
 return {
   {
-    "tanvirtin/monokai.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("monokai").setup({})
-    end,
+    "rktjmp/lush.nvim",
   },
   {
-    "rktjmp/lush.nvim",
+    name = "monokai",
+    dir = "/home/jamie/.config/nvim/monokai",
+    config = function()
+      vim.cmd([[colorscheme monokai]])
+    end,
   },
 }

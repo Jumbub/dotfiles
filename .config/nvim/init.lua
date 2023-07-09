@@ -19,4 +19,6 @@ require("packages.lazy")({
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
   "tpope/vim-commentary", -- Code commenting
+  "tpope/vim-commentary", -- Code commenting
+  "metakirby5/codi.vim", -- Scratch pad
 })

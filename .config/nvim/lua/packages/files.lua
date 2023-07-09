@@ -8,6 +8,7 @@ return {
           icons = {
             show = {
               file = false,
+              folder = false,
               git = false,
             },
           },
