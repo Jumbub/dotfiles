@@ -11,8 +11,5 @@ $run --notify "redshift"
 # Clipboard manager
 $run --notify "greenclip daemon" "greenclip"
 
-# Entirely to make Rofi look cooler
-$run --notify "picom"
-
 # Bluetooth
 $run --notify "blueman-applet"
