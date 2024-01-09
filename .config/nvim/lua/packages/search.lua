@@ -8,7 +8,7 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "junegunn/fzf" },
-    lazy = false,
+    lazy = true,
     config = function()
       require("fzf-lua").setup({
         "max-perf",
@@ -29,6 +29,8 @@ return {
     end,
     keys = {
       { "<C-p>", fzf("files") },
+      { ",j", fzf("grep_visual"), mode = "v" },
+      { ",j", fzf("grep_project") },
     },
   },
 }

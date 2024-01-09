@@ -16,9 +16,10 @@ require("packages.lazy")({
   require("packages/git"),
   require("packages/cursor"),
   require("packages/completion"),
+  require("packages/navigation"),
+  require("packages/viewers"),
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
-  "tpope/vim-commentary", -- Code commenting
   "tpope/vim-commentary", -- Code commenting
   "metakirby5/codi.vim", -- Scratch pad
 })

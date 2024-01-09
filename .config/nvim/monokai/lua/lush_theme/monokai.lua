@@ -46,8 +46,54 @@ local lush = require("lush")
 local hsl = lush.hsl
 local os = require("os")
 
+local colors = {
+  BLACK="#272822";
+  WHITE="#dfdfd9";
+
+  GRAY_DARKER_STILL="#34322A";
+  GRAY_DARKER="#3A382F";
+  GRAY_DARK="#5D5A4B";
+  GRAY="#75715e";
+  GRAY_LIGHT="#908D7E";
+  GRAY_LIGHTER="#BAB8AE";
+  GRAY_LIGHTER_STILL="#c7c6be";
+
+  YELLOW_DARK="#b8af5c";
+  YELLOW="#e6db74";
+  YELLOW_LIGHT="#EBE28F";
+
+  RED_DARK="#c71e5b";
+  RED="#f92672";
+  RED_LIGHT="#fa518e";
+
+  ORANGE_DARK="#CA7818";
+  ORANGE="#fd971f";
+  ORANGE_LIGHT="#fdab4b";
+
+  GREEN_DARK="#84b424";
+  GREEN="#a6e22e";
+  GREEN_LIGHT="#b7e757";
+
+  BLUE_DARK="#51adbf";
+  BLUE="#66d9ef";
+  BLUE_LIGHT="#84e0f2";
+
+  CYAN_DARK="#80BFB6";
+  CYAN="#a1efe4";
+  CYAN_LIGHT="#b3f2e9";
+
+  PINK_DARK="#ca4cc0";
+  PINK="#fd5ff0";
+  PINK_LIGHT="#fd7ef3";
+
+  PURPLE_DARK="#8b67cc";
+  PURPLE="#ae81ff";
+  PURPLE_LIGHT="#be9aff";
+}
+
 local getColor = function(color)
-  return hsl(os.getenv("THEME_" .. color))
+  local envColor = os.getenv("THEME_" .. color) or colors[color]
+  return envColor or nil
 end
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
@@ -110,7 +156,7 @@ local theme = lush(function(injected_functions)
     EndOfBuffer    { irregular }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     TermCursor     { shadyDark }, -- Cursor in a focused terminal
     -- TermCursorNC   {  }, -- Cursor in an unfocused terminal
-    ErrorMsg       { redBg }, -- Error messages on the command line
+    ErrorMsg       { red }, -- Error messages on the command line
     VertSplit      { shadyDarker }, -- Column separating vertically split windows
     Folded         { shady }, -- Line used for closed folds
     FoldColumn     { shady }, -- 'foldcolumn'

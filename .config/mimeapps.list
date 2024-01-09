@@ -14,6 +14,8 @@ image/jpeg=viewnior.desktop;gpicview.desktop;
 image/png=viewnior.desktop;gpicview.desktop;
 text/plain=nvim.desktop
 application/pdf=epdfview.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+modrinth=modrinth-app-handler.desktop
 
 [Added Associations]
 x-scheme-handler/http=google-chrome.desktop;
@@ -29,7 +31,8 @@ application/x-extension-xhtml=google-chrome.desktop;
 application/x-extension-xht=google-chrome.desktop;
 image/jpeg=viewnior.desktop;gpicview.desktop;
 image/png=viewnior.desktop;gpicview.desktop;
-application/pdf=epdfview.desktop;
+application/pdf=google-chrome.desktop;epdfview.desktop;
 text/plain=nvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=google-chrome.desktop;
 text/csv=nvim.desktop;
+image/svg+xml=org.xfce.mousepad.desktop;

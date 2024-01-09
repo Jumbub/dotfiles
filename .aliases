@@ -50,16 +50,7 @@ alias gca="git commit --amend"
 alias gc="git commit"
 alias gclean="git clean -f -d"
 function gcmm { local MSG="$@"; git commit -m "$MSG"; };
-function gcm {
-  local MSG="$@";
-  local JIRA_BRANCH="`jiraForBranch`"
-  if [[ -n $JIRA_BRANCH ]]
-  then
-    git commit -m "$JIRA_BRANCH $MSG";
-  else
-    git commit -m "$MSG";
-  fi
-};
+function gcm { local MSG="$@"; git commit -m "$MSG"; };
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcop="git checkout -p"
@@ -82,12 +73,16 @@ alias gd="git diff"
 function ghd {
   $BROWSER $(~/scripts/branch-url)
 }
+alias ghp="gh pr view -w"
 
 # Kubernetes
 alias k="k9s"
 alias kc="kubectl"
 alias kx="kubectx"
 alias kn="kubens"
+
+# Corepack
+alias p="corepack pnpm"
 
 # Jira
 function jt {

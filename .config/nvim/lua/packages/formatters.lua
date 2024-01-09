@@ -40,6 +40,7 @@ return {
     require("formatter").setup({
       filetype = {
         html = prettier,
+        svg = prettier,
         css = prettier,
         typescriptreact = prettier,
         typescript = prettier,
@@ -54,7 +55,7 @@ return {
 
     vim.api.nvim_create_user_command("FF", "Format", {})
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css" },
+      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css", "*.html" },
       command = "FormatWrite",
       group = vim.api.nvim_create_augroup("FormatterGroup", {}),
     })

@@ -3,6 +3,22 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/nvim-cmp",
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = { lsp = { auto_attach = true } },
+        keys = {
+          {
+            "gs",
+            function()
+              require("nvim-navbuddy").open()
+            end,
+          },
+        },
+      },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -26,7 +42,7 @@ return {
         },
       })
 
-      require("lspconfig").lua_ls.setup({
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -37,11 +53,20 @@ return {
             diagnostics = { globals = { "vim" } },
             workspace = {
               library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false,
+              checkThirdParty = "Apply",
+              userThirdParty = { "/home/jamie/repos/lualibs" },
             },
             telemetry = { enable = false },
           },
         },
+      })
+
+      lspconfig.ccls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.wgsl_analyzer.setup({
+        capabilities = capabilities,
       })
     end,
   },

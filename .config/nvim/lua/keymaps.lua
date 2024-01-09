@@ -1,5 +1,5 @@
 -- Git traversal
-vim.keymap.set("n", "gm", "<cmd>cexpr system('git jump --stdout diff')<cr>")
+vim.keymap.set("n", "gm", "<cmd>cexpr system('git jump --stdout diff')<cr><cmd>copen<cr>")
 
 -- Undo alias
 vim.keymap.set("n", "U", ":redo<CR>", { silent = true, noremap = true })
@@ -17,9 +17,13 @@ vim.keymap.set("v", "?", "?\\c", {})
 -- Change selection
 vim.keymap.set("v", "<leader>c", "*Ncgn", { remap = true })
 
+-- Navigation
+vim.keymap.set("n", "<C-o>", "<C-o>zz", {})
+vim.keymap.set("n", "<C-i>", "<C-i>zz", {})
+
 -- Quickfix navigation
-vim.keymap.set("n", "<C-k>", ":cp<CR>", {})
-vim.keymap.set("n", "<C-j>", ":cn<CR>", {})
+vim.keymap.set("n", "<C-k>", ":cp<CR>zz", {})
+vim.keymap.set("n", "<C-j>", ":cn<CR>zz", {})
 vim.keymap.set("n", "<C-h>", ":cclose<CR>", {})
 vim.keymap.set("n", "<C-l>", ":copen<CR>", {})
 
@@ -30,3 +34,5 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = t
 -- UUID
 vim.keymap.set("n", "<leader>uu", 'i<C-r>=system("uuid")<CR><ESC>', { silent = true })
 vim.keymap.set("v", "<leader>uu", 'c<C-r>=system("uuid")<CR><ESC>', { silent = true })
+
+vim.keymap.set("n", "<C-r>", ":!lua '%'<CR>")
