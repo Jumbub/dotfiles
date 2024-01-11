@@ -1,3 +1,0 @@
-sudo pacman-mirrors -c Australia --api --set-branch stable && sudo pacman --noconfirm -Syyu
-
-timedatectl set-timezone Australia/Perth && timedatectl set-ntp true
