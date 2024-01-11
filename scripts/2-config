@@ -4,8 +4,10 @@ set -e
 
 # Install dotfiles
 mkdir -p ~/repos
-rm -rf ~/repos/dotfiles
-git clone --recurse-submodules https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
+if ! [[ -d $HOME/repos/dotfiles ]]
+then
+	git clone --recurse-submodules https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
+fi
 
 # Warn user about potential changes
 cp $HOME/repos/dotfiles/.gitignore $HOME/.gitignore
@@ -20,10 +22,8 @@ fi
 git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git checkout -- $HOME
 cp -R $HOME/repos/dotfiles/.git $HOME/repos/dotfiles.git
 
+# Change to ssh remote for dotfiles
+git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles.git remote set-url origin git@github.com:Jumbub/dotfiles.git
+
 # Copy default git config template
 cp $HOME/scripts/storage/.gitconfig $HOME/.gitconfig
-
-source $HOME/.zshrc
-
-# Change to ssh remote for dotfiles
-dot remote set-url origin git@github.com:Jumbub/dotfiles.git
