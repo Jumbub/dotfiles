@@ -8,7 +8,7 @@ fi
 # ZSH
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
-plugins=(zsh-completions zsh-z zsh-nvm fzf-zsh-plugin)
+plugins=(zsh-completions fzf-zsh-plugin)
 source $ZSH/oh-my-zsh.sh
 export LC_ALL="en_US.UTF-8" # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 

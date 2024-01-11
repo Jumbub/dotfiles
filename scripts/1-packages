@@ -5,15 +5,20 @@ sudo pacman --needed --noconfirm -S\
   base-devel\
   exa\
   fd\
+  fzf\
   git\
   imagemagick\
   jq\
   kitty\
   neovim\
+  noto-fonts-emoji\
+  npm\
   picom\
+  prettier\
   redshift\
   ripgrep\
   rofi\
+  typescript\
   xclip\
   xdotool\
   zsh

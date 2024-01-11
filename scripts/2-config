@@ -27,3 +27,6 @@ git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles.git remote set-url origin g
 
 # Copy default git config template
 cp $HOME/scripts/storage/.gitconfig $HOME/.gitconfig
+
+# Machine specific config
+touch ~/.config/kitty/machine.conf
