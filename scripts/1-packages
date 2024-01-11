@@ -2,8 +2,6 @@
 
 # Install packages
 sudo pacman --needed --noconfirm -S\
-  awesome\
-  awesome-freedesktop\
   base-devel\
   exa\
   fd\
@@ -12,19 +10,16 @@ sudo pacman --needed --noconfirm -S\
   jq\
   kitty\
   neovim\
-  nvm\
-  noto-fonts-emoji\
+  picom\
   redshift\
   ripgrep\
   rofi\
   xclip\
   xdotool\
-  yarn\
-  yay
+  zsh
 
 yay --needed --noconfirm -S\
   rofi-greenclip\
-  nvim-packer-git\
   google-chrome\
   zsa-wally
 
