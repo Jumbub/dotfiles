@@ -37,3 +37,11 @@ export MANPAGER="nvim +Man!"
 
 # Prompt
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# GCloud
+if [ -f '/home/jamie/.local/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jamie/.local/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/jamie/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jamie/.local/bin/google-cloud-sdk/completion.zsh.inc'; fi
+
+# NVM
+if [ -f '/usr/share/nvm/init-nvm.sh' ]; then . '/usr/share/nvm/init-nvm.sh'; fi
+

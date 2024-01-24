@@ -10,20 +10,24 @@ sudo pacman --needed --noconfirm -S\
   imagemagick\
   jq\
   kitty\
+  man\
   neovim\
   noto-fonts-emoji\
   npm\
+  pnpm\
   picom\
   prettier\
   redshift\
   ripgrep\
   rofi\
+  stylua\
   typescript\
   xclip\
   xdotool\
   zsh
 
 yay --needed --noconfirm -S\
+  awesome-freedesktop-git\
   rofi-greenclip\
   google-chrome\
   zsa-wally
