@@ -10,7 +10,8 @@ sudo pacman --needed --noconfirm -S\
   imagemagick\
   jq\
   kitty\
-  man\
+  man-db\
+  man-pages\
   neovim\
   noto-fonts-emoji\
   npm\
