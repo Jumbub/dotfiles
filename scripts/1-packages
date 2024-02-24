@@ -15,14 +15,15 @@ sudo pacman --needed --noconfirm -S\
   neovim\
   noto-fonts-emoji\
   npm\
-  pnpm\
   picom\
+  pnpm\
   prettier\
   redshift\
   ripgrep\
   rofi\
   stylua\
   typescript\
+  unzip\
   xclip\
   xdotool\
   zsh

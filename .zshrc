@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # ZSH
+UPDATE_ZSH_DAYS=90
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions fzf-zsh-plugin)
@@ -45,3 +46,6 @@ if [ -f '/home/jamie/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '
 # NVM
 if [ -f '/usr/share/nvm/init-nvm.sh' ]; then . '/usr/share/nvm/init-nvm.sh'; fi
 
+
+# bun completions
+[ -s "/home/jamie/.bun/_bun" ] && source "/home/jamie/.bun/_bun"
