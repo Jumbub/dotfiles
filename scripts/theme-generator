@@ -3,7 +3,7 @@
 TEMPLATE=$1
 OUTPUT=$2
 UPDATE_MSG=$3
-WORKING_OUTPUT="/tmp/theme-generator.tmp"
+WORKING_OUTPUT="/tmp/theme-generator-$(date +%s%N).tmp"
 
 cp $TEMPLATE $WORKING_OUTPUT
 
