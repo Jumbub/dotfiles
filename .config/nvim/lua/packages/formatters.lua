@@ -37,6 +37,12 @@ return {
       end,
     }
 
+    local terraformfmt = {
+      function()
+        return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
+      end,
+    }
+
     require("formatter").setup({
       filetype = {
         html = prettier,
@@ -50,12 +56,13 @@ return {
         cpp = clang,
         rust = cargofmt,
         lua = stylua,
+        terraform = terraformfmt,
       },
     })
 
     vim.api.nvim_create_user_command("FF", "Format", {})
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css", "*.html" },
+      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css", "*.html", "*.tf" },
       command = "FormatWrite",
       group = vim.api.nvim_create_augroup("FormatterGroup", {}),
     })

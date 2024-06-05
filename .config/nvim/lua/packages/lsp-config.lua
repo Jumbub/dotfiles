@@ -3,22 +3,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/nvim-cmp",
-      {
-        "SmiteshP/nvim-navbuddy",
-        dependencies = {
-          "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim",
-        },
-        opts = { lsp = { auto_attach = true } },
-        keys = {
-          {
-            "gs",
-            function()
-              require("nvim-navbuddy").open()
-            end,
-          },
-        },
-      },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -63,9 +47,28 @@ return {
 
       lspconfig.ccls.setup({
         capabilities = capabilities,
+        init_options = {
+          clang = {
+            extraArgs = { "--std=c++20" },
+          },
+        },
       })
 
       lspconfig.wgsl_analyzer.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+      })
+
+      lspconfig.terraformls.setup({
         capabilities = capabilities,
       })
     end,

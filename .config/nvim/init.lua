@@ -20,6 +20,11 @@ require("packages.lazy")({
   require("packages/viewers"),
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
-  "tpope/vim-commentary", -- Code commenting
+  {
+    "tpope/vim-commentary", -- Code commenting
+    config = function()
+      vim.cmd([[autocmd FileType terraform setlocal commentstring=#\ %s]])
+    end,
+  },
   "metakirby5/codi.vim", -- Scratch pad
 })

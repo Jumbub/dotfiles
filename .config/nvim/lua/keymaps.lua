@@ -5,8 +5,8 @@ vim.keymap.set("n", "gm", "<cmd>cexpr system('git jump --stdout diff')<cr><cmd>c
 vim.keymap.set("n", "U", ":redo<CR>", { silent = true, noremap = true })
 
 -- Suss
-vim.keymap.set("n", "<C-s>", ":w<CR>", {})
-vim.keymap.set("n", "<C-q>", ":q<CR>", {})
+vim.keymap.set("n", "<C-s>", ":up<CR>", { silent = true })
+vim.keymap.set("i", "<C-s>", "s", {})
 
 -- Buffer search
 vim.keymap.set("n", "/", "/\\c", {})
@@ -18,8 +18,8 @@ vim.keymap.set("v", "?", "?\\c", {})
 vim.keymap.set("v", "<leader>c", "*Ncgn", { remap = true })
 
 -- Navigation
-vim.keymap.set("n", "<C-o>", "<C-o>zz", {})
-vim.keymap.set("n", "<C-i>", "<C-i>zz", {})
+-- vim.keymap.set("n", "<C-o>", "<C-o>zz", {})
+-- vim.keymap.set("n", "<C-i>", "<C-i>zz", {})
 
 -- Quickfix navigation
 vim.keymap.set("n", "<C-k>", ":cp<CR>zz", {})
@@ -36,3 +36,17 @@ vim.keymap.set("n", "<leader>uu", 'i<C-r>=system("uuid")<CR><ESC>', { silent = t
 vim.keymap.set("v", "<leader>uu", 'c<C-r>=system("uuid")<CR><ESC>', { silent = true })
 
 vim.keymap.set("n", "<C-r>", ":!lua '%'<CR>")
+
+-- URL Encoding
+vim.keymap.set(
+  "v",
+  "<leader>url",
+  ":!python3 -c 'import sys; from urllib import parse; print(parse.quote_plus(sys.stdin.read().strip()))'<cr>",
+  { silent = true }
+)
+vim.keymap.set(
+  "v",
+  "<leader>lru",
+  ":!python3 -c 'import sys; from urllib import parse; print(parse.unquote_plus(sys.stdin.read().strip()))'<cr>",
+  { silent = true }
+)

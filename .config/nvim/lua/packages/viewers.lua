@@ -1,11 +1,27 @@
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+    "https://gitlab.com/itaranto/plantuml.nvim",
+    version = "*",
+    config = function()
+      require("plantuml").setup({
+
+        renderer = {
+          type = "image",
+          options = {
+            prog = "feh",
+            dark_mode = true,
+          },
+        },
+        render_on_write = true,
+      })
     end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    lazy = false,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 }

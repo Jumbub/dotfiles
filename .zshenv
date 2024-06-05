@@ -3,6 +3,7 @@
 # Environment
 export ZSH="/home/jamie/.oh-my-zsh"
 export EDITOR="nvim"
+export VISUAL="nvim"
 export TERMINAL="kitty -1"
 export BROWSER="google-chrome-stable"
 

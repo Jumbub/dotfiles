@@ -5,7 +5,7 @@ return {
     lazy = false,
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
+        ensure_installed = {'typescript'},
         highlight = { enable = true },
         textsubjects = {
           enable = true,

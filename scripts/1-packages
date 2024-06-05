@@ -13,7 +13,11 @@ sudo pacman --needed --noconfirm -S\
   man-db\
   man-pages\
   neovim\
+  noto-fonts-cjk\
   noto-fonts-emoji\
+  noto-fonts-emoji\
+  noto-fonts-extra\
+  noto-fonts\
   npm\
   picom\
   pnpm\
