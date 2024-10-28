@@ -9,7 +9,7 @@ fi
 UPDATE_ZSH_DAYS=90
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
-plugins=(zsh-completions fzf-zsh-plugin)
+plugins=(zsh-completions fzf)
 source $ZSH/oh-my-zsh.sh
 export LC_ALL="en_US.UTF-8" # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 
@@ -26,9 +26,9 @@ haveigot kitty && source <(kitty + complete setup zsh)
 haveigot argocd && source <(argocd completion zsh)
 
 # FZF
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude '*.o'"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude '*.o'"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Kitty (generate theme)
 ($HOME/scripts/kitty-theme-generator &)

@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return function(packages)
-  print("hi")
   require("lazy").setup(packages, {
     ui = {
       size = { width = 1, height = 1 },

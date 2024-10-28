@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# Requires manual installation of yay
+# https://github.com/Jguer/yay
+
+yay --needed --noconfirm -S\
+  awesome-freedesktop-git\
+  rofi-greenclip\
+  google-chrome\
+  zsa-wally

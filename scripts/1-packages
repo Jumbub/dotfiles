@@ -3,7 +3,7 @@
 # Install packages
 sudo pacman --needed --noconfirm -S\
   base-devel\
-  exa\
+  eza\
   fd\
   fzf\
   git\
@@ -30,13 +30,8 @@ sudo pacman --needed --noconfirm -S\
   unzip\
   xclip\
   xdotool\
+  yay\
   zsh
-
-yay --needed --noconfirm -S\
-  awesome-freedesktop-git\
-  rofi-greenclip\
-  google-chrome\
-  zsa-wally
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
