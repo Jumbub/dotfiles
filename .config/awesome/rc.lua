@@ -1,4 +1,3 @@
-local awful = require("awful")
 require("awful.autofocus")
 
 local f = require("functions")
@@ -16,7 +15,7 @@ f.setupErrorHandlers()
 f.setupLayouts()
 
 -- Setup panel GUI and wallpaper
-f.setupScreens(screen)
+f.setupScreens()
 
 -- Set client default keybindings, screen placement settings
 f.setupClientRules()
