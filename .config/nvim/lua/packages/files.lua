@@ -2,6 +2,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = true,
     config = function()
       require("nvim-tree").setup({
         renderer = {
@@ -13,11 +14,9 @@ return {
             },
           },
         },
-
         view = {
           width = 60,
         },
-
         actions = {
           open_file = {
             quit_on_open = true,
@@ -32,6 +31,7 @@ return {
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = true,
     opts = {},
     config = function()
       require("oil").setup({
@@ -54,7 +54,7 @@ return {
     end,
     keys = {
       {
-        "<c-" .. vim.g.mapleader .. "><c-m>",
+        "<c-,><c-m>",
         function()
           require("oil").open_float()
         end,
@@ -66,7 +66,7 @@ return {
     lazy = false,
     config = function()
       require("bigfile").setup({
-        filesize = 2, -- MiB
+        filesize = 10, -- MiB
         features = {
           "indent_blankline",
           "illuminate",

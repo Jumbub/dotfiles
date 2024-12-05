@@ -1,6 +1,7 @@
 return {
   "mhartington/formatter.nvim",
-  event = "BufWritePre",
+  lazy = true,
+  event = "BufWritePost",
   cmd = "FF",
   config = function()
     local prettier = {

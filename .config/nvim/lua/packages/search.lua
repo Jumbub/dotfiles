@@ -8,7 +8,7 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "junegunn/fzf" },
-    lazy = true,
+    lazy = false,
     config = function()
       require("fzf-lua").setup({
         "max-perf",

@@ -1,7 +1,6 @@
 vim.g.mapleader = ","
 
 vim.opt.breakindent = true -- Maintain indentation when wrapping text
-vim.opt.clipboard = "unnamedplus" -- Share clipboard with system
 vim.opt.cmdheight = 2 -- Avoid "hit enter" text
 vim.opt.inccommand = "split" -- Show substitude command effects as you type
 vim.opt.laststatus = 3 -- Global status line
@@ -17,4 +16,6 @@ vim.opt.updatetime = 300 -- Cursor hold events
 vim.opt.wrap = false -- Wrap preference
 vim.opt.shiftwidth = 2 -- Wrap preference
 
-vim.filetype.add({ extension = { wgsl = "wgsl" } })
+vim.schedule(function() -- delay slow options
+  vim.opt.clipboard = "unnamedplus" -- Share clipboard with system
+end)

@@ -9,7 +9,7 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
         commands = {
           OrganizeImports = {
@@ -21,7 +21,6 @@ return {
               }
               vim.lsp.buf.execute_command(params)
             end,
-            description = "Organize Imports",
           },
         },
       })
@@ -54,21 +53,11 @@ return {
         },
       })
 
-      lspconfig.wgsl_analyzer.setup({
+      lspconfig.terraformls.setup({
         capabilities = capabilities,
       })
 
       lspconfig.eslint.setup({
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-        end,
-      })
-
-      lspconfig.terraformls.setup({
         capabilities = capabilities,
       })
     end,
