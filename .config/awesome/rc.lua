@@ -2,6 +2,9 @@ require("awful.autofocus")
 
 local f = require("functions")
 
+-- Autostart
+f.asyncJobs()
+
 -- Colours, borders, fonts
 f.setupTheme()
 
