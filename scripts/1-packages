@@ -2,6 +2,7 @@
 
 # Install packages
 sudo pacman --needed --noconfirm -S\
+  awesome\
   base-devel\
   ccls\
   cmake\
@@ -17,6 +18,7 @@ sudo pacman --needed --noconfirm -S\
   kitty\
   man-db\
   man-pages\
+  ncdu\
   neovim\
   noto-fonts-cjk\
   noto-fonts-emoji\

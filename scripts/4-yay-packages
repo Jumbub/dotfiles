@@ -6,5 +6,4 @@
 yay --needed --noconfirm -S\
   awesome-freedesktop-git\
   rofi-greenclip\
-  google-chrome\
   zsa-wally
