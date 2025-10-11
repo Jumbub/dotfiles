@@ -30,3 +30,11 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = t
 -- UUID
 vim.keymap.set("n", "<leader>uu", 'i<C-r>=system("uuid")<CR><ESC>', { silent = true })
 vim.keymap.set("v", "<leader>uu", 'c<C-r>=system("uuid")<CR><ESC>', { silent = true })
+
+-- Diagnostics
+vim.keymap.set("n", "gH", vim.diagnostic.open_float)
+vim.keymap.set("n", "<C-e>", vim.diagnostic.goto_next)
+vim.keymap.set("n", "ge", vim.diagnostic.setqflist)
+
+-- LSP
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
