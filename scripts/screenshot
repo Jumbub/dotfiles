@@ -6,5 +6,6 @@ source $HOME/.aliases
 sleep 0.1
 
 TIMESTAMP="`date +%s`"
-import -silent "$HOME/pictures/screenshot${TIMESTAMP}.png" && xclip -selection clipboard -t image/png -i "$HOME/pictures/screenshot${TIMESTAMP}.png"
-img $HOME/pictures/screenshot${TIMESTAMP}.png
+PICTURE="$HOME/Pictures/screenshots/${TIMESTAMP}.png"
+import -silent $PICTURE && xclip -selection clipboard -t image/png -i $PICTURE
+img $PICTURE
