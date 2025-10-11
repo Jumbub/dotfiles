@@ -28,8 +28,8 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = t
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- UUID
-vim.keymap.set("n", "<leader>uu", 'i<C-r>=system("uuid")<CR><ESC>', { silent = true })
-vim.keymap.set("v", "<leader>uu", 'c<C-r>=system("uuid")<CR><ESC>', { silent = true })
+vim.keymap.set("n", "<leader>uu", "i<C-r>=system(\"uuidgen | tr -d '\\n'\")<CR><ESC>", { silent = true })
+vim.keymap.set("v", "<leader>uu", "c<C-r>=system(\"uuidgen | tr -d '\\n'\")<CR><ESC>", { silent = true })
 
 -- Diagnostics
 vim.keymap.set("n", "gH", vim.diagnostic.open_float)
