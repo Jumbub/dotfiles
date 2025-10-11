@@ -37,6 +37,8 @@ local function factory(args)
       for key, value in string.gmatch(line, " +(%w+) +: +(%d+)") do
         if key == "Gpu" then
           table.insert(gpus, {})
+        else
+          return
         end
         if key == "Gpu" then
           key = "usage"

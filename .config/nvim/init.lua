@@ -1,5 +1,4 @@
 require("variables")
-require("lsp")
 require("keymaps")
 require("packages.lazy")({
   require("packages/formatters"),

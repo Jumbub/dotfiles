@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Colours derived from: https://github.com/gerardroche/sublime-monokai-free
 # Shades derived from: https://www.color-hex.com/color/f92672
@@ -45,3 +45,8 @@ export THEME_PINK_LIGHT="#fd7ef3"
 export THEME_PURPLE_DARK="#8b67cc"
 export THEME_PURPLE="#ae81ff"
 export THEME_PURPLE_LIGHT="#be9aff"
+
+if [[ -n $1 ]]
+then
+  echo ${!1}
+fi
