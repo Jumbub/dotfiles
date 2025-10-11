@@ -10,7 +10,7 @@ vim.opt.signcolumn = "yes" -- Always display gutter (prevent git gutter from bou
 vim.opt.statusline = "%F  %h%m%r%=%(%l,%c%)" -- Status line text
 vim.opt.swapfile = false -- Don't bother using swap files
 vim.opt.termguicolors = true -- Use terminal colours
-vim.opt.undodir = "/home/jamie/.vim/undodir" -- Set undo history file
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir" -- Set undo history file
 vim.opt.undofile = true -- Persist undo history between sessions
 vim.opt.updatetime = 300 -- Cursor hold events
 vim.opt.wrap = false -- Wrap preference

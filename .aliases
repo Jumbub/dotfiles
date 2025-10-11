@@ -59,9 +59,9 @@ function jt {
 }
 
 # Exa
-alias l="exa -l"
-alias ls="exa"
-alias la="exa -al"
+alias l="eza -l"
+alias ls="eza"
+alias la="eza -al"
 
 # Dotfiles
 source $HOME/scripts/dotfiles

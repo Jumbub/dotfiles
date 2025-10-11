@@ -5,4 +5,4 @@ configuration {
 	display-drun: "Activate";
 }
 
-@theme "/home/jamie/.config/rofi/regular.rasi"
+@theme "regular.rasi"

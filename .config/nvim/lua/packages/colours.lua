@@ -2,7 +2,7 @@ return {
   { "rktjmp/lush.nvim" }, -- My theme bootstrapper
   {
     name = "monokai",
-    dir = "/home/jamie/.config/nvim/monokai",
+    dir = os.getenv("HOME") .. "/.config/nvim/monokai",
     config = function()
       vim.cmd([[colorscheme monokai]])
     end,

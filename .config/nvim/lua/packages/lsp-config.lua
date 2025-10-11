@@ -34,11 +34,6 @@ return {
               path = "/usr/bin/lua-language-server",
             },
             diagnostics = { globals = { "vim" } },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = "Apply",
-              userThirdParty = { "/home/jamie/repos/lualibs" },
-            },
             telemetry = { enable = false },
           },
         },
