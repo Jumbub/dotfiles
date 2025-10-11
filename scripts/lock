@@ -1,5 +1,6 @@
-#!/bin/bash
-rm -f "$HOME/.lastScreen.png" "$HOME/.lastScreenBlurred.png" &&
-    scrot "$HOME/.lastScreen.png" &&
-    convert "$HOME/.lastScreen.png" -blur 0x6 "$HOME/.lastScreenBlurred.png" &&
-    i3lock -i "$HOME/.lastScreenBlurred.png"
+#!/usr/bin/env sh
+
+(haveigot scrot && haveigot convert &&
+  scrot "/tmp/screenshot.png" &&
+  convert "/tmp/screenshot.png" -blur 0x12 "/tmp/blurred-screenshot.png" &&
+  i3lock -i "/tmp/blurred-screenshot.png") || i3lock

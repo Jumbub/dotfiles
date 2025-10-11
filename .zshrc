@@ -25,13 +25,8 @@ haveigot helm && source <(helm completion zsh)
 haveigot kitty && source <(kitty + complete setup zsh)
 haveigot argocd && source <(argocd completion zsh)
 
-# FZF
-# export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude '*.o'"
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Kitty (generate theme)
-($HOME/scripts/kitty-theme-generator &)
+($HOME/scripts/theme-generator $HOME/.config/kitty/kitty-themes/Template.conf $HOME/.config/kitty/theme.conf "Restart Kitty for new theme" &)
 
 # MAN pager
 export MANPAGER="nvim +Man!"
@@ -39,13 +34,8 @@ export MANPAGER="nvim +Man!"
 # Prompt
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# GCloud
-if [ -f '/home/jamie/.local/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jamie/.local/bin/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/home/jamie/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jamie/.local/bin/google-cloud-sdk/completion.zsh.inc'; fi
-
-# NVM
-if [ -f '/usr/share/nvm/init-nvm.sh' ]; then . '/usr/share/nvm/init-nvm.sh'; fi
-
-
-# bun completions
-[ -s "/home/jamie/.bun/_bun" ] && source "/home/jamie/.bun/_bun"
+# Machine specific
+if [ -f $HOME/.zshrc_machine ]
+then
+  source $HOME/.zshrc_machine
+fi

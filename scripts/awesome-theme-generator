@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-TEMPLATE=$HOME/.config/awesome/theme.template.lua
-OUTPUT=$HOME/.config/awesome/theme.lua
-UPDATE_MESSAGE="Restart Awesome for new theme"
-
-$HOME/scripts/theme-generator $TEMPLATE $OUTPUT $UPDATE_MESSAGE

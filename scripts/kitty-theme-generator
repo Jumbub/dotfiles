@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-TEMPLATE=$HOME/.config/kitty/kitty-themes/Template.conf
-OUTPUT=$HOME/.config/kitty/theme.conf
-UPDATE_MESSAGE="Restart Kitty for new theme"
-
-$HOME/scripts/theme-generator $TEMPLATE $OUTPUT "$UPDATE_MESSAGE"

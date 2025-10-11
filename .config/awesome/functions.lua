@@ -3,24 +3,30 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local menubar = require("menubar")
-local freedesktop = require("freedesktop")
 local lain = require("lain")
 local nvidia_gpu = require("lain_custom.nvidia_gpu")
 
 local f = {}
 
 f.setupTheme = function()
-  awful.spawn.with_line_callback("/home/jamie/scripts/awesome-theme-generator", {
-    stdout = function(output)
-      if output == "Restart" then
-        naughty.notify({
-          text = "Please restart Awesome, then theme was updated!",
-        })
-        require("theme")
-      end
-    end,
-  })
+  awful.spawn.with_line_callback(
+    os.getenv("HOME")
+      .. "/scripts/theme-generator "
+      .. os.getenv("HOME")
+      .. "/.config/awesome/theme.template.lua "
+      .. os.getenv("HOME")
+      .. "/.config/awesome/theme.lua 'Restart Awesome for new theme'",
+    {
+      stdout = function(output)
+        if output == "Restart" then
+          naughty.notify({
+            text = "Please restart Awesome, then theme was updated!",
+          })
+          require("theme")
+        end
+      end,
+    }
+  )
 
   pcall(function()
     beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -190,7 +196,7 @@ f.setupGlobalBindings = function()
         awful.spawn("/usr/bin/rofi -show run")
       end),
       awful.key({ modkey }, "c", function()
-        awful.spawn("/home/jamie/scripts/clipboard-manager")
+        awful.spawn(os.getenv("HOME") .. "/scripts/clipboard-manager")
       end),
       awful.key({ modkey, "Control" }, "r", awesome.restart),
       awful.key({ modkey, "Control" }, "n", unminimiseClient)

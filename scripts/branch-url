@@ -1,3 +1,5 @@
-BRANCH=`git branch --show-current`
-BASE=`git branch -l master main | sed 's/  //'`
-git remote get-url origin | perl -lne "s/.*:([^\/]*).(.*)\.git/github.com\/\1\/\2\/compare\/${BASE}...${BRANCH/\//\\\/}/; print"
+#!/usr/bin/env sh
+
+URL=$(git remote get-url origin | sed "s/git@//" | sed "s/:/\//" | sed "s/\.git//")
+BRANCH=$(git branch --show-current)
+echo "$URL/compare/$BRANCH"

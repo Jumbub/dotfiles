@@ -1,5 +1,0 @@
-#!/bin/sh
-
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.custom-oh-my-zsh/themes/powerlevel10k
-git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git $HOME/.custom-oh-my-zsh/plugins/fzf-zsh-plugin
-git clone https://github.com/zsh-users/zsh-completions $HOME/.custom-oh-my-zsh/plugins/zsh-completions

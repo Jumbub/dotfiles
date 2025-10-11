@@ -1,7 +1,0 @@
-// Settings in here override those in "ESLint Fix/eslint-fix.sublime-settings",
-
-{
-	"local_eslint_path": {
-        "linux": "node_modules/.bin/tslint",
-    },
-}

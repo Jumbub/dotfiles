@@ -1,21 +1,10 @@
 #!/usr/bin/env zsh
 
 # Zsh
-function ctrlp () {
-  CTRLP_FILE="$(z -l | rg -o "\s\S+" | rg -o "\S+" | fzf --height 5 --tac)"
-  if [[ -n $CTRLP_FILE ]]
-  then
-    cd $CTRLP_FILE
-  fi
-}
 alias src="source $HOME/.zshrc"
-
-# Shell
 function haveigot {
   command -v $1 > /dev/null
 }
-# XClip
-alias xcp="xclip -sel clip"
 
 # Kitty
 alias setFontSize="kitty @ set-font-size"
@@ -24,23 +13,12 @@ alias img="kitty +kitten icat"
 # Neovim
 alias v="nvim"
 alias va="nvim $HOME/.aliases"
-alias vb="nvim $HOME/.bindings"
-alias vma="nvim $HOME/.machine-aliases"
-alias vinstall="nvim $HOME/scripts/install"
-alias vreplace="nvim $HOME/scripts/replace"
-alias vrt="nvim $HOME/.config/rofi-tasks/tasks.json"
 alias vrc="nvim $HOME/.zshrc"
 alias venv="nvim $HOME/.zshenv"
-alias vawe="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%awesome.vim'"
-alias vk="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%kitty.vim'"
-alias vp="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%.config\%nvim.vim'"
-alias vs="nvim -S '$HOME/workspaces/vim/\%home\%jamie\%scripts.vim'"
 
 # Git
 alias gl="git log"
 alias gm="git merge"
-alias gmom="git fetch && git merge origin/master"
-alias gmod="git fetch && git merge origin/develop"
 alias gf="git fetch"
 alias glp="git log -p"
 alias gp="git push"
@@ -48,32 +26,20 @@ alias gpl="git pull"
 alias ggp="git branch | grep \\* | cut -d ' ' -f2 | xargs -i git push --set-upstream origin {}"
 alias gca="git commit --amend"
 alias gc="git commit"
-alias gclean="git clean -f -d"
-function gcmm { local MSG="$@"; git commit -m "$MSG"; };
 function gcm { local MSG="$@"; git commit -m "$MSG"; };
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcop="git checkout -p"
-alias grb="git rebase"
-alias grbomi="git rebase origin/master -i"
 alias gr="git reset"
-alias grH="git reset --hard"
 alias grh="git reset HEAD^"
-function grhom { git reset --hard "origin/`git symbolic-ref HEAD --short`" $@ };
 alias gst="git stash"
-alias gstp="git stash -p"
-alias gstu="git stash --include-untracked"
-function gstm { local MSG="$@"; git stash push -m "$MSG"; };
-function gstmu { local MSG="$@"; git stash push -u -m "$MSG"; };
 alias ga="git add"
 alias gap="git add -NpA"
-alias gaa="git add -A"
 alias gs="git status"
 alias gd="git diff"
 function ghd {
   $BROWSER $(~/scripts/branch-url)
 }
-alias ghp="gh pr view -w"
 
 # Kubernetes
 alias k="k9s"
@@ -85,10 +51,12 @@ alias kn="kubens"
 alias p="corepack pnpm"
 
 # Jira
-function jt {
-  sensible-browser "https://hejira.atlassian.net/browse/`git symbolic-ref HEAD --short`"
-}
 function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
+function jt {
+  BRANCH=$(jiraForBranch)
+  echo $BRANCH
+  sensible-browser "https://eagleviewcorp.atlassian.net/browse/$BRANCH"
+}
 
 # Exa
 alias l="exa -l"
@@ -97,24 +65,3 @@ alias la="exa -al"
 
 # Dotfiles
 source $HOME/scripts/dotfiles
-
-# Code pad
-function pad {
-  local CODEPAD="$HOME/repos/codepad/codepad"
-
-  if [ "$1" = "new" ]
-  then
-    cd "`$CODEPAD $@`"
-  else
-    $CODEPAD $@
-  fi
-}
-
-# V8
-alias d8=~/repos/v8/v8/out/x64.release/d8
-
-# Machine specific aliases
-if [ -f $HOME/.machine-aliases ]
-then
-  source $HOME/.machine-aliases
-fi

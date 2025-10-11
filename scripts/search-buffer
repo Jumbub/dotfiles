@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-cat /dev/stdin > /tmp/kitty-buffer.txt
-nvim /tmp/kitty-buffer.txt

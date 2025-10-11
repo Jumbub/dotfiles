@@ -33,7 +33,7 @@ then
 fi
 
 # Check command exists
-runnerCommand="`$HOME/scripts/first-word $runner`"
+runnerCommand="`echo "$runner" | head -n1 | awk '{print $1;}'`"
 echo "$runnerCommand"
 if haveigot "$runnerCommand"
 then

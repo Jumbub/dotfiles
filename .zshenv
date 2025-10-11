@@ -1,14 +1,11 @@
 #!/usr/bin/env zsh
 
 # Environment
-export ZSH="/home/jamie/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-export VISUAL="nvim"
-export TERMINAL="kitty -1"
-export BROWSER="google-chrome-stable"
-
-# Environment Path
-export D8_PATH="~/repos/v8/v8/out/x64.release"
+export VISUAL="kitty nvim"
+export TERMINAL="kitty"
+export BROWSER="firefox"
 
 # Path
 function addToPath() {
@@ -17,11 +14,4 @@ function addToPath() {
       export PATH="$1:$PATH"
   fi
 }
-addToPath "$HOME/.luarocks/bin"
-addToPath "$HOME/.npm-global/bin"
-addToPath "$HOME/.yarn/bin"
 addToPath "$HOME/.local/bin"
-addToPath "$HOME/.cargo/bin"
-addToPath "$HOME/.config/composer/vendor/bin"
-addToPath "$HOME/scripts"
-addToPath "$HOME/.bun/bin"
