@@ -53,9 +53,7 @@ alias p="corepack pnpm"
 # Jira
 function jiraForBranch { echo "`git symbolic-ref HEAD --short`" | grep "\w\+-[0-9]\+" -o }
 function jt {
-  BRANCH=$(jiraForBranch)
-  echo $BRANCH
-  sensible-browser "https://eagleviewcorp.atlassian.net/browse/$BRANCH"
+  sensible-browser "https://eagleviewcorp.atlassian.net/browse/$(jiraForBranch)"
 }
 
 # Exa
