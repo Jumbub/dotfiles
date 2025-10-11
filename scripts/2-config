@@ -2,13 +2,6 @@
 
 set -e
 
-# Install dotfiles
-mkdir -p ~/repos
-if ! [[ -d $HOME/repos/dotfiles ]]
-then
-	git clone --recurse-submodules https://github.com/Jumbub/dotfiles.git ~/repos/dotfiles
-fi
-
 # Warn user about potential changes
 cp $HOME/repos/dotfiles/.gitignore $HOME/.gitignore
 git --work-tree=$HOME --git-dir=$HOME/repos/dotfiles/.git status
