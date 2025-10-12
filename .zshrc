@@ -15,7 +15,7 @@ export LC_ALL="en_US.UTF-8" # https://github.com/robbyrussell/oh-my-zsh/issues/7
 
 # Aliases, bindings, variables
 source $HOME/.aliases
-source $HOME/.bindings
+source $HOME/.config/kitty/bindings.sh
 source $HOME/scripts/colors
 
 # ZSH (2)
