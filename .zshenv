@@ -3,7 +3,7 @@
 # Environment
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-export VISUAL="kitty nvim"
+export VISUAL="nvim"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 
