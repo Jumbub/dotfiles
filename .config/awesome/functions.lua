@@ -350,6 +350,8 @@ f.setupClientRules = function()
 end
 
 f.setupScreens = function()
+  gears.wallpaper.set("#111")
+
   local cpu = wibox.widget.graph()
   cpu.width = 28
   cpu.max_value = 100

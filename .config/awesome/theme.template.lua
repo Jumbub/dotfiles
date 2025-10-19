@@ -1,7 +1,6 @@
 local beautiful = require("beautiful")
 local theme_assets = require("beautiful.theme_assets")
 
-beautiful.wallpaper = "none"
 beautiful.icon_theme = "Papirus-Dark"
 beautiful.bg_normal = "THEME_BLACK"
 beautiful.bg_focus = "THEME_BLACK"
