@@ -3,6 +3,7 @@ require("keymaps")
 require("packages.lazy")({
   require("packages/formatters"),
   require("packages/sessions"),
+  require("packages/http"),
   require("packages/colours"),
   require("packages/files"),
   require("packages/search"),

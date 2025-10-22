@@ -7,11 +7,13 @@ end
 return {
   {
     "ibhagwan/fzf-lua",
-    dependencies = { "junegunn/fzf" },
     lazy = false,
     config = function()
       require("fzf-lua").setup({
-        "max-perf",
+        defaults = {
+          -- Set `file_icons` to false to disable file icons
+          file_icons = false,
+        },
         winopts = {
           split = "belowright new",
           preview = {
@@ -22,10 +24,21 @@ return {
         },
         keymap = {
           fzf = {
-            ["ctrl-p"] = "toggle-preview",
+            ["ctrl-a"] = "toggle-all",
+          },
+        },
+        actions = {
+          files = {
+            ["enter"] = FzfLua.actions.file_edit_or_qf,
+            ["ctrl-i"] = FzfLua.actions.toggle_ignore,
           },
         },
       })
+      vim.api.nvim_create_user_command(
+        "Rg",
+        FzfLua.utils.create_user_command_callback("grep", "search"),
+        { bang = true, nargs = "?" }
+      )
     end,
     keys = {
       { "<C-p>", fzf("files") },

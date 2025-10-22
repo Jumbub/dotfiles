@@ -1,5 +1,6 @@
 -- Git traversal
-vim.keymap.set("n", "gm", "<cmd>cexpr system('git jump --stdout diff')<cr><cmd>copen<cr>")
+vim.keymap.set("n", "gm", "<cmd>cexpr system('git-jump --stdout diff')<cr><cmd>copen<cr>")
+vim.keymap.set("n", "gM", "<cmd>cexpr system('git-jump --stdout merge')<cr><cmd>copen<cr>")
 
 -- Redo alias
 vim.keymap.set("n", "U", ":redo<CR>", { silent = true, noremap = true })
