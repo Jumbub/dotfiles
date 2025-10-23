@@ -189,9 +189,6 @@ f.setupGlobalBindings = function()
       awful.key({ modkey }, "Return", function()
         awful.spawn(terminal)
       end),
-      awful.key({ modkey }, "e", function()
-        awful.spawn(guieditor)
-      end),
       awful.key({ modkey }, "r", function()
         awful.spawn("/usr/bin/rofi -show run")
       end),

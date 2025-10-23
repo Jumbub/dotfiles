@@ -66,7 +66,7 @@ return {
     lazy = false,
     config = function()
       require("bigfile").setup({
-        filesize = 10, -- MiB
+        filesize = 2, -- MiB
         features = {
           "indent_blankline",
           "illuminate",

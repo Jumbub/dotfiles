@@ -63,3 +63,5 @@ alias la="eza -al"
 
 # Dotfiles
 source $HOME/scripts/dotfiles
+
+alias dc=$HOME/repos/dev/dc

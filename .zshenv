@@ -4,8 +4,10 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
+export SUDO_EDITOR=/home/jamie/.local/bin/nvim
 export TERMINAL="kitty"
 export BROWSER="firefox"
+export NPM_PACKAGES="${HOME}/.npm-global"
 
 # Path
 function addToPath() {
@@ -14,4 +16,7 @@ function addToPath() {
       export PATH="$1:$PATH"
   fi
 }
+addToPath "$HOME/scripts"
 addToPath "$HOME/.local/bin"
+addToPath "$HOME/.npm/global/bin"
+addToPath "$HOME/go/bin"

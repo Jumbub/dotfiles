@@ -50,3 +50,5 @@ sed -i "s/THEME_PURPLE/`$HOME/scripts/colors THEME_PURPLE`/g" $WORKING_OUTPUT
 
 cmp --silent $WORKING_OUTPUT $OUTPUT \
   || (mv $WORKING_OUTPUT $OUTPUT && echo $UPDATE_MSG)
+
+rm $WORKING_OUTPUT

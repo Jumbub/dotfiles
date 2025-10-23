@@ -1,18 +1,18 @@
 return {
-  {
-    "seblyng/roslyn.nvim",
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    opts = {
-      cmd = {
-        "Microsoft.CodeAnalysis.LanguageServer",
-        -- "--logLevel", -- this property is required by the server
-        -- "Information",
-        -- "--extensionLogDirectory", -- this property is required by the server
-        -- vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
-      },
-    },
-  },
+  --{
+  --  "seblyng/roslyn.nvim",
+  --  ---@module 'roslyn.config'
+  --  ---@type RoslynNvimConfig
+  --  opts = {
+  --    cmd = {
+  --      "Microsoft.CodeAnalysis.LanguageServer",
+  --      -- "--logLevel", -- this property is required by the server
+  --      -- "Information",
+  --      -- "--extensionLogDirectory", -- this property is required by the server
+  --      -- vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
+  --    },
+  --  },
+  --},
   -- {
   --   "fatih/vim-go",
   --   tag = "v1.29",

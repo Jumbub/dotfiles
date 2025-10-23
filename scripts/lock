@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 (haveigot scrot && haveigot convert &&
   scrot "/tmp/screenshot.png" &&
