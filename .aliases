@@ -7,8 +7,12 @@ function haveigot {
 }
 
 # Kitty
-alias setFontSize="kitty @ set-font-size"
-alias img="kitty +kitten icat"
+if [[ "$TERM" == "xterm-kitty" ]]
+then
+  alias setFontSize="kitty @ set-font-size"
+  alias img="kitty +kitten icat"
+  alias ssh="kitty +kitten ssh"
+fi
 
 # Neovim
 alias v="nvim"
@@ -56,12 +60,16 @@ function jt {
   sensible-browser "https://eagleviewcorp.atlassian.net/browse/$(jiraForBranch)"
 }
 
-# Exa
-alias l="eza -l"
-alias ls="eza"
-alias la="eza -al"
+# ls
+if haveigot eza
+then
+  alias ls="eza"
+fi
+alias l="ls -l"
+alias la="ls -la"
+
+# DevContainer
+source $HOME/scripts/devcontainer
 
 # Dotfiles
 source $HOME/scripts/dotfiles
-
-alias dc=$HOME/repos/dev/dc
