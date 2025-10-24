@@ -18,5 +18,6 @@ function addToPath() {
 }
 addToPath "$HOME/scripts"
 addToPath "$HOME/.local/bin"
+addToPath "$HOME/.local/*.app/bin"
 addToPath "$HOME/.npm/global/bin"
 addToPath "$HOME/go/bin"

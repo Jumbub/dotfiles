@@ -37,11 +37,6 @@ end
 f.setGlobals = function()
   -- Fucking bullshit implicitly required to be a global
   modkey = "Mod4"
-
-  -- Globals because I'm lazy
-  terminal = "kitty"
-  editor = "nvim"
-  guieditor = "code"
 end
 
 f.setupErrorHandlers = function()
@@ -187,7 +182,7 @@ f.setupGlobalBindings = function()
         awful.spawn.with_shell("~/scripts/lock")
       end),
       awful.key({ modkey }, "Return", function()
-        awful.spawn(terminal)
+        awful.spawn(os.getenv("HOME") .. "/.local/kitty.app/bin/kitty")
       end),
       awful.key({ modkey }, "r", function()
         awful.spawn("/usr/bin/rofi -show run")
@@ -264,28 +259,6 @@ f.taskListBindings = function()
       awful.client.focus.byidx(-1)
     end)
   )
-end
-
-f.menuWidget = function()
-  return awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = awful.menu({
-      items = {
-        { "open terminal", terminal },
-        {
-          "edit config",
-          terminal .. " -e " .. editor .. " " .. awesome.conffile,
-        },
-        { "restart", awesome.restart },
-        {
-          "quit",
-          function()
-            awesome.quit()
-          end,
-        },
-      },
-    }),
-  })
 end
 
 f.setupClientRules = function()

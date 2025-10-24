@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CUSTOM=$HOME/.custom-oh-my-zsh
 plugins=(zsh-completions fzf)
 source $ZSH/oh-my-zsh.sh
-export LC_ALL="c.utf-8" # https://github.com/robbyrussell/oh-my-zsh/issues/7426
+export LC_ALL="C.UTF-8" # https://github.com/robbyrussell/oh-my-zsh/issues/7426
 
 # Aliases, bindings, variables
 source $HOME/.zshenv
