@@ -387,11 +387,11 @@ local theme = lush(function(injected_functions)
     sym'@lsp.type.typeParameter' {},
     sym'@lsp.type.variable' {},
 
-    sym'@markup.heading.1.markdown' { blueBg },
-    sym'@markup.heading.2.markdown' { greenBg },
-    sym'@markup.heading.3.markdown' { yellowBg },
-    sym'@markup.heading.4.markdown' { yellowBg },
-    sym'@markup.heading.5.markdown' { yellowBg },
+    sym'@markup.heading.1.markdown' { blue },
+    sym'@markup.heading.2.markdown' { green },
+    sym'@markup.heading.3.markdown' { yellow },
+    sym'@markup.heading.4.markdown' { yellow },
+    sym'@markup.heading.5.markdown' { yellow },
     sym'@conceal.markdown_inline' { irregular },
 
     Added { green },
