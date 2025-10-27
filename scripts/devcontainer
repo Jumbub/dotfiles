@@ -1,0 +1,77 @@
+#!/usr/bin/zsh
+
+function devcontainerExec {
+  devcontainer exec \
+    --workspace-folder . \
+    --remote-env POWERLEVEL9K_PROMPT_CHAR="$(basename `pwd`) 📦" \
+    -- $@
+}
+
+function devcontainerUp {
+  devcontainer up \
+    --workspace-folder . \
+    --expect-existing-container
+}
+
+function devcontainerUpNew {
+  source ~/secrets/devcontainer.sh
+
+  devcontainer up \
+    --workspace-folder . \
+    --remove-existing-container
+}
+
+function devcontainerExecNew {
+  devcontainerExec bash -s << EOF
+    mkdir -p ~/.local/bin
+    mkdir -p ~/.config
+    cd ~
+
+    sudo apt update &&
+      sudo apt install -y zsh gcc &&
+      sudo chsh -s /usr/bin/zsh
+
+    yes n | sh -c "\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && 
+      git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \$HOME/.custom-oh-my-zsh/themes/powerlevel10k &&
+      git clone --depth=1 https://github.com/unixorn/fzf-zsh-plugin.git \$HOME/.custom-oh-my-zsh/plugins/fzf-zsh-plugin &&
+      git clone --depth=1 https://github.com/zsh-users/zsh-completions \$HOME/.custom-oh-my-zsh/plugins/zsh-completions
+
+    ARCH=x86_64
+    AARCH=amd64
+
+    PACKAGE=nvim-linux-\$ARCH
+    wget -q https://github.com/neovim/neovim/releases/download/v0.11.4/\$PACKAGE.tar.gz &&
+      tar -xf \$PACKAGE.tar.gz &&
+      cp -R \$PACKAGE/* ~/.local &&
+      rm -rf \$PACKAGE \$PACKAGE.tar.gz
+
+    PACKAGE=eza_\$ARCH-unknown-linux-gnu
+    wget -q https://github.com/eza-community/eza/releases/download/v0.23.4/\$PACKAGE.tar.gz &&
+      tar -xf \$PACKAGE.tar.gz &&
+      mv eza ~/.local/bin/ &&
+      rm \$PACKAGE.tar.gz
+
+    PACKAGE=fzf-0.66.1-linux_\$AARCH
+    wget -q https://github.com/junegunn/fzf/releases/download/v0.66.1/\$PACKAGE.tar.gz &&
+      tar -xf \$PACKAGE.tar.gz &&
+      mv fzf ~/.local/bin/ &&
+      rm \$PACKAGE.tar.gz
+
+    git clone --depth=1 https://github.com/Jumbub/dotfiles.git ~/dotfiles &&
+      git --work-tree=\$HOME --git-dir=\$HOME/dotfiles/.git checkout -- \$HOME
+
+    \$HOME/.local/bin/nvim --headless -c 'quit'
+EOF
+}
+
+function dc {
+  if [ "$#" -ne "0" ]; then
+    devcontainerExec $@
+  else
+    devcontainerExec zsh
+  fi
+}
+
+function dcu {
+  devcontainerUp || (devcontainerUpNew && devcontainerExecNew)
+}
