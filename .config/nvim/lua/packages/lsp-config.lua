@@ -1,23 +1,22 @@
 return {
-  --{
-  --  "seblyng/roslyn.nvim",
-  --  ---@module 'roslyn.config'
-  --  ---@type RoslynNvimConfig
-  --  opts = {
-  --    cmd = {
-  --      "Microsoft.CodeAnalysis.LanguageServer",
-  --      -- "--logLevel", -- this property is required by the server
-  --      -- "Information",
-  --      -- "--extensionLogDirectory", -- this property is required by the server
-  --      -- vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
-  --    },
-  --  },
-  --},
   -- {
-  --   "fatih/vim-go",
-  --   tag = "v1.29",
-  --   -- cmd = { "GoCoverage" },
+  --   "mason-org/mason.nvim",
+  --   opts = {
+  --     registries = {
+  --       "github:mason-org/mason-registry",
+  --       "github:Crashdummyy/mason-registry",
+  --     },
+  --     automatic_installation = true,
+  --     ensure_installed = {
+  --       "roslyn",
+  --     },
+  --   },
   -- },
+  {
+    "seblyng/roslyn.nvim",
+    ft = { "cs", "razor" },
+    opts = {},
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {

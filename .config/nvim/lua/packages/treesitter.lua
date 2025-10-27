@@ -19,6 +19,7 @@ return {
           "gomod",
           "gosum",
           "proto",
+          "sql",
         },
         ignore_install = {},
         highlight = { enable = true },
