@@ -32,7 +32,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
-    # example               # example user-defined segment (see prompt_example function below)
+    example               # example user-defined segment (see prompt_example function below)
     dir                     # current directory
     vcs                     # git status
     kubecontext             # current kubernetes context (https://kubernetes.io/)
@@ -198,7 +198,11 @@
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=1
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='${POWERLEVEL9K_PROMPT_CHAR:=⚡}'
+  if [[ -n "$THIS_ENVIRONMENT_LABEL" ]]; then
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='📦'
+  else
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='⚡'
+  fi
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode.
@@ -1655,7 +1659,10 @@
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
-    p10k segment -f 2 -i '⭐' -t 'hello, %n'
+    if [[ -n "$THIS_ENVIRONMENT_LABEL" ]]; then
+      # Define the content to display
+      p10k segment -t "%F{5}$THIS_ENVIRONMENT_LABEL %F{default}in"
+    fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
