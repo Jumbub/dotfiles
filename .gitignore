@@ -11,9 +11,6 @@
 !/.config/awesome/lain_custom
 !/.config/awesome/lain_custom/*
 !/.config/awesome/main/*
-!/.config/Code
-!/.config/Code/User
-!/.config/Code/User/*.json
 !/.config/compton.conf
 !/.config/k9s
 !/.config/k9s/alias.yml
