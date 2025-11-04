@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-URL=$(git remote get-url origin | sed "s/git@//" | sed "s/:/\//" | sed "s/\.git//")
+URL=$(git remote get-url origin | sed "s/ssh:\/\///" | sed "s/git@//" | sed "s/:/\//" | sed "s/\.git//")
 BRANCH=$(git branch --show-current)
 echo "$URL/compare/$BRANCH"

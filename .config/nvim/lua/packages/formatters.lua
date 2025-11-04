@@ -38,6 +38,12 @@ return {
       end,
     }
 
+    local gofmt = {
+      function()
+        return { exe = "gofmt", args = {}, stdin = true }
+      end,
+    }
+
     local terraformfmt = {
       function()
         return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
@@ -58,6 +64,7 @@ return {
         rust = cargofmt,
         lua = stylua,
         terraform = terraformfmt,
+        go = gofmt,
       },
     })
 

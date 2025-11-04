@@ -1,23 +1,12 @@
-#!/usr/bin/env zsh
+# Path
+PATH="$HOME/scripts:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.npm/global/bin:$PATH"
+PATH="$HOME/go/bin:$PATH"
 
 # Environment
-export ZSH="$HOME/.oh-my-zsh"
-export EDITOR="nvim"
-export VISUAL="nvim"
-export SUDO_EDITOR=/home/jamie/.local/bin/nvim
-export TERMINAL="kitty"
-export BROWSER="firefox"
-export NPM_PACKAGES="${HOME}/.npm-global"
-
-# Path
-function addToPath() {
-  if [[ ! "$PATH" =~ "$1" ]] && [ -d "$1" ]
-  then
-      export PATH="$1:$PATH"
-  fi
-}
-addToPath "$HOME/scripts"
-addToPath "$HOME/.local/bin"
-addToPath "$HOME/.local/*.app/bin"
-addToPath "$HOME/.npm/global/bin"
-addToPath "$HOME/go/bin"
+export EDITOR=`which nvim`
+export TERMINAL=`which kitty`
+export BROWSER=`which firefox`
+export SUDO_EDITOR=`which nvim`
+export VISUAL=`which nvim`
