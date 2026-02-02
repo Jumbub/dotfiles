@@ -492,6 +492,7 @@ f.setupScreens = function()
       { layout = wibox.layout.fixed.horizontal, s.myTaskList },
       {
         layout = wibox.layout.fixed.horizontal,
+        wibox.widget.systray(),
         {
           layout = wibox.layout.stack,
           batWrapped,

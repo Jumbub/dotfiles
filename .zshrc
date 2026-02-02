@@ -32,5 +32,10 @@ haveigot argocd && source <(argocd completion zsh)
 # Machine overrides
 [ -f $HOME/.machine ] && source $HOME/.machine
 
+# .zsh_history might need to be stored in a folder
+if [ -d "$HISTFILE" ]; then
+  export HISTFILE="$HISTFILE/.zsh_history"
+fi
+
 # Don't start with errors
 return 0

@@ -1,38 +1,22 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "RRethy/nvim-treesitter-textsubjects", "nvim-treesitter/nvim-treesitter-textobjects" },
     lazy = false,
+    branch = "main",
+    build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        sync_install = true,
-        auto_install = false,
-        ensure_installed = {
-          "typescript",
-          "tsx",
-          "c",
-          "cpp",
-          "c_sharp",
-          "yaml",
-          "json",
-          "go",
-          "gomod",
-          "gosum",
-          "proto",
-          "sql",
-        },
-        ignore_install = {},
-        highlight = { enable = true },
-        modules = {},
-        textsubjects = {
-          enable = true,
-          prev_selection = ",",
-          keymaps = {
-            ["."] = "textsubjects-smart",
-          },
-        },
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ctx)
+          local hasStarted = pcall(vim.treesitter.start) -- errors for filetypes with no parser
+        end,
       })
     end,
   },
-  { "nvim-treesitter/nvim-treesitter-context" },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      max_lines = 4,
+      multiline_threshold = 2,
+    },
+  },
 }

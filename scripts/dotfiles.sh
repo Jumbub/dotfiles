@@ -3,7 +3,7 @@
 DIR_DOTFILES_BACKUPS=$HOME/.dotfilesBackup
 DIR_REPOS_DOTFILES=${DIR_REPOS}/dotfiles.git
 DIR_REPOS=$HOME/repos
-FILE_DOTFILES_FUNCTIONS=$HOME/scripts/dotfiles
+FILE_DOTFILES_FUNCTIONS=$HOME/scripts/dotfiles.sh
 FILE_DOTFILES_GITIGNORE=$HOME/.gitignore
 
 alias dotSource="source $FILE_DOTFILES_FUNCTIONS"

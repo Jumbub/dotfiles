@@ -9,11 +9,12 @@ require("packages.lazy")({
   require("packages/search"),
   require("packages/scroll"),
   require("packages/treesitter"),
-  require("packages/lsp-config"),
+  require("packages/lsp"),
   require("packages/base64"),
   require("packages/git"),
   require("packages/completion"),
   require("packages/viewers"),
+  require("packages/images"),
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
   {
