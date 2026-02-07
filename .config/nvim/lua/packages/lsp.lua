@@ -1,10 +1,5 @@
 return {
   {
-    "seblyng/roslyn.nvim",
-    ft = { "cs", "razor" },
-    opts = {},
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/nvim-cmp",
@@ -17,10 +12,10 @@ return {
       })
       vim.lsp.enable({ "gopls" })
 
-      -- vim.lsp.config("luals", {
-      --   capabilities = capabilities,
-      -- })
-      -- vim.lsp.enable({ "luals" })
+      vim.lsp.config("roslyn_ls", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable({ "roslyn_ls" })
     end,
   },
 }

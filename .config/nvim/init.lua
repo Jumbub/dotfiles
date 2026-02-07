@@ -7,7 +7,7 @@ require("packages.lazy")({
   require("packages/colours"),
   require("packages/files"),
   require("packages/search"),
-  require("packages/scroll"),
+  require("packages/animations"),
   require("packages/treesitter"),
   require("packages/lsp"),
   require("packages/base64"),
@@ -15,6 +15,7 @@ require("packages.lazy")({
   require("packages/completion"),
   require("packages/viewers"),
   require("packages/images"),
+  require("packages/run"),
   "wakatime/vim-wakatime",
   "tpope/vim-surround", -- Word wapping
   {

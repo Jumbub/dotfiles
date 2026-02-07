@@ -1,4 +1,6 @@
 return {
+  -- { "sphamba/smear-cursor.nvim", opts = { cursor_color = "#d3cdc3" } },
+  -- { "LuxVim/nvim-luxmotion" },
   {
     "karb94/neoscroll.nvim",
     lazy = false,
