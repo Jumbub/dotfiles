@@ -26,7 +26,6 @@ return {
         command = "netcoredbg",
         args = { "--interpreter=vscode" },
       }
-      dap.providers.configs["dap.launch.json"] = nil
       dap.adapters.netcoredbg = netcoredbg_adapter
       dap.adapters.coreclr = netcoredbg_adapter
       dap.configurations.cs = {
