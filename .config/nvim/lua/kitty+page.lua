@@ -2,7 +2,10 @@
 return function(INPUT_LINE_NUMBER, CURSOR_LINE, CURSOR_COLUMN)
   -- print("INPUT_LINE_NUMBER:", INPUT_LINE_NUMBER, "CURSOR_LINE:", CURSOR_LINE, "CURSOR_COLUMN:", CURSOR_COLUMN)
   vim.opt.encoding = "utf-8"
-  vim.opt.clipboard = "unnamed"
+  vim.schedule(function() -- delay slow options
+    vim.o.clipboard = "unnamedplus" -- Share clipboard with system
+    vim.g.clipboard = "osc52"
+  end)
   vim.opt.compatible = false
   vim.opt.number = false
   vim.opt.relativenumber = false

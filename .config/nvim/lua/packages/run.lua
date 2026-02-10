@@ -1,7 +1,17 @@
 return {
   {
     "leoluz/nvim-dap-go",
-    opts = {},
+    opts = {
+      dap_configurations = {
+        {
+          type = "go",
+          name = "attach dlv [port=38697]",
+          mode = "remote",
+          request = "attach",
+          port = 38697,
+        },
+      },
+    },
   },
   {
     "mfussenegger/nvim-dap",
@@ -16,6 +26,7 @@ return {
         command = "netcoredbg",
         args = { "--interpreter=vscode" },
       }
+      dap.providers.configs["dap.launch.json"] = nil
       dap.adapters.netcoredbg = netcoredbg_adapter
       dap.adapters.coreclr = netcoredbg_adapter
       dap.configurations.cs = {

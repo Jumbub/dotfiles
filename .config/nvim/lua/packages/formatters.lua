@@ -70,7 +70,7 @@ return {
 
     vim.api.nvim_create_user_command("FF", "Format", {})
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css", "*.html", "*.tf" },
+      pattern = { "*.lua", "*.tsx", "*.ts", "*.rs", "*.cpp", "*.h", "*.js", "*.css", "*.html", "*.tf", "*.go" },
       command = "FormatWrite",
       group = vim.api.nvim_create_augroup("FormatterGroup", {}),
     })

@@ -15,6 +15,7 @@ vim.o.undofile = true -- Persist undo history between sessions
 vim.o.updatetime = 300 -- Cursor hold events
 vim.o.wrap = false -- Wrap preference
 vim.o.shiftwidth = 2 -- Wrap preference
+vim.o.tabstop = 4 -- Tab size
 
 vim.schedule(function() -- delay slow options
   vim.o.clipboard = "unnamedplus" -- Share clipboard with system
