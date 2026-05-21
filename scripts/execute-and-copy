@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+$@ | xclip -selection clipboard
+notify-send "📋 $@"
