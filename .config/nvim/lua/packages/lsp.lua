@@ -15,6 +15,16 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+      vim.lsp.config("ccls", {
+        capabilities = capabilities,
+        -- init_options = {
+        --   clang = {
+        --     extraArgs = { "--std=c++20" },
+        --   },
+        -- },
+      })
+      vim.lsp.enable({ "ccls" })
+
       vim.lsp.config("gopls", {
         capabilities = capabilities,
       })

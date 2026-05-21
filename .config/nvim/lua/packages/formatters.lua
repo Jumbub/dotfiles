@@ -61,6 +61,7 @@ return {
         json = prettier,
         python = black,
         cpp = clang,
+        c = clang,
         rust = cargofmt,
         lua = stylua,
         terraform = terraformfmt,
