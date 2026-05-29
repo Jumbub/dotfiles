@@ -34,6 +34,21 @@ function dc {
   fi
 }
 
+function devcontainerDelete {
+  local label="$(basename "$(pwd)")"
+  local container_id=$(docker ps -aq --filter "label=devcontainer.local_folder=$(pwd)")
+  if [ -z "$container_id" ]; then
+    echo "No devcontainer found for $label"
+    return 1
+  fi
+  echo "Removing devcontainer for $label ($container_id)"
+  docker rm -f "$container_id"
+}
+
+function dcd {
+  devcontainerDelete
+}
+
 function dcu {
   devcontainerUp || (devcontainerUpNew && devcontainerExecNew)
 }
