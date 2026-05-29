@@ -50,5 +50,5 @@ function dcd {
 }
 
 function dcu {
-  devcontainerUp || (devcontainerUpNew && devcontainerExecNew)
+  devcontainerUp || devcontainerUpNew
 }
