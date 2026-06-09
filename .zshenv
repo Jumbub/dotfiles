@@ -1,7 +1,7 @@
 # Path
 PATH="$HOME/scripts:$PATH"
 PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.npm/global/bin:$PATH"
+PATH="$HOME/.local/npm/bin:$PATH"
 PATH="$HOME/go/bin:$PATH"
 
 # Environment
