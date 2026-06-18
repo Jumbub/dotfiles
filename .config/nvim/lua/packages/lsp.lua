@@ -17,11 +17,11 @@ return {
 
       vim.lsp.config("ccls", {
         capabilities = capabilities,
-        -- init_options = {
-        --   clang = {
-        --     extraArgs = { "--std=c++20" },
-        --   },
-        -- },
+        init_options = {
+          clang = {
+            extraArgs = { "--std=c++23" },
+          },
+        },
       })
       vim.lsp.enable({ "ccls" })
 

@@ -74,3 +74,8 @@ source $HOME/scripts/devcontainer.sh
 
 # Dotfiles
 source $HOME/scripts/dotfiles.sh
+
+# Machine specific
+if [ -f "$HOME/.machine" ]; then
+  source $HOME/.machine
+fi
