@@ -79,3 +79,11 @@ source $HOME/scripts/dotfiles.sh
 if [ -f "$HOME/.machine" ]; then
   source $HOME/.machine
 fi
+
+function stripEofNewline {
+  cat $1 | tr -d "\n" | tee $1 > /dev/null
+}
+
+function sudoAlias {
+  sudo zsh -c "$(declare -f $1); $1 ${@:2}"
+}
